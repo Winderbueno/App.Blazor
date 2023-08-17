@@ -7,7 +7,9 @@
     "create": "New",
     "edit": "Edit",
     "load": "Loading...",
+    "next": "Suivant",
     "open": "Open",
+    "previous": "Précédent",
     "reset": "Reset",
     "search": "Search",
     "sign": "Sign",
@@ -21,9 +23,6 @@
   "feature": {
     "home": "Home",
     "users": "Users"
-  },
-  "agent": {
-    "number": "Agent Number"
   },
   "auth": {
     "sign-in": "Sign in",
@@ -85,9 +84,5 @@
       "edit": "Edit user",
       "search": "Users"
     }
-  },
-  "step": {
-    "previous": "Précédent",
-    "next": "Suivant"
   }
 }

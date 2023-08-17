@@ -7,7 +7,9 @@
     "create": "Créer",
     "edit": "Editer",
     "load": "Chargement en cours...",
+    "next": "Suivant",
     "open": "Ouvrir",
+    "previous": "Précédent",
     "reset": "Ré-initialiser",
     "search": "Rechercher",
     "sign": "Signer",
@@ -21,9 +23,6 @@
   "feature": {
     "home": "Accueil",
     "users": "Utilisateurs"
-  },
-  "agent": {
-    "number": "Code Agent"
   },
   "auth": {
     "sign-in": "Se connecter",
@@ -85,9 +84,5 @@
       "edit": "Editer un utilisateur",
       "search": "Utilisateurs"
     }
-  },
-  "step": {
-    "previous": "Précédent",
-    "next": "Suivant"
   }
 }
