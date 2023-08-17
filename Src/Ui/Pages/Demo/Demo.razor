@@ -1,0 +1,38 @@
+﻿@using Ui.Pages.Demo.Components
+
+@page "/demo"
+@inject HttpClient Http
+
+<PageTitle>Demo</PageTitle>
+
+<Container FlexColumn>
+    <Container FlexJustify="space-between"
+               FlexAlign="center">
+        <h1>Demo</h1>
+        <Button @onclick=ChangeLocale>Change Locale</Button>
+    </Container>
+
+    <Container>
+        <Loaders />
+        <Indicators />
+        <Alert />
+        <Tabs />
+        <BlazorForm />
+        <Interactions />
+        <Table />
+        <ErrorHandling />
+        <TextDisplay />
+    </Container>
+
+    @*Todo. Demo StepContainer*@
+    <StepContainer @ref="stepContainer"
+                   Id="test-steps" />
+</Container>
+
+@code {
+    [AllowNull]
+    private StepContainer stepContainer { get; set; }
+
+    private void ChangeLocale()
+        => t.Locale = t.Locale == "fr" ? "en" : "fr";
+}

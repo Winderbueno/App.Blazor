@@ -1,0 +1,39 @@
+﻿@inherits KComponent
+
+<a href=@Route
+   target=@target
+   class=@cssClass
+   @onclick=OnClick>
+
+    @if(Button)
+    {
+        <Button Icon=@Icon Color=Color>@ChildContent</Button>
+    }
+    else if(Icon != null)
+    {
+        <Icon Id=@Icon Color=Color/>
+    }
+    else
+    {
+        @ChildContent
+    }
+
+</a>
+
+@code {
+    [Parameter]
+    public string Route { get; set; } = "";
+
+    [Parameter]
+    public bool NewTab { get; set; } = false;
+
+    [Parameter]
+    public bool Button { get; set; } = false;
+
+    [Parameter]
+    public string? Icon { get; set; }
+
+    private string? target => NewTab ? "_blank" : null;
+
+    protected override void OnInitialized() => Color = Color ?? Enums.Color.Primary;
+}

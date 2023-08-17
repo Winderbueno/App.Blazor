@@ -1,0 +1,81 @@
+﻿@using AutoMapper;
+@using Application.Models.User;
+@using Domain.Enums.User;
+@using Domain.Exceptions;
+
+@page "/users/edit/{userId}"
+@attribute [Authorize("user.update")]
+
+@inject IUserService userService
+@inject IMapper mapper
+@inject NavigationManager navigation
+@inject ToasterService toaster
+
+<h1>@t["user.feature.edit"]</h1>
+        
+<Container FlexJustify="center"
+           FlexChildWidth="30rem">
+    <Card>
+        <Form Model=form
+              OnValidSubmit=OnValidSubmit>
+
+            <h3>@t["user.profile"]</h3>
+
+            <div><b>@t["user.username"]:</b> @user?.Username</div>
+
+            <SelectField @bind-Value=form.Type
+                         Disabled
+                         Label=@t["common.type"]
+                         Items=types 
+                         Placeholder=@(t["common.type"] + "...") />
+
+            <SelectField @bind-Value=form.Function
+                         Required RequiredMessage=@t["field.required"]
+                         Label=@t["common.function"]
+                         Items=functions
+                         Placeholder=@(t["common.function"] + "...") />
+
+            <Button>@t["action.submit"]</Button>
+        </Form>
+    </Card>
+</Container>
+
+@code {
+
+    [Parameter] 
+    public string? UserId { get; set; }
+
+    private UserUpdateAppDto form = new();
+    private UserAppDto user = new();
+
+    private IEnumerable<OptionItem>? functions, types;
+
+    protected override async Task OnInitializedAsync()
+    {
+        functions = Enum.GetValues<UserFunction>().ToOptionItem<UserFunction>();
+        types = Enum.GetValues<UserType>().ToOptionItem<UserType>();
+        
+        // Retrieve user info
+        user = await userService.GetAsync(int.Parse(UserId!));
+        form = mapper.Map<UserUpdateAppDto>(user);
+    }
+
+    private async void OnValidSubmit()
+    {
+        try
+        {
+            user = await userService.UpdateAsync(form);
+
+            if (user != null)
+            {
+                toaster.AddSuccess(t["event.edited"]);
+                navigation.NavigateTo("users");
+            }
+        }
+        catch (ProblemDetailsException e)
+        {
+            Log.Error(e.ToString());
+            toaster.AddError(e.Message);
+        }
+    }
+}

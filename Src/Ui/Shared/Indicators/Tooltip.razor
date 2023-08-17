@@ -1,0 +1,23 @@
+﻿<div class="tooltip-wrapper"
+     style="--bg-color:@BgColor;
+            --text-color:@TextColor;
+            --width:@Width;">
+    <span>@Text</span>
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string Text { get; set; } = "";
+
+    [Parameter]
+    public string TextColor { get; set; } = "#000000";
+
+    [Parameter]
+    public string BgColor { get; set; } = "#adb5bd";
+
+    private string Width => (Math.Min((Text.Length + 1) * 8, 180)).ToString() + "px";
+}

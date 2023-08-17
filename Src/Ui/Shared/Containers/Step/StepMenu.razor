@@ -1,0 +1,64 @@
+﻿<div id="step-card" class="@(ShouldApplyCollapsed(isMenuCollapsed))">
+    <Card>
+        <div id="step-menu">
+            <header class="d-flex align-items-center @(JustifyCenterOrBetween(isMenuCollapsed))">
+
+                @if (!isMenuCollapsed)
+                {
+                    <span>Mes étapes</span>
+                }
+
+                <Icon Id=@(isMenuCollapsed ? "plus" : "minus") @onclick="DisplayMenu" />
+            </header>
+
+            <ul id="stepper-steps">
+                @foreach (var step in Steps)
+                {
+                    var cssClass = $"step-item {(step.IsValidated ? "validated" : "")} {(step.IsVisible ? "" : "disabled")} {(@step.IsActive ? "active" : "")} {(@step.IsInvalid ? "invalid" : "")}";
+
+                    <li class="@cssClass">
+                        @if (!isMenuCollapsed)
+                        {
+                            <span class="step-icon">
+                                <Icon Id=@step.IconId />
+                            </span>
+                            <AnchorLink style="margin-block: 0.25em" link="@($"#Step{step.StepNumber}")">
+                                @step.Name
+                            </AnchorLink>
+                        }
+                        else
+                        {
+                            <span class="step-icon">
+                                <AnchorLink style="margin-block: 0.25em" link="@($"#Step{step.StepNumber}")">
+                                    <Icon Id=@step.IconId />
+                                </AnchorLink>
+                            </span>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    </Card>
+</div>
+
+@code {
+
+    [Parameter]
+    public List<StepElement> Steps { get; set; }
+
+    private bool isMenuCollapsed = false;
+
+    private void DisplayMenu(MouseEventArgs args)
+    {
+        isMenuCollapsed = !isMenuCollapsed;
+    }
+
+    public void Refresh()
+    {
+        Console.WriteLine("refresh step menu");
+        StateHasChanged();
+    }
+
+    string ShouldApplyCollapsed(bool isMenuCollapsed) => isMenuCollapsed ? "collapsed" : "";
+    string JustifyCenterOrBetween(bool isMenuCollapsed) => isMenuCollapsed ? "justify-content-center" : "justify-content-between";
+}

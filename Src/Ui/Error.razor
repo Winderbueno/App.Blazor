@@ -1,0 +1,14 @@
+﻿<CascadingValue Value=this>
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    public void ProcessError(Exception ex)
+    {
+        Log.Error(ex, "Une erreur est survenue.");
+        throw ex;
+    }
+}

@@ -1,0 +1,16 @@
+﻿.chip {
+    display: grid;
+    place-items: center;
+    color: var(--k-color-light);
+    background-color: var(--background-color);
+    border-radius: var(--k-gap-normal);
+    padding-block: var(--k-gap-smallest);
+    padding-inline: var(--k-gap-smaller);
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.dark {
+    color: var(--k-color-dark);
+    border: 1px solid var(--k-color-dark);
+}

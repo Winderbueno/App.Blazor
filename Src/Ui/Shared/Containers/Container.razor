@@ -1,0 +1,75 @@
+﻿@inherits KComponent
+
+<div>
+    <div 
+        style="
+            --flex-direction:@(FlexColumn ? "column" : "row");
+            --flex-wrap:@(NoWrap ? "nowrap" : "wrap");
+            --flex-justify:@FlexJustify;
+            --flex-align:@FlexAlign;
+            --flex-child-width:@FlexChildWidth;
+            --grid-template-columns:@GridColumns;
+            --grid-align:@GridAlign;
+            --mobile-child-width:@MobileChildWidth;
+            @RowGapCss
+            @ColumnGapCss
+            @PaddingInlineCss"
+        class="@("fill " + cssClass)">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    
+    /* Flex */
+    [Parameter]
+    public bool FlexColumn { get; set; } = false;
+    [Parameter]
+    public string FlexJustify { get; set; } = "stretch";
+    [Parameter]
+    public string FlexAlign { get; set; } = "stretch";
+    [Parameter]
+    public bool NoWrap { get; set; } = false;
+    [Parameter]
+    public string? FlexChildWidth { get; set; }
+
+    /* Grid */
+    [Parameter]
+    public bool Grid { get; set; } = false;
+    [Parameter]
+    public string GridColumns { get; set; } = "1fr 1fr";
+    [Parameter]
+    public string GridAlign { get; set; } = "center";
+
+    /* Gap */
+    [Parameter]
+    public Size? RowGap { get; set; }
+    [Parameter]
+    public Size? ColumnGap { get; set; }
+    [Parameter]
+    public bool NoRowGap { get; set; } = false;
+    [Parameter]
+    public bool NoColumnGap { get; set; } = false;
+
+    [Parameter]
+    public Size? PaddingInline { get; set; }
+
+    /* Children */
+    [Parameter]
+    public string? MobileChildWidth { get; set; }
+
+    private string? RowGapCss = "--row-gap:";
+    private string? ColumnGapCss = "--column-gap:";
+    private string? PaddingInlineCss = "";
+
+    protected override void OnInitialized()
+    {
+        CssClass += Grid ? " grid" : " flex";
+
+        RowGapCss += NoRowGap ? "0;" : $"{RowGap.ToCssVar()};";
+        ColumnGapCss += NoColumnGap ? "0;" : $"{ColumnGap.ToCssVar()};";
+
+        if (PaddingInline != null)
+            PaddingInlineCss = $"padding-inline: {PaddingInline.ToCssVar()}";
+    }
+}

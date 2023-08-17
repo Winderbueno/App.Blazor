@@ -1,0 +1,33 @@
+﻿<Card Title="Error Handling">
+
+    <div>If counter hit 3, </div>
+    <div>You'll get an error</div>
+    <p role="status"><b>Current count.</b> @currentCount</p>
+    <Button @onclick=IncrementCount>+ 1</Button>    
+</Card>
+
+@code {
+    [CascadingParameter]
+    public Error? ErrorComponent { get; set; }
+
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+
+        if (currentCount < 3)
+            Log.Information("Incremented count to {CurrentCount}", currentCount);
+        else
+        {
+            try
+            {
+                throw new NotSupportedException("Too many clicks!");
+            }
+            catch (Exception ex)
+            {
+                ErrorComponent!.ProcessError(ex);
+            }
+        }
+    }
+}

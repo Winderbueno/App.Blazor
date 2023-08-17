@@ -1,0 +1,34 @@
+﻿@using Domain.Enums;
+@inject ToasterService toasterService
+
+<Card Title="Alert">
+    <Form Model=form
+          SubmitButton
+          OnValidSubmit=ValidSubmit>
+
+        <TextField @bind-Value=form.Message
+                   Label="Message"
+                   Placeholder="Placeholder" />
+
+        <SelectField @bind-Value=form.Color
+                     Label="Color"
+                     Placeholder="Select from..."
+                     Items=Colors />
+    </Form>
+</Card>
+
+@code {
+    private FormModel form = new();
+
+    private void ValidSubmit()
+        => toasterService.AddToast(Toast.NewToast(form.Message, form.Color, 5));
+
+    private IEnumerable<OptionItem> Colors = Enum.GetValues<Color>().ToOptionItem<Color>();
+
+    public class FormModel
+    {
+        public Color Color { get; set; } = Color.Primary;
+
+        public string Message { get; set; } = "I'm a toast";
+    }
+}

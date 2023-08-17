@@ -1,0 +1,20 @@
+﻿section {
+    display: grid;
+    grid-template:
+        'steps stepper' auto / 4fr 1fr;
+
+    gap: var(--k-gap-normal)
+}
+
+@media (max-width: 574px) {
+    section {
+        grid-template: 'steps stepper' auto / auto 1fr;
+    }
+}
+.steps {
+    grid-area: steps;
+}
+
+.stepper {
+    grid-area: stepper;
+}

@@ -1,0 +1,93 @@
+{
+  "action": {
+    "activate": "Activer",
+    "deactivate": "Désactiver",
+    "clear": "Effacer",
+    "close": "Fermer",
+    "create": "Créer",
+    "edit": "Editer",
+    "load": "Chargement en cours...",
+    "open": "Ouvrir",
+    "reset": "Ré-initialiser",
+    "search": "Rechercher",
+    "sign": "Signer",
+    "submit": "Soumettre",
+    "validate": "Valider"
+  },
+  "event": {
+    "created": "Création réussie !",
+    "edited": "Edition réussie !"
+  },
+  "feature": {
+    "home": "Accueil",
+    "users": "Utilisateurs"
+  },
+  "agent": {
+    "number": "Code Agent"
+  },
+  "auth": {
+    "sign-in": "Se connecter",
+    "sign-in-error": "Erreur lors de la connexion.",
+    "sign-in-redirect": "Redirection vers l'écran de connexion...",
+    "sign-in-success": "Connexion réussie.",
+    "sign-out": "Se déconnecter",
+    "sign-out-wait": "Déconnexion en cours..."
+  },
+  "common": {
+    "function": "Fonction",
+    "status": "Statut",
+    "type": "Type"
+  },
+  "field": {
+    "required": "Ce champ est requis.",
+    "no-result": "Aucun résultat"
+  },
+  "home": {
+    "welcome": "Bienvenue !",
+    "hello": "Bonjour"
+  },
+  "address": {
+    "country": "Pays",
+    "zipcode": "Code postal",
+    "town": "Ville",
+    "street": "Rue",
+    "number": "Numéro"
+  },
+  "person": {
+    "firstname": "Prénom",
+    "identity": "Identité",
+    "lastname": "Nom",
+    "mail": "Email",
+    "mail-confirm": "Confirmer votre email",
+    "phone": "Téléphone",
+    "phone-confirm": "Confirmer votre téléphone"
+  },
+  "user": {
+    "profile": "Profil",
+    "username": "Nom d'utilisateur",
+    "function": {
+      "employee": "Employé",
+      "manager": "Responsable",
+      "support": "Support"
+    },
+    "status": {
+      "in-progress": "En Cours",
+      "active": "Actif",
+      "suspended": "Suspendu",
+      "blocked": "Bloqué"
+    },
+    "type": {
+      "internal": "Interne",
+      "external": "Externe"
+    },
+    "feature": {
+      "create": "Créer un utilisateur",
+      "edit": "Editer un utilisateur",
+      "search": "Utilisateurs"
+    }
+  },
+  "step": {
+    "previous": "Précédent",
+    "next": "Suivant"
+  }
+}

@@ -1,0 +1,11 @@
+﻿<div 
+    class="animated-loading" 
+    style="width: @Width; height: @Height;" />
+
+@code {
+    [Parameter]
+    public string Height { get; set; } = "24px";
+
+    [Parameter]
+    public string Width { get; set; } = "100%";
+}

@@ -1,0 +1,62 @@
+﻿<div class="card">
+    <div class="card-body">
+        <!-- if content is loading -->
+        @if (Loading)
+        {
+            <div class="d-grid gap-2">
+                @for (int i = 0; i < LoadingLines; i++)
+                {
+                    <Skeleton />
+                }
+            </div>
+        }
+        else // Actual content
+        {
+            @if (CardTitle != null || Title != null)
+            {
+                <header class="d-flex justify-content-between align-items-center gap-2">
+                    @if (Title != null)
+                    {
+                        <span class="card-header-title" title=@Title>@Title</span>
+                    }
+                    @CardTitle
+                </header>
+            }
+
+            <p class="card-text">
+                @(CardBody ?? ChildContent)
+            </p>
+
+            @if (CardActions != null)
+            {
+                <hr size="3" class="card-delimiter"/>
+                <footer class="card-actions">
+                    @CardActions
+                </footer>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? CardTitle { get; set; }
+
+    [Parameter]
+    public RenderFragment? CardBody { get; set; }
+    
+    [Parameter]
+    public RenderFragment? CardActions { get; set; }
+
+    [Parameter]
+    public bool Loading { get; set; } = false;
+
+    [Parameter]
+    public int LoadingLines { get; set; } = 3;
+
+    [Parameter]
+    public string? Title { get; set; }
+}

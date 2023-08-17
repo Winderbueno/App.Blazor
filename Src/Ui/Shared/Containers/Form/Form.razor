@@ -1,0 +1,47 @@
+﻿<div>
+    <EditForm class="form-layout"
+              EditContext=@EditContext
+              OnValidSubmit="@OnValidSubmit"
+              OnInvalidSubmit="@OnInvalidSubmit">
+
+        <ObjectGraphDataAnnotationsValidator />
+
+        @ChildContent
+
+        @if (SubmitButton)
+        {
+            <Button>@SubmitLabel</Button>
+        }
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public object Model { get; set; } = new();
+
+    [Parameter]
+    public bool SubmitButton { get; set; } = false;
+
+    [Parameter]
+    public string SubmitLabel { get; set; } = "Submit";
+
+    [Parameter]
+    public EventCallback<EditContext> OnValidSubmit { get; set; }
+
+    [Parameter]
+    public EventCallback<EditContext> OnInvalidSubmit { get; set; }
+
+    [Parameter]
+    public EventHandler<FieldChangedEventArgs>? OnFieldChanged { get; set; }
+
+    private EditContext? EditContext;
+
+    protected override void OnInitialized()
+    {
+        EditContext = new EditContext(Model);
+        EditContext.OnFieldChanged += OnFieldChanged;
+    }
+}

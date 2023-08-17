@@ -1,0 +1,11 @@
+﻿@inherits KComponent
+
+<span class=@($"oi oi-{Id} " + CssClass + (OnClick.HasDelegate ? " clickable":""))
+      style="@($"--color:{(Color == null ? "currentColor" : Color.ToCssVar())}")"
+      aria-hidden="true"
+      @onclick=OnClick />
+
+@code {
+    [Parameter]
+    public string Id { get; set; } = "plus";
+}

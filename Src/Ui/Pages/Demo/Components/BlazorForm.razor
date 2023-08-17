@@ -1,0 +1,134 @@
+﻿@using Domain.Enums.User;
+@using System.ComponentModel.DataAnnotations;
+
+@inject ToasterService toaster
+
+<Card Title="Form">
+    <Form Model=form
+          SubmitButton
+          OnValidSubmit=OnValidSubmit
+          OnInvalidSubmit=OnInvalidSubmit
+          OnFieldChanged=OnFieldChanged>
+        <Container Grid GridColumns="1fr 1fr" NoRowGap>
+            <TextField @bind-Value=form.Text
+                       @oninput=OnInput
+                       Label=@Label("Text", form.Text)
+                       Placeholder="Placeholder" />
+
+            @*DisplayName is used for InputBase errors, it's not the same as annotation's DisplayName*@
+            <DateField @bind-Value=form.Date
+                       Label=@Label("Date", form.Date.ToShortDateString())
+                       DisplayName="SuperDate" />
+
+            <CheckBoxField @bind-Value=form.CheckBox
+                           Label=@Label("CheckBox", form.CheckBox.ToString())
+                              RequiredTrue />
+
+             <SelectField @bind-Value=form.Select
+                          Label=@Label("Select", form.Select)
+                          Placeholder="Select from..."
+                          Items=@Flavors />
+
+             @*SelectField with Enum as BoundValueType*@
+             <SelectField @bind-Value=form.EnumSelect
+                          Label=@Label("Enum Select", form.EnumSelect.ToString())
+                          Placeholder="Select from..."
+                          Items=@EnumOptions />
+
+             @*SelectSearchField implementation has support limitation :
+            - Validation. Supports 'Required' validation through 'Required' param (Neither DataAnnotation nor FluentValidation)
+            - ValueBinding. Supports (Field To Model) binding only. [(Model To Field) binding can be emulated with StateHasChanged() only for "ModelValue == null"]
+            - EventBinding. OnChange can be used. It is triggered onmousedown an option*@
+             <SelectSearchField @bind-Value=form.SelectSearch
+                                      Required RequiredMessage=@t["field.required"]
+                                NoResultMessage=@t["field.no-result"]
+                                Label=@Label("Select Search", form.SelectSearch)
+                                Placeholder="Select from..."
+                                Items=@Flavors />
+
+             @*SelectField Multiple implementation has support limitation :
+            - Validation. Supports 'Required' validation through 'Required' param (Neither DataAnnotation nor FluentValidation)
+            - ValueBinding. Supports (Field To Model) binding only
+            - BoundValueType. Bound value type should be a List<string> (Enum Array is not supported)
+            - EventBinding. Not Supported*@
+             <SelectField Multiple
+             @bind-Value=form.SelectMultiple
+                          Required RequiredMessage=@t["field.required"]
+                          Label="Select Multiple (x item.s)"
+                          Placeholder="Select from..."
+                          Items=@Flavors />
+
+             @*Nested FormModel & Disabled feature*@
+             <TextField @bind-Value=form.NestedForm.Field
+                       Disabled
+                        Label=@Label("Nested Form", form.NestedForm.Field) />
+         </Container>
+     </Form>
+ </Card>
+
+ @code {
+    private FormModel form = new();
+
+    private void OnValidSubmit()
+    {
+        string multipleToast = String.Join(", ", form.SelectMultiple.Select(x => x).ToList());
+        var toast = Toast.NewToast($"Successfully submitted\nMultiple: {String.Join(", ", multipleToast)}", Color.Success);
+        toaster.AddToast(toast);
+    }
+
+    private void OnInvalidSubmit() => toaster.AddError("Invalid form");
+
+    private void OnFieldChanged(object? sender, FieldChangedEventArgs? e)
+        => toaster.AddToast(Toast.NewToast("Field Changed", Color.Info));
+
+    private void OnInput() => Console.WriteLine("@oninput.Test");
+
+    private string Label(string? Name, string? Value) => $"{Name} ({Value})";
+
+    private List<OptionItem> Flavors { get; set; } = new()
+    {
+        new(){ Name = "Noix de pécan", Value = "noix_de_pecan" },
+        new(){ Name = "Noix de coco", Value = "noix_de_coco" },
+        new(){ Name = "Noix de beurre", Value = "noix_de_beurre" },
+        new(){ Name = "Noix Grume Blanc", Value = "noix_grume_blanc" },
+        new(){ Name = "Noix zettiez", Value = "noix_zettiez" }
+    };
+
+    private IEnumerable<OptionItem> EnumOptions = Enum
+        .GetValues<UserFunction>()
+        .ToOptionItem<UserFunction>();
+
+    public class FormModel
+    {
+        [Required]
+        [StringLength(10, ErrorMessage = "{0} is too long.")]
+        public string? Text { get; set; } = "Default";
+
+        [Required]
+        public DateTime Date { get; set; }
+
+        [Required]
+        [Range(typeof(bool), "true", "true")] // <=> RequiredTrue
+        [Display(Name = "<DisplayName>")]
+        public bool CheckBox { get; set; }
+
+        [Required]
+        public string? Select { get; set; }
+
+        [Required]
+        public UserFunction? EnumSelect { get; set; }
+
+        public string? SelectSearch { get; set; }
+
+        public List<string> SelectMultiple { get; set; } = new();
+
+        [ValidateComplexType]
+        public NestedFormModel NestedForm { get; set; } = new();
+    }
+
+    public class NestedFormModel
+    {
+        [Required]
+        public string? Field { get; set; } = "Value";
+    }
+}

@@ -1,0 +1,14 @@
+﻿.user-data {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.user-data li {
+    list-style: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    margin-block: 0.25em;
+}

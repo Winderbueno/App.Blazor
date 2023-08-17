@@ -1,0 +1,35 @@
+/* https://stackoverflow.com/questions/65297617/how-to-make-an-elements-background-color-a-little-darker-using-css */
+button {
+    display: flex;
+    place-items: center;
+    place-content: center;
+    gap: var(--k-gap-smaller);
+    padding: var(--k-gap-smaller) var(--k-gap-large);
+    border-radius: var(--k-gap-smaller);
+    cursor: pointer;
+    border: 0;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    color: var(--k-color-light);
+    background: linear-gradient(#0000, rgb(0 0 0/20%)) top/100% 800%;
+    background-color: var(--background-color);
+    transition: 0.5s;
+}
+
+    button:hover {
+        background-position: bottom;
+    }
+
+    button > svg {
+        vertical-align: middle;
+    }
+
+    button[disabled] {
+        opacity: 0.4;
+    }
+
+    .dark {
+        color: var(--k-color-dark);
+        border: 1px solid var(--k-color-dark);
+    }

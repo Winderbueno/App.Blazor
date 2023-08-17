@@ -1,0 +1,18 @@
+﻿@page "/profile"
+@attribute [Authorize]
+
+<AuthorizeView>
+    <Authorized>
+        <Card>
+            Hello, @context.User.Identity!.Name
+            <br /><br />
+
+            <ul>
+                @foreach (var claim in context.User.Claims)
+                {
+                    <li><b>@claim.Type</b>: @claim.Value</li>
+                }
+            </ul>
+        </Card>
+    </Authorized>
+</AuthorizeView>

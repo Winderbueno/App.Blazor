@@ -1,0 +1,39 @@
+/* Page */
+.page {
+    display: grid;
+    grid-template: 
+        'navbar content' 100svh / 250px auto;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .page {
+        grid-template:
+            'navbar' 56px
+            'content' auto / 100%;
+    }
+}
+
+/* Content */
+.content-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.content-layout > div {
+    padding: var(--k-gap-small);
+}
+
+@media (min-width: 576px) {
+    .content-layout {
+        overflow-y: scroll;
+    }
+
+    .content-layout > div {
+        padding: var(--k-gap-large);
+    }
+}

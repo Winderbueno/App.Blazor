@@ -1,0 +1,20 @@
+﻿@inherits KComponent
+
+<section class="spinner" 
+         style="--size:@size;
+                @($"--color:{Color.ToCssVar()}")" />
+
+@code{
+	[Parameter]
+	public Size Size { get; set; } = Size.Normal;
+
+    private string? size => Size switch
+    {
+        Size.Small => "3",
+        Size.Normal => "6",
+        Size.Large => "9",
+        _ => "6"
+    } + "rem";
+
+    protected override void OnInitialized() => Color = Color ?? Enums.Color.Primary;
+}

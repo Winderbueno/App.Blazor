@@ -1,0 +1,28 @@
+﻿<Card Title="Interactions">
+    <Container FlexColumn>
+        <div>
+            <b>Buttons.</b>
+            <Container>
+                <Button @onclick=OnClickLog>Simple</Button>
+                <Button Badge BadgeValue=5>Badge</Button>
+                <Button Color=Color.Accent>Accent</Button>
+                <Button Color=Color.Light Icon="plus">Light</Button>
+            </Container>
+        </div>
+
+         <div>
+             <b>Links.</b>
+            @*By default Link component routes to "/#"*@
+            <Container FlexAlign="center">
+                <Link Button Route="home" @onclick=OnClickLog>Button</Link>
+                <Link Button Icon="plus" Color=Color.Dark>Button & Icon</Link>
+                <Link NewTab Route="https://go.microsoft.com/fwlink/?linkid=2148851">New Tab</Link>
+                 <Link Icon="circle-x" @onclick=OnClickLog />
+            </Container>
+         </div>
+     </Container>
+</Card>
+
+@code {
+    private void OnClickLog() => Log.Information("@onclick supported :)");
+}

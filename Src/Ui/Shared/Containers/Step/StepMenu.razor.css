@@ -1,0 +1,90 @@
+﻿#step-card {
+    position: sticky;
+    width: 100%;
+    top: var(--k-gap-normal);
+}
+
+#step-card.collapsed {
+    width: fit-content;
+}
+
+#step-card #step-menu {
+    display: grid;
+    grid-template: 
+        'header' 1fr
+        'steps' auto / 100%;
+    
+    gap: var(--k-gap-small)
+}
+
+#step-card #step-menu > #stepper-steps {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+    #step-card #step-menu > #stepper-steps .step-item {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        gap: var(--k-gap-small);
+        cursor: pointer;
+        color: var(--k-color-primary);
+    }
+
+#step-card.collapsed #step-menu > #stepper-steps .step-item {
+    grid-template-columns: 100%;
+}
+
+#step-card.collapsed #step-menu > #stepper-steps .step-item .step-icon {
+    padding-inline: var(--k-gap-smaller);
+}
+
+#step-card #step-menu > #stepper-steps .step-item .step-icon {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#step-card #step-menu > #stepper-steps .step-item:hover,
+#step-card #step-menu > #stepper-steps .step-item.active {
+    font-weight: 700;
+}
+
+    #step-card #step-menu > #stepper-steps .step-item.disabled {
+        color: var(--k-color-grey);
+    }
+
+    #step-card #step-menu > #stepper-steps .step-item.invalid {
+        color: var(--k-color-danger);
+    }
+
+#step-card #step-menu > #stepper-steps .step-item.validated:first-child > .step-icon{
+    border-radius: 1rem 1rem 0 0;
+}
+
+#step-card #step-menu > #stepper-steps .step-item.validated:last-child > .step-icon{
+    border-radius: 0 0 1rem 1rem;
+}
+
+#step-card #step-menu > #stepper-steps .step-item.validated > .step-icon {
+    background-color: var(--k-color-info);
+}
+
+    #step-card #step-menu > #stepper-steps .step-item.active:not(:first-child) > .step-icon {
+        background-color: var(--k-color-info);
+        border-radius: 0 0 1rem 1rem;
+    }
+
+#step-card-action {
+    cursor: pointer;
+    padding: 5px;
+}
+
+    #step-card-action > .oi:hover {
+        padding: 5px;
+        border-radius: 50%;
+        background-color: var(--k-color-grey-light);
+    }

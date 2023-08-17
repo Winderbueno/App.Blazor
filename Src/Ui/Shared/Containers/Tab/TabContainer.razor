@@ -1,0 +1,43 @@
+﻿<CascadingValue Value="this">
+
+    <ul class="nav nav-tabs">
+        @foreach (var tab in Tabs)
+        {
+            var css = $"nav-link {(tab.IsActive ? "active" : "")}";
+            <li class="@css" @onclick="(() => Select(tab))">
+                @tab.Name
+            </li>
+        }
+    </ul>
+
+    <div class="tab-content mt-4">
+        @ChildContent
+    </div>
+
+</CascadingValue>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    public List<Tab> Tabs { get; set; } = new List<Tab>();
+
+    public Tab this[string id] => Tabs.Single(x => x.Id == id);
+
+    private void Select(Tab selectedTab)
+    {
+        foreach (var tab in this.Tabs)
+        {
+            tab.IsActive = false;
+        }
+
+        selectedTab.IsActive = true;
+    }
+
+    internal void AddTab(Tab tab)
+    {
+        Tabs.Add(tab);
+        StateHasChanged();
+    }
+}

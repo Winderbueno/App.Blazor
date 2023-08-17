@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>App.Blazor</title>
+        <base href="/" />
+        <link href="css/app.css" rel="stylesheet" />
+        <link href="Ui.styles.css" rel="stylesheet" />
+    </head>
+
+    <body>
+
+        <!-- Blazor App -->
+        <div id="app">
+            <div class="splashscreen">
+                <svg class="logo">
+                    <use xlink:href="./svg/logo.svg#blazor"></use>
+                </svg>
+            </div>
+        </div>
+
+        <div id="blazor-error-ui">
+            An unhandled error has occurred.
+            <a href="" class="reload">Reload</a>
+            <a class="dismiss">🗙</a>
+        </div>
+
+        <script>
+            function scrollIntoView(elementId) {
+                var element = document.getElementById(elementId);
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            }
+        </script>
+
+        <script type="module" src="scripts/infinite-scroller.js"></script>
+
+        <script src="_framework/blazor.webassembly.js"></script>
+
+        <!-- User authentication package -->
+        <script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>
+    </body>
+</html>

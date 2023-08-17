@@ -1,0 +1,6 @@
+.footer {
+    background-color: var(--k-color-primary-light);
+    border-top: 1px solid var(--k-color-grey-light);
+    height: 30px;
+    justify-content: right;
+}

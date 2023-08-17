@@ -1,0 +1,25 @@
+﻿<div class="nav-item">
+    <NavLink class="nav-link" href=@Route Match=Match>
+        <Icon Id=@Icon />
+        <span>@Label</span>
+    </NavLink>
+</div>
+
+@code {
+    [Parameter]
+    public string? Route { get; set; }
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public string? Icon { get; set; }
+
+    [Parameter]
+    public NavLinkMatch Match { get; set; } = NavLinkMatch.Prefix;
+
+    protected override void OnInitialized()
+    {
+        if (Label != null && Route == null) Route = Label.ToLower();
+    }
+}

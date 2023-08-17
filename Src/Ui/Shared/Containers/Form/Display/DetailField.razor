@@ -1,0 +1,31 @@
+﻿<div style="margin-bottom:5px; margin-top:5px; width:@width">
+    <div>
+        <span class="color" style="font-weight:bold; margin-right:30px">@Label</span>
+        @if (tooltip)
+        {
+            <Tooltip Text=@TooltipText>
+                <Icon Id="info" />
+            </Tooltip>
+        }
+    </div>
+    <div style="margin-bottom:-10px">
+        @ChildContent
+    </div>
+    <hr class="color" style="height:4px" />
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public String? Label { get; set; }
+
+    [Parameter]
+    public string? TooltipText { get; set; }
+
+    [Parameter]
+    public string width { get; set; } = "85%";
+
+    private bool tooltip => TooltipText == null ? false : true;
+}

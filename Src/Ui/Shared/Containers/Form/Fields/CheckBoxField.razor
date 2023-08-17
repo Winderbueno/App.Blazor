@@ -1,0 +1,26 @@
+﻿@using Ui.Shared.Containers.Form.Abstract;
+
+@inherits Field<bool>
+
+<div class="field-wrapper form-check">
+
+    <InputCheckbox class="form-check-input"
+                   @oninput=OnInput
+                   DisplayName=@DisplayName
+                   Value=Value
+                   ValueChanged=ValueChanged
+                   ValueExpression=ValueExpression />
+
+    <label class="form-check-label">@Label</label>
+
+    @if (RequiredTrue)
+    {
+        <i class="validation-message" style="display: inline;">*</i>
+    }
+
+</div>
+
+@code {
+    [Parameter]
+    public bool RequiredTrue { get; set; } = false;
+}

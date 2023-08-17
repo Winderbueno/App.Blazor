@@ -1,0 +1,157 @@
+﻿@using System.ComponentModel.DataAnnotations;
+@using System.Linq.Expressions;
+@using Ui.Shared.Containers.Form.Abstract;
+@using Ui.Shared.Containers.Form.Style;
+
+@typeparam TValue
+@inherits Field<TValue>
+
+<!-- Lorsque https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover sera standardisé : à morderniser -->
+
+<SelectFieldStyle>
+    <div class="field-wrapper">
+
+        <label>@Label</label>
+
+        <div tabindex="0" class="select-wrapper"
+             @onfocusin="_ => optionsVisible = true"
+             @onfocusout="_ => optionsVisible = false">
+
+            <!-- Field -->
+            <output class="select-field @(invalid ? "invalid" : "") @(optionsVisible ? "focused" : "")">
+                @if (selectedOption?.Value != null)
+                {
+                    <span class="selected-option">
+                        <span class="selected-option-value">@OptionName(selectedOption.Name)</span>
+                        <Icon Id="circle-x" @onclick =OnClearClick />
+                    </span>
+                }
+                else
+                {
+                    <input class="@(invalid ? "invalid" : "" )"
+                       @oninput=OnSearchInput
+                       placeholder="@Placeholder">
+                }
+                <Icon Id=@(optionsVisible ? "chevron-top" : "chevron-bottom") />
+            </output>
+
+            <!-- Options -->
+            <ul class="options @(optionsVisible ? "" : "hide")">
+                @if (searchedOptions.Any())
+                {
+                    foreach (var opt in searchedOptions)
+                    {
+                        <li @onmousedown="_ => UpdateValue(opt)"
+                    @onclick="_ => optionsVisible = false">
+                            <data value="@opt.Value">@OptionName(opt.Name)</data>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li>@NoResultMessage</li>
+                }
+            </ul>
+        </div>
+
+        <ValidationMessage For=@(() => Value)></ValidationMessage>
+    </div>
+</SelectFieldStyle>
+
+@code {
+    [EditorRequired, Parameter]
+    public IEnumerable<OptionItem>? Items { get; set; }
+
+    [Parameter]
+    public bool Required { get; set; } = false;
+
+    [Parameter]
+    public string RequiredMessage { get; set; } = "Field is required.";
+
+    [Parameter]
+    public int SearchDelay { get; set; } = 500;
+
+    [Parameter]
+    public int NbDisplayedOptions { get; set; } = 10;
+
+    [Parameter]
+    public string NoResultMessage { get; set; } = "No result";    
+
+    private OptionItem? selectedOption = new();
+    private IEnumerable<OptionItem> searchedOptions = new List<OptionItem>();
+    private bool optionsVisible = false, invalid = false;
+    private ValidationMessageStore? store;
+    private Timer? searchTimer;
+    private string? contains;
+
+    protected override void OnInitialized()
+    {
+        if (Required) EditContext!.OnValidationRequested += OnValidationRequested;
+        EditContext!.OnFieldChanged += OnFieldChanged;
+        store = new(EditContext);
+    }
+
+    protected override void OnParametersSet()
+    {
+        ResetSearchedOptions();
+        if (Value == null) selectedOption = null;
+    }
+
+    private void OnSearchInput(ChangeEventArgs e)
+    {
+        searchTimer = new Timer(_ => SearchOptions(contains), null, SearchDelay, 0);
+        contains = e.Value?.ToString();
+    }
+
+    private void SearchOptions(string? contains)
+    {
+        if (contains != null && Items != null)
+            searchedOptions = Items.Where(x =>
+                x.Name!.ToLower().Contains(
+                    contains.ToLower()!)).Take(NbDisplayedOptions);
+        StateHasChanged();
+    }
+
+    private void OnFieldClick()
+        => optionsVisible = !optionsVisible;
+
+    private void OnClearClick(MouseEventArgs e)
+    {
+        optionsVisible = false;
+        ResetSearchedOptions();
+        UpdateValue();
+    }
+
+    private string? OptionName(string? name)
+        => t[name].Contains("##") ? name : t[name];
+
+    private async void UpdateValue(OptionItem? option = null)
+    {
+        await ValueChanged.InvokeAsync((TValue)(object)option?.Value!);
+        selectedOption = option;
+        EditContext!.NotifyFieldChanged(EditContext.Field(ParseFieldName()));
+        OnFieldChanged();
+        await OnChange.InvokeAsync();
+    }
+
+    private void ResetSearchedOptions()
+    {
+        if (Items != null) searchedOptions = Items.Take(NbDisplayedOptions);
+    }
+
+    private void OnFieldChanged(object? sender = null, FieldChangedEventArgs? e = null)
+    {
+        store?.Clear();
+        invalid = false;
+    }
+
+    private void OnValidationRequested(object? sender = null, ValidationRequestedEventArgs? e = null)
+    {
+        store?.Clear();
+        if (Value == null)
+        {
+            invalid = true;
+            store?.Add(() => Value!, RequiredMessage);
+        }
+    }
+}

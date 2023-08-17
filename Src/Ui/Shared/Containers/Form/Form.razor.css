@@ -1,0 +1,31 @@
+::deep .form-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+::deep .field-wrapper {
+    padding-bottom: 1.6rem;
+    position: relative;
+    min-width: 15rem;
+}
+
+::deep .invalid {
+    border: solid 2px var(--k-color-danger) !important;
+}
+
+/* Override bootstrap's 'form-control' */
+::deep .form-control {
+    border-width: 2px !important; /* Same as other fields in every status (Idle/Focus/Invalid) */
+    border-color: var(--k-color-grey-light);
+}
+
+::deep .validation-message {
+    padding: 0 1em;
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    color: var(--k-color-danger) !important;
+    font-size: 75%;
+}

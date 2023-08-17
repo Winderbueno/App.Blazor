@@ -1,0 +1,24 @@
+﻿@page "/demo/infinite-scroller"
+
+<PageTitle>Infinite Scroller</PageTitle>
+
+<InfiniteScroller OnLoad=OnLoad>
+    @foreach (var item in items)
+    {
+        <p>Item @item</p>
+    }
+</InfiniteScroller>
+
+@code {
+    private List<int> items = Enumerable.Range(0, 10).ToList();
+
+    private int id = 10;
+
+    public async Task OnLoad()
+    {
+        if (id < 27) {
+            for (int i = 0; i < 3; i++) items.Add(id++);
+            await Task.Delay(1000);
+        }
+    }
+}

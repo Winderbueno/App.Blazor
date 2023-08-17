@@ -1,0 +1,28 @@
+.animated-loading {
+    background: #f6f7f8;
+    background: linear-gradient(to right, transparent 8%, #dddddd 18%, transparent 33%);
+    -webkit-animation: placeholderShimmer 1.5s linear 0s infinite normal forwards;
+    animation: placeholderShimmer 1.5s linear 0s infinite normal forwards;
+    background-size: 400% 50px;
+    position: relative;
+}
+
+@keyframes placeholderShimmer {
+    0% {
+        background-position: 50% 0;
+    }
+
+    100% {
+        background-position: -50% 0;
+    }
+}
+
+@-webkit-keyframes placeholderShimmer {
+    0% {
+        background-position: 50% 0;
+    }
+
+    100% {
+        background-position: -50% 0;
+    }
+}

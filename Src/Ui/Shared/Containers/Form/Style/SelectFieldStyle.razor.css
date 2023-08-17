@@ -1,0 +1,25 @@
+/* Select Fields
+/*  'select-xxx' classes are used by homemade select fields (SelectField Multiple & SelectSearchField)
+/*  These fields don't use bootstrap's 'form-control' css class, hence require specific styling */
+::deep .select-wrapper {
+    position: relative; /* Limits options display in a scrollable container */
+}
+
+::deep .select-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.325rem 0.75rem; /* To standardize with bootstrap's fields height */
+    border-radius: 0.25rem;
+    border: 2px solid var(--k-color-grey-light); /* Same as other fields (bootstrap's 'form-control' is overriden in Form.razor.css) */
+    transition: border-color .15s ease-in-out; /* Same as bootstrap's 'form-control' */
+}
+
+    ::deep .select-field:hover {
+        cursor: pointer;
+        background-color: var(--k-color-grey-light);
+    }
+
+    ::deep .select-field.focused {
+        border-color: var(--k-color-primary);
+    }

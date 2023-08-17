@@ -1,0 +1,63 @@
+﻿@using Domain.Enums
+@using Domain.Enums.User
+@using Application.Models.User
+
+@inject IUserService userService
+
+<Card Loading="user == null"
+      Title="@(user?.FirstName + ' ' + user?.LastName)">
+    <CardTitle>
+        <Chip Label=@t[EnumHelper.GetName<UserStatus>(user!.Status)] Color=StatusColor() />
+    </CardTitle>
+    <CardBody>
+        <ul class="user-data">
+            @foreach((string key, string value) in userData)
+            {
+                <li title=@value><b>@key : </b>@value</li>
+            }
+        </ul>
+    </CardBody>
+    <CardActions>
+        <Link Icon="edit-pencil" Button Route=@("users/edit/" + UserId)>@t[$"action.edit"]</Link>
+    </CardActions>
+</Card>
+
+    @code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public int UserId { get; set; }
+
+    private UserAppDto? user;
+    private List<(string key, string value)> userData = new();
+
+    // Todo. Put on UserStatus enum as an extension method
+    private Dictionary<UserStatus, Color> ColorMap = new()
+    {
+        { UserStatus.InProgress, Color.Warning },
+        { UserStatus.Active, Color.Success },
+        { UserStatus.Blocked, Color.Danger },
+        { UserStatus.Suspended, Color.Disabled },
+    };
+
+    private Color? StatusColor() => user != null ? this.ColorMap.First(x => x.Key == user.Status).Value : null;        
+
+    protected override async Task OnParametersSetAsync()
+    {
+        user = null; // Reactivate loading
+        user = await userService.GetAsync(UserId);
+
+        if (user != null)
+        {
+            userData = new()
+            {
+               (t["person.mail"], $"{user?.Email}"),
+               (t["person.phone"], $"+{user?.PhoneNumber}"),
+               (t["common.type"], $"{t[EnumHelper.GetName<UserType>(user!.Type)]}"),
+               (t["common.function"], $"{t[EnumHelper.GetName<UserFunction>(user!.Function)]}"),
+               (t["user.username"], $"{user?.Username}"),
+            };
+        }
+    }
+}

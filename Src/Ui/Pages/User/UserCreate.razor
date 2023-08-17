@@ -1,0 +1,11 @@
+﻿@using Ui.Pages.User.Components
+
+@page "/users/create"
+@attribute [Authorize("user.create")]
+
+<h1>@t["user.feature.create"]</h1>
+        
+<Container FlexJustify="center"
+           FlexChildWidth="30rem">
+    <UserCreateForm />
+</Container>

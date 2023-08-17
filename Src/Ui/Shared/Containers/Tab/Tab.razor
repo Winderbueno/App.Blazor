@@ -1,0 +1,34 @@
+﻿
+<div id="@Id" class="tab-pane @(IsActive ? "active":"")" role="tabpanel">
+    @ChildContent
+</div>
+
+@code {
+
+    [AllowNull]
+    [CascadingParameter]
+    private TabContainer Container { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Id { get; set; }
+
+    [Parameter]
+    public string? Name { get; set; }
+
+    public bool IsActive { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (Container == null)
+            throw new Exception("Container cannot be null");
+
+        Container.AddTab(this);
+
+        Container.Tabs.First().IsActive = true;
+
+        base.OnInitialized();
+    }
+}

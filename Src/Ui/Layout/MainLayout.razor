@@ -1,0 +1,13 @@
+﻿@using Ui.Core.Translations;
+
+@inherits LayoutComponentBase
+
+<section class="page">
+    <NavMenu />
+    <main class="content-layout">
+        <div>
+            <ErrorBoundary>@Body</ErrorBoundary>
+        </div>
+        <Footer />
+    </main>
+</section>

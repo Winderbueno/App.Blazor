@@ -1,0 +1,28 @@
+.toast-container {
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+    z-index: 3;
+}
+
+.toast {
+    display: grid;
+    grid-template-columns: 4fr auto;
+    align-items: top;
+    gap: var(--k-gap-normal);
+    padding: var(--k-gap-normal);
+    width: 300px;
+    border-radius: 0.75rem !important;
+    color: var(--k-color-light);
+    background-color: var(--background-color);
+}
+
+    .toast p {
+        margin: 0;
+        word-break: break-all;
+    }
+
+.dark {
+    color: var(--k-color-dark) !important;
+    border: 1px solid var(--k-color-dark);
+}

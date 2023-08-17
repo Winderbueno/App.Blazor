@@ -1,0 +1,38 @@
+﻿@inherits KComponent
+
+<button type=@buttonType
+        class=@cssClass
+        style="@($"--background-color:{Color.ToCssVar()}")"
+        @onclick=OnClick>
+
+    @if(Icon != null)
+    {
+        <Icon Id="@Icon" />
+    }
+
+    @ChildContent
+    
+    @if (Badge)
+    {
+        @*Todo. Bootstrap class -> to replace*@
+        <span class="badge badge-light">@BadgeValue</span>
+    }
+</button>
+
+@code {
+    [Parameter]
+    public bool NoSubmit { get; set; } = false;
+
+    [Parameter]
+    public string? Icon { get; set; }
+
+    [Parameter]
+    public bool Badge { get; set; } = false;
+
+    [Parameter]
+    public int BadgeValue { get; set; } = 0;
+
+    private string buttonType => NoSubmit ? "button" : "submit";
+
+    protected override void OnInitialized() => Color = Color ?? Enums.Color.Primary;
+}

@@ -1,0 +1,58 @@
+﻿<Card Title="Indicators">
+    <Container FlexColumn>
+        <div>
+            <b>Icons.</b>
+            @*Icon offers these params :
+                'Id'. Choose the icon. (Available list. https://icon-sets.iconify.design/oi/beaker/)
+                'Color'. Specify theme color with Color Enum
+                Implementation is based on OpenIconic*@
+            <Container FlexAlign="center">
+                <Icon /> @*Id. Default to 'plus' | Color. Default to 'currentColor'*@
+                <Icon Id="pencil" />
+                <Icon Id="arrow-circle-bottom" Color=Color.Accent />
+                <Icon Id="menu" Color=Color.Dark />
+                <Button CssClass="black">
+                    <Icon Id="menu" Color=Color.Light />@*Even though 'currentColor' is black, Icon color is Light*@
+                </Button>
+            </Container>
+        </div>
+
+        <div>
+            <b>Chips.</b> 
+            @*Todo. Evo Container 
+                -> Specify Gap Size as 1 param for row&col
+                -> Don't change layout in mobile ?*@
+            <Container Grid GridColumns="1fr 1fr 1fr" 
+                ColumnGap=Size.Smaller RowGap=Size.Smaller>
+                @foreach (var key in ColorMap.Keys)
+                {
+                    <Chip Label=@key Color=ChipColor(key) />
+                }
+            </Container>
+        </div>
+
+        <div>
+            <b>Tooltip.</b>
+            <Container FlexAlign="center">
+                <Tooltip Text="This is a tooltip on a text">Text</Tooltip>
+                <Tooltip Text="This is a tooltip on a button"><Button>Button</Button></Tooltip>
+            </Container>
+        </div>
+    </Container>
+</Card>
+
+@code {
+    private Dictionary<string, Color> ColorMap = new();
+
+    public Color ChipColor(string key)
+    {
+        ColorMap.TryGetValue(key, out Color color);
+        return color;
+    }
+
+    protected override void OnInitialized()
+    {
+        foreach(Color i in Enum.GetValues<Color>())
+            ColorMap.Add(((Color)i).ToString(), i);
+    }
+}

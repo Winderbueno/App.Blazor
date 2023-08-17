@@ -1,0 +1,93 @@
+{
+  "action": {
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "clear": "Clear",
+    "close": "Close",
+    "create": "New",
+    "edit": "Edit",
+    "load": "Loading...",
+    "open": "Open",
+    "reset": "Reset",
+    "search": "Search",
+    "sign": "Sign",
+    "submit": "Submit",
+    "validate": "Validate"
+  },
+  "event": {
+    "created": "Successfully created !",
+    "edited": "Successfully edited !"
+  },
+  "feature": {
+    "home": "Home",
+    "users": "Users"
+  },
+  "agent": {
+    "number": "Agent Number"
+  },
+  "auth": {
+    "sign-in": "Sign in",
+    "sign-in-error": "Sign in error.",
+    "sign-in-redirect": "Redirect to sign in...",
+    "sign-in-success": "Sign in succeded.",
+    "sign-out": "Sign out",
+    "sign-out-wait": "Sign out in progress..."
+  },
+  "common": {
+    "function": "Function",
+    "status": "Status",
+    "type": "Type"
+  },
+  "field": {
+    "required": "Field is required.",
+    "no-result": "No result"
+  },
+  "home": {
+    "welcome": "Welcome !",
+    "hello": "Hello"
+  },
+  "address": {
+    "country": "Pays",
+    "zipcode": "Code postal",
+    "town": "Ville",
+    "street": "Rue",
+    "number": "Numéro"
+  },
+  "person": {
+    "firstname": "First Name",
+    "identity": "Identity",
+    "lastname": "Last Name",
+    "mail": "Mail",
+    "mail-confirm": "Confirm Mail",
+    "phone": "Phone",
+    "phone-confirm": "Confirm Phone"
+  },
+  "user": {
+    "profile": "Profile",
+    "username": "Username",
+    "function": {
+      "employee": "Employee",
+      "manager": "Manager",
+      "support": "Support"
+    },
+    "status": {
+      "in-progress": "In Progress",
+      "active": "Active",
+      "suspended": "Suspended",
+      "blocked": "Blocked"
+    },
+    "type": {
+      "internal": "Internal",
+      "external": "External"
+    },
+    "feature": {
+      "create": "Create user",
+      "edit": "Edit user",
+      "search": "Users"
+    }
+  },
+  "step": {
+    "previous": "Précédent",
+    "next": "Suivant"
+  }
+}

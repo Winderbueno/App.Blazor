@@ -1,0 +1,68 @@
+﻿@using Application.Models.User;
+@using Domain.Enums.User;
+
+@inject IUserService userService
+
+<Form Model=Form
+      OnFieldChanged=OnFieldChanged>
+    <Container FlexAlign="center"
+               FlexJustify="center"
+               NoRowGap>
+        <TextField @bind-Value=Form.Contains
+                   BindOnInput
+                    OnInputDelayed=FormChanged
+                    Label=@t["action.search"]
+                    Placeholder=@Placeholder("action.search") />
+
+         <SelectField @bind-Value=Form.Status
+                      Multiple
+                      Label=@t["common.status"]
+                      Items=status
+                      Placeholder=@Placeholder("common.status") />
+
+         <SelectField @bind-Value=Form.Types
+                      Multiple
+                      Label=@t["common.type"]
+                      Items=types
+                      Placeholder=@Placeholder("common.type") />
+
+         <SelectField @bind-Value=Form.Functions
+                      Multiple
+                      Label=@t["common.function"]
+                      Items=functions
+                      Placeholder=@Placeholder("common.function") />
+
+         <Button @onclick=Clear>@t["action.clear"]</Button>
+     </Container>
+ </Form>
+
+@code {
+    [Parameter]
+    public Action<UserSearchAppDto>? OnFormChange { get; set; }
+
+    [Parameter]
+    public UserSearchAppDto Form { get; set; } = new();
+
+    private IEnumerable<OptionItem>? status, types, functions;
+
+    private string Placeholder(string? label) => t[label] + "...";
+
+    protected override void OnInitialized()
+    {
+        status = Enum.GetValues<UserStatus>().ToOptionItem<UserStatus>();
+        types = Enum.GetValues<UserType>().ToOptionItem<UserType>();
+        functions = Enum.GetValues<UserFunction>().ToOptionItem<UserFunction>();
+    }
+
+    private void Clear()
+    {
+        Form = new();
+        FormChanged();
+    }
+
+    private void OnFieldChanged(object? sender, FieldChangedEventArgs? e)
+        => FormChanged();
+
+    private void FormChanged(object? state = null)
+        => OnFormChange?.Invoke(Form);
+}

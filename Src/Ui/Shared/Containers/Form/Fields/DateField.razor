@@ -1,0 +1,18 @@
+﻿@using Ui.Shared.Containers.Form.Abstract;
+
+@inherits Field<DateTime>
+
+<div class="field-wrapper">
+    
+    <label>@Label</label>
+
+    <InputDate class="form-control"
+               @oninput=OnInput
+               DisplayName=@DisplayName
+               Value=Value
+               ValueChanged=ValueChanged
+               ValueExpression=ValueExpression />
+
+    <ValidationMessage For=ValueExpression />
+
+</div>
