@@ -23,16 +23,9 @@
         <ErrorHandling />
         <TextDisplay />
     </Container>
-
-    @*Todo. Demo StepContainer*@
-    <StepContainer @ref="stepContainer"
-                   Id="test-steps" />
 </Container>
 
 @code {
-    [AllowNull]
-    private StepContainer stepContainer { get; set; }
-
     private void ChangeLocale()
         => t.Locale = t.Locale == "fr" ? "en" : "fr";
 }
