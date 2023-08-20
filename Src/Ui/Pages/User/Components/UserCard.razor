@@ -1,5 +1,4 @@
-﻿@using Domain.Enums
-@using Domain.Enums.User
+﻿@using Domain.Enums.User
 @using Application.Models.User
 
 @inject IUserService userService
@@ -7,7 +6,7 @@
 <Card Loading="user == null"
       Title="@(user?.FirstName + ' ' + user?.LastName)">
     <CardTitle>
-        <Chip Label=@t[EnumHelper.GetName<UserStatus>(user!.Status)] Color=StatusColor() />
+        <Chip Label=@t[user!.Status.DisplayName()] Color=StatusColor() />
     </CardTitle>
     <CardBody>
         <ul class="user-data">
@@ -54,8 +53,8 @@
             {
                (t["person.mail"], $"{user?.Email}"),
                (t["person.phone"], $"+{user?.PhoneNumber}"),
-               (t["common.type"], $"{t[EnumHelper.GetName<UserType>(user!.Type)]}"),
-               (t["common.function"], $"{t[EnumHelper.GetName<UserFunction>(user!.Function)]}"),
+               (t["common.type"], $"{t[user!.Type.DisplayName()]}"),
+               (t["common.function"], $"{t[user!.Function.DisplayName()]}"),
                (t["user.username"], $"{user?.Username}"),
             };
         }

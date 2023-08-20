@@ -26,13 +26,13 @@
             <SelectField @bind-Value=form.Type
                          Disabled
                          Label=@t["common.type"]
-                         Items=types 
+                         Options=types 
                          Placeholder=@(t["common.type"] + "...") />
 
             <SelectField @bind-Value=form.Function
                          Required RequiredMessage=@t["field.required"]
                          Label=@t["common.function"]
-                         Items=functions
+                         Options=functions
                          Placeholder=@(t["common.function"] + "...") />
 
             <Button>@t["action.submit"]</Button>
@@ -48,12 +48,12 @@
     private UserUpdateAppDto form = new();
     private UserAppDto user = new();
 
-    private IEnumerable<OptionItem>? functions, types;
+    private IEnumerable<Option>? functions, types;
 
     protected override async Task OnInitializedAsync()
     {
-        functions = Enum.GetValues<UserFunction>().ToOptionItem<UserFunction>();
-        types = Enum.GetValues<UserType>().ToOptionItem<UserType>();
+        functions = Enum.GetValues<UserFunction>().ToOption<UserFunction>();
+        types = Enum.GetValues<UserType>().ToOption<UserType>();
         
         // Retrieve user info
         user = await userService.GetAsync(int.Parse(UserId!));

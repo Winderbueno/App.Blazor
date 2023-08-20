@@ -1,5 +1,4 @@
-﻿@using Domain.Enums;
-@inject ToasterService toasterService
+﻿@inject ToasterService toasterService
 
 <Card Title="Alert">
     <Form Model=form
@@ -13,7 +12,7 @@
         <SelectField @bind-Value=form.Color
                      Label="Color"
                      Placeholder="Select from..."
-                     Items=Colors />
+                     Options=Colors />
     </Form>
 </Card>
 
@@ -23,7 +22,7 @@
     private void ValidSubmit()
         => toasterService.AddToast(Toast.NewToast(form.Message, form.Color, 5));
 
-    private IEnumerable<OptionItem> Colors = Enum.GetValues<Color>().ToOptionItem<Color>();
+    private IEnumerable<Option> Colors = Enum.GetValues<Color>().ToOption<Color>();
 
     public class FormModel
     {

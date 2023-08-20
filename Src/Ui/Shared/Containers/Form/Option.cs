@@ -1,6 +1,6 @@
 ﻿namespace Ui.Shared.Containers.Form;
 
-public class OptionItem
+public class Option
 {
     public string? Name { get; set; }
 

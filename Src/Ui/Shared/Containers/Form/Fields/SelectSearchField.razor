@@ -60,7 +60,7 @@
 
 @code {
     [EditorRequired, Parameter]
-    public IEnumerable<OptionItem>? Items { get; set; }
+    public IEnumerable<Option>? Options { get; set; }
 
     [Parameter]
     public bool Required { get; set; } = false;
@@ -77,8 +77,8 @@
     [Parameter]
     public string NoResultMessage { get; set; } = "No result";    
 
-    private OptionItem? selectedOption = new();
-    private IEnumerable<OptionItem> searchedOptions = new List<OptionItem>();
+    private Option? selectedOption = new();
+    private IEnumerable<Option> searchedOptions = new List<Option>();
     private bool optionsVisible = false, invalid = false;
     private ValidationMessageStore? store;
     private Timer? searchTimer;
@@ -105,8 +105,8 @@
 
     private void SearchOptions(string? contains)
     {
-        if (contains != null && Items != null)
-            searchedOptions = Items.Where(x =>
+        if (contains != null && Options != null)
+            searchedOptions = Options.Where(x =>
                 x.Name!.ToLower().Contains(
                     contains.ToLower()!)).Take(NbDisplayedOptions);
         StateHasChanged();
@@ -125,7 +125,7 @@
     private string? OptionName(string? name)
         => t[name].Contains("##") ? name : t[name];
 
-    private async void UpdateValue(OptionItem? option = null)
+    private async void UpdateValue(Option? option = null)
     {
         await ValueChanged.InvokeAsync((TValue)(object)option?.Value!);
         selectedOption = option;
@@ -136,7 +136,7 @@
 
     private void ResetSearchedOptions()
     {
-        if (Items != null) searchedOptions = Items.Take(NbDisplayedOptions);
+        if (Options != null) searchedOptions = Options.Take(NbDisplayedOptions);
     }
 
     private void OnFieldChanged(object? sender = null, FieldChangedEventArgs? e = null)

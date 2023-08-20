@@ -27,13 +27,13 @@
              <SelectField @bind-Value=form.Select
                           Label=@Label("Select", form.Select)
                           Placeholder="Select from..."
-                          Items=@Flavors />
+                          Options=Flavors />
 
              @*SelectField with Enum as BoundValueType*@
              <SelectField @bind-Value=form.EnumSelect
                           Label=@Label("Enum Select", form.EnumSelect.ToString())
                           Placeholder="Select from..."
-                          Items=@EnumOptions />
+                          Options=EnumOptions />
 
              @*SelectSearchField implementation has support limitation :
             - Validation. Supports 'Required' validation through 'Required' param (Neither DataAnnotation nor FluentValidation)
@@ -44,7 +44,7 @@
                                 NoResultMessage=@t["field.no-result"]
                                 Label=@Label("Select Search", form.SelectSearch)
                                 Placeholder="Select from..."
-                                Items=@Flavors />
+                                Options=Flavors />
 
              @*SelectField Multiple implementation has support limitation :
             - Validation. Supports 'Required' validation through 'Required' param (Neither DataAnnotation nor FluentValidation)
@@ -56,12 +56,12 @@
                           Required RequiredMessage=@t["field.required"]
                           Label="Select Multiple (x item.s)"
                           Placeholder="Select from..."
-                          Items=@Flavors />
+                          Options=Flavors />
 
              @*Nested FormModel & Disabled feature*@
              <TextField @bind-Value=form.NestedForm.Field
-                       Disabled
-                        Label=@Label("Nested Form", form.NestedForm.Field) />
+                        Label=@Label("Nested Form", form.NestedForm.Field)
+                        Disabled />
          </Container>
      </Form>
  </Card>
@@ -85,7 +85,7 @@
 
     private string Label(string? Name, string? Value) => $"{Name} ({Value})";
 
-    private List<OptionItem> Flavors { get; set; } = new()
+    private List<Option> Flavors { get; set; } = new()
     {
         new(){ Name = "Noix de pécan", Value = "noix_de_pecan" },
         new(){ Name = "Noix de coco", Value = "noix_de_coco" },
@@ -94,9 +94,9 @@
         new(){ Name = "Noix zettiez", Value = "noix_zettiez" }
     };
 
-    private IEnumerable<OptionItem> EnumOptions = Enum
+    private IEnumerable<Option> EnumOptions = Enum
         .GetValues<UserFunction>()
-        .ToOptionItem<UserFunction>();
+        .ToOption<UserFunction>();
 
     public class FormModel
     {

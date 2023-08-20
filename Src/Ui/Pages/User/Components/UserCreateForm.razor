@@ -14,12 +14,12 @@
 
         <SelectField @bind-Value=form.Type
                      Label=@t["common.type"]
-                     Items=types
+                     Options=types
                      Placeholder=@(t["common.type"] + "...") />
 
         <SelectField @bind-Value=form.Function
                      Label=@t["common.function"]
-                     Items=functions
+                     Options=functions
                      Placeholder=@(t["common.function"] + "...") />
 
         <TextField @bind-Value=form.Username Label=@t["user.username"] />
@@ -43,12 +43,12 @@
     private UserCreateAppDto form = new();
     private UserAppDto? userCreated = null;
 
-    private IEnumerable<OptionItem>? functions, types;
+    private IEnumerable<Option>? functions, types;
 
     protected override void OnInitialized()
     {
-        functions = Enum.GetValues<UserFunction>().ToOptionItem<UserFunction>();
-        types = Enum.GetValues<UserType>().ToOptionItem<UserType>();
+        functions = Enum.GetValues<UserFunction>().ToOption<UserFunction>();
+        types = Enum.GetValues<UserType>().ToOption<UserType>();
     }
     
     private async Task ValidSubmit()

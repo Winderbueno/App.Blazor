@@ -7,7 +7,7 @@
 @inherits Field<TSelect>
 
 <!-- Lorsque https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover sera standardisé : à morderniser -->
-<!-- TODO: Ajouter l'option d'icône "small" lorsqu'elle sera implémentée -->
+<!-- Todo. Ajouter l'option d'icône "small" lorsqu'elle sera implémentée -->
 
 <div class="field-wrapper">
     <label>@Label</label>
@@ -64,9 +64,9 @@
                 @*Trick to use null option value as a placeholder*@
                 <option value="" selected disabled hidden>@Placeholder</option>
             }
-            @if (Items != null)
+            @if (Options != null)
             {
-                foreach (var opt in Items)
+                foreach (var opt in Options)
                 {
                     <option value="@opt.Value">@OptionName(opt.Name)</option>
                 }
@@ -88,11 +88,11 @@
     public string RequiredMessage { get; set; } = "Field is required.";
 
     [EditorRequired, Parameter]
-    public IEnumerable<OptionItem>? Items { get; set; }    
+    public IEnumerable<Option>? Options { get; set; }    
 
     private bool optionsVisible = false, invalid = false;
     private ValidationMessageStore? store;
-    private List<(OptionItem Item, bool IsChecked)> multipleOptions = new();
+    private List<(Option Item, bool IsChecked)> multipleOptions = new();
 
     private string selectedOptionColor => Value == null ? "var(--k-color-grey)" : "var(--k-color-primary);";
 
@@ -110,7 +110,7 @@
         if (Value == null) ResetCheckBox();
     }
 
-    private async void OnMultipleSelectChange(OptionItem option)
+    private async void OnMultipleSelectChange(Option option)
     {
         multipleOptions = multipleOptions
             .Select(x => x.Item.Value != option.Value ? x : new(x.Item, !x.IsChecked))
@@ -151,6 +151,6 @@
 
     private void ResetCheckBox()
     {
-        if (Multiple && Items != null) multipleOptions = Items.Select(x => (x, false)).ToList();
+        if (Multiple && Options != null) multipleOptions = Options.Select(x => (x, false)).ToList();
     }
 }
