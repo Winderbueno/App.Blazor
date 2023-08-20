@@ -5,6 +5,7 @@ namespace Domain.Extensions;
 
 public static class AnnotationExtensions
 {
+    // Return Name property of DisplayAttribute
     public static string? DisplayName<T>(this T value)
         => GetFieldInfo(value)?
             .GetCustomAttributes<DisplayAttribute>()
