@@ -24,8 +24,8 @@
                             @foreach (var pair in multipleOptions.Where(x => x.IsChecked == true))
                             {
                                 <li>
-                                    <data value="@pair.Item.Value">@OptionName(pair.Item.Name)</data>
-                                    <Icon Id="x" @onclick ="() => OnMultipleSelectChange(pair.Item)" />
+                                    <data value=@pair.Option.Value>@OptionName(pair.Option.Name)</data>
+                                    <Icon Id="x" @onclick="() => OnMultipleSelectChange(pair.Option)" />
                                 </li>
                             }
                         </ul>
@@ -39,9 +39,9 @@
                 <ul class="select-data @(optionsVisible ? "" : "hide")">
                     @foreach (var pair in multipleOptions)
                     {
-                        <li @onclick="() => OnMultipleSelectChange(pair.Item)">
+                        <li @onclick="() => OnMultipleSelectChange(pair.Option)">
                             <input type="checkbox" checked=@pair.IsChecked>
-                            <data value="@pair.Item.Value">@OptionName(pair.Item.Name)</data>
+                            <data value=@pair.Option.Value>@OptionName(pair.Option.Name)</data>
                         </li>
                     }
                 </ul>
@@ -92,7 +92,7 @@
 
     private bool optionsVisible = false, invalid = false;
     private ValidationMessageStore? store;
-    private List<(Option Item, bool IsChecked)> multipleOptions = new();
+    private List<(Option Option, bool IsChecked)> multipleOptions = new();
 
     private string selectedOptionColor => Value == null ? "var(--k-color-grey)" : "var(--k-color-primary);";
 
@@ -113,10 +113,10 @@
     private async void OnMultipleSelectChange(Option option)
     {
         multipleOptions = multipleOptions
-            .Select(x => x.Item.Value != option.Value ? x : new(x.Item, !x.IsChecked))
+            .Select(x => x.Option.Value != option.Value ? x : new(x.Option, !x.IsChecked))
             .ToList();
 
-        var values = multipleOptions.Where(x => x.IsChecked == true).Select(x => x.Item.Value).ToList();
+        var values = multipleOptions.Where(x => x.IsChecked == true).Select(x => x.Option.Value).ToList();
         await ValueChanged.InvokeAsync((TSelect)(object)values);
 
         EditContext!.NotifyFieldChanged(EditContext.Field(ParseFieldName()));

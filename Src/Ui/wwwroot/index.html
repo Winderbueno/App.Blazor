@@ -27,20 +27,11 @@
             <a class="dismiss">🗙</a>
         </div>
 
-        <script>
-            function scrollIntoView(elementId) {
-                var element = document.getElementById(elementId);
-                if (element) {
-                    element.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
-            }
-        </script>
 
         <script type="module" src="scripts/infinite-scroller.js"></script>
-
         <script src="_framework/blazor.webassembly.js"></script>
 
-        <!-- User authentication package -->
+        <!-- User authentication -->
         <script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>
     </body>
 </html>
