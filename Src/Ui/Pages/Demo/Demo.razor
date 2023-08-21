@@ -1,4 +1,5 @@
 ﻿@using Ui.Pages.Demo.Components
+@using Ui.Pages.Demo.Components.Indicators
 
 @page "/demo"
 @inject HttpClient Http
@@ -13,9 +14,17 @@
     </Container>
 
     <Container>
-        <Loaders />
-        <Indicators />
-        <Alert />
+        <Card Title="Indicators">
+            <Container>
+                <Loaders />
+                <Container FlexColumn>
+                    <Icons />
+                    <Chips />
+                    <Tooltips />
+                </Container>
+                <Toasts />
+            </Container>
+        </Card>
         <Tabs />
         <BlazorForm />
         <Interactions />

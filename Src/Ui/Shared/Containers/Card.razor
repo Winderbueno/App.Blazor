@@ -1,5 +1,9 @@
 ﻿<div class="card">
-    <div class="card-body">
+    <div class="card-body"
+         style="
+            @($"--vertical-padding:{verticalPadding};")
+            @($"--horizontal-padding:{horizontalPadding};")
+            @($"--gap:{gap};")">
         <!-- if content is loading -->
         @if (Loading)
         {
@@ -17,7 +21,9 @@
                 <header class="d-flex justify-content-between align-items-center gap-2">
                     @if (Title != null)
                     {
-                        <span class="card-header-title" title=@Title>@Title</span>
+                        <span class="card-header-title"
+                              style="@($"--title-size:{titleSize}")"
+                              title=@Title>@Title</span>
                     }
                     @CardTitle
                 </header>
@@ -47,7 +53,7 @@
 
     [Parameter]
     public RenderFragment? CardBody { get; set; }
-    
+
     [Parameter]
     public RenderFragment? CardActions { get; set; }
 
@@ -59,4 +65,12 @@
 
     [Parameter]
     public string? Title { get; set; }
+
+    [Parameter]
+    public int TitleLevel { get; set; } = 1;
+
+    private string titleSize => TitleLevel == 1 ? "x-large" : "large";
+    private string verticalPadding => TitleLevel == 1 ? "var(--k-gap-small)" : "var(--k-gap-smaller)";
+    private string horizontalPadding => TitleLevel == 1 ? "var(--k-gap-normal)" : "var(--k-gap-small)";
+    private string gap => TitleLevel == 1 ? "var(--k-gap-smaller)" : "var(--k-gap-smallest)";
 }

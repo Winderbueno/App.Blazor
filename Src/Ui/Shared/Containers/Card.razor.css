@@ -7,7 +7,7 @@
 }
 
 .card-header-title {
-    font-size: x-large;
+    font-size: var(--title-size);
     font-weight: 600;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -18,7 +18,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: var(--k-gap-smaller);
+    padding: var(--vertical-padding) var(--horizontal-padding);
+    gap: var(--gap);
 }
 
 .card-text {

@@ -1,0 +1,15 @@
+﻿@*Icon component offers the following params :
+    'Id'. Choose the icon. (Available list. https://icon-sets.iconify.design/oi/beaker/)
+    'Color'. Specify theme color with Color Enum
+  Implementation is based on OpenIconic*@
+<Card Title="Icon" TitleLevel=2>
+    <Container FlexAlign="center">
+        <Icon /> @*Id. Default to 'plus' | Color. Default to 'currentColor'*@
+        <Icon Id="pencil" />
+        <Icon Id="arrow-circle-bottom" Color=Color.Accent />
+        <Icon Id="menu" Color=Color.Dark />
+        <Button CssClass="black">
+            <Icon Id="menu" Color=Color.Light />@*Even though 'currentColor' is black, Icon color is Light*@
+        </Button>
+    </Container>
+</Card>
