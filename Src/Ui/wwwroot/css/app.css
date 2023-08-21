@@ -12,11 +12,6 @@ body {
     line-height: 1.6;
 }
 
-h2 {
-    font-size: 2rem;
-    color: var(--k-color-primary);
-}
-
 /* User selected text */
 ::selection {
     color: #fff;
@@ -30,7 +25,7 @@ h2 {
     text-shadow: none;
 }
 
-/* App error */
+/* Handling Error */
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
