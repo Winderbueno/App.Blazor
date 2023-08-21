@@ -24,6 +24,12 @@
                            Label=@Label("CheckBox", form.CheckBox.ToString())
                            RequiredTrue />
 
+             @* SelectField
+                - Options. can be an IEnumarble of :
+                    > strings
+                    > Any enum
+                    > The provided "Option" object
+                    > Any Object. In that case, OptionGetters must be specify where to get the Name&Value *@
             <SelectField @bind-Value=form.Select
                          Label=@Label("Select", form.Select)
                          Placeholder="Select from..."

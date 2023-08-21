@@ -12,7 +12,7 @@ public class Option
 public static class OptionExtensions
 {
     // Convert a variable of any type in an Option
-    // TData can be either a string, an Enum or an Object
+    // TData can be either a string, an Enum or any Object
     public static IEnumerable<Option> ToOption<TData>(this IEnumerable<TData?> datas,
         Func<TData?, string?>? name = null,
         Func<TData?, string?>? value = null)
