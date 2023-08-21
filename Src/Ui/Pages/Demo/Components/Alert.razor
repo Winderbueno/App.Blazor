@@ -12,7 +12,7 @@
         <SelectField @bind-Value=form.Color
                      Label="Color"
                      Placeholder="Select from..."
-                     Options=colors />
+                     Options=@(Enum.GetValues<Color>()) />
     </Form>
 </Card>
 
@@ -21,8 +21,6 @@
 
     private void ValidSubmit()
         => toasterService.AddToast(Toast.NewToast(form.Message, form.Color, 5));
-
-    private IEnumerable<Option> colors = Enum.GetValues<Color>().ToOption();
 
     public class FormModel
     {

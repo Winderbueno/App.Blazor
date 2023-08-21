@@ -3,11 +3,11 @@
 @using Ui.Shared.Containers.Form.Abstract;
 @using Ui.Shared.Containers.Form.Style;
 
-@typeparam TSelect
-@inherits Field<TSelect>
+@typeparam TValue
+@typeparam TOption
+@inherits Field<TValue>
 
 <!-- Lorsque https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover sera standardisé : à morderniser -->
-<!-- Todo. Ajouter l'option d'icône "small" lorsqu'elle sera implémentée -->
 
 <div class="field-wrapper">
     <label>@Label</label>
@@ -64,9 +64,9 @@
                 @*Trick to use null option value as a placeholder*@
                 <option value="" selected disabled hidden>@Placeholder</option>
             }
-            @if (Options != null)
+            @if (options != null)
             {
-                foreach (var opt in Options)
+                foreach (var opt in options)
                 {
                     <option value="@opt.Value">@OptionName(opt.Name)</option>
                 }
@@ -81,15 +81,20 @@
     [Parameter]
     public bool Multiple { get; set; } = false;
 
+    /* Validation */
     [Parameter]
     public bool Required { get; set; } = false;
-
     [Parameter]
     public string RequiredMessage { get; set; } = "Field is required.";
 
+    /* Options */
     [EditorRequired, Parameter]
-    public IEnumerable<Option>? Options { get; set; }    
+    public IEnumerable<TOption>? Options { get; set; }
+    [Parameter]
+    public (Func<TOption?, string?>? Name, Func<TOption?, string?>? Value)? OptionGetters { get; set; }
 
+
+    private IEnumerable<Option>? options;
     private bool optionsVisible = false, invalid = false;
     private ValidationMessageStore? store;
     private List<(Option Option, bool IsChecked)> multipleOptions = new();
@@ -98,6 +103,7 @@
 
     protected override void OnInitialized()
     {
+        options = Options!.ToOption(OptionGetters?.Name, OptionGetters?.Value);
         if (Required) EditContext!.OnValidationRequested += OnValidationRequested;
         EditContext!.OnFieldChanged += OnFieldChanged;
         store = new(EditContext);
@@ -117,7 +123,7 @@
             .ToList();
 
         var values = multipleOptions.Where(x => x.IsChecked == true).Select(x => x.Option.Value).ToList();
-        await ValueChanged.InvokeAsync((TSelect)(object)values);
+        await ValueChanged.InvokeAsync((TValue)(object)values);
 
         EditContext!.NotifyFieldChanged(EditContext.Field(ParseFieldName()));
 
@@ -151,6 +157,6 @@
 
     private void ResetCheckBox()
     {
-        if (Multiple && Options != null) multipleOptions = Options.Select(x => (x, false)).ToList();
+        if (Multiple && options != null) multipleOptions = options.Select(x => (x, false)).ToList();
     }
 }

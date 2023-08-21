@@ -4,6 +4,7 @@
 @using Ui.Shared.Containers.Form.Style;
 
 @typeparam TValue
+@typeparam TOption
 @inherits Field<TValue>
 
 <!-- Lorsque https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover sera standardisé : à morderniser -->
@@ -59,25 +60,30 @@
 </SelectFieldStyle>
 
 @code {
-    [EditorRequired, Parameter]
-    public IEnumerable<Option>? Options { get; set; }
 
+    /* Validation */
     [Parameter]
     public bool Required { get; set; } = false;
-
     [Parameter]
     public string RequiredMessage { get; set; } = "Field is required.";
 
+    /* Options */
+    [EditorRequired, Parameter]
+    public IEnumerable<TOption>? Options { get; set; }
+    [Parameter]
+    public (Func<TOption?, string?>? Name, Func<TOption?, string?>? Value)? OptionGetters { get; set; }
+    
+    /* Options Search */
     [Parameter]
     public int SearchDelay { get; set; } = 500;
-
     [Parameter]
     public int NbDisplayedOptions { get; set; } = 10;
-
     [Parameter]
     public string NoResultMessage { get; set; } = "No result";    
 
+
     private Option? selectedOption = new();
+    private IEnumerable<Option>? options;
     private IEnumerable<Option> searchedOptions = new List<Option>();
     private bool optionsVisible = false, invalid = false;
     private ValidationMessageStore? store;
@@ -86,6 +92,7 @@
 
     protected override void OnInitialized()
     {
+        options = Options!.ToOption(OptionGetters?.Name, OptionGetters?.Value);
         if (Required) EditContext!.OnValidationRequested += OnValidationRequested;
         EditContext!.OnFieldChanged += OnFieldChanged;
         store = new(EditContext);
@@ -105,8 +112,8 @@
 
     private void SearchOptions(string? contains)
     {
-        if (contains != null && Options != null)
-            searchedOptions = Options.Where(x =>
+        if (contains != null && options != null)
+            searchedOptions = options.Where(x =>
                 x.Name!.ToLower().Contains(
                     contains.ToLower()!)).Take(NbDisplayedOptions);
         StateHasChanged();
@@ -136,7 +143,7 @@
 
     private void ResetSearchedOptions()
     {
-        if (Options != null) searchedOptions = Options.Take(NbDisplayedOptions);
+        if (options != null) searchedOptions = options.Take(NbDisplayedOptions);
     }
 
     private void OnFieldChanged(object? sender = null, FieldChangedEventArgs? e = null)
