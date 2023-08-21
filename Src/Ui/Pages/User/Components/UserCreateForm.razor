@@ -47,8 +47,8 @@
 
     protected override void OnInitialized()
     {
-        functions = Enum.GetValues<UserFunction>().ToOption<UserFunction>();
-        types = Enum.GetValues<UserType>().ToOption<UserType>();
+        functions = Enum.GetValues<UserFunction>().ToOption();
+        types = Enum.GetValues<UserType>().ToOption();
     }
     
     private async Task ValidSubmit()

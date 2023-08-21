@@ -22,7 +22,7 @@
     private void ValidSubmit()
         => toasterService.AddToast(Toast.NewToast(form.Message, form.Color, 5));
 
-    private IEnumerable<Option> colors = Enum.GetValues<Color>().ToOption<Color>();
+    private IEnumerable<Option> colors = Enum.GetValues<Color>().ToOption();
 
     public class FormModel
     {

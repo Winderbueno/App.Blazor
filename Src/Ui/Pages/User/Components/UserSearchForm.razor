@@ -49,9 +49,9 @@
 
     protected override void OnInitialized()
     {
-        status = Enum.GetValues<UserStatus>().ToOption<UserStatus>();
-        types = Enum.GetValues<UserType>().ToOption<UserType>();
-        functions = Enum.GetValues<UserFunction>().ToOption<UserFunction>();
+        status = Enum.GetValues<UserStatus>().ToOption();
+        types = Enum.GetValues<UserType>().ToOption();
+        functions = Enum.GetValues<UserFunction>().ToOption();
     }
 
     private void Clear()
