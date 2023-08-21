@@ -10,6 +10,7 @@ input:hover {
     width: 0;
     flex-grow: 1;
     border: none !important;
+    box-shadow: none !important;
     outline: none;
     background-color: transparent;
     padding: 0;

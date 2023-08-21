@@ -11,15 +11,17 @@
     justify-content: space-between;
     padding: 0.325rem 0.75rem; /* To standardize with bootstrap's fields height */
     border-radius: 0.25rem;
-    border: 2px solid var(--k-color-grey-light); /* Same as other fields (bootstrap's 'form-control' is overriden in Form.razor.css) */
-    transition: border-color .15s ease-in-out; /* Same as bootstrap's 'form-control' */
+    border: 1px solid var(--k-color-grey-light); /* Same as other fields (bootstrap's 'form-control' is overriden in Form.razor.css) */
+    transition: box-shadow .1s ease-in-out, border-color .15s ease-in-out; /* Same as bootstrap's 'form-control' */
 }
 
     ::deep .select-field:hover {
         cursor: pointer;
-        background-color: var(--k-color-grey-light);
+        box-shadow: inset 0 0 0 1px var(--k-color-dark);
+        border-color: var(--k-color-dark);
     }
 
     ::deep .select-field.focused {
         border-color: var(--k-color-primary);
+        box-shadow: inset 0 0 0 1px var(--k-color-primary);
     }

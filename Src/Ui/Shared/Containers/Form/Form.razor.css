@@ -11,14 +11,26 @@
 }
 
 ::deep .invalid {
-    border: solid 2px var(--k-color-danger) !important;
+    box-shadow: inset 0 0 0 1px var(--k-color-danger);
+    border-color: var(--k-color-danger) !important;
 }
 
 /* Override bootstrap's 'form-control' */
 ::deep .form-control {
-    border-width: 2px !important; /* Same as other fields in every status (Idle/Focus/Invalid) */
+    border-width: 1px !important; /* Same as other fields in every status (Idle/Focus/Invalid) */
     border-color: var(--k-color-grey-light);
+    transition: box-shadow .1s ease-in-out, border-color .15s ease-in-out;
 }
+
+    ::deep .form-control:hover {
+        box-shadow: inset 0 0 0 1px var(--k-color-dark);
+        border-color: var(--k-color-dark);
+    }
+
+    ::deep .form-control:focus {
+        border-color: var(--k-color-primary);
+        box-shadow: inset 0 0 0 1px var(--k-color-primary);
+    }
 
 ::deep .validation-message {
     padding: 0 1em;

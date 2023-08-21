@@ -30,47 +30,6 @@ h2 {
     text-shadow: none;
 }
 
-.jumbotron {
-    border-radius: 0.75rem !important;
-    margin: 0.25rem;
-}
-
-input.invalid,
-select.invalid {
-    border: solid 2px var(--k-color-danger);
-}
-
-.validation-message {
-    color: var(--k-color-danger);
-}
-
-.alert-info {
-    background-color: var(--k-color-info);
-    color: unset;
-}
-
-.alert-success {
-    background-color: var(--k-color-success);
-    color: unset;
-}
-
-.alert-warning {
-    background-color: var(--k-color-warning);
-    color: unset;
-}
-
-.alert-danger {
-    background-color: var(--k-color-danger);
-    color: unset;
-}
-
-.form-control:focus,
-.form-select:focus {
-    outline: none !important;
-    border: solid 2px var(--k-color-primary) !important;
-    box-shadow: none;
-}
-
 /* App error */
 #blazor-error-ui {
     background: lightyellow;
