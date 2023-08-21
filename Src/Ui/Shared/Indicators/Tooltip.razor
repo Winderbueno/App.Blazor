@@ -1,7 +1,7 @@
 ﻿<div class="tooltip-wrapper"
      style="--bg-color:@BgColor;
             --text-color:@TextColor;
-            --width:@Width;">
+            --width:@width;">
     <span>@Text</span>
     @ChildContent
 </div>
@@ -19,5 +19,5 @@
     [Parameter]
     public string BgColor { get; set; } = "#adb5bd";
 
-    private string Width => (Math.Min((Text.Length + 1) * 8, 180)).ToString() + "px";
+    private string width => (Math.Min((Text.Length + 1) * 8, 180)).ToString() + "px";
 }
