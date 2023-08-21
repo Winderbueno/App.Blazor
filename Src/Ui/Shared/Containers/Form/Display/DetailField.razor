@@ -1,5 +1,5 @@
-﻿<div style="margin-bottom:5px; margin-top:5px; width:@width">
-    <div>
+﻿<div style="margin-bottom:5px; margin-top:5px;">
+    <div class="d-flex justify-content-start align-items-center">
         <span class="color" style="font-weight:bold; margin-right:30px">@Label</span>
         @if (tooltip)
         {
@@ -23,9 +23,6 @@
 
     [Parameter]
     public string? TooltipText { get; set; }
-
-    [Parameter]
-    public string width { get; set; } = "85%";
 
     private bool tooltip => TooltipText == null ? false : true;
 }

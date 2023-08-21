@@ -67,10 +67,10 @@
     public string? Title { get; set; }
 
     [Parameter]
-    public int TitleLevel { get; set; } = 1;
+    public int Level { get; set; } = 1;
 
-    private string titleSize => TitleLevel == 1 ? "x-large" : "large";
-    private string verticalPadding => TitleLevel == 1 ? "var(--k-gap-small)" : "var(--k-gap-smaller)";
-    private string horizontalPadding => TitleLevel == 1 ? "var(--k-gap-normal)" : "var(--k-gap-small)";
-    private string gap => TitleLevel == 1 ? "var(--k-gap-smaller)" : "var(--k-gap-smallest)";
+    private string titleSize => Level == 1 ? "x-large" : "large";
+    private string verticalPadding => Level == 1 ? "var(--k-gap-small)" : "var(--k-gap-smaller)";
+    private string horizontalPadding => Level == 1 ? "var(--k-gap-normal)" : "var(--k-gap-small)";
+    private string gap => Level == 1 ? "var(--k-gap-smaller)" : "var(--k-gap-smallest)";
 }

@@ -1,5 +1,6 @@
 ﻿@using Ui.Pages.Demo.Components
 @using Ui.Pages.Demo.Components.Indicators
+@using Ui.Pages.Demo.Components.Interactions
 
 @page "/demo"
 @inject HttpClient Http
@@ -25,12 +26,17 @@
                 <Toasts />
             </Container>
         </Card>
+        <Card Title="Interactions">
+            <Container FlexColumn>
+                <Buttons />
+                <Links />
+            </Container>
+        </Card>
+        <FormInput />
+        <FormDisplay />
         <Tabs />
-        <BlazorForm />
-        <Interactions />
         <Table />
         <ErrorHandling />
-        <TextDisplay />
     </Container>
 </Container>
 

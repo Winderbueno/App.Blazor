@@ -1,0 +1,18 @@
+﻿@*Link params
+    Route. (string) Relative path (Default is "/#")
+    NewTab. (bool) Is true, open new tab (Default is false)
+    Button. (bool) Display link as a button. 
+    Color. (ColorEnum) Theme color
+    Icon. Display Link as an Icon or Add Icon in Button if Button (Available list. https://icon-sets.iconify.design/oi/beaker/)*@
+<Card Title="Links" Level=2>
+    <Container FlexJustify="space-around">
+        <Container FlexColumn>
+            <Link Button Route="home">Button</Link>
+            <Link Button Icon="plus" Color=Color.Dark>Icon</Link>
+        </Container>
+        <Container FlexColumn FlexJustify="space-around" FlexAlign="center">
+            <Link NewTab Route="https://go.microsoft.com/fwlink/?linkid=2148851">New Tab</Link>
+            <Link Icon="circle-x" />
+        </Container>
+    </Container>
+</Card>

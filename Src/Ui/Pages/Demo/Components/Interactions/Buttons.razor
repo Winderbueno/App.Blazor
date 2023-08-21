@@ -1,0 +1,17 @@
+﻿<Card Title="Buttons" Level=2>
+    <Container>
+        <Container FlexColumn>
+            <Button @onclick=OnClickLog>Simple</Button>
+            <Button Color=Color.Accent>Accent</Button>
+            <Button Color=Color.Light Icon="plus">Light</Button>
+        </Container>
+        <Container FlexColumn>
+            <Button Icon="plus">Icon</Button>
+            <Button Badge BadgeValue=5>Badge</Button>
+        </Container>        
+    </Container>    
+</Card>
+
+@code {
+    private void OnClickLog() => Log.Information("@onclick supported :)");
+}
