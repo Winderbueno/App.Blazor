@@ -4,8 +4,7 @@
 @attribute [Authorize("user.create")]
 
 <h1>@t["user.feature.create"]</h1>
-        
-<Container FlexJustify="center"
-           FlexChildWidth="30rem">
-    <UserCreateForm />
+
+<Container FlexColumn FlexAlign="center" FlexJustify="center">
+     <UserCreateForm />
 </Container>

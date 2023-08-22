@@ -6,43 +6,46 @@
 @inject NavigationManager navigation
 @inject ToasterService toaster
 
-<Card>
-    <Form Model=form
-          OnValidSubmit=ValidSubmit>
+<Form Model=form
+      OnValidSubmit=ValidSubmit>
+    <Container FlexAlign="center">
+        <Card Title=@t["user.profile"]>
+            <SelectField @bind-Value=form.Type
+                         Label=@t["common.type"]
+                         Options=@(Enum.GetValues<UserType>())
+                         Placeholder=@(t["common.type"] + "...") />
 
-        <h3>@t["user.profile"]</h3>
+            <SelectField @bind-Value=form.Function
+                         Label=@t["common.function"]
+                         Options=@(Enum.GetValues<UserFunction>())
+                         Placeholder=@(t["common.function"] + "...") />
 
-        <SelectField @bind-Value=form.Type
-                     Label=@t["common.type"]
-                     Options=@(Enum.GetValues<UserType>())
-                     Placeholder=@(t["common.type"] + "...") />
+            <TextField @bind-Value=form.Username Label=@t["user.username"] />
+        </Card>
 
-        <SelectField @bind-Value=form.Function
-                     Label=@t["common.function"]
-                     Options=@(Enum.GetValues<UserFunction>())
-                     Placeholder=@(t["common.function"] + "...") />
+        <Card Title=@t["person.identity"]>
+            <TextField @bind-Value=form.FirstName Label=@t["person.firstname"] />
+            <TextField @bind-Value=form.LastName Label=@t["person.lastname"] />
 
-        <TextField @bind-Value=form.Username Label=@t["user.username"] />
+            <Container>
+                <TextField @bind-Value=form.Email Label=@t["person.mail"] />
+                <TextField @bind-Value=form.EmailConfirm Label=@t["person.mail-confirm"] DisablePaste />
+            </Container>
 
-        <h3>@t["person.identity"]</h3>
-
-        <TextField @bind-Value=form.FirstName Label=@t["person.firstname"] />
-        <TextField @bind-Value=form.LastName Label=@t["person.lastname"] />
-
-        <TextField @bind-Value=form.Email Label=@t["person.mail"] />
-        <TextField @bind-Value=form.EmailConfirm Label=@t["person.mail-confirm"] DisablePaste />
-        
-        <TextField @bind-Value=form.PhoneNumber Label=@t["person.phone"] />
-        <TextField @bind-Value=form.PhoneNumberConfirm Label=@t["person.phone-confirm"] DisablePaste />
+            <Container>
+                <TextField @bind-Value=form.PhoneNumber Label=@t["person.phone"] />
+                <TextField @bind-Value=form.PhoneNumberConfirm Label=@t["person.phone-confirm"] DisablePaste />
+            </Container>
+        </Card>
 
         <Button>@t["action.submit"]</Button>
-    </Form>
-</Card>
+    </Container>
+</Form>
 
-@code {
+ @code {
     private UserCreateAppDto form = new();
     private UserAppDto? userCreated = null;
-    
+
     private async Task ValidSubmit()
     {
         try
