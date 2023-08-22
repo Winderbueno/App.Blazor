@@ -1,10 +1,73 @@
-﻿@using Ui.Pages.User.Components
+﻿@using Application.Models.User;
+@using Domain.Enums.User;
+@using Domain.Exceptions;
 
 @page "/users/create"
 @attribute [Authorize("user.create")]
+@inject IUserService userService
+@inject NavigationManager navigation
+@inject ToasterService toaster
 
 <h1>@t["user.feature.create"]</h1>
 
 <Container FlexColumn FlexAlign="center" FlexJustify="center">
-     <UserCreateForm />
+     <Form Model=form
+           OnValidSubmit=ValidSubmit>
+         <Container FlexAlign="center">
+             <Card Title=@t["user.profile"]>
+                 <SelectField @bind-Value=form.Type
+                              Label=@t["common.type"]
+                              Options=@(Enum.GetValues<UserType>())
+                              Placeholder=@(t["common.type"] + "...") />
+
+                 <SelectField @bind-Value=form.Function
+                              Label=@t["common.function"]
+                              Options=@(Enum.GetValues<UserFunction>())
+                              Placeholder=@(t["common.function"] + "...") />
+
+                 <TextField @bind-Value=form.Username Label=@t["user.username"] />
+             </Card>
+
+             <Card Title=@t["person.identity"]>
+                 <TextField @bind-Value=form.FirstName Label=@t["person.firstname"] />
+                 <TextField @bind-Value=form.LastName Label=@t["person.lastname"] />
+
+                 <Container>
+                     <TextField @bind-Value=form.Email Label=@t["person.mail"] />
+                     <TextField @bind-Value=form.EmailConfirm Label=@t["person.mail-confirm"] DisablePaste />
+                 </Container>
+
+                 <Container>
+                     <TextField @bind-Value=form.PhoneNumber Label=@t["person.phone"] />
+                     <TextField @bind-Value=form.PhoneNumberConfirm Label=@t["person.phone-confirm"] DisablePaste />
+                 </Container>
+             </Card>
+
+             <Button>@t["action.submit"]</Button>
+         </Container>
+     </Form>
 </Container>
+
+@code {
+    private UserCreateAppDto form = new();
+    private UserAppDto? userCreated = null;
+
+    private async Task ValidSubmit()
+    {
+        try
+        {
+            userCreated = await userService.CreateAsync(form);
+
+            if (userCreated != null)
+            {
+                toaster.AddSuccess(t["event.created"]);
+                navigation.NavigateTo("users");
+            }
+        } // Todo. Centralise error handling -> Error component ?
+        catch (ProblemDetailsException e)
+        {
+            Log.Error(e.ToString());
+            toaster.AddError(e.Message);
+        }
+    }
+}
