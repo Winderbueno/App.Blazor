@@ -1,8 +1,7 @@
-﻿<Card Title="Error Handling">
+﻿<Card Title="Error Handling" Level=2>
 
-    <div>If counter hit 3, </div>
-    <div>You'll get an error</div>
-    <p role="status"><b>Current count.</b> @currentCount</p>
+    <div>If counter hit 3, You'll get an error</div>
+    <p><b>Current count.</b> @count</p>
     <Button @onclick=IncrementCount>+ 1</Button>    
 </Card>
 
@@ -10,14 +9,14 @@
     [CascadingParameter]
     public Error? ErrorComponent { get; set; }
 
-    private int currentCount = 0;
+    private int count = 0;
 
     private void IncrementCount()
     {
-        currentCount++;
+        count++;
 
-        if (currentCount < 3)
-            Log.Information("Incremented count to {CurrentCount}", currentCount);
+        if (count < 3)
+            Log.Information("Incremented count to {CurrentCount}", count);
         else
         {
             try
