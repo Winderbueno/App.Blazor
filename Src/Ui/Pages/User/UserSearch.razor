@@ -12,20 +12,20 @@
                FlexAlign="center">
         <h1>@t["user.feature.search"]</h1>
         <Link Button
-              Icon="plus"
-              Route="users/create">@t["action.create"]</Link>
-    </Container>
+               Icon="plus"
+               Route="users/create">@t["action.create"]</Link>
+     </Container>
 
-    <Card>
-        <UserSearchForm Form=form OnFormChange=OnFormChange />
+     <Card>
+         <UserSearchForm Form=form OnFormChange=OnFormChange />
 
-        @if (userIds != null)
+         @if (userIds != null)
         {
             <InfiniteScroller OnLoad=OnLoad>
                 <Container Grid PaddingInline=Size.Largest
-                       GridColumns="repeat(auto-fit, minmax(20rem, 1fr))"
-                       MobileChildWidth="20rem">
-                    @foreach (int userId in userIds)
+                            GridColumns="repeat(auto-fit, minmax(20rem, 1fr))"
+                            MobileChildWidth="20rem">
+                     @foreach (int userId in userIds)
                     {
                         <UserCard UserId=userId></UserCard>
                     }
@@ -37,6 +37,9 @@
 </Container>
 
 @code {
+    [CascadingParameter]
+    public ErrorHandler? ErrorHandler { get; set; }
+
     private UserSearchAppDto form = new();
     private IEnumerable<int>? userIds = null;
     private bool endReached = false;
@@ -45,7 +48,7 @@
     {
         form.PageNumber = 1;
         //userIds = await SearchAsync();
-    } 
+    }
 
     // This is necessary for the infinite scroller _module not to be null on first load
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -78,7 +81,10 @@
     private async Task<IEnumerable<int>> SearchAsync()
     {
         form.PageSize = 10;
-        await userService.SearchAsync(form);
+
+        try { await userService.SearchAsync(form); }
+        catch (Exception e) { ErrorHandler!.ProcessError(e); }
+
         return new List<int> { 1 }; // Todo. Replace par real call
     }
 }

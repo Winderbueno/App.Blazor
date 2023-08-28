@@ -1,13 +1,18 @@
-﻿@using Ui.Core.Translations;
-
-@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase
 
 <section class="page">
     <NavMenu />
     <main class="content">
         <div>
-            <ErrorBoundary>@Body</ErrorBoundary>
+            <ErrorBoundary @ref="errorBoundary">@Body</ErrorBoundary>
         </div>
         <Footer />
     </main>
 </section>
+
+@code {
+    private ErrorBoundary? errorBoundary;
+
+    // Recover ErrorState on route change
+    protected override void OnParametersSet() => errorBoundary?.Recover();
+}

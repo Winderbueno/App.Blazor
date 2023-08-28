@@ -1,0 +1,21 @@
+﻿@using Domain.Exceptions;
+@inject ToasterService toaster
+
+<CascadingValue Value=this>
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    public void ProcessError(Exception e)
+    {
+        Log.Error(e, "Une erreur est survenue.");
+        
+        if(e is ProblemDetailsException || e is NotSupportedException)
+            toaster!.AddError(e.Message);
+        else
+            throw e;
+    }
+}

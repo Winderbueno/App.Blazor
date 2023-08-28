@@ -41,6 +41,8 @@
 </Container>
 
 @code {
+    [CascadingParameter]
+    public ErrorHandler? ErrorHandler { get; set; }
 
     [Parameter] 
     public string? UserId { get; set; }
@@ -67,10 +69,6 @@
                 navigation.NavigateTo("users");
             }
         }
-        catch (ProblemDetailsException e)
-        {
-            Log.Error(e.ToString());
-            toaster.AddError(e.Message);
-        }
+        catch (Exception e) { ErrorHandler!.ProcessError(e); }
     }
 }

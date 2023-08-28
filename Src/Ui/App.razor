@@ -1,9 +1,9 @@
 ﻿@using Ui.Layout;
 @using Ui.Shared.Router;
 
-<Error>
+<ErrorHandler>
     <Toaster />
-@*    <CascadingAuthenticationState>*@
+    @*<CascadingAuthenticationState> Todo*@
         <Router AppAssembly="@typeof(App).Assembly">
             <Found Context="routeData">
                 @*<FocusOnNavigate RouteData="@routeData" Selector="h1" />*@
@@ -16,5 +16,5 @@
                 </LayoutView>
             </NotFound>
         </Router>
-@*    </CascadingAuthenticationState>*@
-</Error>
+    @*</CascadingAuthenticationState>*@
+</ErrorHandler>

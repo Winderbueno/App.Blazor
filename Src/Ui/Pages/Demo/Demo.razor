@@ -1,4 +1,5 @@
-﻿@using Ui.Pages.Demo.Components.Containers
+﻿@using Ui.Pages.Demo.Components.ErrorHandling
+@using Ui.Pages.Demo.Components.Containers
 @using Ui.Pages.Demo.Components.Indicators
 @using Ui.Pages.Demo.Components.Interactions
 
@@ -20,14 +21,11 @@
             <Container FlexAlign="start">
                 <Container FlexColumn>
                     <Loaders />
-                    <Tooltips />
-                </Container>
-                <Container FlexColumn>
                     <Chips />
-                    <ErrorHandling />
                 </Container>
                 <Container FlexColumn>
                     <Icons />
+                    <Tooltips />
                     <Toasts />
                 </Container>
             </Container>
@@ -39,6 +37,8 @@
                 <Links />
             </Container>
         </Card>
+
+        <ErrorHandling />
 
         <Card Title="Containers">
             <Container FlexAlign="start">

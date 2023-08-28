@@ -1,0 +1,6 @@
+﻿<Button @onclick=UnhandledException>Error Button</Button>
+
+@code {
+    private void UnhandledException()
+        => throw new NotSupportedException("Unhandled Exception !");
+}
