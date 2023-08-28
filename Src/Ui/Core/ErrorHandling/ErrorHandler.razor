@@ -1,4 +1,5 @@
 ﻿@using Domain.Exceptions;
+
 @inject ToasterService toaster
 
 <CascadingValue Value=this>
@@ -11,11 +12,13 @@
 
     public void ProcessError(Exception e)
     {
-        Log.Error(e, "Une erreur est survenue.");
-        
+        // Global api business errors
         if(e is ProblemDetailsException || e is NotSupportedException)
             toaster!.AddError(e.Message);
         else
+        {
+            Log.Error(e, e.Message);
             throw e;
+        }
     }
 }

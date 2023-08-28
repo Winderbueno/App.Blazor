@@ -4,11 +4,13 @@
     <Container FlexColumn>
 
         @* Global Handling goes through 3 levels :
-            - Global Try/Catch. Add ErrorHandler? as CascadingParameter and call ErrorHandler!.ProcessError(e) in 
-            - Global ErrorBoundary
-            - Last resort, if none of previous mecanism as been triggered, blazor display a default*@
+            - Global Try/Catch. Add ErrorHandler? as CascadingParameter and call ErrorHandler!.ProcessError(e) in Try/Catch
+            - Global ErrorBoundary. (https://jonathancrozier.com/blog/implementing-blazor-error-boundaries)
+                Is triggered for unhandled exception (ErrorBoundary is in MainLayout.razor)
+                It displays a global error message in page content
+            - In last resort, if none of previous mecanism as been triggered, blazor display a default bar*@
         <Card Title="Global Handling" Level=2>
-            <div>On counter :</div>
+            <div>If counter :</div>
             <div>- Hit 1. Global Try/Catch</div>
             <div>- Hit 2. Global ErrorBoundary</div>
             <p><b>Current count.</b> @count</p>
@@ -21,17 +23,18 @@
                 > Error state is activated when the component tree raises an unhandled exception
                 > During error state, the <ErrorContent> specified Ui replace the component tree
                 > It is possible to recover from the error state
-             
-             Note. "ErrorBoundary" can be overriden to add a particular behaviour
-                https://github.com/dotnet/aspnetcore/blob/9ace45d8dffb0c89026df3cd989b49f87c61344c/src/Components/test/testassets/BasicTestApp/ErrorBoundaryTest/CustomErrorBoundary.razor"*@
+            Note. "ErrorBoundary" can be overriden to add a particular behaviour
+            https://github.com/dotnet/aspnetcore/blob/9ace45d8dffb0c89026df3cd989b49f87c61344c/src/Components/test/testassets/BasicTestApp/ErrorBoundaryTest/CustomErrorBoundary.razor"*@
         <Card Title="Error Boundary" Level=2>
             <ErrorBoundary @ref="errorBoundary">
                 <ChildContent>
                     <ErrorButton/>
                 </ChildContent>
-                <ErrorContent>
-                    <div style="color:var(--k-color-danger)">Content displayed if</div>
-                    <p style="color:var(--k-color-danger)">@("<ErrorButton>") is in error state</p>
+                <ErrorContent Context="e">
+                    <p style ="color:var(--k-color-danger)">
+                        <div>@("<ErrorButton>") is in error state</div>
+                        <div>Exception : @e.Message</div>
+                    </p>
                     <Button @onclick=Recover>Recover</Button>
                 </ErrorContent>
             </ErrorBoundary>
