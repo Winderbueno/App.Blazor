@@ -12,21 +12,20 @@ public abstract class CustomRequiredField<TValue> : Field<TValue>
 
     protected ValidationMessageStore? store;
     protected bool invalid = false;
+    protected virtual bool requiredValueUnset => Value == null;
 
     protected override void OnInitialized()
     {
         if (Required) EditContext!.OnValidationRequested += OnValidationRequested;
         store = new(EditContext!);
-        base.OnInitialized();
     }
 
-    protected void OnValidationRequested(object? sender = null, ValidationRequestedEventArgs? e = null) 
-        => ValidateField(Value);
+    protected void OnValidationRequested(object? sender = null, ValidationRequestedEventArgs? e = null) => ValidateField();
 
-    protected virtual void ValidateField(TValue? Val)
+    protected virtual void ValidateField()
     {
         store?.Clear();
-        if (Val == null)
+        if (requiredValueUnset)
         {
             invalid = true;
             store?.Add(() => Value!, RequiredMessage);

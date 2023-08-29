@@ -14,8 +14,8 @@
         <label>@Label</label>
 
         <div tabindex="0" class="select-wrapper"
-             @onfocusin="_ => optionsVisible = true"
-             @onfocusout="_ => optionsVisible = false">
+        @onfocusin="_ => optionsVisible = true"
+        @onfocusout="_ => optionsVisible = false">
 
             <!-- Field -->
             <output class="select-field @(invalid ? "invalid" : "") @(optionsVisible ? "focused" : "")">
@@ -23,14 +23,14 @@
                 {
                     <span class="selected-option">
                         <span class="selected-option-value">@OptionName(selectedOption.Name)</span>
-                        <Icon Id="circle-x" @onclick =OnClearClick />
+                        <Icon Id="circle-x" @onclick=OnClearClick />
                     </span>
                 }
                 else
                 {
                     <input class="@(invalid ? "invalid" : "" )"
-                       @oninput=OnSearchInput
-                       placeholder="@Placeholder">
+                    @oninput=OnSearchInput
+                           placeholder="@Placeholder">
                 }
                 <Icon Id=@(optionsVisible ? "chevron-top" : "chevron-bottom") />
             </output>
@@ -42,7 +42,7 @@
                     foreach (var opt in searchedOptions!)
                     {
                         <li @onmousedown="_ => UpdateValue(opt)"
-                    @onclick="_ => optionsVisible = false">
+                            @onclick="_ => optionsVisible = false">
                             <data value="@opt.Value">@OptionName(opt.Name)</data>
                         </li>
                     }
@@ -71,7 +71,7 @@
     [Parameter]
     public int NbDisplayedOptions { get; set; } = 10;
     [Parameter]
-    public string NoResultMessage { get; set; } = "No result";    
+    public string NoResultMessage { get; set; } = "No result";
 
 
     private IEnumerable<Option>? options, searchedOptions = new List<Option>();
@@ -124,7 +124,7 @@
         await ValueChanged.InvokeAsync((TValue)(object)option?.Value!);
         selectedOption = option;
         EditContext!.NotifyFieldChanged(EditContext.Field(ParseFieldName()));
-        ValidateField(Value);
+        ValidateField();
         await OnChange.InvokeAsync();
     }
 

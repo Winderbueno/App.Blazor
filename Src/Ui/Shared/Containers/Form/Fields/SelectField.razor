@@ -1,5 +1,4 @@
-﻿
-@using System.Linq.Expressions;
+﻿@using System.Linq.Expressions;
 @using Ui.Shared.Containers.Form.Abstract;
 @using Ui.Shared.Containers.Form.Style;
 
@@ -87,7 +86,7 @@
     [Parameter]
     public (Func<TOption?, string?>? Name, Func<TOption?, string?>? Value)? OptionGetters { get; set; }
 
-
+    protected override bool requiredValueUnset => multipleOptions.All(x => x.IsChecked == false);
     private IEnumerable<Option>? options;
     private bool optionsVisible = false;
     private List<(Option Option, bool IsChecked)> multipleOptions = new();
@@ -96,8 +95,11 @@
     protected override void OnInitialized()
     {
         options = Options!.ToOption(OptionGetters?.Name, OptionGetters?.Value);
-        ResetCheckBox();
-        base.OnInitialized();
+        if(Multiple)
+        {
+            ResetCheckBox();
+            base.OnInitialized();
+        }
     }
 
     protected override void OnParametersSet()
@@ -116,24 +118,10 @@
         await ValueChanged.InvokeAsync((TValue)(object)values);
 
         EditContext!.NotifyFieldChanged(EditContext.Field(ParseFieldName()));
-        ValidateField(Value);
+        ValidateField();
     }
 
     private string? OptionName(string? name) => t[name].Contains("##") ? name : t[name];
-
-    protected override void ValidateField(TValue? Val)
-    {
-        if (Multiple)
-        {
-            store?.Clear();
-            if (multipleOptions.All(x => x.IsChecked == false))
-            {
-                invalid = true;
-                store?.Add(() => Value!, RequiredMessage);
-            }
-            else invalid = false;
-        }
-    }
 
     private void ResetCheckBox()
     {
