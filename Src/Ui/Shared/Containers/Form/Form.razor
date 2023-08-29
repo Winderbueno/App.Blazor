@@ -1,8 +1,8 @@
 ﻿<div>
     <EditForm class="form-layout"
-              EditContext=@EditContext
-              OnValidSubmit="@OnValidSubmit"
-              OnInvalidSubmit="@OnInvalidSubmit">
+              EditContext=editContext
+              OnValidSubmit=OnValidSubmit
+              OnInvalidSubmit=OnInvalidSubmit>
 
         <ObjectGraphDataAnnotationsValidator />
 
@@ -37,11 +37,11 @@
     [Parameter]
     public EventHandler<FieldChangedEventArgs>? OnFieldChanged { get; set; }
 
-    private EditContext? EditContext;
+    private EditContext? editContext;
 
     protected override void OnInitialized()
     {
-        EditContext = new EditContext(Model);
-        EditContext.OnFieldChanged += OnFieldChanged;
+        editContext = new EditContext(Model);
+        editContext.OnFieldChanged += OnFieldChanged;
     }
 }
