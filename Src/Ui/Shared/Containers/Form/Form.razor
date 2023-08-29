@@ -19,7 +19,7 @@
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    [Parameter]
+    [EditorRequired, Parameter]
     public object Model { get; set; } = new();
 
     [Parameter]
