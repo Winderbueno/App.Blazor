@@ -10,35 +10,17 @@ public abstract class Field<TValue> : ComponentBase
     [CascadingParameter]
     protected EditContext? EditContext { get; set; }
 
-    [Parameter]
-    public string? Label { get; set; }
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public string? Placeholder { get; set; }
+    [Parameter] public bool Disabled { get; set; } = false;
 
-    [Parameter]
-    public string? Placeholder { get; set; }
+    [Parameter] public TValue? Value { get; set; }
+    [Parameter] public EventCallback<TValue> ValueChanged { get; set; }
+    [Parameter] public Expression<Func<TValue>>? ValueExpression { get; set; }
 
-    [Parameter]
-    public bool Disabled { get; set; } = false;
-
-    [Parameter]
-    public string? DisplayName { get; set; }
-
-    [Parameter]
-    public TValue? Value { get; set; }
-
-    [Parameter]
-    public EventCallback<TValue> ValueChanged { get; set; }
-
-    [Parameter]
-    public Expression<Func<TValue>>? ValueExpression { get; set; }
-
-    [Parameter]
-    public EventCallback<ChangeEventArgs> OnChange { get; set; }
-
-    [Parameter]
-    public EventCallback<ChangeEventArgs> OnInput { get; set; }
-
-    [Parameter]
-    public EventCallback<FocusEventArgs> OnBlur { get; set; }
+    [Parameter] public EventCallback<ChangeEventArgs> OnChange { get; set; }
+    [Parameter] public EventCallback<ChangeEventArgs> OnInput { get; set; }
+    [Parameter] public EventCallback<FocusEventArgs> OnBlur { get; set; }
 
     // This method allows to access the Field's FieldName from its ValueExpression parameter
     // See. https://stackoverflow.com/questions/74040748/blazor-binding-get-underlying-field-name
