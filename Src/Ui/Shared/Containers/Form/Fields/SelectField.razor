@@ -5,7 +5,7 @@
 
 @typeparam TValue
 @typeparam TOption
-@inherits Field<TValue>
+@inherits CustomRequiredField<TValue>
 
 <!-- Lorsque https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover sera standardisé : à morderniser -->
 
@@ -81,12 +81,6 @@
     [Parameter]
     public bool Multiple { get; set; } = false;
 
-    /* Validation */
-    [Parameter]
-    public bool Required { get; set; } = false;
-    [Parameter]
-    public string RequiredMessage { get; set; } = "Field is required.";
-
     /* Options */
     [EditorRequired, Parameter]
     public IEnumerable<TOption>? Options { get; set; }
@@ -95,19 +89,15 @@
 
 
     private IEnumerable<Option>? options;
-    private bool optionsVisible = false, invalid = false;
-    private ValidationMessageStore? store;
+    private bool optionsVisible = false;
     private List<(Option Option, bool IsChecked)> multipleOptions = new();
-
     private string selectedOptionColor => Value == null ? "var(--k-color-grey)" : "var(--k-color-primary);";
 
     protected override void OnInitialized()
     {
         options = Options!.ToOption(OptionGetters?.Name, OptionGetters?.Value);
-        if (Required) EditContext!.OnValidationRequested += OnValidationRequested;
-        EditContext!.OnFieldChanged += OnFieldChanged;
-        store = new(EditContext);
         ResetCheckBox();
+        base.OnInitialized();
     }
 
     protected override void OnParametersSet()
@@ -126,33 +116,23 @@
         await ValueChanged.InvokeAsync((TValue)(object)values);
 
         EditContext!.NotifyFieldChanged(EditContext.Field(ParseFieldName()));
-
-        OnFieldChanged();
+        ValidateField(Value);
     }
 
-    private string? OptionName(string? name)
-        => t[name].Contains("##") ? name : t[name];
+    private string? OptionName(string? name) => t[name].Contains("##") ? name : t[name];
 
-    private void OnFieldChanged(object? sender = null, FieldChangedEventArgs? e = null)
+    protected override void ValidateField(TValue? Val)
     {
-        store?.Clear();
-        invalid = false;
-    }
-
-    private void OnValidationRequested(object? sender = null, ValidationRequestedEventArgs? e = null)
-    {
-        store?.Clear();
-
-        string? errorMessage = Multiple switch
+        if (Multiple)
         {
-            false => Value == null ? RequiredMessage : null,
-            true => multipleOptions.All(x => x.IsChecked == false) ? RequiredMessage : null,
-        };
-
-        invalid = Multiple && errorMessage != null;
-
-        if (errorMessage != null)
-            store?.Add(() => Value!, errorMessage);
+            store?.Clear();
+            if (multipleOptions.All(x => x.IsChecked == false))
+            {
+                invalid = true;
+                store?.Add(() => Value!, RequiredMessage);
+            }
+            else invalid = false;
+        }
     }
 
     private void ResetCheckBox()

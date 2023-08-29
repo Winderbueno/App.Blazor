@@ -4,7 +4,7 @@
 
 @typeparam TValue
 @typeparam TOption
-@inherits Field<TValue>
+@inherits CustomRequiredField<TValue>
 
 <!-- Lorsque https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover sera standardisé : à morderniser -->
 
@@ -37,9 +37,9 @@
 
             <!-- Options -->
             <ul class="options @(optionsVisible ? "" : "hide")">
-                @if (searchedOptions.Any())
+                @if (searchedOptions!.Any())
                 {
-                    foreach (var opt in searchedOptions)
+                    foreach (var opt in searchedOptions!)
                     {
                         <li @onmousedown="_ => UpdateValue(opt)"
                     @onclick="_ => optionsVisible = false">
@@ -59,20 +59,13 @@
 </SelectFieldStyle>
 
 @code {
-
-    /* Validation */
-    [Parameter]
-    public bool Required { get; set; } = false;
-    [Parameter]
-    public string RequiredMessage { get; set; } = "Field is required.";
-
     /* Options */
     [EditorRequired, Parameter]
     public IEnumerable<TOption>? Options { get; set; }
     [Parameter]
     public (Func<TOption?, string?>? Name, Func<TOption?, string?>? Value)? OptionGetters { get; set; }
-    
-    /* Options Search */
+
+    /* Search */
     [Parameter]
     public int SearchDelay { get; set; } = 500;
     [Parameter]
@@ -81,20 +74,16 @@
     public string NoResultMessage { get; set; } = "No result";    
 
 
+    private IEnumerable<Option>? options, searchedOptions = new List<Option>();
     private Option? selectedOption = new();
-    private IEnumerable<Option>? options;
-    private IEnumerable<Option> searchedOptions = new List<Option>();
-    private bool optionsVisible = false, invalid = false;
-    private ValidationMessageStore? store;
+    private bool optionsVisible = false;
     private Timer? searchTimer;
     private string? contains;
 
     protected override void OnInitialized()
     {
         options = Options!.ToOption(OptionGetters?.Name, OptionGetters?.Value);
-        if (Required) EditContext!.OnValidationRequested += OnValidationRequested;
-        EditContext!.OnFieldChanged += OnFieldChanged;
-        store = new(EditContext);
+        base.OnInitialized();
     }
 
     protected override void OnParametersSet()
@@ -118,8 +107,7 @@
         StateHasChanged();
     }
 
-    private void OnFieldClick()
-        => optionsVisible = !optionsVisible;
+    private void OnFieldClick() => optionsVisible = !optionsVisible;
 
     private void OnClearClick(MouseEventArgs e)
     {
@@ -128,36 +116,20 @@
         UpdateValue();
     }
 
-    private string? OptionName(string? name)
-        => t[name].Contains("##") ? name : t[name];
+    private string? OptionName(string? name) => t[name].Contains("##") ? name : t[name];
 
     private async void UpdateValue(Option? option = null)
     {
+        Value = (TValue)(object)option?.Value!;
         await ValueChanged.InvokeAsync((TValue)(object)option?.Value!);
         selectedOption = option;
         EditContext!.NotifyFieldChanged(EditContext.Field(ParseFieldName()));
-        OnFieldChanged();
+        ValidateField(Value);
         await OnChange.InvokeAsync();
     }
 
     private void ResetSearchedOptions()
     {
         if (options != null) searchedOptions = options.Take(NbDisplayedOptions);
-    }
-
-    private void OnFieldChanged(object? sender = null, FieldChangedEventArgs? e = null)
-    {
-        store?.Clear();
-        invalid = false;
-    }
-
-    private void OnValidationRequested(object? sender = null, ValidationRequestedEventArgs? e = null)
-    {
-        store?.Clear();
-        if (Value == null)
-        {
-            invalid = true;
-            store?.Add(() => Value!, RequiredMessage);
-        }
     }
 }
