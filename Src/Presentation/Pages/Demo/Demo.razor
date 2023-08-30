@@ -1,0 +1,67 @@
+﻿@using Presentation.Pages.Demo.Components.ErrorHandling
+@using Presentation.Pages.Demo.Components.Containers
+@using Presentation.Pages.Demo.Components.Indicators
+@using Presentation.Pages.Demo.Components.Interactions
+
+@page "/demo"
+@inject HttpClient Http
+
+<PageTitle>Demo</PageTitle>
+
+<Container FlexColumn>
+
+    <Container FlexJustify="space-between"
+               FlexAlign="center">
+        <h1>Demo</h1>
+        <Button @onclick=ChangeLocale>Change Locale</Button>
+    </Container>
+
+    <Container>
+        <Card Title="Indicators">
+            <Container FlexAlign="start">
+                <Container FlexColumn>
+                    <Loaders />
+                    <Chips />
+                </Container>
+                <Container FlexColumn>
+                    <Icons />
+                    <Tooltips />
+                    <Toasts />
+                </Container>
+            </Container>
+        </Card>
+
+        <Card Title="Interactions">
+            <Container FlexColumn>
+                <Buttons />
+                <Links />
+            </Container>
+        </Card>
+
+        <ErrorHandling />
+
+        <Card Title="Containers">
+            <Container FlexAlign="start">
+                <Card Title="Form" Level=2>
+                    <TabContainer>
+                        <Tab Name="Input"><FormInput /></Tab>
+                        <Tab Name="Display"><FormDisplay /></Tab>
+                    </TabContainer>
+                </Card>
+                <Container FlexColumn>
+                    <Tabs />
+                    <Table />
+                </Container>
+                <Container FlexColumn>
+                    <Cards />
+                </Container>
+            </Container>
+        </Card>
+    </Container>
+
+</Container>
+
+@code {
+    private void ChangeLocale()
+        => t.Locale = t.Locale == "fr" ? "en" : "fr";
+}

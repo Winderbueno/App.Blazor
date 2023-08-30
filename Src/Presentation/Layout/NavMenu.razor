@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Presentation.Pages.Auth
+
+<aside>
+    <header>
+        <Link>
+            <svg class="logo">
+                <use xlink:href="./svg/logo.svg#blazor" />
+            </svg>
+        </Link>
+
+        <Button Icon="@(collapseNavMenu ? "menu" : "x")" CssClass="nav-toggle" @onclick=ToggleNavMenu />
+    </header>
+
+    <nav class="flex-column px-3 py-3 @NavMenuCssClass" @onclick=CloseNavMenu>
+        <NavItem Label=@t["feature.home"] Icon="home" Match="NavLinkMatch.All" />
+        <NavItem Label="Demo" Icon="list-rich" />
+        <NavItem Label=@t["feature.users"] Route="users" Icon="people" />
+
+        <AuthMenu />
+    </nav>
+</aside>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu() => collapseNavMenu = !collapseNavMenu;
+    private void CloseNavMenu() => collapseNavMenu = true;
+}

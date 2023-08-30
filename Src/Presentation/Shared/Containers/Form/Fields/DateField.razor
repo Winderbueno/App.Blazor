@@ -1,0 +1,17 @@
+﻿@using Presentation.Shared.Containers.Form.Abstract;
+
+@inherits Field<DateTime>
+
+<div class="field-wrapper">
+    
+    <label>@Label</label>
+
+    <InputDate class="form-control"
+               @oninput=OnInput
+               Value=Value
+               ValueChanged=ValueChanged
+               ValueExpression=ValueExpression />
+
+    <ValidationMessage For=ValueExpression />
+
+</div>
