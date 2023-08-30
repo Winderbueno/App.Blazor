@@ -1,4 +1,4 @@
-﻿using Presentation.Shared.Enums;
+﻿using K.Blazor.Enums;
 
 namespace Presentation.Shared.Indicators.Toast;
 

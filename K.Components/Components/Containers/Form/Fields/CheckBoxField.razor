@@ -1,0 +1,25 @@
+﻿@using K.Blazor.Components.Containers.Form.Abstract
+
+@inherits Field<bool>
+
+<div class="field-wrapper form-check">
+
+    <InputCheckbox class="form-check-input"
+                   @oninput=OnInput
+                   Value=Value
+                   ValueChanged=ValueChanged
+                   ValueExpression=ValueExpression />
+
+    <label class="form-check-label">@Label</label>
+
+    @if (RequiredTrue)
+    {
+        <i class="validation-message" style="display: inline;">*</i>
+    }
+
+</div>
+
+@code {
+    [Parameter]
+    public bool RequiredTrue { get; set; } = false;
+}

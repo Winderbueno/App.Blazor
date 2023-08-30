@@ -5,7 +5,7 @@
     <div class="toast-container">
         @foreach (var toast in this.toasterService.GetToasts())
         {
-            <div class="toast @(Enums.Color.Light.Equals(toast.Color) ? " dark" : null)"
+            <div class="toast @(Color.Light.Equals(toast.Color) ? " dark" : null)"
                  style="@($"--background-color:{toast.Color.ToCssVar()}")"
                  role="alert" aria-live="assertive" aria-atomic="true">
                 <p class="d-flex flex-column justify-content-center">@toast.Message</p>

@@ -1,4 +1,4 @@
-﻿using Presentation.Shared.Enums;
+﻿using K.Blazor.Enums;
 using System.Timers;
 using Timer = System.Timers.Timer;
 
