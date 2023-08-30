@@ -1,6 +1,4 @@
-﻿@inject ToasterService toasterService
-
-<Card Title="Toast" Level=2>
+﻿<Card Title="Toast" Level=2>
     <Form Model=form
           SubmitButton
           OnValidSubmit=ValidSubmit>
@@ -20,7 +18,7 @@
     private FormModel form = new();
 
     private void ValidSubmit()
-        => toasterService.AddToast(Toast.NewToast(form.Message, form.Color, 5));
+        => toaster.AddToast(Toast.NewToast(form.Message, form.Color, 5));
 
     public class FormModel
     {
