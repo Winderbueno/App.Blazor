@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Presentation.Shared.Indicators.Toast;
+namespace K.Blazor.Components.Indicators.Toast;
 
 public partial class Toaster : ComponentBase, IDisposable
 {

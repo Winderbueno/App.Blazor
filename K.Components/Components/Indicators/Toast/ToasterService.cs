@@ -2,7 +2,7 @@
 using System.Timers;
 using Timer = System.Timers.Timer;
 
-namespace Presentation.Shared.Indicators.Toast;
+namespace K.Blazor.Components.Indicators.Toast;
 
 public class ToasterService : IDisposable
 {

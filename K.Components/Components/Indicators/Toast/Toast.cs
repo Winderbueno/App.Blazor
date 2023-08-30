@@ -1,6 +1,6 @@
 ﻿using K.Blazor.Enums;
 
-namespace Presentation.Shared.Indicators.Toast;
+namespace K.Blazor.Components.Indicators.Toast;
 
 public record Toast
 {

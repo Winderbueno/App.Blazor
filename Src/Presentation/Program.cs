@@ -1,4 +1,5 @@
 using I18NPortable;
+using K.Blazor.Components.Indicators.Toast;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -6,7 +7,6 @@ using Microsoft.Extensions.Options;
 using Presentation;
 using Presentation.Core.Authorization;
 using Presentation.Core.Translations;
-using Presentation.Shared.Indicators.Toast;
 using Serilog;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
