@@ -24,12 +24,15 @@ public abstract class CustomRequiredField<TValue> : Field<TValue>
 
     protected virtual void ValidateField()
     {
-        store?.Clear();
-        if (requiredValueUnset)
+        if(Required)
         {
-            invalid = true;
-            store?.Add(() => Value!, RequiredMessage);
+            store?.Clear();
+            if (requiredValueUnset)
+            {
+                invalid = true;
+                store?.Add(() => Value!, RequiredMessage);
+            }
+            else invalid = false;
         }
-        else invalid = false;
     }
 }
