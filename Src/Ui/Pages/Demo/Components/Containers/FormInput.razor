@@ -1,5 +1,4 @@
 ﻿@using Domain.Enums.User;
-@using System.ComponentModel.DataAnnotations;
 
 @inject ToasterService toaster
 
@@ -15,35 +14,33 @@
                        Label=@Label("Text", form.Text)
                        Placeholder="Placeholder" />
 
-            @*DisplayName is used for InputBase errors, it's not the same as annotation's DisplayName*@
             <DateField @bind-Value=form.Date
-                       Label=@Label("Date", form.Date.ToShortDateString())
-                       DisplayName="SuperDate" />
+                       Label=@Label("Date", form.Date.ToShortDateString()) />
 
+            @* RequiredTrue only adds a visual indicator, 
+                FluentValidation rule must be defined to have the validation*@
             <CheckBoxField @bind-Value=form.CheckBox
                            Label=@Label("CheckBox", form.CheckBox.ToString())
                            RequiredTrue />
 
-             @* SelectField
-                - Options. can be an IEnumarble of :
-                    > strings
-                    > Any enum
-                    > The provided "Option" object
-                    > Any Object. In that case, OptionGetters must be specify where to get the Name&Value *@
+            @*SelectField
+                - Options. is an IEnumerable of either :
+                    > 'string' | An enum | Provided 'Option'' object | An Object
+                    In 'Object' case, OptionGetters param must be used to specify where to get the Name&Value in the object*@
             <SelectField @bind-Value=form.Select
                          Label=@Label("Select", form.Select)
                          Placeholder="Select from..."
                          Options=strings />
 
-            @*SelectField with Enum as BoundValueType*@
+            @*SelectField with Enum as BoundValueType & Options*@
             <SelectField @bind-Value=form.EnumSelect
                          Label=@Label("Enum Select", form.EnumSelect.ToString())
                          Placeholder="Select from..." 
                          Options=@(Enum.GetValues<UserFunction>()) />
 
             @*SelectSearchField implementation has support limitation :
-                - Validation. Supports 'Required' validation through 'Required' param (Neither DataAnnotation nor FluentValidation)
-                - ValueBinding. Supports (Field To Model) binding only. [(Model To Field) binding can be emulated with StateHasChanged() only for "ModelValue == null"]
+                - Validation. Only supports 'Required' validation through 'Required' param (Not FluentValidation)
+                - ValueBinding. Supports 'FieldToModel' binding only. ['ModelToField' binding can be emulated with StateHasChanged() only for "ModelValue == null"]
                 - EventBinding. OnChange can be used. It is triggered onmousedown an option*@
             <SelectSearchField @bind-Value=form.SelectSearch
                                Required RequiredMessage=@t["field.required"]
@@ -53,9 +50,9 @@
                                Options=objects />
 
             @*SelectField Multiple implementation has support limitation :
-                - Validation. Supports 'Required' validation through 'Required' param (Neither DataAnnotation nor FluentValidation)
-                - ValueBinding. Supports (Field To Model) binding only
                 - BoundValueType. Bound value type should be a List<string> (Enum Array is not supported)
+                - Validation. Only supports 'Required' validation through 'Required' param (Not FluentValidation)
+                - ValueBinding. Supports (FieldToModel) binding only
                 - EventBinding. Not Supported*@
             <SelectField Multiple
                          @bind-Value=form.SelectMultiple
@@ -94,44 +91,41 @@
     private List<string> strings = new() { "patate", "bonjour", "jean" };
     private List<Option> objects = new()
     {
-        new(){ Name = "Noix de pécan", Value = "noix_de_pecan" },
-        new(){ Name = "Noix de coco", Value = "noix_de_coco" },
-        new(){ Name = "Noix de beurre", Value = "noix_de_beurre" },
-        new(){ Name = "Noix Grume Blanc", Value = "noix_grume_blanc" },
-        new(){ Name = "Noix zettiez", Value = "noix_zettiez" }
+        new(){ Name = "Bonjour", Value = "bonjour" },
+        new(){ Name = "Au revoir", Value = "au_revoir" },
+        new(){ Name = "Enchanté", Value = "enchante" },
+        new(){ Name = "Bien à vous", Value = "bien_a_vous" }
     };
 
     public class FormModel
     {
-        [Required]
-        [StringLength(10, ErrorMessage = "{0} is too long.")]
         public string? Text { get; set; } = "Default";
-
-        [Required]
         public DateTime Date { get; set; }
-
-        [Required]
-        [Range(typeof(bool), "true", "true")] // <=> RequiredTrue
-        [Display(Name = "<DisplayName>")]
         public bool CheckBox { get; set; }
-
-        [Required]
         public string? Select { get; set; }
-
-        [Required]
         public UserFunction? EnumSelect { get; set; }
 
         public string? SelectSearch { get; set; }
-
         public List<string> SelectMultiple { get; set; } = new();
 
-        [ValidateComplexType]
         public NestedFormModel NestedForm { get; set; } = new();
     }
 
     public class NestedFormModel
     {
-        [Required]
-        public string? Field { get; set; } = "Value";
+        public string? Field = "Value";
+    }
+
+    public class FormModelValidator : AbstractValidator<FormModel>
+    {
+        public FormModelValidator()
+        {
+            RuleFor(x => x.Text).NotEmpty().MaximumLength(10).WithMessage(x => $"{x.Text} is too long.");
+            RuleFor(x => x.Date).NotEmpty();
+            RuleFor(x => x.CheckBox).Equal(true);            
+            RuleFor(x => x.Select).NotEmpty();
+            RuleFor(x => x.EnumSelect).NotEmpty();
+            RuleFor(x => x.NestedForm.Field).NotEmpty();
+        }
     }
 }

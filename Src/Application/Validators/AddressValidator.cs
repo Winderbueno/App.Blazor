@@ -8,9 +8,9 @@ public class AddressValidator : AbstractValidator<Address>
     public AddressValidator()
         => RuleSet("Address", () =>
         {
-            RuleFor(x => x.ZipCode).NotEmpty().WithMessage("Le code postal est obligatoire.");
-            RuleFor(x => x.Town).NotEmpty().WithMessage("La ville est obligatoire.");
-            RuleFor(x => x.Street).NotEmpty().WithMessage("La rue est obligatoire.");
-            RuleFor(x => x.Number).NotEmpty().WithMessage("Le numéro est obligatoire.");
+            RuleFor(x => x.ZipCode).NotEmpty();
+            RuleFor(x => x.Town).NotEmpty();
+            RuleFor(x => x.Street).NotEmpty();
+            RuleFor(x => x.Number).NotEmpty();
         });
 }
