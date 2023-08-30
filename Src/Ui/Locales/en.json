@@ -5,6 +5,7 @@
     "clear": "Clear",
     "close": "Close",
     "create": "New",
+    "confirm": "Confirm",
     "edit": "Edit",
     "load": "Loading...",
     "next": "Suivant",
@@ -57,9 +58,7 @@
     "identity": "Identity",
     "lastname": "Last Name",
     "mail": "Mail",
-    "mail-confirm": "Confirm Mail",
-    "phone": "Phone",
-    "phone-confirm": "Confirm Phone"
+    "phone": "Phone"
   },
   "user": {
     "profile": "Profile",

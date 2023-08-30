@@ -4,6 +4,7 @@
     "deactivate": "Désactiver",
     "clear": "Effacer",
     "close": "Fermer",
+    "confirm": "Confirmer",
     "create": "Créer",
     "edit": "Editer",
     "load": "Chargement en cours...",
@@ -57,9 +58,7 @@
     "identity": "Identité",
     "lastname": "Nom",
     "mail": "Email",
-    "mail-confirm": "Confirmer votre email",
-    "phone": "Téléphone",
-    "phone-confirm": "Confirmer votre téléphone"
+    "phone": "Téléphone"
   },
   "user": {
     "profile": "Profil",
