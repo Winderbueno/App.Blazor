@@ -1,7 +1,4 @@
-﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
-@import url('bootstrap/bootstrap.min.css');
-
-:root {
+﻿:root {
     /* Theme */
     --k-color-primary: #3f51b5;
     --k-color-primary-light: #e5f1fe;

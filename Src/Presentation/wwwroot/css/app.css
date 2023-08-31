@@ -1,6 +1,5 @@
-﻿@import url('../_content/K.Blazor/css/theme.css');
+﻿@import url('../_content/K.Blazor/css/style.css');
 @import url('error-handling.css');
-@import url('splashscreen.css');
 
 html,
 body {
