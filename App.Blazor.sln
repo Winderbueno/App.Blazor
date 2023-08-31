@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Src\Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "Src\Presentation\Presentation.csproj", "{9E289895-CE7B-4E86-B45B-6012FAF6C4B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K.Blazor", "K.Components\K.Blazor.csproj", "{892C5951-B990-488A-A045-46070DD62958}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "K.Blazor", "K.Blazor\K.Blazor.csproj", "{89C7DEB5-8CE1-44DF-ACA0-DD96635D2EB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +43,10 @@ Global
 		{9E289895-CE7B-4E86-B45B-6012FAF6C4B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E289895-CE7B-4E86-B45B-6012FAF6C4B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E289895-CE7B-4E86-B45B-6012FAF6C4B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{892C5951-B990-488A-A045-46070DD62958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{892C5951-B990-488A-A045-46070DD62958}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{892C5951-B990-488A-A045-46070DD62958}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{892C5951-B990-488A-A045-46070DD62958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89C7DEB5-8CE1-44DF-ACA0-DD96635D2EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C7DEB5-8CE1-44DF-ACA0-DD96635D2EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C7DEB5-8CE1-44DF-ACA0-DD96635D2EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89C7DEB5-8CE1-44DF-ACA0-DD96635D2EB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
