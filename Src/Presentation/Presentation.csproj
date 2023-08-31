@@ -28,8 +28,4 @@
     <ProjectReference Include="..\..\K.Blazor\K.Blazor.csproj" />
     <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\scripts\" />
-  </ItemGroup>
 </Project>

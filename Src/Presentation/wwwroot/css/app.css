@@ -1,8 +1,6 @@
-﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
-@import url('bootstrap/bootstrap.min.css');
+﻿@import url('../_content/K.Blazor/css/theme.css');
 @import url('error-handling.css');
 @import url('splashscreen.css');
-@import url('theme.css');
 
 html,
 body {
