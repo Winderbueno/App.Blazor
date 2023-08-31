@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Options;
 using Presentation;
-using Presentation.Core.Authorization;
-using Presentation.Core.Translations;
+using Presentation.Middlewares.Authorization;
+using Presentation.Middlewares.Translations;
 using Serilog;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);

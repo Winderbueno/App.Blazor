@@ -1,7 +1,7 @@
 ﻿using I18NPortable;
 using Newtonsoft.Json.Linq;
 
-namespace Presentation.Core.Translations;
+namespace Presentation.Middlewares.Translations;
 
 public class JsonReader : ILocaleReader
 {
@@ -11,8 +11,8 @@ public class JsonReader : ILocaleReader
         var json = streamReader.ReadToEnd();
 
         return JObject.Parse(json)
-         .Descendants()
-         .OfType<JValue>()
-         .ToDictionary(jvalue => jvalue.Path, jvalue => jvalue.ToString());
+            .Descendants()
+            .OfType<JValue>()
+            .ToDictionary(jvalue => jvalue.Path, jvalue => jvalue.ToString());
     }
 }

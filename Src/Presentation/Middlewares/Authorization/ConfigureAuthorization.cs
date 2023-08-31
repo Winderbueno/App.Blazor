@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Presentation.Core.Authorization;
+namespace Presentation.Middlewares.Authorization;
 
 public class ConfigureAuthorization : IConfigureOptions<AuthorizationOptions>
 {

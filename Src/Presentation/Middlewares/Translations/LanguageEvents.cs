@@ -1,4 +1,4 @@
-﻿namespace Presentation.Core.Translations;
+﻿namespace Presentation.Middlewares.Translations;
 
 public class LanguageEvents
 {

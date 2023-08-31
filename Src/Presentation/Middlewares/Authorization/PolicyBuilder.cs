@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 
-namespace Presentation.Core.Authorization;
+namespace Presentation.Middlewares.Authorization;
 
 public static class PolicyBuilder
 {
