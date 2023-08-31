@@ -94,7 +94,7 @@
 
     protected override void OnInitialized()
     {
-        options = Options!.ToOption(OptionGetters?.Name, OptionGetters?.Value);
+        options = Options!.ToOption(conf.DefaultName, OptionGetters?.Name, OptionGetters?.Value);
         if(Multiple)
         {
             ResetCheckBox();

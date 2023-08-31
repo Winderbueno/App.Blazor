@@ -1,4 +1,7 @@
-﻿@using Presentation.Layout;
+﻿@using K.Blazor.Services
+@using Presentation.Layout;
+
+@inject KConfService kConf
 
 <ErrorHandler>
     <Toaster />
@@ -17,3 +20,10 @@
         </Router>
     @*</CascadingAuthenticationState>*@
 </ErrorHandler>
+
+@code {
+    protected override void OnInitialized()
+        => kConf.SetDefaultNameGetter(x => 
+            t[x.DisplayName()].Contains("##") ? 
+                x?.ToString() : t[x.DisplayName()]);
+}

@@ -1,5 +1,4 @@
 using I18NPortable;
-using K.Blazor.Components.Indicators.Toast;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -34,10 +33,6 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 #endregion
 
-#region Error Handling
-services.AddSingleton<ToasterService>();
-#endregion
-
 #region I18n
 // I18N-Portable. https://github.com/xleon/I18N-Portable
 services.AddSingleton((_) =>
@@ -52,6 +47,7 @@ services.AddSingleton(new LanguageEvents());
 #region Project Services
 services.AddApplicationServices();
 services.AddInfrastructureServices(builder.HostEnvironment.BaseAddress);
+services.AddKBlazorServices();
 #endregion
 
 await builder.Build().RunAsync();
