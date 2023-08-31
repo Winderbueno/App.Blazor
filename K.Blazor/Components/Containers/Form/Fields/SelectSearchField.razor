@@ -5,7 +5,7 @@
 
 @typeparam TValue
 @typeparam TOption
-@inherits CustomRequiredField<TValue>
+@inherits Abstract.SelectField<TValue, TOption>
 
 <!-- Lorsque https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover sera standardisé : à morderniser -->
 
@@ -15,8 +15,8 @@
         <label>@Label</label>
 
         <div tabindex="0" class="select-wrapper"
-        @onfocusin="_ => optionsVisible = true"
-        @onfocusout="_ => optionsVisible = false">
+            @onfocusin="_ => optionsVisible = true"
+            @onfocusout="_ => optionsVisible = false">
 
             <!-- Field -->
             <output class="select-field @(invalid ? "invalid" : "") @(optionsVisible ? "focused" : "")">
@@ -50,7 +50,7 @@
                 }
                 else
                 {
-                    <li>@NoResultMessage</li>
+                    <li>@selectConf.NoResultMessage()</li>
                 }
             </ul>
         </div>
@@ -60,32 +60,17 @@
 </SelectFieldStyle>
 
 @code {
-    /* Options */
-    [EditorRequired, Parameter]
-    public IEnumerable<TOption>? Options { get; set; }
-    [Parameter]
-    public (Func<TOption?, string?>? Name, Func<TOption?, string?>? Value)? OptionGetters { get; set; }
-
     /* Search */
     [Parameter]
     public int SearchDelay { get; set; } = 500;
     [Parameter]
     public int NbDisplayedOptions { get; set; } = 10;
-    [Parameter]
-    public string NoResultMessage { get; set; } = "No result";
 
 
-    private IEnumerable<Option>? options, searchedOptions = new List<Option>();
+    private IEnumerable<Option>? searchedOptions = new List<Option>();
     private Option? selectedOption = new();
-    private bool optionsVisible = false;
     private Timer? searchTimer;
     private string? contains;
-
-    protected override void OnInitialized()
-    {
-        options = Options!.ToOption(conf.DefaultName, OptionGetters?.Name, OptionGetters?.Value);
-        base.OnInitialized();
-    }
 
     protected override void OnParametersSet()
     {
@@ -107,8 +92,6 @@
                     contains.ToLower()!)).Take(NbDisplayedOptions);
         StateHasChanged();
     }
-
-    private void OnFieldClick() => optionsVisible = !optionsVisible;
 
     private void OnClearClick(MouseEventArgs e)
     {

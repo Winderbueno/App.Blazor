@@ -1,10 +1,13 @@
-﻿namespace K.Blazor.Services;
+﻿using K.Blazor.Dtos;
+
+namespace K.Blazor.Services;
 
 public class KConfService
 {
-    private Func<object?, string?> name = x => x?.ToString();
+    private SelectFieldOptions selectFieldOptions = new();
 
-    public Func<object?, string?> DefaultName => name;
+    public SelectFieldOptions SelectFieldOptions => selectFieldOptions;
 
-    public void SetDefaultNameGetter(Func<object?, string?> name) => this.name = name;
+    public void SetSelectFieldOptions(SelectFieldOptions options)
+        => selectFieldOptions = options;
 }

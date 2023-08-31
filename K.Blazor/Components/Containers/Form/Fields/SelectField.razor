@@ -5,7 +5,7 @@
 
 @typeparam TValue
 @typeparam TOption
-@inherits CustomRequiredField<TValue>
+@inherits Abstract.SelectField<TValue, TOption>
 
 <!-- Lorsque https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover sera standardisé : à morderniser -->
 
@@ -15,8 +15,10 @@
     {
         <SelectFieldStyle>
             <div tabindex="0" class="select-wrapper"
-             @onfocusin="_ => optionsVisible = true"
-             @onfocusout="_ => optionsVisible = false">
+                @onfocusin="_ => optionsVisible = true"
+                @onfocusout="_ => optionsVisible = false">
+
+                <!-- Field -->
                 <output class="select-field @(invalid ? "invalid" : "") @(optionsVisible ? "focused" : "")">
                     @if (multipleOptions.Any(x => x.IsChecked == true))
                     {
@@ -36,6 +38,8 @@
                     }
                     <Icon Id=@(optionsVisible ? "chevron-top" : "chevron-bottom") />
                 </output>
+
+                <!-- Options -->
                 <ul class="select-data @(optionsVisible ? "" : "hide")">
                     @foreach (var pair in multipleOptions)
                     {
@@ -80,32 +84,23 @@
     [Parameter]
     public bool Multiple { get; set; } = false;
 
-    /* Options */
-    [EditorRequired, Parameter]
-    public IEnumerable<TOption>? Options { get; set; }
-    [Parameter]
-    public (Func<TOption?, string?>? Name, Func<TOption?, string?>? Value)? OptionGetters { get; set; }
 
     protected override bool requiredValueUnset => multipleOptions.All(x => x.IsChecked == false);
-    private IEnumerable<Option>? options;
-    private bool optionsVisible = false;
     private List<(Option Option, bool IsChecked)> multipleOptions = new();
     private string selectedOptionColor => Value == null ? "var(--k-color-grey)" : "var(--k-color-primary);";
 
     protected override void OnInitialized()
     {
-        options = Options!.ToOption(conf.DefaultName, OptionGetters?.Name, OptionGetters?.Value);
-        if(Multiple)
-        {
-            ResetCheckBox();
-            base.OnInitialized();
-        }
+        base.OnInitialized();
+        if(Multiple) ResetCheckBox();
     }
 
     protected override void OnParametersSet()
     {
-        if (Multiple) ValueExpression = (() => Value);
-        if (Value == null) ResetCheckBox();
+        if (Multiple) {
+            ValueExpression = (() => Value);
+            if (Value == null) ResetCheckBox();
+        }
     }
 
     private async void OnMultipleSelectChange(Option option)
@@ -123,6 +118,6 @@
 
     private void ResetCheckBox()
     {
-        if (Multiple && options != null) multipleOptions = options.Select(x => (x, false)).ToList();
+        if (options != null) multipleOptions = options.Select(x => (x, false)).ToList();
     }
 }

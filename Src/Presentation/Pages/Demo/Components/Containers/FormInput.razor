@@ -41,8 +41,7 @@
                 - ValueBinding. Supports 'FieldToModel' binding only. ['ModelToField' binding can be emulated with StateHasChanged() only for "ModelValue == null"]
                 - EventBinding. OnChange can be used. It is triggered onmousedown an option*@
             <SelectSearchField @bind-Value=form.SelectSearch
-                               Required RequiredMessage=@t["field.required"]
-                               NoResultMessage=@t["field.no-result"]
+                               Required
                                Label=@Label("Select Search", form.SelectSearch)
                                Placeholder="Select from..."
                                Options=objects />
@@ -52,13 +51,12 @@
                 - Validation. Only supports 'Required' validation through 'Required' param (Not FluentValidation)
                 - ValueBinding. Supports (FieldToModel) binding only
                 - EventBinding. Not Supported*@
-            <SelectField Multiple
-                         @bind-Value=form.SelectMultiple
-                         Required RequiredMessage=@t["field.required"]
+            <SelectField @bind-Value=form.SelectMultiple
+                         Multiple Required
                          Label="Select Multiple (x item.s)"
                          Placeholder="Select from..."
                          Options=objects 
-                         OptionGetters=@((x => t[x.Name].Contains("##") ? x.Name : t[x.Name], x => x.Value)) />
+                         OptionGetters=@((x => t[x.Name].Contains("##") ? x.Name : t[x.Name], x => x.Value)) /> @* Todo *@
             
             @*Nested FormModel & Disabled feature*@
             <TextField @bind-Value=form.NestedForm.Field

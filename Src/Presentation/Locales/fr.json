@@ -1,4 +1,8 @@
 {
+  "k-blazor-msg": {
+    "required": "Ce champ est requis.",
+    "no-result": "Aucun résultat"
+  },
   "action": {
     "activate": "Activer",
     "deactivate": "Désactiver",
@@ -37,10 +41,6 @@
     "function": "Fonction",
     "status": "Statut",
     "type": "Type"
-  },
-  "field": {
-    "required": "Ce champ est requis.",
-    "no-result": "Aucun résultat"
   },
   "home": {
     "welcome": "Bienvenue",

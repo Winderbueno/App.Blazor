@@ -1,4 +1,8 @@
 {
+  "k-blazor-msg": {
+    "required": "Field is required.",
+    "no-result": "No result"
+  },
   "action": {
     "activate": "Activate",
     "deactivate": "Deactivate",
@@ -37,10 +41,6 @@
     "function": "Function",
     "status": "Status",
     "type": "Type"
-  },
-  "field": {
-    "required": "Field is required.",
-    "no-result": "No result"
   },
   "home": {
     "welcome": "Welcome",

@@ -29,7 +29,7 @@
                          Placeholder=@(t["common.type"] + "...") />
 
             <SelectField @bind-Value=form.Function
-                         Required RequiredMessage=@t["field.required"]
+                         Required
                          Label=@t["common.function"]
                          Options=@(Enum.GetValues<UserFunction>())
                          Placeholder=@(t["common.function"] + "...") />

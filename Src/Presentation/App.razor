@@ -23,7 +23,10 @@
 
 @code {
     protected override void OnInitialized()
-        => kConf.SetDefaultNameGetter(x => 
-            t[x.DisplayName()].Contains("##") ? 
-                x?.ToString() : t[x.DisplayName()]);
+        => kConf.SetSelectFieldOptions(new()
+            {
+                DefaultOptionName = x => t[x.DisplayName()].Contains("##") ? x?.ToString() : t[x.DisplayName()],
+                RequiredMessage = () => t["k-blazor-msg.required"],
+                NoResultMessage = () => t["k-blazor-msg.no-result"]
+            });
 }
