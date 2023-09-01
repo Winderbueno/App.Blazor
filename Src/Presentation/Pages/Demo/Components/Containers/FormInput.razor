@@ -53,7 +53,7 @@
                 - EventBinding. Not Supported*@
             <SelectField @bind-Value=form.SelectMultiple
                          Multiple Required
-                         Label="Select Multiple (x item.s)"
+                         Label="Select Multiple (x option.s)"
                          Placeholder="Select from..."
                          Options=objects 
                          OptionGetters=@((x => t[x.Name].Contains("##") ? x.Name : t[x.Name], x => x.Value)) /> @* Todo *@
@@ -97,7 +97,7 @@
     public class FormModel
     {
         public string? Text { get; set; } = "Default";
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Today;
         public bool CheckBox { get; set; }
         public string? Select { get; set; }
         public UserFunction? EnumSelect { get; set; }
