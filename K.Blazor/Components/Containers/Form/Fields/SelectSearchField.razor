@@ -9,17 +9,17 @@
 
 <!-- Lorsque https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover sera standardisé : à morderniser -->
 
-<SelectFieldStyle>
-    <div class="field-wrapper">
+<div class="field-wrapper">
 
-        <label>@Label</label>
+    <label>@Label</label>
 
+    <SelectFieldStyle>
         <div tabindex="0" class="select-wrapper"
             @onfocusin="_ => optionsVisible = true"
             @onfocusout="_ => optionsVisible = false">
 
             <!-- Field -->
-            <output class="select-field @(invalid ? "invalid" : "") @(optionsVisible ? "focused" : "")">
+            <div class="select-field @(invalid ? "invalid" : "") @(optionsVisible ? "focused" : "")">
                 @if (selectedOption?.Value != null)
                 {
                     <span class="selected-option">
@@ -30,11 +30,11 @@
                 else
                 {
                     <input class="@(invalid ? "invalid" : "" )"
-                    @oninput=OnSearchInput
+                           @oninput=OnSearchInput
                            placeholder="@Placeholder">
                 }
                 <Icon Id=@(optionsVisible ? "chevron-top" : "chevron-bottom") />
-            </output>
+            </div>
 
             <!-- Options -->
             <ul class="options @(optionsVisible ? "" : "hide")">
@@ -54,10 +54,11 @@
                 }
             </ul>
         </div>
+    </SelectFieldStyle>
 
-        <ValidationMessage For=@(() => Value)></ValidationMessage>
-    </div>
-</SelectFieldStyle>
+    <ValidationMessage For=@(() => Value)></ValidationMessage>
+</div>
+
 
 @code {
     /* Search */
