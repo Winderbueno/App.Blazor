@@ -10,27 +10,25 @@
 <!-- Lorsque https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover sera standardisé : à morderniser -->
 
 <div class="field-wrapper">
+
     <label>@Label</label>
+
     @if (Multiple)
     {
         <SelectFieldStyle>
             <div tabindex="0" class="select-wrapper"
                 @onfocusin="_ => optionsVisible = true"
                 @onfocusout="_ => optionsVisible = false">
-
                 <!-- Field -->
                 <div class="select-field @(invalid ? "invalid" : "") @(optionsVisible ? "focused" : "")">
-                    @if (multipleOptions.Any(x => x.IsChecked == true))
+                    @if (selectedOptions.Any())
                     {
-                        <ul class="selected-options">
-                            @foreach (var pair in multipleOptions.Where(x => x.IsChecked == true))
+                        <span class="selected-options">
+                            @for (int i = 0; i < selectedOptions.Count(); i++)
                             {
-                                <li>
-                                    <data value=@pair.Option.Value>@pair.Option.Name</data>
-                                    <Icon Id="x" @onclick="() => OnMultipleSelectChange(pair.Option)" />
-                                </li>
+                                @($"{selectedOptions[i].Name}" + (i + 1 == selectedOptions.Count() ? "" : $", "))
                             }
-                        </ul>
+                        </span>
                     }
                     else
                     {
@@ -43,7 +41,7 @@
                 <ul class="options @(optionsVisible ? "" : "hide")">
                     @foreach (var pair in multipleOptions)
                     {
-                        <li @onclick="() => OnMultipleSelectChange(pair.Option)">
+                        <li @onclick="_ => OnMultipleSelectChange(pair.Option)">
                             <input type="checkbox" checked=@pair.IsChecked>
                             <data value=@pair.Option.Value>@pair.Option.Name</data>
                         </li>
@@ -84,10 +82,13 @@
     [Parameter]
     public bool Multiple { get; set; } = false;
 
+    /* Single Select */
+    private string selectedOptionColor => Value == null ? "var(--k-color-grey)" : "var(--k-color-primary);";
 
+    /* Multiple Select */
     protected override bool requiredValueUnset => multipleOptions.All(x => x.IsChecked == false);
     private List<(Option Option, bool IsChecked)> multipleOptions = new();
-    private string selectedOptionColor => Value == null ? "var(--k-color-grey)" : "var(--k-color-primary);";
+    private List<Option> selectedOptions => multipleOptions.Where(x => x.IsChecked == true).Select(x => x.Option).ToList();
 
     protected override void OnInitialized()
     {

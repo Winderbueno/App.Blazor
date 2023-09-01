@@ -17,7 +17,6 @@
         <div tabindex="0" class="select-wrapper"
             @onfocusin="_ => optionsVisible = true"
             @onfocusout="_ => optionsVisible = false">
-
             <!-- Field -->
             <div class="select-field @(invalid ? "invalid" : "") @(optionsVisible ? "focused" : "")">
                 @if (selectedOption?.Value != null)
@@ -31,7 +30,7 @@
                 {
                     <input class="@(invalid ? "invalid" : "" )"
                            @oninput=OnSearchInput
-                           placeholder="@Placeholder">
+                           placeholder="Search">
                 }
                 <Icon Id=@(optionsVisible ? "chevron-top" : "chevron-bottom") />
             </div>

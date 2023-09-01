@@ -20,32 +20,12 @@
     color: var(--k-color-grey);
 }
 
-/* Selected Options */
+/* Selected options */
 .selected-options {
-    display: flex;
-    flex-flow: row wrap;
-    gap: var(--k-gap-smaller);
-    /* Prevents the child's growing state (adding elements) to make the parent bigger (because we're in flex) */
-    width: 0;
-    min-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
-
-    .selected-options li {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        place-items: center;
-        gap: var(--k-gap-small);
-        border-radius: 1rem;
-        font-weight: 700;
-        padding-inline: var(--k-gap-smaller);
-        background-color: var(--k-color-primary-light);
-        flex-shrink: 1;
-    }
-
-        .selected-options li:hover {
-            transform: scale(1.01);
-            background-color: var(--k-color-grey-light);
-        }
 
 /* Options */
 .options li:has(input:checked) {
