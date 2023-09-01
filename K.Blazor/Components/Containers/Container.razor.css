@@ -31,10 +31,6 @@
     ::deep .flex > div {
         width: var(--flex-child-width);
     }
-
-    ::deep .grid > div {
-        width: 100%;
-    }
 }
 
 /* Mobile */
