@@ -30,7 +30,7 @@
                 {
                     <input class="@(invalid ? "invalid" : "" )"
                            @oninput=OnSearchInput
-                           placeholder="Search">
+                           placeholder=@Placeholder>
                 }
                 <Icon Id=@(optionsVisible ? "chevron-top" : "chevron-bottom") />
             </div>
