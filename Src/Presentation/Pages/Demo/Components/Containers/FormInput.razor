@@ -36,9 +36,9 @@
                          Placeholder="Select from..." 
                          Options=@(Enum.GetValues<UserFunction>()) />
 
-            @*SelectSearchField implementation has support limitation :
+            @*SelectSearchField has limitation :
                 - Validation. Only supports 'Required' validation through 'Required' param (Not FluentValidation)
-                - ValueBinding. Supports 'FieldToModel' binding only. ['ModelToField' binding can be emulated with StateHasChanged() only for "ModelValue == null"]
+                - ValueBinding. Only Supports 'FieldToModel' binding. ['ModelToField' binding can be emulated with StateHasChanged() only for "ModelValue == null"]
                 - EventBinding. OnChange can be used. It is triggered onmousedown an option*@
             <SelectSearchField @bind-Value=form.SelectSearch
                                Required
@@ -46,10 +46,10 @@
                                Placeholder="Search from..."
                                Options=objects />
 
-            @*SelectField Multiple implementation has support limitation :
+            @*SelectField Multiple has limitation :
                 - BoundValueType. Bound value type should be a List<string> (Enum Array is not supported)
                 - Validation. Only supports 'Required' validation through 'Required' param (Not FluentValidation)
-                - ValueBinding. Supports (FieldToModel) binding only
+                - ValueBinding. Only supports (FieldToModel) binding
                 - EventBinding. Not Supported*@
             <SelectField @bind-Value=form.SelectMultiple
                          Multiple Required
