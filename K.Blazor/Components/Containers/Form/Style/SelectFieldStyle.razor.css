@@ -1,3 +1,7 @@
+::deep .hide {
+    display: none;
+}
+
 /* Select Fields
 /*  'select-xxx' classes are used by homemade select fields (SelectField Multiple & SelectSearchField)
 /*  These fields don't use bootstrap's 'form-control' css class, hence require specific styling */
@@ -24,4 +28,41 @@
     ::deep .select-field.focused {
         border-color: var(--k-color-primary);
         box-shadow: inset 0 0 0 1px var(--k-color-primary);
+    }
+
+/* Options 
+    - Available & Selected for 'SelectMultiple'
+    - Available for 'SelectSearch' */
+::deep ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+::deep ul > li:hover {
+    cursor: pointer;
+}
+
+/* Options */
+::deep .options {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    max-height: calc(100% * 4);
+    background: var(--k-color-light);
+    box-shadow: 0px 2px 4px 0px var(--k-color-shadow);
+    overflow-y: auto;
+}
+
+    ::deep .options li {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        place-items: start;
+        gap: var(--k-gap-small);
+        border: 1px solid var(--k-color-grey-light);
+        padding: var(--k-gap-small);
+    }
+
+    ::deep .options li:hover {
+        background-color: var(--k-color-grey-light);
     }

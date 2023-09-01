@@ -22,7 +22,7 @@
                 <output class="select-field @(invalid ? "invalid" : "") @(optionsVisible ? "focused" : "")">
                     @if (multipleOptions.Any(x => x.IsChecked == true))
                     {
-                        <ul class="select-selected-items">
+                        <ul class="selected-options">
                             @foreach (var pair in multipleOptions.Where(x => x.IsChecked == true))
                             {
                                 <li>
@@ -40,7 +40,7 @@
                 </output>
 
                 <!-- Options -->
-                <ul class="select-data @(optionsVisible ? "" : "hide")">
+                <ul class="options @(optionsVisible ? "" : "hide")">
                     @foreach (var pair in multipleOptions)
                     {
                         <li @onclick="() => OnMultipleSelectChange(pair.Option)">

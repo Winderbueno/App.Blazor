@@ -1,47 +1,19 @@
-﻿/* Common Select Styling */
-ul, li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+﻿/**************** Single Select ******************/
+::deep select {
+    cursor: pointer;
 }
 
-    ul > li:hover {
-        cursor: pointer;
+    ::deep select option {
+        color: var(--k-color-primary);
     }
 
+    /* Selected option color 
+    /*  Grey for "placeholder" / Primary if real selected value */
+    ::deep select:optional {
+        color: var(--selected-option-color);
+    }
 
-/* ----- Single Select ----- */
-select {
-    width: 100%;
-    padding: 0.75em;
-    border: 2px solid var(--k-color-grey-light);
-    border-radius: 0.25rem;
-}
-
-::deep select option {
-    color: var(--k-color-primary);
-}
-
-/* Selected option color 
-/*  Must be modified by blazor code because of "placeholder" trick */
-::deep select:optional {
-    color: var(--selected-option-color);
-}
-
-select:hover {
-    cursor: pointer;
-    background-color: var(--k-color-primary-light);
-}
-
-select:active, select:focus {
-    border-color: var(--k-color-primary);
-}
-
-select > option:first-child {
-    color: var(--k-color-primary-light);
-}
-
-/* ----- Multiple Select ----- */
+/**************** Multiple Select ****************/
 
 /* Cannot be called 'placeholder' because a global css class 'placeholder already exists */
 .placeholder-color {
@@ -49,7 +21,7 @@ select > option:first-child {
 }
 
 /* Selected Options */
-.select-selected-items {
+.selected-options {
     display: flex;
     flex-flow: row wrap;
     gap: var(--k-gap-smaller);
@@ -58,7 +30,7 @@ select > option:first-child {
     min-width: 100%;
 }
 
-    .select-selected-items li {
+    .selected-options li {
         display: grid;
         grid-template-columns: auto 1fr;
         place-items: center;
@@ -70,46 +42,19 @@ select > option:first-child {
         flex-shrink: 1;
     }
 
-        .select-selected-items li:hover {
+        .selected-options li:hover {
             transform: scale(1.01);
             background-color: var(--k-color-grey-light);
         }
 
-/* Available Options */
-.select-data {
-    position: absolute;
-    z-index: 2;
-    width: 100%;
-    max-height: calc(100% * 4);
-    background: var(--k-color-light);
-    box-shadow: 0px 2px 4px 0px var(--k-color-shadow);
-    overflow-y: auto;
+/* Options */
+.options li:has(input:checked) {
+    background-color: var(--k-color-primary-light);
 }
 
-    .select-data li {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        place-items: start;
-        gap: var(--k-gap-small);
-        border: 1px solid var(--k-color-grey-light);
-        padding: var(--k-gap-small);
-    }
-
-        .select-data li:hover {
-            background-color: var(--k-color-grey-light);
-        }
-
-        .select-data li:has(input:checked) {
-            background-color: var(--k-color-primary-light);
-        }
-
-        .select-data li > input {
-            accent-color: var(--k-color-primary);
-            inline-size: 1.5rem;
-            aspect-ratio: 1;
-            pointer-events: none
-        }
-
-.hide {
-    display: none;
+.options li > input {
+    accent-color: var(--k-color-primary);
+    inline-size: 1.5rem;
+    aspect-ratio: 1;
+    pointer-events: none
 }

@@ -1,8 +1,4 @@
-﻿.hide {
-    display: none;
-}
-
-/* Search input */
+﻿/* Search input */
 input,
 input:focus-visible,
 input.invalid,
@@ -31,34 +27,3 @@ input:hover {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
-/* Options */
-ul, li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.options {
-    position: absolute;
-    z-index: 2;
-    width: 100%;
-    max-height: calc(100% * 4);
-    background: var(--k-color-light);
-    box-shadow: 0px 2px 4px 0px var(--k-color-shadow);
-    overflow-y: auto;
-}
-
-    .options li {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        place-items: start;
-        gap: var(--k-gap-small);
-        border: 1px solid var(--k-color-grey-light);
-        padding: var(--k-gap-small);
-    }
-
-        .options li:hover {
-            background-color: var(--k-color-grey-light);
-            cursor: pointer;
-        }
