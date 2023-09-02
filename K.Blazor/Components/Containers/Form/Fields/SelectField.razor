@@ -41,8 +41,8 @@
                 <ul class="options @(optionsVisible ? "" : "hide")">
                     @foreach (var pair in multipleOptions)
                     {
-                        <li @onclick="_ => OnMultipleSelectChange(pair.Option)">
-                            <input type="checkbox" checked=@pair.IsChecked>
+                        <li @onclick="_ => OnValueChange(pair.Option)">
+                            <input type="checkbox" checked=@pair.Checked>
                             <data value=@pair.Option.Value>@pair.Option.Name</data>
                         </li>
                     }
@@ -86,9 +86,9 @@
     private string selectedOptionColor => Value == null ? "var(--k-color-grey)" : "var(--k-color-primary);";
 
     /* Multiple Select */
-    protected override bool requiredValueUnset => multipleOptions.All(x => x.IsChecked == false);
-    private List<(Option Option, bool IsChecked)> multipleOptions = new();
-    private List<Option> selectedOptions => multipleOptions.Where(x => x.IsChecked == true).Select(x => x.Option).ToList();
+    protected override bool requiredValueUnset => multipleOptions.All(x => x.Checked == false);
+    private List<(Option Option, bool Checked)> multipleOptions = new();
+    private List<Option> selectedOptions => multipleOptions.Where(x => x.Checked == true).Select(x => x.Option).ToList();
 
     protected override void OnInitialized()
     {
@@ -104,21 +104,27 @@
         }
     }
 
-    private async void OnMultipleSelectChange(Option option)
+    private async void OnValueChange(Option opt)
     {
         multipleOptions = multipleOptions
-            .Select(x => x.Option.Value != option.Value ? x : new(x.Option, !x.IsChecked))
+            .Select(x => x.Option.Value != opt.Value ? x : new(x.Option, !x.Checked))
+            .OrderBy(x => !x.Checked).ThenBy(x => x.Option.Name)
             .ToList();
 
-        var values = multipleOptions.Where(x => x.IsChecked == true).Select(x => x.Option.Value).ToList();
+        // Notification events
+        var values = selectedOptions.Select(x => x.Value).ToList();
         await ValueChanged.InvokeAsync((TValue)(object)values);
-
         EditContext!.NotifyFieldChanged(EditContext.Field(ParseFieldName()));
+
+        // Validation
         ValidateField();
     }
 
     private void ResetCheckBox()
     {
-        if (options != null) multipleOptions = options.Select(x => (x, false)).ToList();
+        if (options != null)
+            multipleOptions = options
+                .OrderBy(x => x.Name)
+                .Select(x => (x, false)).ToList();
     }
 }

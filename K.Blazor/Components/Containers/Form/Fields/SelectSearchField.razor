@@ -41,7 +41,7 @@
                 {
                     foreach (var opt in searchedOptions!)
                     {
-                        <li @onmousedown="_ => UpdateValue(opt)"
+                        <li @onmousedown="_ => OnValueChange(opt)"
                             @onclick="_ => optionsVisible = false">
                             <data value="@opt.Value">@opt.Name</data>
                         </li>
@@ -97,17 +97,21 @@
     {
         optionsVisible = false;
         ResetSearchedOptions();
-        UpdateValue();
+        OnValueChange();
     }
 
-    private async void UpdateValue(Option? option = null)
+    private async void OnValueChange(Option? opt = null)
     {
-        Value = (TValue)(object)option?.Value!;
-        await ValueChanged.InvokeAsync((TValue)(object)option?.Value!);
-        selectedOption = option;
-        EditContext!.NotifyFieldChanged(EditContext.Field(ParseFieldName()));
-        ValidateField();
+        selectedOption = opt;
+        Value = (TValue)(object)opt?.Value!;
+
+        // Notification events
+        await ValueChanged.InvokeAsync((TValue)(object)opt?.Value!);
         await OnChange.InvokeAsync();
+        EditContext!.NotifyFieldChanged(EditContext.Field(ParseFieldName()));
+
+        // Validation
+        ValidateField();        
     }
 
     private void ResetSearchedOptions()
