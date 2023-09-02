@@ -1,7 +1,8 @@
 ﻿@inherits KComponent
 
 <span class=@($"oi oi-{Id} " + CssClass + (OnClick.HasDelegate ? " clickable":""))
-      style="@($"--color:{(Color == null ? "currentColor" : Color.ToCssVar())}")"
+      style="@($"--color:{(Color == null ? "currentColor" : Color.ToCssVar())};")
+                @($"--top:{(Id == "circle-x" ? -0.5 : -2)}px;")"
       aria-hidden="true"
       @onclick=OnClick />
 

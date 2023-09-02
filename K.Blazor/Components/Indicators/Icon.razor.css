@@ -1,7 +1,7 @@
 .oi {
     font-size: 1.2rem;
     vertical-align: text-top;
-    top: -1px;
+    top: var(--top);
     color: var(--color);
 }
 

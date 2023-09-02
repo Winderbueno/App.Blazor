@@ -19,12 +19,11 @@
             @onfocusout="_ => optionsVisible = false">
             <!-- Field -->
             <div class="select-field @(invalid ? "invalid" : "") @(optionsVisible ? "focused" : "")">
+                
+                <!-- Value -->
                 @if (selectedOption?.Value != null)
                 {
-                    <span class="selected-option">
-                        <span class="selected-option-value">@selectedOption.Name</span>
-                        <Icon Id="circle-x" @onclick=OnClearClick />
-                    </span>
+                    <span class="selected-options">@selectedOption.Name</span>
                 }
                 else
                 {
@@ -32,7 +31,15 @@
                            @oninput=OnSearchInput
                            placeholder=@Placeholder>
                 }
-                <Icon Id=@(optionsVisible ? "chevron-top" : "chevron-bottom") />
+
+                <!-- Actions -->
+                <div class="field-actions">
+                    @if (selectedOption?.Value != null)
+                    {
+                        <Icon Id="circle-x" @onclick=OnClearClick />
+                    }
+                    <Icon Id=@(optionsVisible ? "chevron-top" : "chevron-bottom") />
+                </div>
             </div>
 
             <!-- Options -->
@@ -95,7 +102,7 @@
 
     private void OnClearClick(MouseEventArgs e)
     {
-        optionsVisible = false;
+        optionsVisible = true;
         ResetSearchedOptions();
         OnValueChange();
     }

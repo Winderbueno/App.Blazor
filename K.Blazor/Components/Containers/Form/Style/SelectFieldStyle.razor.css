@@ -30,6 +30,13 @@
         box-shadow: inset 0 0 0 1px var(--k-color-primary);
     }
 
+/* Selected option.s */
+::deep .selected-options {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 /* Options 
     - Available & Selected for 'SelectMultiple'
     - Available for 'SelectSearch' */

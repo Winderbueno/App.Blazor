@@ -20,13 +20,6 @@
     color: var(--k-color-grey);
 }
 
-/* Selected options */
-.selected-options {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
 /* Options */
 .options li:has(input:checked) {
     background-color: var(--k-color-primary-light);

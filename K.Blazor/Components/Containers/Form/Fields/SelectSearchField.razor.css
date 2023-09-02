@@ -1,4 +1,4 @@
-﻿/* Search input */
+﻿/* Search Input */
 input,
 input:focus-visible,
 input.invalid,
@@ -12,18 +12,9 @@ input:hover {
     padding: 0;
 }
 
-/* Selected option */
-.selected-option {
-    gap: 0.5rem;
-    width: 0;
-    min-width: calc(100% - 1.5rem);
-    display: grid;
-    grid-template-columns: 1fr 20px;
+/* Field Actions */
+.field-actions {
+    display: flex;
     align-items: center;
-}
-
-.selected-option-value {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    gap: var(--k-gap-smaller);
 }
