@@ -61,6 +61,7 @@
     "phone": "Téléphone"
   },
   "user": {
+    "password": "Mot de passe",
     "profile": "Profil",
     "username": "Nom d'utilisateur",
     "function": {

@@ -1,4 +1,5 @@
 ﻿@using K.Blazor.Components.Router
+@using Presentation.Pages.Auth
 
 @page "/"
 @page "/home"
@@ -9,6 +10,6 @@
 
 <h1>@t["home.welcome"]</h1>
 
-<Container>
-    <Card>@t["home.hello"] !</Card>
+<Container FlexJustify="center">
+    <LoginForm />
 </Container>

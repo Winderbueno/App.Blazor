@@ -1,9 +1,11 @@
 using I18NPortable;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Options;
 using Presentation;
+using Presentation.Middlewares.Authentication;
 using Presentation.Middlewares.Authorization;
 using Presentation.Middlewares.Translations;
 using Serilog;
@@ -18,7 +20,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 #endregion    
 
 #region Authentication
-// Todo
+services.AddScoped<AuthStorage>()
+        .AddScoped<AuthService>()
+        .AddScoped<AuthStateProvider>()
+        .AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 #endregion
 
 #region Authorization

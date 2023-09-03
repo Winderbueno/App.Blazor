@@ -14,10 +14,10 @@ public class UserService : IUserService
 
     public UserService(
         IMapper mapper,
-        IShopApi userApi)
+        IShopApi shopApi)
     {
         _mapper = mapper;
-        _shopApi = userApi;
+        _shopApi = shopApi;
     }
 
     public async Task<UserAppDto> GetAsync(int id)

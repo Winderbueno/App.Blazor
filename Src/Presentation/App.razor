@@ -5,7 +5,8 @@
 
 <ErrorHandler>
     <Toaster />
-    @*<CascadingAuthenticationState> Todo*@
+
+    <CascadingAuthenticationState>
         <Router AppAssembly="@typeof(App).Assembly">
             <Found Context="routeData">
                 @*<FocusOnNavigate RouteData="@routeData" Selector="h1" />*@
@@ -18,10 +19,11 @@
                 </LayoutView>
             </NotFound>
         </Router>
-    @*</CascadingAuthenticationState>*@
+    </CascadingAuthenticationState>
 </ErrorHandler>
 
 @code {
+    // Configure K.Blazor library
     protected override void OnInitialized()
         => kConf.SetSelectFieldOptions(new()
             {

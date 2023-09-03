@@ -8,8 +8,7 @@ public static class ConfigureServices
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-        services.AddScoped<IAuthService, AuthService>()
-                .AddScoped<IUserService, UserService>();
+        services.AddScoped<IUserService, UserService>();
 
         return services;
     }
