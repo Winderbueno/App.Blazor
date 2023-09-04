@@ -1,11 +1,14 @@
 ﻿using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
+using Newtonsoft.Json;
 using System.Security.Claims;
 
 namespace Presentation.Middlewares.Authentication;
 
 public class AuthStateProvider : AuthenticationStateProvider
 {
+    private const string userStorageKey = "user";
+
     private readonly AuthenticationState _anonymous;
     private readonly AuthService _authService;
     private readonly ILocalStorageService _localStorage;
@@ -19,39 +22,48 @@ public class AuthStateProvider : AuthenticationStateProvider
         _localStorage = localStorage;
     }
 
+    public override async Task<AuthenticationState> GetAuthenticationStateAsync()
+    {
+        // Retrieve user from storage
+        var storedUser = await FetchUserFromStorage();
+
+        var principal = new ClaimsPrincipal();
+        if (storedUser is not null)
+        {
+            var user = await _authService.SignInAsync(storedUser.Email, storedUser.Password);
+            if (user is not null) principal = user.ToClaimsPrincipal();
+        }
+
+        return storedUser is not null ? new(principal) : _anonymous;
+    }
+
     public async Task SignInAsync(string username, string password)
     {
-        var principal = new ClaimsPrincipal();
         var user = await _authService.SignInAsync(username, password);
 
-        if (user is not null) principal = user.ToClaimsPrincipal();
+        var principal = new ClaimsPrincipal();
+        if (user is not null)
+        {
+            // Store user (Todo. Store Jwt)
+            await _localStorage.SetItemAsync(userStorageKey, JsonConvert.SerializeObject(user));
+            principal = user.ToClaimsPrincipal();
+        }
 
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(principal)));
     }
 
-    public void SignOut()
+    public async Task SignOut()
     {
-        _authService.ClearBrowserUserData();
-        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(new())));
+        await ClearUserFromStorage();
+        NotifyAuthenticationStateChanged(Task.FromResult(_anonymous));
     }
 
-
-    public override async Task<AuthenticationState> GetAuthenticationStateAsync()
+    public async Task<User?> FetchUserFromStorage()
     {
-        ClaimsPrincipal principal = new(new ClaimsIdentity());
-
-        var token = await _localStorage.GetItemAsync<string>("authToken");
-        if (string.IsNullOrWhiteSpace(token)) 
-            return _anonymous;
-
-        var localUser = _authService.FetchUserFromBrowser();
-        if (localUser is not null)
-        {
-            var authUser = await _authService.SignInAsync(localUser.Username, localUser.Password);
-
-            if (authUser is not null) principal = authUser.ToClaimsPrincipal();
-        }
-
-        return new(principal);
+        string json = await _localStorage.GetItemAsync<string>(userStorageKey);
+        return json == null ? null : JsonConvert.DeserializeObject<User>(json);
     }
+
+    public async Task ClearUserFromStorage()
+        => await _localStorage.RemoveItemAsync(userStorageKey);
 }

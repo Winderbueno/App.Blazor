@@ -24,9 +24,10 @@
     height: 100%;
 }
 
-.content > div {
-    padding: var(--k-gap-small);
-}
+    .content > div {
+        padding: var(--k-gap-small);
+        flex-grow: 1;
+    }
 
 /* Content.Mobile */
 @media (min-width: 576px) {

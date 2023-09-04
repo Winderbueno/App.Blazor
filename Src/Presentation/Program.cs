@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using I18NPortable;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -17,11 +18,11 @@ var services = builder.Services;
 #region App 
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
+services.AddBlazoredLocalStorage();
 #endregion    
 
 #region Authentication
-services.AddScoped<AuthStorage>()
-        .AddScoped<AuthService>()
+services.AddScoped<AuthService>()
         .AddScoped<AuthStateProvider>()
         .AddScoped<AuthenticationStateProvider>(provider =>
             provider.GetRequiredService<AuthStateProvider>());

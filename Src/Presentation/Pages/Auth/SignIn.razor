@@ -1,0 +1,48 @@
+﻿@using Presentation.Middlewares.Authentication
+
+@page "/signin/{returnUrl?}"
+@inject AuthStateProvider auth
+@inject NavigationManager Nav
+
+<Container FlexColumn FlexAlign="center" FlexJustify="center">
+    <Card Title="@t["auth.sign-in"]">
+        <Form Model=form OnValidSubmit=SignInAsync>
+            <TextField @bind-Value=form.Username
+                       Label=@t["user.username"]
+                       Placeholder="patate@mail.com" />
+
+            <TextField @bind-Value=form.Password
+                       Label=@t["user.password"] />
+
+            <Button>@t["auth.sign-in"]</Button>
+        </Form>
+    </Card>
+</Container>
+
+@code {
+    [Parameter]
+    public string? ReturnUrl { get; set; }
+
+    private LoginDto form = new();
+
+    private async Task SignInAsync()
+    {
+        await auth.SignInAsync(form.Username, form.Password);
+        Nav.NavigateTo(ReturnUrl ?? "demo");
+    }
+
+    public class LoginDto
+    {
+        public string Username { get; set; } = "kevin.gellenoncourt@gmail.com";
+        public string Password { get; set; } = "patate";
+    }
+
+    public class LoginDtoValidator : AbstractValidator<LoginDto>
+    {
+        public LoginDtoValidator()
+        {
+            RuleFor(x => x.Username).NotEmpty().EmailAddress();
+            RuleFor(x => x.Password).NotEmpty();
+        }
+    }
+}

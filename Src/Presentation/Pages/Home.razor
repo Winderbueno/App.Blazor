@@ -1,17 +1,8 @@
 ﻿@using K.Blazor.Components.Router
-@using Presentation.Pages.Auth
-
-@inject NavigationManager Nav
 
 @page "/"
 @page "/home"
 
-@if(!Nav.Uri.Contains("home")) { <RedirectTo /> }
-
 <PageTitle>Home</PageTitle>
 
-<h1>@t["home.welcome"]</h1>
-
-<Container FlexJustify="center">
-    <LoginForm />
-</Container>
+<RedirectTo Route="demo" />

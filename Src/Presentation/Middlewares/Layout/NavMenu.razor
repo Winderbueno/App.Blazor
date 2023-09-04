@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
-@using Presentation.Pages.Auth
+@using Presentation.Pages.Auth.Components
 
 <aside>
     <header>
@@ -13,9 +13,10 @@
     </header>
 
     <nav class="flex-column px-3 py-3 @NavMenuCssClass" @onclick=CloseNavMenu>
-        <NavItem Label=@t["feature.home"] Icon="home" Match="NavLinkMatch.All" />
-        <NavItem Label="Demo" Icon="list-rich" />
+        <NavItem Label="Demo" Icon="home" Match=NavLinkMatch.All />
         <NavItem Label=@t["feature.users"] Route="users" Icon="people" />
+
+        <AuthMenu />
     </nav>
 </aside>
 
