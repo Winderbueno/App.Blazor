@@ -1,33 +1,35 @@
-﻿@using Presentation.Middlewares.Authentication;
+﻿@using Presentation.Middlewares.Authentication
 
 @inject AuthStateProvider auth
 
 <Card Title="@t["auth.sign-in"]">
-    <Form Model=form
-          OnValidSubmit=SignIn>
-         
-            <TextField @bind-Value=form.Username
-                       Label=@t["user.username"]
-                       Placeholder="patate@mail.com" />
+    <Form Model=form OnValidSubmit=SignIn>
+        <TextField @bind-Value=form.Username
+                   Label=@t["user.username"]
+                   Placeholder="patate@mail.com" />
 
-            <TextField @bind-Value=form.Password
-                       Label=@t["user.password"] />
+        <TextField @bind-Value=form.Password
+                   Label=@t["user.password"] />
 
-            <Button>@t["auth.sign-in"]</Button>
-     </Form>
+        <Button>@t["auth.sign-in"]</Button>
+    </Form>
 
-     <AuthorizeView>
-        <Card Title="Auth User">
-            @t["home.hello"] "User = Todo" !
-        </Card>
-     </AuthorizeView>
+    <Card Title="User">
+        <AuthorizeView>
+            <Authorized>
+                @t["home.hello"] @context.User.Identity!.Name !
+            </Authorized>
+            <NotAuthorized>
+                Not connected
+            </NotAuthorized>
+        </AuthorizeView>
+    </Card>
 </Card>
 
 @code {
     private LoginDto form = new();
 
-    private async Task SignIn()
-        => await auth.LoginAsync(form.Username, "patate");
+    private async Task SignIn() => await auth.SignInAsync(form.Username, form.Password);
 
     public class LoginDto
     {

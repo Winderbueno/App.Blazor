@@ -1,10 +1,12 @@
 ﻿@using K.Blazor.Components.Router
 @using Presentation.Pages.Auth
 
+@inject NavigationManager Nav
+
 @page "/"
 @page "/home"
 
-<RedirectTo />
+@if(!Nav.Uri.Contains("home")) { <RedirectTo /> }
 
 <PageTitle>Home</PageTitle>
 

@@ -3,7 +3,7 @@
 @using Presentation.Pages.User.Components
 
 @page "/users"
-@attribute [Authorize("user.read")]
+@attribute [Authorize]
 @inject IUserService userService
 
 <Container FlexColumn NoWrap>

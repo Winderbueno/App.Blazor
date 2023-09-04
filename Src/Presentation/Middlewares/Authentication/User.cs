@@ -10,11 +10,9 @@ public class User
 
     public ClaimsPrincipal ToClaimsPrincipal()
         => new(new ClaimsIdentity(
-            new Claim[]
-            {
-                new (ClaimTypes.Name, Username),
-                new (ClaimTypes.Hash, Password)
-            }.Concat(Roles.Select(r => new Claim(ClaimTypes.Role, r)).ToArray()), "Jwt"));
+            new Claim[] { new (ClaimTypes.Name, Username) }
+                .Concat(Roles.Select(r => new Claim(ClaimTypes.Role, r)).ToArray())
+            , "Jwt"));
 
     public static User FromClaimsPrincipal(ClaimsPrincipal principal)
         => new()

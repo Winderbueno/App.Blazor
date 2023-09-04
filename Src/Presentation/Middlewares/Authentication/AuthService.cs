@@ -19,29 +19,34 @@ public class AuthService
 
     public async Task<User> SignInAsync(string username, string password)
     {
-        var resp = await _shopApi.AuthenticateAsync(
-            new AuthenticateRequest { Email = username, Password = password });
+        var resp = await _shopApi.AuthenticateAsync(new () { 
+            Email = username, 
+            Password = password 
+        });
 
         _authStorage.Token = resp.JwtToken;
 
         return new()
         {
             Username = resp.UserName,
+            Password = password,
             Roles = new() {  resp.Role },
         };
     }
 
     public User? FetchUserFromBrowser()
     {
-        var claimsPrincipal = CreateClaimsPrincipalFromToken(_authStorage.Token);
-        var user = User.FromClaimsPrincipal(claimsPrincipal);
-
-        return user;
+        //var claimsPrincipal = CreateClaimsPrincipalFromToken(_authStorage.Token);
+        //return _authStorage.Token == "" ? null : new() {Username="Kevin"};
+        return new() {
+            Username="kevin.gellenoncourt@gmail.com",
+            Password="patate" 
+        };
     }
 
     public void ClearBrowserUserData() => _authStorage.Token = "";
 
-    private ClaimsPrincipal CreateClaimsPrincipalFromToken(string token)
+    private ClaimsPrincipal? CreateClaimsPrincipalFromToken(string token)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var identity = new ClaimsIdentity();
@@ -49,9 +54,9 @@ public class AuthService
         if (tokenHandler.CanReadToken(token))
         {
             var jwtSecurityToken = tokenHandler.ReadJwtToken(token);
-            identity = new(jwtSecurityToken.Claims, "Blazor School");
+            identity = new(jwtSecurityToken.Claims, "Jwt");
         }
 
-        return new(identity);
+        return token == "" ? null : new(identity);
     }
 }

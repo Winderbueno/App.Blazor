@@ -23,7 +23,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 services.AddScoped<AuthStorage>()
         .AddScoped<AuthService>()
         .AddScoped<AuthStateProvider>()
-        .AddScoped<AuthenticationStateProvider, AuthStateProvider>();
+        .AddScoped<AuthenticationStateProvider>(provider =>
+            provider.GetRequiredService<AuthStateProvider>());
 #endregion
 
 #region Authorization
