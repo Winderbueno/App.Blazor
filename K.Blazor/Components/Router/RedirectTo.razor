@@ -1,4 +1,4 @@
-﻿@inject NavigationManager Navigation
+﻿@inject NavigationManager Nav
 
 @code {
     [Parameter]
@@ -9,8 +9,8 @@
 
     protected override void OnInitialized()
     {
-        Route += (AddReturnUrl ? $"?returnUrl={Uri.EscapeDataString(Navigation.Uri)}" : "");
+        Route += (AddReturnUrl ? $"?returnUrl={Uri.EscapeDataString(Nav.Uri)}" : "");
 
-        Navigation.NavigateTo(Route);
+        Nav.NavigateTo(Route);
     }
 }
