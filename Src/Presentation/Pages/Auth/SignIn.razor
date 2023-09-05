@@ -1,10 +1,10 @@
 ﻿@using Presentation.Middlewares.Authentication
 
-@page "/signin/{returnUrl?}"
+@page "/signin"
 @inject AuthStateProvider auth
 @inject NavigationManager Nav
 
-<Container FlexColumn FlexAlign="center" FlexJustify="center">
+<Container FlexColumn FlexAlign="center">
     <Card Title="@t["auth.sign-in"]">
         <Form Model=form OnValidSubmit=SignInAsync>
             <TextField @bind-Value=form.Username
@@ -21,6 +21,7 @@
 
 @code {
     [Parameter]
+    [SupplyParameterFromQuery]
     public string? ReturnUrl { get; set; }
 
     private LoginDto form = new();
