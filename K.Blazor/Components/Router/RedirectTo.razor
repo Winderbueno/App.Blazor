@@ -9,8 +9,7 @@
 
     protected override void OnInitialized()
     {
-        Route += (AddReturnUrl ? $"?returnUrl={Uri.EscapeDataString(Nav.Uri)}" : ""); // Todo. Only take end of Url
-
+        Route += (AddReturnUrl ? $"?returnUrl={Uri.EscapeDataString(Nav.ToBaseRelativePath(Nav.Uri))}" : "");
         Nav.NavigateTo(Route);
     }
 }
