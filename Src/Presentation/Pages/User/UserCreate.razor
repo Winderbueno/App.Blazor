@@ -3,7 +3,7 @@
 @using Domain.Exceptions;
 
 @page "/users/create"
-@attribute [Authorize("user.create")]
+@attribute [Authorize]
 @inject IUserService userService
 @inject NavigationManager navigation
 

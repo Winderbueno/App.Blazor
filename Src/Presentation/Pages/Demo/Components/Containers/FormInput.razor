@@ -34,7 +34,7 @@
             <SelectField @bind-Value=form.EnumSelect
                          Label=@Label("Enum Select", form.EnumSelect.ToString())
                          Placeholder="Select from..." 
-                         Options=@(Enum.GetValues<UserFunction>()) />
+                         Options="Enum.GetValues<UserFunction>()" />
 
             @*SelectSearchField has limitation :
                 - Validation. Only supports 'Required' validation through 'Required' param (Not FluentValidation)

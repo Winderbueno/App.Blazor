@@ -5,10 +5,8 @@
 </div>
 
 @code {
-
-    [AllowNull]
     [CascadingParameter]
-    private TabContainer Container { get; set; }
+    private TabGroup? TabGroup { get; set; }
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
@@ -17,18 +15,18 @@
     public string? Id { get; set; }
 
     [Parameter]
-    public string? Name { get; set; }
+    public string? Label { get; set; }
 
     public bool IsActive { get; set; }
 
     protected override void OnInitialized()
     {
-        if (Container == null)
-            throw new Exception("Container cannot be null");
+        if (TabGroup == null)
+            throw new Exception("Tab component should in an enclosed TabGroup");
 
-        Container.AddTab(this);
+        TabGroup.AddTab(this);
 
-        Container.Tabs.First().IsActive = true;
+        TabGroup.Tabs.First().IsActive = true;
 
         base.OnInitialized();
     }

@@ -3,38 +3,33 @@
 
 @inject IUserService userService
 
-<Form Model=Form
-      OnFieldChanged=OnFieldChanged>
+<Form Model=Form OnFieldChanged=OnFieldChanged>
     <Container FlexAlign="center"
                FlexJustify="center"
                NoRowGap>
         <TextField @bind-Value=Form.Contains
-                   BindOnInput
-                    OnInputDelayed=FormChanged
-                    Label=@t["action.search"]
-                    Placeholder=@Placeholder("action.search") />
+                   BindOnInput OnInputDelayed=FormChanged
+                   Label=@t["action.search"]
+                   Placeholder=@Placeholder("action.search") />
 
-         <SelectField @bind-Value=Form.Status
-                      Multiple
-                      Label=@t["common.status"]
-                      Options=@(Enum.GetValues<UserStatus>())
-                      Placeholder=@Placeholder("common.status") />
+        <SelectField @bind-Value=Form.Status
+                      Multiple Options="Enum.GetValues<UserStatus>()"
+                     Label=@t["common.status"]
+                     Placeholder=@Placeholder("common.status") />
 
-         <SelectField @bind-Value=Form.Types
-                      Multiple
-                      Label=@t["common.type"]
-                      Options=@(Enum.GetValues<UserType>())
-                      Placeholder=@Placeholder("common.type") />
+        <SelectField @bind-Value=Form.Types
+                     Multiple Options="Enum.GetValues<UserType>()"
+                     Label=@t["common.type"]
+                     Placeholder=@Placeholder("common.type") />
 
-         <SelectField @bind-Value=Form.Functions
-                      Multiple
-                      Label=@t["common.function"]
-                      Options=@(Enum.GetValues<UserFunction>())
-                      Placeholder=@Placeholder("common.function") />
+        <SelectField @bind-Value=Form.Functions
+                     Multiple Options="Enum.GetValues<UserFunction>()"
+                     Label=@t["common.function"]
+                     Placeholder=@Placeholder("common.function") />
 
-         <Button @onclick=Clear>@t["action.clear"]</Button>
-     </Container>
- </Form>
+        <Button @onclick=Clear>@t["action.clear"]</Button>
+    </Container>
+</Form>
 
  @code {
     [Parameter]
@@ -51,9 +46,7 @@
         FormChanged();
     }
 
-    private void OnFieldChanged(object? sender, FieldChangedEventArgs? e)
-        => FormChanged();
+    private void OnFieldChanged(object? sender, FieldChangedEventArgs? e) => FormChanged();
 
-    private void FormChanged(object? state = null)
-        => OnFormChange?.Invoke(Form);
+    private void FormChanged(object? state = null) => OnFormChange?.Invoke(Form);
 }

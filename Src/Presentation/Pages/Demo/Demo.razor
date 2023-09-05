@@ -4,7 +4,6 @@
 @using Presentation.Pages.Demo.Components.Interactions
 
 @page "/demo"
-@inject HttpClient Http
 
 <PageTitle>Demo</PageTitle>
 
@@ -43,10 +42,10 @@
         <Card Title="Containers">
             <Container FlexAlign="start">
                 <Card Title="Form" Level=2>
-                    <TabContainer>
-                        <Tab Name="Input"><FormInput /></Tab>
-                        <Tab Name="Display"><FormDisplay /></Tab>
-                    </TabContainer>
+                    <TabGroup>
+                        <Tab Label="Input"><FormInput /></Tab>
+                        <Tab Label="Display"><FormDisplay /></Tab>
+                    </TabGroup>
                 </Card>
                 <Container FlexColumn>
                     <Tabs />

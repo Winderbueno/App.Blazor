@@ -1,19 +1,15 @@
-﻿<CascadingValue Value="this">
-
+﻿<CascadingValue Value=this>
     <ul class="nav nav-tabs">
         @foreach (var tab in Tabs)
         {
             var css = $"nav-link {(tab.IsActive ? "active" : "")}";
-            <li class="@css" @onclick="(() => Select(tab))">
-                @tab.Name
-            </li>
+            <li class="@css" @onclick="(() => Select(tab))">@tab.Label</li>
         }
     </ul>
 
     <div class="tab-content mt-3">
         @ChildContent
     </div>
-
 </CascadingValue>
 
 @code {
@@ -28,9 +24,7 @@
     private void Select(Tab selectedTab)
     {
         foreach (var tab in this.Tabs)
-        {
             tab.IsActive = false;
-        }
 
         selectedTab.IsActive = true;
     }

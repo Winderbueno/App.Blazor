@@ -2,13 +2,14 @@
 
 @inject AuthStateProvider auth
 
-<Card Title="User" Level=2>
+<Card Level=2>
     <AuthorizeView>
         <Authorized>
             <div>@t["home.hello"] @context.User.Identity!.Name !</div>
             <Button @onclick=SignOut>@t["auth.sign-out"]</Button>
         </Authorized>
         <NotAuthorized>
+            <div>Not connected</div>
             <Link Button Route="signin">@t["auth.sign-in"]</Link>
         </NotAuthorized>
     </AuthorizeView>

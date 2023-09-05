@@ -4,8 +4,7 @@
 @using Domain.Exceptions;
 
 @page "/users/edit/{userId}"
-@attribute [Authorize("user.update")]
-
+@attribute [Authorize]
 @inject IUserService userService
 @inject IMapper mapper
 @inject NavigationManager navigation
