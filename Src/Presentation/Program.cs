@@ -18,7 +18,6 @@ var services = builder.Services;
 #region App 
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
-services.AddBlazoredLocalStorage();
 #endregion    
 
 #region Authentication
@@ -55,6 +54,7 @@ services.AddSingleton(new LanguageEvents());
 services.AddApplicationServices();
 services.AddInfrastructureServices(builder.HostEnvironment.BaseAddress);
 services.AddKBlazorServices();
+services.AddBlazoredLocalStorage();
 #endregion
 
 await builder.Build().RunAsync();
