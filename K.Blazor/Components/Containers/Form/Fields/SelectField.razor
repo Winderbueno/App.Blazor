@@ -86,7 +86,7 @@
     private string selectedOptionColor => Value == null ? "var(--k-color-grey)" : "var(--k-color-primary);";
 
     /* Multiple Select */
-    protected override bool requiredValueUnset => multipleOptions.All(x => x.Checked == false);
+    protected override bool RequiredValueUnset => multipleOptions.All(x => x.Checked == false);
     private List<(Option Option, bool Checked)> multipleOptions = new();
     private List<Option> selectedOptions => multipleOptions.Where(x => x.Checked == true).Select(x => x.Option).ToList();
 

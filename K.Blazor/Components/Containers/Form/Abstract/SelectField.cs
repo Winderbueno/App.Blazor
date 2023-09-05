@@ -17,14 +17,14 @@ public abstract class SelectField<TValue, TOption> : Field<TValue>
     public bool Required { get; set; } = false;
 
    
-    [Inject] private KConfService? conf { get; set; }
+    [Inject] private KConfService? Conf { get; set; }
 
-    protected SelectFieldOptions selectConf => conf!.SelectFieldOptions;
     protected IEnumerable<Option>? options;
     protected ValidationMessageStore? store;
     protected bool invalid = false, optionsVisible = false;
 
-    protected virtual bool requiredValueUnset => Value == null;
+    protected SelectFieldOptions SelectConf => Conf!.SelectFieldOptions;
+    protected virtual bool RequiredValueUnset => Value == null;
 
     protected override void OnInitialized()
     {
@@ -35,7 +35,7 @@ public abstract class SelectField<TValue, TOption> : Field<TValue>
         }
 
         options = Options!.ToOption(
-            selectConf.DefaultOptionName!,
+            SelectConf.DefaultOptionName!,
             OptionGetters?.Name,
             OptionGetters?.Value);
     }
@@ -48,10 +48,10 @@ public abstract class SelectField<TValue, TOption> : Field<TValue>
         if(Required)
         {
             store?.Clear();
-            if (requiredValueUnset)
+            if (RequiredValueUnset)
             {
                 invalid = true;
-                store?.Add(() => Value!, selectConf.RequiredMessage());
+                store?.Add(() => Value!, SelectConf.RequiredMessage());
             }
             else invalid = false;
         }
