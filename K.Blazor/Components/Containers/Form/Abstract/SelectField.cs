@@ -1,5 +1,4 @@
-﻿using K.Blazor.Dtos;
-using K.Blazor.Services;
+﻿using K.Blazor.Configuration;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 

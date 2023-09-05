@@ -1,5 +1,5 @@
 ﻿using K.Blazor.Components.Indicators.Toast;
-using K.Blazor.Services;
+using K.Blazor.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

@@ -1,6 +1,4 @@
-﻿using K.Blazor.Dtos;
-
-namespace K.Blazor.Services;
+﻿namespace K.Blazor.Configuration;
 
 public class KConfService
 {
@@ -8,6 +6,5 @@ public class KConfService
 
     public SelectFieldOptions SelectFieldOptions => selectFieldOptions;
 
-    public void SetSelectFieldOptions(SelectFieldOptions options)
-        => selectFieldOptions = options;
+    public void SetSelectFieldOptions(SelectFieldOptions opts) => selectFieldOptions = opts;
 }

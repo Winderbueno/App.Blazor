@@ -1,4 +1,4 @@
-﻿namespace K.Blazor.Dtos;
+﻿namespace K.Blazor.Configuration;
 
 public class SelectFieldOptions
 {
