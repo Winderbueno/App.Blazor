@@ -11,7 +11,7 @@ public class AuthStateProvider : AuthenticationStateProvider
 {
     private const string userStorageKey = "user";
 
-    private readonly AuthenticationState _anonymous;
+    private readonly ClaimsPrincipal _anonymous;
     private readonly IAuthService _authService;
     private readonly ILocalStorageService _localStorage;
 
@@ -19,7 +19,7 @@ public class AuthStateProvider : AuthenticationStateProvider
         IAuthService authService,
         ILocalStorageService localStorage)
     {
-        _anonymous = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+        _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
         _authService = authService;
         _localStorage = localStorage;
     }
@@ -29,25 +29,35 @@ public class AuthStateProvider : AuthenticationStateProvider
         // Retrieve user from storage
         var storedUser = await GetStoredUser();
 
-        var principal = new ClaimsPrincipal();
+        var principal = _anonymous;
         if (storedUser is not null)
         {
-            // Todo. Refresh accessToken && Store new one
-            principal = storedUser.ToClaimsPrincipal();
+            // Set periodic timer to refresh AccessToken with RefreshToken
+            // Todo. Cookie for RefreshTimer is not set on SignIn :/
+            //var user = await _authService.RefreshTokenAsync();
+            //await SetStoredUser(user);
+            //SetRefreshTokenTimer();
+
+            if(storedUser != null) principal = storedUser.ToClaimsPrincipal(); // Todo. Should be 'user'
         }
 
-        return storedUser is not null ? new(principal) : _anonymous;
+        return new(principal);
     }
 
     public async Task SignInAsync(string username, string password)
     {
         var user = await _authService.SignInAsync(username, password);
 
-        var principal = new ClaimsPrincipal();
+        var principal = _anonymous;
         if (user is not null)
         {
-            // Store user (Todo. Store Jwt)
+            // Store user
             await SetStoredUser(user);
+
+            // Set periodic timer to refresh AccessToken with RefreshToken
+            // Todo. Cookie for RefreshTimer is not set on SignIn :/
+            // SetRefreshTokenTimer(50000)
+
             principal = user.ToClaimsPrincipal();
         }
 
@@ -57,7 +67,7 @@ public class AuthStateProvider : AuthenticationStateProvider
     public async Task SignOut()
     {
         await ClearStoredUser();
-        NotifyAuthenticationStateChanged(Task.FromResult(_anonymous));
+        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
     }
 
     public async Task<User?> GetStoredUser()
@@ -71,4 +81,10 @@ public class AuthStateProvider : AuthenticationStateProvider
 
     public async Task ClearStoredUser()
         => await _localStorage.RemoveItemAsync(userStorageKey);
+
+    private void SetRefreshTokenTimer()
+        => new Timer(async _ => await RefreshToken(), null, 50000, 50000);
+
+    private async Task RefreshToken()
+        => await SetStoredUser(await _authService.RefreshTokenAsync());
 }
