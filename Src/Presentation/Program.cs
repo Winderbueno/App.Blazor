@@ -8,7 +8,7 @@ using Microsoft.Extensions.Options;
 using Presentation;
 using Presentation.Middlewares.Authentication;
 using Presentation.Middlewares.Authorization;
-using Presentation.Middlewares.Translations;
+using Presentation.Middlewares.Globalization;
 using Serilog;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);

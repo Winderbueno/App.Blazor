@@ -1,7 +1,7 @@
 ﻿using I18NPortable;
 using Newtonsoft.Json.Linq;
 
-namespace Presentation.Middlewares.Translations;
+namespace Presentation.Middlewares.Globalization;
 
 public class JsonReader : ILocaleReader
 {
