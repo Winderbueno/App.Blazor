@@ -11,7 +11,7 @@ public class UserProfile : Profile
 {
     public UserProfile()
     {
-        // Blazor.App -> Shop.Api
+        // App.Blazor -> Shop.Api
         CreateMap<UserCreateAppDto, CreateAccountRequest>();
         CreateMap<UserSearchAppDto, UserSearchAppDto>() // Todo. Add Search route with SearchDto in Shop.Api/UserRoutes
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToEnums<UserStatus>()))
@@ -19,7 +19,7 @@ public class UserProfile : Profile
             .ForMember(dest => dest.Functions, opt => opt.MapFrom(src => src.Functions.ToEnums<UserFunction>()));
         CreateMap<UserUpdateAppDto, UpdateAccountRequest>();
 
-        // Shop.Api -> Blazor.App
+        // Shop.Api -> App.Blazor
         CreateMap<AccountResponse, UserAppDto>();
     }
 }

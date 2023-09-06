@@ -5,8 +5,6 @@ using Infrastructure.HttpClients.Shop;
 
 namespace Application.Services;
 
-// Todo
-
 public class UserService : IUserService
 {
     private readonly IMapper _mapper;
