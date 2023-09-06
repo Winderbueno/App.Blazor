@@ -9,25 +9,27 @@
             </svg>
         </Link>
 
-        <Button Icon=@(collapseNav ? "menu" : "x") CssClass="nav-toggle" @onclick=ToggleNav />
+        <Button Icon=@(hideNav ? "menu" : "x") CssClass="nav-toggle" @onclick=ToggleNav />
     </header>
 
-    <nav class=@NavMenuCssClass @onclick=CloseNav>
-        <NavItem Label="Demo" Icon="home" Match=NavLinkMatch.All />
+    <nav class=@(hideNav ? "hide" : null) @onclick=HideNav>
+        
+        <div>
+            <NavItem Label="Demo" Icon="home" Match=NavLinkMatch.All />
 
-        <AuthorizeView>
-            <NavItem Label=@t["feature.users"] Route="users/search" Icon="people" />
-        </AuthorizeView>
+            <AuthorizeView>
+                <NavItem Label=@t["feature.users"] Route="users/search" Icon="people" />
+            </AuthorizeView>
+        </div>
 
         <AuthMenu />
     </nav>
 </aside>
 
 @code {
-    private bool collapseNav = true;
+    // Only used in mobile view
+    private bool hideNav = true;
 
-    private string? NavMenuCssClass => collapseNav ? "collapse" : null;
-
-    private void ToggleNav() => collapseNav = !collapseNav;
-    private void CloseNav() => collapseNav = true;
+    private void ToggleNav() => hideNav = !hideNav;
+    private void HideNav() => hideNav = true;
 }
