@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Locales\en.json" />
-    <EmbeddedResource Include="Locales\fr.json" />
+    <EmbeddedResource Include="Middlewares\Globalization\Locales\en.json" />
+    <EmbeddedResource Include="Middlewares\Globalization\Locales\fr.json" />
   </ItemGroup>
 
   <ItemGroup>
