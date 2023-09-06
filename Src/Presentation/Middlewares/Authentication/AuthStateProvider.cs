@@ -11,6 +11,7 @@ public class AuthStateProvider : AuthenticationStateProvider
 {
     private const string userStorageKey = "user";
 
+    private Timer? _refreshTokenTimer;
     private readonly ClaimsPrincipal _anonymous;
     private readonly IAuthService _authService;
     private readonly ILocalStorageService _localStorage;
@@ -67,6 +68,7 @@ public class AuthStateProvider : AuthenticationStateProvider
     public async Task SignOut()
     {
         await ClearStoredUser();
+        if (_refreshTokenTimer is not null) _refreshTokenTimer.Dispose();
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
     }
 
@@ -83,7 +85,7 @@ public class AuthStateProvider : AuthenticationStateProvider
         => await _localStorage.RemoveItemAsync(userStorageKey);
 
     private void SetRefreshTokenTimer()
-        => new Timer(async _ => await RefreshToken(), null, 10000, 10000);
+        => _refreshTokenTimer = new Timer(async _ => await RefreshToken(), null, 10000, 10000);
 
     private async Task RefreshToken()
         => await SetStoredUser(await _authService.RefreshTokenAsync());
