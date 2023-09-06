@@ -39,7 +39,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 #endregion
 
-#region I18n
+#region Globalization
 // I18N-Portable. https://github.com/xleon/I18N-Portable
 services.AddSingleton((_) =>
         I18N.Current
