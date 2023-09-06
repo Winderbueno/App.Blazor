@@ -9,7 +9,7 @@
     .page {
         grid-template:
             'navbar' 56px
-            'content' auto / 100%;
+            'content' calc(100svh - 56px) / 100%;
     }
 }
 
