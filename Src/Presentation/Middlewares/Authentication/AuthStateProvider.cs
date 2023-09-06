@@ -26,19 +26,20 @@ public class AuthStateProvider : AuthenticationStateProvider
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        // Retrieve user from storage
+        // Get stored user
         var storedUser = await GetStoredUser();
 
         var principal = _anonymous;
         if (storedUser is not null)
         {
-            // Set periodic timer to refresh AccessToken with RefreshToken
-            // Todo. Cookie for RefreshTimer is not set on SignIn :/
-            //var user = await _authService.RefreshTokenAsync();
-            //await SetStoredUser(user);
-            //SetRefreshTokenTimer();
+            // Refresh AccessToken (Todo. Catch error)
+            var user = await _authService.RefreshTokenAsync();
+            await SetStoredUser(user);
 
-            if(storedUser != null) principal = storedUser.ToClaimsPrincipal(); // Todo. Should be 'user'
+            // Set AccessToken refresh timer
+            SetRefreshTokenTimer();
+
+            if(user != null) principal = user.ToClaimsPrincipal();
         }
 
         return new(principal);
@@ -54,9 +55,8 @@ public class AuthStateProvider : AuthenticationStateProvider
             // Store user
             await SetStoredUser(user);
 
-            // Set periodic timer to refresh AccessToken with RefreshToken
-            // Todo. Cookie for RefreshTimer is not set on SignIn :/
-            // SetRefreshTokenTimer(50000)
+            // Set AccessToken refresh timer
+            SetRefreshTokenTimer();
 
             principal = user.ToClaimsPrincipal();
         }
@@ -83,7 +83,7 @@ public class AuthStateProvider : AuthenticationStateProvider
         => await _localStorage.RemoveItemAsync(userStorageKey);
 
     private void SetRefreshTokenTimer()
-        => new Timer(async _ => await RefreshToken(), null, 50000, 50000);
+        => new Timer(async _ => await RefreshToken(), null, 10000, 10000);
 
     private async Task RefreshToken()
         => await SetStoredUser(await _authService.RefreshTokenAsync());

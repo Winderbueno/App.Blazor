@@ -10,18 +10,20 @@ public static class ConfigureServices
         this IServiceCollection services,
         string baseUrl)
     {
+        #region Http Handlers
+        services.AddScoped<AddCredentialHandler>()
+                .AddScoped<ProblemDetailsHandler>();
+        #endregion   
+
         #region Http Clients
         // Local client pointing in /wwwroot (Used for demo only)
         services.AddHttpClient(HttpClientName.LocalClient, client => client.BaseAddress = new Uri(baseUrl));
 
         // Shop.Api
-        services.AddHttpClient<IShopApi, ShopApi>(client => { client.BaseAddress = new Uri("https://shoppinglistappback.azurewebsites.net"); })
+        services.AddHttpClient<IShopApi, ShopApi>(client => { client.BaseAddress = new Uri("https://localhost:5001"); })
+            .AddHttpMessageHandler<AddCredentialHandler>()
             .AddHttpMessageHandler<ProblemDetailsHandler>();
-        #endregion
-
-        #region Http Handlers
-        services.AddScoped<ProblemDetailsHandler>();
-        #endregion        
+        #endregion     
 
         return services;
     }
