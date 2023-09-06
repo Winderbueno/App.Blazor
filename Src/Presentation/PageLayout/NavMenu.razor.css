@@ -19,7 +19,10 @@ aside {
         }
 
     aside nav {
+        display: flex;
+        flex-direction: column;
         grid-area: navigation;
+        padding: var(--k-gap-normal);
         background-color: var(--k-color-primary);
         z-index: 1;
     }

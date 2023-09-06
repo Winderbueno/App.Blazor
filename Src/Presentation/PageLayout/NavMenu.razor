@@ -9,10 +9,10 @@
             </svg>
         </Link>
 
-        <Button Icon="@(collapseNavMenu ? "menu" : "x")" CssClass="nav-toggle" @onclick=ToggleNavMenu />
+        <Button Icon=@(collapseNavMenu ? "menu" : "x") CssClass="nav-toggle" @onclick=ToggleNavMenu />
     </header>
 
-    <nav class="flex-column px-3 py-3 @NavMenuCssClass" @onclick=CloseNavMenu>
+    <nav class=@NavMenuCssClass @onclick=CloseNavMenu>
         <NavItem Label="Demo" Icon="home" Match=NavLinkMatch.All />
         <NavItem Label=@t["feature.users"] Route="users/search" Icon="people" />
 
