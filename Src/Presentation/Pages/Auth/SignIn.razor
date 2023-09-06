@@ -4,7 +4,8 @@
 @inject AuthStateProvider auth
 @inject NavigationManager Nav
 
-<Container FlexColumn FlexAlign="center">
+<Container FlexGrow
+           FlexColumn FlexAlign="center" FlexJustify="center">
     <Card Title="@t["auth.sign-in"]">
         <Form Model=form OnValidSubmit=SignInAsync>
             <TextField @bind-Value=form.Username
@@ -42,7 +43,7 @@
     {
         public LoginDtoValidator()
         {
-            RuleFor(x => x.Username).NotEmpty().EmailAddress();
+            RuleFor(x => x.Username).Cascade(CascadeMode.Stop).NotEmpty().EmailAddress();
             RuleFor(x => x.Password).NotEmpty();
         }
     }

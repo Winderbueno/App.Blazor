@@ -9,22 +9,25 @@
             </svg>
         </Link>
 
-        <Button Icon=@(collapseNavMenu ? "menu" : "x") CssClass="nav-toggle" @onclick=ToggleNavMenu />
+        <Button Icon=@(collapseNav ? "menu" : "x") CssClass="nav-toggle" @onclick=ToggleNav />
     </header>
 
-    <nav class=@NavMenuCssClass @onclick=CloseNavMenu>
+    <nav class=@NavMenuCssClass @onclick=CloseNav>
         <NavItem Label="Demo" Icon="home" Match=NavLinkMatch.All />
-        <NavItem Label=@t["feature.users"] Route="users/search" Icon="people" />
+
+        <AuthorizeView>
+            <NavItem Label=@t["feature.users"] Route="users/search" Icon="people" />
+        </AuthorizeView>
 
         <AuthMenu />
     </nav>
 </aside>
 
 @code {
-    private bool collapseNavMenu = true;
+    private bool collapseNav = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string? NavMenuCssClass => collapseNav ? "collapse" : null;
 
-    private void ToggleNavMenu() => collapseNavMenu = !collapseNavMenu;
-    private void CloseNavMenu() => collapseNavMenu = true;
+    private void ToggleNav() => collapseNav = !collapseNav;
+    private void CloseNav() => collapseNav = true;
 }

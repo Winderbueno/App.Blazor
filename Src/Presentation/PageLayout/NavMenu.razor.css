@@ -13,19 +13,19 @@ aside {
         justify-content: center;
     }
 
-        aside header a .logo {
-            inline-size: 30%;
-            color: var(--k-color-light);
-        }
-
     aside nav {
+        grid-area: navigation;
         display: flex;
         flex-direction: column;
-        grid-area: navigation;
         padding: var(--k-gap-normal);
         background-color: var(--k-color-primary);
         z-index: 1;
     }
+
+.logo {
+    inline-size: 30%;
+    color: var(--k-color-light);
+}
 
 /* Mobile */
 @media (max-width: 576px) {
@@ -39,10 +39,10 @@ aside {
             justify-content: space-between;
         }
 
-            aside header a .logo {
-                inline-size: 15%;
-                margin-bottom: 8px;
-            }
+    .logo {
+        inline-size: 18%;
+        margin-bottom: 8px;
+    }
 }
 
 @media (min-width: 576px) {

@@ -1,6 +1,6 @@
 ﻿@inherits KComponent
 
-<div>
+<div style=@(FlexGrow ? "flex-grow:1" : "")>
     <div 
         style="
             --flex-direction:@(FlexColumn ? "column" : "row");
@@ -22,6 +22,8 @@
 @code {
     
     /* Flex */
+    [Parameter]
+    public bool FlexGrow { get; set; } = false;
     [Parameter]
     public bool FlexColumn { get; set; } = false;
     [Parameter]

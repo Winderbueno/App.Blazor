@@ -5,8 +5,6 @@
 
 @page "/demo"
 
-<PageTitle>Demo</PageTitle>
-
 <Container FlexColumn>
 
     <Container FlexJustify="space-between"
@@ -16,6 +14,23 @@
     </Container>
 
     <Container>
+        <Card Title="Containers">
+            <Container FlexAlign="start">
+                <Card Title="Form" Level=2>
+                    <TabGroup>
+                        <Tab Label="Input"><FormInput /></Tab>
+                        <Tab Label="Display"><FormDisplay /></Tab>
+                    </TabGroup>
+                </Card>
+                <Container FlexColumn>
+                    <Tabs />
+                    <Table />
+                </Container>
+                
+                <Cards />
+            </Container>
+        </Card>
+
         <Card Title="Indicators">
             <Container FlexAlign="start">
                 <Container FlexColumn>
@@ -38,24 +53,6 @@
         </Card>
 
         <ErrorHandling />
-
-        <Card Title="Containers">
-            <Container FlexAlign="start">
-                <Card Title="Form" Level=2>
-                    <TabGroup>
-                        <Tab Label="Input"><FormInput /></Tab>
-                        <Tab Label="Display"><FormDisplay /></Tab>
-                    </TabGroup>
-                </Card>
-                <Container FlexColumn>
-                    <Tabs />
-                    <Table />
-                </Container>
-                <Container FlexColumn>
-                    <Cards />
-                </Container>
-            </Container>
-        </Card>
     </Container>
 
 </Container>
