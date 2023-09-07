@@ -12,6 +12,7 @@ public static class ConfigureServices
     {
         #region Http Handlers
         services.AddScoped<AddCredentialHandler>()
+                .AddScoped<AddTokenHandler>()
                 .AddScoped<ProblemDetailsHandler>();
         #endregion   
 
@@ -22,6 +23,7 @@ public static class ConfigureServices
         // Shop.Api
         services.AddHttpClient<IShopApi, ShopApi>(client => { client.BaseAddress = new Uri("https://shoppinglistappback.azurewebsites.net/"); })
             .AddHttpMessageHandler<AddCredentialHandler>()
+            .AddHttpMessageHandler<AddTokenHandler>()
             .AddHttpMessageHandler<ProblemDetailsHandler>();
         #endregion     
 

@@ -1,15 +1,13 @@
-﻿using Application.Models.Auth;
-using Application.Services.Interfaces;
+﻿using Application.Services.Interfaces;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
-using Newtonsoft.Json;
 using System.Security.Claims;
 
 namespace Presentation.Middlewares.Authentication;
 
 public class AuthStateProvider : AuthenticationStateProvider
 {
-    private const string userStorageKey = "user";
+    private const string tokenStorageKey = "accessToken";
 
     private Timer? _refreshTokenTimer;
     private readonly ClaimsPrincipal _anonymous;
@@ -27,15 +25,15 @@ public class AuthStateProvider : AuthenticationStateProvider
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        // Get stored user
-        var storedUser = await GetStoredUser();
+        // Get token from storage
+        var token = await GetStoredToken();
 
         var principal = _anonymous;
-        if (storedUser is not null)
+        if (token is not null)
         {
             // Refresh AccessToken (Todo. Catch error)
             var user = await _authService.RefreshTokenAsync();
-            await SetStoredUser(user);
+            await StoreToken(user.AccessToken);
 
             // Set AccessToken refresh timer
             SetRefreshTokenTimer();
@@ -53,8 +51,8 @@ public class AuthStateProvider : AuthenticationStateProvider
         var principal = _anonymous;
         if (user is not null)
         {
-            // Store user
-            await SetStoredUser(user);
+            // Store token
+            await StoreToken(user.AccessToken);
 
             // Set AccessToken refresh timer
             SetRefreshTokenTimer();
@@ -67,26 +65,23 @@ public class AuthStateProvider : AuthenticationStateProvider
 
     public async Task SignOut()
     {
-        await ClearStoredUser();
+        await ClearStoredToken();
         if (_refreshTokenTimer is not null) _refreshTokenTimer.Dispose();
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
     }
 
-    public async Task<User?> GetStoredUser()
-    {
-        string json = await _localStorage.GetItemAsync<string>(userStorageKey);
-        return json == null ? null : JsonConvert.DeserializeObject<User>(json);
-    }
+    public async Task<string?> GetStoredToken()
+        => await _localStorage.GetItemAsync<string>(tokenStorageKey);
 
-    public async Task SetStoredUser(User user)
-        => await _localStorage.SetItemAsync(userStorageKey, JsonConvert.SerializeObject(user));
+    public async Task StoreToken(string token)
+        => await _localStorage.SetItemAsync(tokenStorageKey, token);
 
-    public async Task ClearStoredUser()
-        => await _localStorage.RemoveItemAsync(userStorageKey);
+    public async Task ClearStoredToken()
+        => await _localStorage.RemoveItemAsync(tokenStorageKey);
 
     private void SetRefreshTokenTimer()
         => _refreshTokenTimer = new Timer(async _ => await RefreshToken(), null, 10000, 10000);
 
     private async Task RefreshToken()
-        => await SetStoredUser(await _authService.RefreshTokenAsync());
+        => await StoreToken((await _authService.RefreshTokenAsync()).AccessToken);
 }
