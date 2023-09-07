@@ -5,11 +5,11 @@ namespace Infrastructure.HttpHandlers;
 
 public class ProblemDetailsHandler : DelegatingHandler
 {
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken ct)
+    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage req, CancellationToken ct)
     {
-        var response = await base.SendAsync(request, ct);
+        var resp = await base.SendAsync(req, ct);
 
-        var mediaType = response.Content.Headers.ContentType?.MediaType;
+        var mediaType = resp.Content.Headers.ContentType?.MediaType;
         if (mediaType != null && mediaType.Equals("application/problem+json", StringComparison.InvariantCultureIgnoreCase))
         {
             // /!\ Ideally, ProblemDetails class should come from a .Net library
@@ -21,6 +21,6 @@ public class ProblemDetailsHandler : DelegatingHandler
             throw new ProblemDetailsException("Todo");
         }
 
-        return response;
+        return resp;
     }
 }

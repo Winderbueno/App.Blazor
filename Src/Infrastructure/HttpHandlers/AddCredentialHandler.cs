@@ -6,11 +6,9 @@ namespace Infrastructure.HttpHandlers;
 // Usage of 'SetBrowserRequestCredentials' imply needing 'Microsoft.AspNetCore.Components.WebAssembly' package
 public class AddCredentialHandler : DelegatingHandler
 {
-    protected override Task<HttpResponseMessage> SendAsync(
-        HttpRequestMessage request,
-        CancellationToken cancellationToken)
+    protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage req, CancellationToken ct)
     {
-        request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
-        return base.SendAsync(request, cancellationToken);
+        req.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
+        return base.SendAsync(req, ct);
     }
 }
