@@ -17,7 +17,7 @@
         </ul>
     </CardBody>
     <CardActions>
-        <Link Icon="edit-pencil" Button Route=@("users/edit/" + UserId)>@t[$"action.edit"]</Link>
+        <Link Icon="pencil" Button Route=@("users/edit/" + UserId)>@t[$"action.edit"]</Link>
     </CardActions>
 </Card>
 
@@ -52,7 +52,6 @@
             userData = new()
             {
                (t["person.mail"], $"{user?.Email}"),
-               (t["person.phone"], $"+{user?.PhoneNumber}"),
                (t["common.type"], $"{t[user!.Type.DisplayName()]}"),
                (t["common.function"], $"{t[user!.Function.DisplayName()]}"),
                (t["user.username"], $"{user?.Username}"),
