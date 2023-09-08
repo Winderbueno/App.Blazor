@@ -42,18 +42,18 @@
 
     private UserSearchAppDto form = new();
     private IEnumerable<int>? userIds = null;
-    private bool endReached = false;
+    private bool endReached = true; // Todo. Pagination
 
     protected override async Task OnInitializedAsync()
     {
         form.PageNumber = 1;
-        //userIds = await SearchAsync();
+        userIds = await SearchAsync();
     }
 
     // This is necessary for the infinite scroller _module not to be null on first load
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        //if (firstRender) userIds = await SearchAsync();
+        if (firstRender) userIds = await SearchAsync();
     }
 
     private async void OnFormChange(UserSearchAppDto form)
@@ -61,7 +61,7 @@
         endReached = false;
         this.form = form;
         this.form.PageNumber = 1;
-        //userIds = await SearchAsync();
+        userIds = await SearchAsync();
         StateHasChanged();
     }
 
@@ -82,9 +82,12 @@
     {
         form.PageSize = 10;
 
-        try { await userService.SearchAsync(form); }
+        var userIds = new List<int>();
+        try { 
+            userIds = (await userService.SearchAsync(form)).ToList(); 
+        }
         catch (Exception e) { ErrorHandler!.ProcessError(e); }
 
-        return new List<int> { 1 }; // Todo. Replace par real call
+        return userIds;
     }
 }

@@ -80,7 +80,7 @@ public class AuthStateProvider : AuthenticationStateProvider
         => await _localStorage.RemoveItemAsync(tokenStorageKey);
 
     private void SetRefreshTokenTimer()
-        => _refreshTokenTimer = new Timer(async _ => await RefreshToken(), null, 10000, 10000);
+        => _refreshTokenTimer = new Timer(async _ => await RefreshToken(), null, 100000, 100000); // Todo. Set timer duration in var & chg value
 
     private async Task RefreshToken()
         => await StoreToken((await _authService.RefreshTokenAsync()).AccessToken);

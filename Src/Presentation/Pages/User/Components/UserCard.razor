@@ -3,8 +3,7 @@
 
 @inject IUserService userService
 
-<Card Loading="user == null"
-      Title="@(user?.FirstName + ' ' + user?.LastName)">
+<Card Loading="user == null" Title="@(user?.Username)">
     <CardTitle>
         <Chip Label=@t[user!.Status.DisplayName()] Color=StatusColor() />
     </CardTitle>
@@ -53,8 +52,7 @@
             {
                (t["person.mail"], $"{user?.Email}"),
                (t["common.type"], $"{t[user!.Type.DisplayName()]}"),
-               (t["common.function"], $"{t[user!.Function.DisplayName()]}"),
-               (t["user.username"], $"{user?.Username}"),
+               (t["common.function"], $"{t[user!.Function.DisplayName()]}")
             };
         }
     }
