@@ -8,7 +8,7 @@ namespace Presentation.Middlewares.Authentication;
 public class AuthStateProvider : AuthenticationStateProvider
 {
     private Timer? _refreshTokenTimer;
-    private int refreshTokenDueTime = (int)TimeSpan.FromMinutes(0.5).TotalMilliseconds; // Todo. Take duration from conf
+    private int refreshTokenDueTime = (int)TimeSpan.FromMinutes(15).TotalMilliseconds; // Todo. Take duration from conf
 
     private readonly ClaimsPrincipal _anonymous;
     private readonly IAuthService _authService;
@@ -29,7 +29,6 @@ public class AuthStateProvider : AuthenticationStateProvider
     public async Task SignInAsync(string username, string password)
     {
         var user = await _authService.SignInAsync(username, password);
-
         var principal = await StartRefreshTokenRotation(user);
 
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(principal)));
@@ -38,21 +37,14 @@ public class AuthStateProvider : AuthenticationStateProvider
     public async Task SignOut()
     {
         await _authService.RevokeRefreshTokenAsync();
-
-        await _tokenService.ClearStored();
-
-        // Dispose refresh token timer
-        if (_refreshTokenTimer is not null) _refreshTokenTimer.Dispose();
-
-        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
+        await StopRefreshTokenRotation();
     }
 
-    public async Task<ClaimsPrincipal> StartRefreshTokenRotation(User? user = null)
+    private async Task<ClaimsPrincipal> StartRefreshTokenRotation(User? user = null)
     {
         // Autologin after browser refresh
-        var storedToken = await _tokenService.GetStored();
-        if (storedToken is not null)
-            user = await _authService.RefreshTokenAsync();
+        if (await _tokenService.GetStored() is not null)
+            user = await RefreshToken();
 
         var principal = _anonymous;
         if (user != null)
@@ -73,6 +65,27 @@ public class AuthStateProvider : AuthenticationStateProvider
         return principal;
     }
 
-    public async Task RefreshAndStoreToken()
-        => await _tokenService.Store((await _authService.RefreshTokenAsync()).AccessToken);
+    private async Task StopRefreshTokenRotation()
+    {
+        await _tokenService.ClearStored();
+
+        // Dispose refresh token timer
+        if (_refreshTokenTimer is not null) _refreshTokenTimer.Dispose();
+
+        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
+    }
+
+    private async Task RefreshAndStoreToken()
+    {
+        var user = await RefreshToken();
+        if (user is not null) await _tokenService.Store(user.AccessToken);
+    }
+
+    private async Task<User?> RefreshToken()
+    {
+        User? user = null;
+        try { user = await _authService.RefreshTokenAsync(); } 
+        catch { await StopRefreshTokenRotation(); }
+        return user!;
+    }
 }

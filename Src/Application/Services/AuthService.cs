@@ -18,10 +18,10 @@ public class AuthService : IAuthService
         _shopApi = shopApi;
     }
 
-    public async Task<User> SignInAsync(string username, string pwd)
+    public async Task<User?> SignInAsync(string username, string pwd)
         => _mapper.Map<User>(await _shopApi.AuthenticateAsync(new() { Email = username, Password = pwd }));
 
-    public async Task<User> RefreshTokenAsync()
+    public async Task<User?> RefreshTokenAsync()
         => _mapper.Map<User>(await _shopApi.RefreshTokenAsync());
 
     public async Task RevokeRefreshTokenAsync()
