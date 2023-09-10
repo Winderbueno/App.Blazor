@@ -23,4 +23,7 @@ public class AuthService : IAuthService
 
     public async Task<User> RefreshTokenAsync()
         => _mapper.Map<User>(await _shopApi.RefreshTokenAsync());
+
+    public async Task RevokeRefreshTokenAsync()
+        => await _shopApi.RevokeTokenAsync(new());
 }
