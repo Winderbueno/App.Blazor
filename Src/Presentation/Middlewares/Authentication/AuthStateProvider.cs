@@ -12,15 +12,15 @@ public class AuthStateProvider : AuthenticationStateProvider
 
     private readonly ClaimsPrincipal _anonymous;
     private readonly IAuthService _authService;
-    private readonly TokenService _tokenService;
+    private readonly TokenStorage _tokenStorage;
 
     public AuthStateProvider(
         IAuthService authService,
-        TokenService tokenService)
+        TokenStorage tokenStorage)
     {
         _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
         _authService = authService;
-        _tokenService = tokenService;
+        _tokenStorage = tokenStorage;
     }
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
@@ -43,14 +43,14 @@ public class AuthStateProvider : AuthenticationStateProvider
     private async Task<ClaimsPrincipal> StartRefreshTokenRotation(User? user = null)
     {
         // Autologin after browser refresh
-        if (await _tokenService.GetStored() is not null)
+        if (await _tokenStorage.Get() is not null)
             user = await RefreshToken();
 
         var principal = _anonymous;
         if (user != null)
         {
             // Store accessToken
-            await _tokenService.Store(user.AccessToken);
+            await _tokenStorage.Store(user.AccessToken);
 
             // Set accessToken refresh timer
             _refreshTokenTimer = new Timer(
@@ -67,7 +67,7 @@ public class AuthStateProvider : AuthenticationStateProvider
 
     private async Task StopRefreshTokenRotation()
     {
-        await _tokenService.ClearStored();
+        await _tokenStorage.Clear();
 
         // Dispose refresh token timer
         if (_refreshTokenTimer is not null) _refreshTokenTimer.Dispose();
@@ -78,7 +78,7 @@ public class AuthStateProvider : AuthenticationStateProvider
     private async Task RefreshAndStoreToken()
     {
         var user = await RefreshToken();
-        if (user is not null) await _tokenService.Store(user.AccessToken);
+        if (user is not null) await _tokenStorage.Store(user.AccessToken);
     }
 
     private async Task<User?> RefreshToken()
