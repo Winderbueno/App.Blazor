@@ -1,5 +1,4 @@
 ﻿using Application.Services.Interfaces;
-using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 
@@ -7,36 +6,31 @@ namespace Presentation.Middlewares.Authentication;
 
 public class AuthStateProvider : AuthenticationStateProvider
 {
-    private const string tokenStorageKey = "accessToken";
-
-    private Timer? _refreshTokenTimer;
     private readonly ClaimsPrincipal _anonymous;
     private readonly IAuthService _authService;
-    private readonly ILocalStorageService _localStorage;
+    private readonly TokenService _tokenService;
 
     public AuthStateProvider(
         IAuthService authService,
-        ILocalStorageService localStorage)
+        TokenService tokenService)
     {
         _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
         _authService = authService;
-        _localStorage = localStorage;
+        _tokenService = tokenService;
     }
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
         // Get token from storage
-        var token = await GetStoredToken();
+        var token = await _tokenService.GetStored();
 
         var principal = _anonymous;
         if (token is not null)
         {
             // Refresh AccessToken (Todo. Catch error)
             var user = await _authService.RefreshTokenAsync();
-            await StoreToken(user.AccessToken);
 
-            // Set AccessToken refresh timer
-            SetRefreshTokenTimer();
+            await _tokenService.Store(user.AccessToken);
 
             if(user != null) principal = user.ToClaimsPrincipal();
         }
@@ -51,12 +45,10 @@ public class AuthStateProvider : AuthenticationStateProvider
         var principal = _anonymous;
         if (user is not null)
         {
-            // Store token
-            await StoreToken(user.AccessToken);
+            // Store token & Start refresh timer
+            await _tokenService.Store(user.AccessToken);
 
-            // Set AccessToken refresh timer
-            SetRefreshTokenTimer();
-
+            // Set principal claim with user
             principal = user.ToClaimsPrincipal();
         }
 
@@ -65,23 +57,8 @@ public class AuthStateProvider : AuthenticationStateProvider
 
     public async Task SignOut()
     {
-        await ClearStoredToken();
-        if (_refreshTokenTimer is not null) _refreshTokenTimer.Dispose();
+        await _tokenService.ClearStored();
+
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
     }
-
-    public async Task<string?> GetStoredToken()
-        => await _localStorage.GetItemAsync<string>(tokenStorageKey);
-
-    public async Task StoreToken(string token)
-        => await _localStorage.SetItemAsync(tokenStorageKey, token);
-
-    public async Task ClearStoredToken()
-        => await _localStorage.RemoveItemAsync(tokenStorageKey);
-
-    private void SetRefreshTokenTimer()
-        => _refreshTokenTimer = new Timer(async _ => await RefreshToken(), null, 100000, 100000); // Todo. Set timer duration in var & chg value
-
-    private async Task RefreshToken()
-        => await StoreToken((await _authService.RefreshTokenAsync()).AccessToken);
 }

@@ -21,7 +21,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 #endregion    
 
 #region Authentication
-services.AddScoped<AuthStateProvider>()
+services.AddScoped<TokenService>()
+        .AddScoped<AuthStateProvider>()
         .AddScoped<AuthenticationStateProvider>(provider =>
             provider.GetRequiredService<AuthStateProvider>());
 #endregion
