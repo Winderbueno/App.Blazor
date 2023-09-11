@@ -1,4 +1,5 @@
 using Blazored.LocalStorage;
+using Domain.Configuration;
 using I18NPortable;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -12,13 +13,13 @@ using Presentation.Middlewares.Globalization;
 using Serilog;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
-var conf = builder.Configuration;
 var services = builder.Services;
+var conf = builder.Configuration;
 
-#region App 
+#region App
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
-#endregion    
+#endregion
 
 #region Authentication
 services.AddScoped<TokenStorage>()
@@ -52,7 +53,7 @@ services.AddSingleton(new LanguageEvents());
 
 #region Project Services
 services.AddApplicationServices();
-services.AddInfrastructureServices(builder.HostEnvironment.BaseAddress);
+services.AddInfrastructureServices(conf.Get<RootConf>(), builder.HostEnvironment.BaseAddress);
 services.AddKBlazorServices();
 services.AddBlazoredLocalStorage();
 #endregion

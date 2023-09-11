@@ -1,5 +1,6 @@
 ﻿using Application.Models.Auth;
 using Application.Services.Interfaces;
+using Domain.Configuration;
 using I18NPortable;
 using K.Blazor.Components.Indicators.Toast;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -10,7 +11,7 @@ namespace Presentation.Middlewares.Authentication;
 public class AuthStateProvider : AuthenticationStateProvider
 {
     private Timer? _refreshTokenTimer;
-    private int refreshTokenDueTime = (int)TimeSpan.FromMinutes(15).TotalMilliseconds; // Todo. Take duration from conf
+    private int refreshTokenDueTime;
 
     private readonly ClaimsPrincipal _anonymous;
     private readonly IAuthService _authService;
@@ -20,6 +21,7 @@ public class AuthStateProvider : AuthenticationStateProvider
 
     public AuthStateProvider(
         IAuthService authService,
+        IConfiguration conf,
         II18N t,
         ToasterService toaster,
         TokenStorage tokenStorage)
@@ -29,6 +31,9 @@ public class AuthStateProvider : AuthenticationStateProvider
         _t = t;
         _toaster = toaster;
         _tokenStorage = tokenStorage;
+        refreshTokenDueTime = (int)TimeSpan
+            .FromMinutes(conf.Get<RootConf>().RefreshTokenPeriod)
+            .TotalMilliseconds;
     }
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
@@ -65,8 +70,7 @@ public class AuthStateProvider : AuthenticationStateProvider
             // Set accessToken refresh timer
             _refreshTokenTimer = new Timer(
                 async _ => await RefreshAndStoreToken(), null,
-                refreshTokenDueTime,
-                refreshTokenDueTime);
+                refreshTokenDueTime, refreshTokenDueTime);
 
             // Set principal claim with user
             principal = user.ToClaimsPrincipal();
