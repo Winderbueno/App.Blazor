@@ -9,8 +9,6 @@ public static class ClientGenerator
     {
         var document = await OpenApiDocument.FromUrlAsync(api.Url);
 
-        RemoveUsernameHeader(document);
-
         await GenerateClient(document, api);
     }        
 
@@ -34,15 +32,5 @@ public static class ClientGenerator
 
         code = code.Replace("MyNamespace", api.Namespace);
         await File.WriteAllTextAsync(Path.Join("../../../", api.Output), code);
-    }
-
-    private static void RemoveUsernameHeader(OpenApiDocument document)
-    {
-        foreach (var operation in document.Operations)
-        {
-            var headers = operation.Operation.Parameters
-                .Where(p => "Username".Equals(p.Name, StringComparison.InvariantCultureIgnoreCase) && p.Kind == OpenApiParameterKind.Header)
-                .ToArray();
-        }
     }
 }
