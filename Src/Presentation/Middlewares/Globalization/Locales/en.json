@@ -18,24 +18,26 @@
     "reset": "Reset",
     "search": "Search",
     "sign": "Sign",
+    "signin": "Sign in",
+    "signout": "Sign out",
     "submit": "Submit",
     "validate": "Validate"
   },
   "event": {
     "created": "Successfully created !",
-    "edited": "Successfully edited !"
+    "edited": "Successfully edited !",
+    "signin": {
+      "error": "Sign in error.",
+      "redirect": "Redirect to sign in...",
+      "success": "Sign in succeded."
+    },
+    "signout": {
+      "auto": "You've been disconnected"
+    }
   },
   "feature": {
     "home": "Home",
     "users": "Users"
-  },
-  "auth": {
-    "sign-in": "Sign in",
-    "sign-in-error": "Sign in error.",
-    "sign-in-redirect": "Redirect to sign in...",
-    "sign-in-success": "Sign in succeded.",
-    "sign-out": "Sign out",
-    "sign-out-wait": "Sign out in progress..."
   },
   "common": {
     "function": "Function",

@@ -1,5 +1,7 @@
 ﻿using Application.Models.Auth;
 using Application.Services.Interfaces;
+using I18NPortable;
+using K.Blazor.Components.Indicators.Toast;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 
@@ -12,20 +14,27 @@ public class AuthStateProvider : AuthenticationStateProvider
 
     private readonly ClaimsPrincipal _anonymous;
     private readonly IAuthService _authService;
+    private readonly II18N _t;
+    private readonly ToasterService _toaster;
     private readonly TokenStorage _tokenStorage;
 
     public AuthStateProvider(
         IAuthService authService,
+        II18N t,
+        ToasterService toaster,
         TokenStorage tokenStorage)
     {
         _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
         _authService = authService;
+        _t = t;
+        _toaster = toaster;
         _tokenStorage = tokenStorage;
     }
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         => new(await StartRefreshTokenRotation());
 
+    // Manual SignIn
     public async Task SignInAsync(string username, string password)
     {
         var user = await _authService.SignInAsync(username, password);
@@ -34,6 +43,7 @@ public class AuthStateProvider : AuthenticationStateProvider
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(principal)));
     }
 
+    // Manual SignOut
     public async Task SignOut()
     {
         await _authService.RevokeRefreshTokenAsync();
@@ -42,7 +52,7 @@ public class AuthStateProvider : AuthenticationStateProvider
 
     private async Task<ClaimsPrincipal> StartRefreshTokenRotation(User? user = null)
     {
-        // Autologin after browser refresh
+        // Auto SignIn after browser refresh
         if (await _tokenStorage.Get() is not null)
             user = await RefreshToken();
 
@@ -85,7 +95,12 @@ public class AuthStateProvider : AuthenticationStateProvider
     {
         User? user = null;
         try { user = await _authService.RefreshTokenAsync(); } 
-        catch { await StopRefreshTokenRotation(); }
+        catch {
+            // Auto SignOut
+            _toaster.AddError(_t["event.signout.auto"]);
+
+            await StopRefreshTokenRotation(); 
+        }
         return user!;
     }
 }

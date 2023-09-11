@@ -18,24 +18,26 @@
     "reset": "Ré-initialiser",
     "search": "Rechercher",
     "sign": "Signer",
+    "signin": "Se connecter",
+    "signout": "Se déconnecter",
     "submit": "Soumettre",
     "validate": "Valider"
   },
   "event": {
     "created": "Création réussie !",
-    "edited": "Edition réussie !"
+    "edited": "Edition réussie !",
+    "signin": {
+      "error": "Erreur lors de la connexion.",
+      "redirect": "Redirection vers l'écran de connexion...",
+      "success": "Connexion réussie."
+    },
+    "signout": {
+      "auto": "Vous avez été déconnecté"
+    }
   },
   "feature": {
     "home": "Accueil",
     "users": "Utilisateurs"
-  },
-  "auth": {
-    "sign-in": "Se connecter",
-    "sign-in-error": "Erreur lors de la connexion.",
-    "sign-in-redirect": "Redirection vers l'écran de connexion...",
-    "sign-in-success": "Connexion réussie.",
-    "sign-out": "Se déconnecter",
-    "sign-out-wait": "Déconnexion en cours..."
   },
   "common": {
     "function": "Fonction",

@@ -6,7 +6,7 @@
 
 <Container FlexGrow
            FlexColumn FlexAlign="center" FlexJustify="center">
-    <Card Title="@t["auth.sign-in"]">
+    <Card Title="@t["action.signin"]">
         <Form Model=form OnValidSubmit=SignInAsync>
             <TextField @bind-Value=form.Username
                        Label=@t["user.username"]
@@ -15,7 +15,7 @@
             <TextField @bind-Value=form.Password
                        Label=@t["user.password"] />
 
-            <Button>@t["auth.sign-in"]</Button>
+            <Button>@t["action.signin"]</Button>
         </Form>
     </Card>
 </Container>

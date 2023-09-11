@@ -6,11 +6,11 @@
     <AuthorizeView>
         <Authorized>
             <div>@t["home.hello"] @context.User.Identity!.Name !</div>
-            <Button @onclick=SignOut>@t["auth.sign-out"]</Button>
+            <Button @onclick=SignOut>@t["action.signout"]</Button>
         </Authorized>
         <NotAuthorized>
             <div>Not connected</div>
-            <Link Button Route="signin">@t["auth.sign-in"]</Link>
+            <Link Button Route="signin">@t["action.signin"]</Link>
         </NotAuthorized>
     </AuthorizeView>
 </Card>
