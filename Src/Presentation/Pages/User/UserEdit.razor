@@ -18,19 +18,12 @@
 
             <h3>@t["user.profile"]</h3>
 
-            <div><b>@t["user.username"]:</b> @user?.Username</div>
+            <TextField @bind-Value=form.Username Label=@t["user.username"] />
 
-            <SelectField @bind-Value=form.Type
-                         Disabled
-                         Label=@t["common.type"]
-                         Options=@(Enum.GetValues<UserType>()) 
-                         Placeholder=@(t["common.type"] + "...") />
-
-            <SelectField @bind-Value=form.Function
-                         Required
-                         Label=@t["common.function"]
-                         Options=@(Enum.GetValues<UserFunction>())
-                         Placeholder=@(t["common.function"] + "...") />
+            <SelectField @bind-Value=form.Role
+                         Label=@t["common.role"]
+                         Options=@(Enum.GetValues<UserRole>())
+                         Placeholder=@(t["common.role"] + "...") />
 
             <Button>@t["action.submit"]</Button>
         </Form>

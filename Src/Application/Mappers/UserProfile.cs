@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Application.Models.User;
 using Domain.Enums.User;
-using Infrastructure.HttpClients.Shop;
 using Domain.Extensions;
+using Infrastructure.HttpClients.Shop;
+using UserRole = Domain.Enums.User.UserRole;
 
 namespace Application.Mappers;
 
@@ -15,8 +16,7 @@ public class UserProfile : Profile
         CreateMap<UserCreateAppDto, UserCreateDto>();
         CreateMap<UserSearchAppDto, UserSearchAppDto>() // Todo. Add Search route with SearchDto in Shop.Api/UserRoutes
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToEnums<UserStatus>()))
-            .ForMember(dest => dest.Types, opt => opt.MapFrom(src => src.Types.ToEnums<UserType>()))
-            .ForMember(dest => dest.Functions, opt => opt.MapFrom(src => src.Functions.ToEnums<UserFunction>()));
+            .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.Roles.ToEnums<UserRole>()));
         CreateMap<UserUpdateAppDto, UserUpdateDto>();
 
         // Shop.Api -> App.Blazor

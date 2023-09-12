@@ -34,7 +34,7 @@
             <SelectField @bind-Value=form.EnumSelect
                          Label=@Label("Enum Select", form.EnumSelect.ToString())
                          Placeholder="Select from..." 
-                         Options="Enum.GetValues<UserFunction>()" />
+                         Options="Enum.GetValues<UserRole>()" />
 
             @*SelectSearchField has limitation :
                 - Validation. Only supports 'Required' validation through 'Required' param (Not FluentValidation)
@@ -100,7 +100,7 @@
         public DateTime Date { get; set; } = DateTime.Today;
         public bool CheckBox { get; set; }
         public string? Select { get; set; }
-        public UserFunction? EnumSelect { get; set; }
+        public UserRole? EnumSelect { get; set; }
 
         public string? SelectSearch { get; set; }
         public List<string> SelectMultiple { get; set; } = new();

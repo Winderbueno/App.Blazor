@@ -40,13 +40,9 @@
     "users": "Utilisateurs"
   },
   "common": {
-    "function": "Fonction",
+    "role": "Rôle",
     "status": "Statut",
     "type": "Type"
-  },
-  "home": {
-    "welcome": "Bienvenue",
-    "hello": "Bonjour"
   },
   "address": {
     "country": "Pays",
@@ -63,23 +59,19 @@
     "phone": "Téléphone"
   },
   "user": {
+    "greeting": "Bonjour",
     "password": "Mot de passe",
     "profile": "Profil",
     "username": "Nom d'utilisateur",
-    "function": {
-      "employee": "Employé",
-      "manager": "Responsable",
-      "support": "Support"
+    "role": {
+      "admin": "Administrateur",
+      "user": "Utilisateur"
     },
     "status": {
       "in-progress": "En Cours",
       "active": "Actif",
       "suspended": "Suspendu",
       "blocked": "Bloqué"
-    },
-    "type": {
-      "internal": "Interne",
-      "external": "Externe"
     },
     "feature": {
       "create": "Créer un utilisateur",

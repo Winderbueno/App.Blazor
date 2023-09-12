@@ -4,12 +4,12 @@ namespace Application.Models.User;
 
 public class UserCreateAppDto
 {
-    public UserType Type { get; set; } = UserType.Internal;
-    public UserFunction? Function { get; set; }
+    // User
     public string? Username { get; set; }
+    public UserRole? Role { get; set; }
 
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
+    // Identity
     public string? Email { get; set; }
-    public string? EmailConfirm { get; set; }
+    public string? Password { get; set; }
+    public string? PasswordConfirm { get; set; }
 }

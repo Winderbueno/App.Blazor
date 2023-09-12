@@ -5,7 +5,7 @@
 <Card Level=2>
     <AuthorizeView>
         <Authorized>
-            <div>@t["home.hello"] @context.User.Identity!.Name !</div>
+            <div>@t["user.greeting"] @context.User.Identity!.Name !</div>
             <Button @onclick=SignOut>@t["action.signout"]</Button>
         </Authorized>
         <NotAuthorized>

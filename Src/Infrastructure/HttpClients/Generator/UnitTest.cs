@@ -10,7 +10,7 @@ public class UnitTest
     public async Task GenerateFiles()
     {
         var apis = new[] {
-            new Api("Shop", "http://shoppinglistappback.azurewebsites.net/swagger/v1/swagger.json"),
+            new Api("Shop", "https://localhost:5001/swagger/v1/swagger.json"),
         };
 
         var generations = apis

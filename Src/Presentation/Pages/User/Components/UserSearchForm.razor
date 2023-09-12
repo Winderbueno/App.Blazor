@@ -17,15 +17,10 @@
                      Label=@t["common.status"]
                      Placeholder=@Placeholder("common.status") />
 
-        <SelectField @bind-Value=Form.Types
-                     Multiple Options="Enum.GetValues<UserType>()"
-                     Label=@t["common.type"]
-                     Placeholder=@Placeholder("common.type") />
-
-        <SelectField @bind-Value=Form.Functions
-                     Multiple Options="Enum.GetValues<UserFunction>()"
-                     Label=@t["common.function"]
-                     Placeholder=@Placeholder("common.function") />
+        <SelectField @bind-Value=Form.Roles
+                     Multiple Options="Enum.GetValues<UserRole>()"
+                     Label=@t["common.role"]
+                     Placeholder=@Placeholder("common.role") />
 
         <Button @onclick=Clear>@t["action.clear"]</Button>
     </Container>

@@ -40,13 +40,9 @@
     "users": "Users"
   },
   "common": {
-    "function": "Function",
+    "role": "Role",
     "status": "Status",
     "type": "Type"
-  },
-  "home": {
-    "welcome": "Welcome",
-    "hello": "Hello"
   },
   "address": {
     "country": "Pays",
@@ -63,23 +59,19 @@
     "phone": "Phone"
   },
   "user": {
+    "greeting": "Hello",
     "password": "Password",
     "profile": "Profile",
     "username": "Username",
-    "function": {
-      "employee": "Employee",
-      "manager": "Manager",
-      "support": "Support"
+    "role": {
+      "admin": "Admin",
+      "user": "User"
     },
     "status": {
       "in-progress": "In Progress",
       "active": "Active",
       "suspended": "Suspended",
       "blocked": "Blocked"
-    },
-    "type": {
-      "internal": "Internal",
-      "external": "External"
     },
     "feature": {
       "create": "Create user",

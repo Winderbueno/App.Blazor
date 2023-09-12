@@ -14,25 +14,19 @@
           OnValidSubmit=ValidSubmit>
         <Container FlexAlign="center">
             <Card Title=@t["user.profile"]>
-                <SelectField @bind-Value=form.Type
-                             Label=@t["common.type"]
-                             Options=@(Enum.GetValues<UserType>())
-                             Placeholder=@(t["common.type"] + "...") />
-
-                <SelectField @bind-Value=form.Function
-                             Label=@t["common.function"]
-                             Options=@(Enum.GetValues<UserFunction>())
-                             Placeholder=@(t["common.function"] + "...") />
-
                 <TextField @bind-Value=form.Username Label=@t["user.username"] />
+
+                <SelectField @bind-Value=form.Role
+                             Label=@t["common.role"]
+                             Options=@(Enum.GetValues<UserRole>())
+                             Placeholder=@(t["common.role"] + "...") />
             </Card>
 
             <Card Title=@t["person.identity"]>
                 <Container Grid GridColumns="1fr 1fr">
-                    <TextField @bind-Value=form.FirstName Label=@t["person.firstname"] />
-                    <TextField @bind-Value=form.LastName Label=@t["person.lastname"] />
                     <TextField @bind-Value=form.Email Label=@t["person.mail"] />
-                    <TextField @bind-Value=form.EmailConfirm Label=@t["action.confirm"] DisablePaste />
+                    <TextField @bind-Value=form.Password Label=@t["user.password"] />
+                    <TextField @bind-Value=form.PasswordConfirm Label=@t["action.confirm"] DisablePaste/>
                 </Container>
             </Card>
 
