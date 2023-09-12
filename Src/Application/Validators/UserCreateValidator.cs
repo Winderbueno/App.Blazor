@@ -12,6 +12,6 @@ public class UserCreateValidator : AbstractValidator<UserCreateAppDto>
 
         RuleFor(x => x.Email).NotEmpty().EmailAddress();
         RuleFor(x => x.Password).NotEmpty();
-        RuleFor(x => x.PasswordConfirm).Must((model, field) => model.Email == field).WithMessage("Does not match");
+        RuleFor(x => x.PasswordConfirm).Must((model, field) => model.Password == field).WithMessage("Does not match");
     }
 }

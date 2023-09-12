@@ -2026,9 +2026,9 @@ namespace Infrastructure.HttpClients.Shop
         [System.ComponentModel.DataAnnotations.StringLength(int.MaxValue, MinimumLength = 6)]
         public string Password { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("confirmPassword", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("passwordConfirm", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        public string ConfirmPassword { get; set; }
+        public string PasswordConfirm { get; set; }
 
     }
 
@@ -2089,9 +2089,9 @@ namespace Infrastructure.HttpClients.Shop
         [System.ComponentModel.DataAnnotations.StringLength(int.MaxValue, MinimumLength = 6)]
         public string Password { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("confirmPassword", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("passwordConfirm", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        public string ConfirmPassword { get; set; }
+        public string PasswordConfirm { get; set; }
 
         [Newtonsoft.Json.JsonProperty("acceptTerms", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool AcceptTerms { get; set; }
@@ -2182,9 +2182,9 @@ namespace Infrastructure.HttpClients.Shop
         [System.ComponentModel.DataAnnotations.StringLength(int.MaxValue, MinimumLength = 6)]
         public string Password { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("confirmPassword", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("passwordConfirm", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        public string ConfirmPassword { get; set; }
+        public string PasswordConfirm { get; set; }
 
     }
 
