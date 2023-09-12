@@ -37,14 +37,14 @@
     [Parameter] 
     public string? UserId { get; set; }
 
-    private UserUpdateAppDto form = new();
+    private UserUpdateFormDto form = new();
     private UserAppDto user = new();
 
     protected override async Task OnInitializedAsync()
     {        
         // Retrieve user info
         user = await userService.GetAsync(int.Parse(UserId!));
-        form = mapper.Map<UserUpdateAppDto>(user);
+        form = mapper.Map<UserUpdateFormDto>(user);
     }
 
     private async void OnValidSubmit()

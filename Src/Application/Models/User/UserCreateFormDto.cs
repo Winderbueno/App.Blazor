@@ -2,7 +2,7 @@
 
 namespace Application.Models.User;
 
-public class UserCreateAppDto
+public class UserCreateFormDto
 {
     // User
     public string? Username { get; set; }

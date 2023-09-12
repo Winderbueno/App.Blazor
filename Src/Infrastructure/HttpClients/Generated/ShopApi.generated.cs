@@ -131,7 +131,7 @@ namespace Infrastructure.HttpClients.Shop
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<int>> UserSearchAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<int>> UserSearchAsync(UserSearchDto body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
@@ -1598,7 +1598,7 @@ namespace Infrastructure.HttpClients.Shop
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<int>> UserSearchAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<int>> UserSearchAsync(UserSearchDto body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append("user/search");
@@ -1609,7 +1609,10 @@ namespace Infrastructure.HttpClients.Shop
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "text/plain");
+                    var json_ = Newtonsoft.Json.JsonConvert.SerializeObject(body, _settings.Value);
+                    var content_ = new System.Net.Http.StringContent(json_);
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
 
@@ -2221,6 +2224,40 @@ namespace Infrastructure.HttpClients.Shop
         _0 = 0,
 
         _1 = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v10.0.0.0))")]
+    public partial class UserSearchDto
+    {
+        [Newtonsoft.Json.JsonProperty("pageSize", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int PageSize { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("pageNumber", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int PageNumber { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("contains", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Contains { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<UserStatus> Status { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("roles", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<UserRole> Roles { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v10.0.0.0))")]
+    public enum UserStatus
+    {
+
+        _0 = 0,
+
+        _1 = 1,
+
+        _2 = 2,
+
+        _3 = 3,
 
     }
 

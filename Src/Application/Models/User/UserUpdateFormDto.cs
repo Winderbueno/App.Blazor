@@ -2,7 +2,7 @@
 
 namespace Application.Models.User;
 
-public class UserUpdateAppDto
+public class UserUpdateFormDto
 {
     public int UserId { get; set; }
 

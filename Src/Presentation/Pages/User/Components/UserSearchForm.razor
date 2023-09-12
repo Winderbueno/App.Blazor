@@ -28,10 +28,10 @@
 
  @code {
     [Parameter]
-    public Action<UserSearchAppDto>? OnFormChange { get; set; }
+    public Action<UserSearchFormDto>? OnFormChange { get; set; }
 
     [Parameter]
-    public UserSearchAppDto Form { get; set; } = new();
+    public UserSearchFormDto Form { get; set; } = new();
 
     private string Placeholder(string? label) => t[label] + "...";
 

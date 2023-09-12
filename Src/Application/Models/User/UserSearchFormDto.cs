@@ -1,6 +1,6 @@
 ﻿namespace Application.Models.User;
 
-public class UserSearchAppDto
+public class UserSearchFormDto
 {
     public string? Contains { get; set; }
 

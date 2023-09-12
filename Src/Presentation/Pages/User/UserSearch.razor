@@ -40,9 +40,9 @@
     [CascadingParameter]
     public ErrorHandler? ErrorHandler { get; set; }
 
-    private UserSearchAppDto form = new();
+    private UserSearchFormDto form = new();
     private IEnumerable<int>? userIds = null;
-    private bool endReached = true; // Todo. Pagination
+    private bool endReached = false; // Todo. Pagination
 
     protected override async Task OnInitializedAsync()
     {
@@ -56,7 +56,7 @@
         if (firstRender) userIds = await SearchAsync();
     }
 
-    private async void OnFormChange(UserSearchAppDto form)
+    private async void OnFormChange(UserSearchFormDto form)
     {
         endReached = false;
         this.form = form;
@@ -80,7 +80,7 @@
 
     private async Task<IEnumerable<int>> SearchAsync()
     {
-        form.PageSize = 10;
+        form.PageSize = 8;
 
         var userIds = new List<int>();
         try { 

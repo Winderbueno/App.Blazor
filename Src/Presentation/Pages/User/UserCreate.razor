@@ -39,7 +39,7 @@
     [CascadingParameter]
     public ErrorHandler? ErrorHandler { get; set; }
 
-    private UserCreateAppDto form = new();
+    private UserCreateFormDto form = new();
     private UserAppDto? userCreated = null;
 
     private async Task ValidSubmit()

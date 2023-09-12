@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Application.Validators;
 
-public class UserCreateValidator : AbstractValidator<UserCreateAppDto>
+public class UserCreateValidator : AbstractValidator<UserCreateFormDto>
 {
     public UserCreateValidator()
     {
