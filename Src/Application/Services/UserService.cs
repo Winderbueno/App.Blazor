@@ -19,16 +19,14 @@ public class UserService : IUserService
     }
 
     public async Task<UserAppDto> GetAsync(int id)
-        => _mapper.Map<UserAppDto>(await _shopApi.UserGETAsync(id));
+        => _mapper.Map<UserAppDto>(await _shopApi.UserGetAsync(id));
 
     public async Task<IEnumerable<int>> SearchAsync(UserSearchAppDto dto)
-        => await _shopApi.SearchAsync();
+        => await _shopApi.UserSearchAsync();
 
     public async Task<UserAppDto> CreateAsync(UserCreateAppDto dto)
-        => _mapper.Map<UserAppDto>(
-            await _shopApi.CreateAsync(_mapper.Map<UserCreateDto>(dto)));
+        => _mapper.Map<UserAppDto>(await _shopApi.UserCreateAsync(_mapper.Map<UserCreateDto>(dto)));
 
     public async Task<UserAppDto> UpdateAsync(UserUpdateAppDto dto)
-        => _mapper.Map<UserAppDto>(
-            await _shopApi.UpdateAsync(dto.UserId, _mapper.Map<UserUpdateDto>(dto)));
+        => _mapper.Map<UserAppDto>(await _shopApi.UserUpdateAsync(dto.UserId, _mapper.Map<UserUpdateDto>(dto)));
 }
