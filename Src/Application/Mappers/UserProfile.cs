@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Application.Models.User;
+using Application.Dtos.User;
 using Domain.Extensions;
 using Infrastructure.HttpClients.Shop;
 using UserRole = Domain.Enums.User.UserRole; // Todo. Can be optimized ?

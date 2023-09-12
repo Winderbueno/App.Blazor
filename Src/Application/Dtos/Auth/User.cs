@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace Application.Models.Auth;
+namespace Application.Dtos.Auth;
 
 public class User
 {

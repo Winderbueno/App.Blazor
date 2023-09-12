@@ -1,4 +1,4 @@
-﻿using Application.Models.User;
+﻿using Application.Dtos.User;
 
 namespace Application.Services.Interfaces;
 

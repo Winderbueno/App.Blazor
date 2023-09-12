@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Application.Models.User;
+using Application.Dtos.User;
 using Application.Services.Interfaces;
 using Infrastructure.HttpClients.Shop;
 

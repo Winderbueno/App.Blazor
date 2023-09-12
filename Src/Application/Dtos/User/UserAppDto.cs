@@ -1,6 +1,6 @@
 ﻿using Domain.Enums.User;
 
-namespace Application.Models.User;
+namespace Application.Dtos.User;
 
 public class UserAppDto
 {

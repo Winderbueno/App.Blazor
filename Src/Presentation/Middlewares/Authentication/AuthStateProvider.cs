@@ -1,4 +1,4 @@
-﻿using Application.Models.Auth;
+﻿using Application.Dtos.Auth;
 using Application.Services.Interfaces;
 using Domain.Configuration;
 using I18NPortable;

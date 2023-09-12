@@ -1,4 +1,4 @@
-﻿namespace Application.Models.User;
+﻿namespace Application.Dtos.User;
 
 public class UserSearchFormDto
 {

@@ -1,4 +1,4 @@
-﻿using Application.Models.Auth;
+﻿using Application.Dtos.Auth;
 
 namespace Application.Services.Interfaces;
 

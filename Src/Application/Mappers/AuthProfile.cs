@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Application.Models.Auth;
+using Application.Dtos.Auth;
 using Infrastructure.HttpClients.Shop;
 
 namespace Application.Mappers;
