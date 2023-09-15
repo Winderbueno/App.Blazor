@@ -178,7 +178,7 @@ namespace Infrastructure.HttpClients.Shop
         public virtual async System.Threading.Tasks.Task<AuthUserDto> AuthSignInAsync(SignInDto body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("auth/authenticate");
+            urlBuilder_.Append("auth/sign-in");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -379,7 +379,7 @@ namespace Infrastructure.HttpClients.Shop
         public virtual async System.Threading.Tasks.Task AuthSignUpAsync(SignUpDto body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("auth/register");
+            urlBuilder_.Append("auth/sign-up");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
