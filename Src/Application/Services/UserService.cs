@@ -28,5 +28,5 @@ public class UserService : IUserService
         => _mapper.Map<UserAppDto>(await _shopApi.UserCreateAsync(_mapper.Map<UserCreateDto>(dto)));
 
     public async Task<UserAppDto> UpdateAsync(UserUpdateFormDto dto)
-        => _mapper.Map<UserAppDto>(await _shopApi.UserUpdateAsync(dto.UserId, _mapper.Map<UserUpdateDto>(dto)));
+        => _mapper.Map<UserAppDto>(await _shopApi.UserUpdateAsync(_mapper.Map<UserUpdateDto>(dto)));
 }
