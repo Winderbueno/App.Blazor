@@ -68,10 +68,9 @@
       "user": "Utilisateur"
     },
     "status": {
-      "in-progress": "En Cours",
       "active": "Actif",
-      "suspended": "Suspendu",
-      "blocked": "Bloqué"
+      "in-progress": "En Cours",
+      "suspended": "Suspendu"
     },
     "feature": {
       "create": "Créer un utilisateur",

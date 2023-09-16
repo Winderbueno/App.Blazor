@@ -33,10 +33,9 @@
     // Todo. Put on UserStatus enum as an extension method
     private Dictionary<UserStatus, Color> ColorMap = new()
     {
-        { UserStatus.InProgress, Color.Warning },
         { UserStatus.Active, Color.Success },
-        { UserStatus.Blocked, Color.Danger },
-        { UserStatus.Suspended, Color.Disabled },
+        { UserStatus.InProgress, Color.Warning },
+        { UserStatus.Suspended, Color.Disabled }
     };
 
     private Color? StatusColor() => user != null ? this.ColorMap.First(x => x.Key == user.Status).Value : null;        
