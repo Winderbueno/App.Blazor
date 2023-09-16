@@ -5,7 +5,7 @@
 
 <Card Loading="user == null" Title="@(user?.Username)">
     <CardTitle>
-        <Chip Label=@t[user!.Status.DisplayName()] Color=StatusColor() />
+        <Chip Label=@t[user!.Status.DisplayName()] Color=user!.Status.Color() />
     </CardTitle>
     <CardBody>
         <ul class="user-data">
@@ -28,17 +28,7 @@
     public int UserId { get; set; }
 
     private UserAppDto? user;
-    private List<(string key, string value)> userData = new();
-
-    // Todo. Put on UserStatus enum as an extension method
-    private Dictionary<UserStatus, Color> ColorMap = new()
-    {
-        { UserStatus.Active, Color.Success },
-        { UserStatus.InProgress, Color.Warning },
-        { UserStatus.Suspended, Color.Disabled }
-    };
-
-    private Color? StatusColor() => user != null ? this.ColorMap.First(x => x.Key == user.Status).Value : null;        
+    private List<(string key, string value)> userData = new();    
 
     protected override async Task OnParametersSetAsync()
     {
