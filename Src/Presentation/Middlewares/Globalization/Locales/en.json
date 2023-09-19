@@ -10,6 +10,7 @@
     "close": "Close",
     "create": "New",
     "confirm": "Confirm",
+    "delete": "Delete",
     "edit": "Edit",
     "load": "Loading...",
     "next": "Suivant",
@@ -25,6 +26,7 @@
   },
   "event": {
     "created": "Successfully created !",
+    "deleted": "Successfully deleted !",
     "edited": "Successfully edited !",
     "signin": {
       "error": "Sign in error.",

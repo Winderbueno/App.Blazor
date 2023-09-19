@@ -8,4 +8,5 @@ public interface IUserService
     Task<IEnumerable<int>> SearchAsync(UserSearchFormDto dto);
     Task<UserAppDto> CreateAsync(UserCreateFormDto dto);
     Task<UserAppDto> UpdateAsync(UserUpdateFormDto dto);
+    Task DeleteAsync(int id);
 }

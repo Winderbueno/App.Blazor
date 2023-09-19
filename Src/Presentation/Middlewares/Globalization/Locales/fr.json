@@ -10,6 +10,7 @@
     "close": "Fermer",
     "confirm": "Confirmer",
     "create": "Créer",
+    "delete": "Supprimer",
     "edit": "Editer",
     "load": "Chargement en cours...",
     "next": "Suivant",
@@ -25,6 +26,7 @@
   },
   "event": {
     "created": "Création réussie !",
+    "deleted": "Suppression réussie !",
     "edited": "Edition réussie !",
     "signin": {
       "error": "Erreur lors de la connexion.",

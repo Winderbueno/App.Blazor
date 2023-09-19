@@ -29,4 +29,7 @@ public class UserService : IUserService
 
     public async Task<UserAppDto> UpdateAsync(UserUpdateFormDto dto)
         => _mapper.Map<UserAppDto>(await _shopApi.UserUpdateAsync(_mapper.Map<UserUpdateDto>(dto)));
+
+    public async Task DeleteAsync(int id)
+        => await _shopApi.UserDeleteAsync(id);
 }
