@@ -2,28 +2,28 @@
 
 @ChildContent
 
-@if (bottomLoader)
+@if (loader)
 {
     <div class="center">
         <Spinner />
     </div>
 }
 
-<div @ref="_lastItemIndicator" style="height:1px;flex-shrink:0"></div> @*HTML Element that triggers the infinite loading*@
+@*Element that triggers the infinite loading*@
+<div @ref="_lastItemIndicator" style="height:1px;flex-shrink:0" />
 
 @*To operate, this component requires the Js script "./scripts/infinite-scroller.js"*@
 @code {
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    [Parameter]
+    [EditorRequired, Parameter]
     public Func<Task>? OnLoad { get; set; }
 
-    private bool bottomLoader = false;
+    private bool load = true, loader = false;
     private ElementReference _lastItemIndicator;
-    private DotNetObjectReference<InfiniteScroller>? _currentComponentReference;
-    private IJSObjectReference? _module;
-    private IJSObjectReference? _instance;
+    private DotNetObjectReference<InfiniteScroller>? _currentComponentRef;
+    private IJSObjectReference? _module, _instance;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -31,8 +31,8 @@
         if (firstRender)
         {
             _module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/K.Blazor/scripts/infinite-scroller.js");
-            _currentComponentReference = DotNetObjectReference.Create(this);
-            _instance = await _module.InvokeAsync<IJSObjectReference>("initialize", _lastItemIndicator, _currentComponentReference);
+            _currentComponentRef = DotNetObjectReference.Create(this);
+            _instance = await _module.InvokeAsync<IJSObjectReference>("initialize", _lastItemIndicator, _currentComponentRef);
         }
     }
 
@@ -40,13 +40,25 @@
     [JSInvokable]
     public async Task LoadMore()
     {
-        bottomLoader = true;
-        StateHasChanged(); // display the loading indicator
+        if (load)
+        {
+            // Show loader
+            loader = true;
+            StateHasChanged(); 
 
-        await InvokeAsync(OnLoad!);
+            await InvokeAsync(OnLoad!);
+            await _instance!.InvokeVoidAsync("onNewItems");
+
+            // Hide loader and show new items
+            loader = false;
+            StateHasChanged();
+        }
+    }
+
+    public void DeactivateLoad() => load = false;
+    public async Task ActivateLoad()
+    {
+        load = true;
         await _instance!.InvokeVoidAsync("onNewItems");
-
-        bottomLoader = false;
-        StateHasChanged(); // display new items and remove the loading indicator
     }
 }
