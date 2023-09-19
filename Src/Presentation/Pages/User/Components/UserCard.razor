@@ -9,28 +9,44 @@
     </CardTitle>
     <CardBody>
         <ul class="user-data">
-            @foreach((string key, string value) in userData)
+            @foreach ((string key, string value) in userData)
             {
                 <li title=@value><b>@key. </b>@value</li>
             }
         </ul>
     </CardBody>
     <CardActions>
+        <Button Icon="trash" Color=Color.Danger @onclick=OnDeleteClick>@t[$"action.delete"]</Button>
         <Link Icon="pencil" Button Route=@("users/edit/" + UserId)>@t[$"action.edit"]</Link>
-    </CardActions>
-</Card>
+     </CardActions>
+ </Card>
 
-    @code {
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+ @code {
+    [CascadingParameter]
+    public ErrorHandler? ErrorHandler { get; set; }
 
     [Parameter]
     public int UserId { get; set; }
+    private int userIdLocal;
+
+    [Parameter]
+    public Action<int>? OnUserDelete { get; set; }
 
     private UserAppDto? user;
-    private List<(string key, string value)> userData = new();    
+    private List<(string key, string value)> userData = new();
 
     protected override async Task OnParametersSetAsync()
+    {
+        // This runs only if UserId param changes
+        // https://stackoverflow.com/questions/64008372/c-sharp-blazor-onparameterssetasync-is-being-called-eventhough-params-has-not-be
+        if (userIdLocal != UserId)
+        {
+            userIdLocal = UserId;
+            await OnUserIdSetAsync();
+        }
+    }
+
+    private async Task OnUserIdSetAsync()
     {
         user = null; // Reactivate loading
         user = await userService.GetAsync(UserId);
@@ -39,9 +55,20 @@
         {
             userData = new()
             {
-               (t["person.mail"], $"{user?.Email}"),
-               (t["common.role"], $"{t[user!.Role.DisplayName()]}")
+                (t["person.mail"], $"{user?.Email}"),
+                (t["common.role"], $"{t[user!.Role.DisplayName()]}")
             };
         }
+    }
+
+    private async Task OnDeleteClick()
+    {
+        try
+        {
+            await userService.DeleteAsync(UserId);
+            OnUserDelete?.Invoke(UserId);
+            toaster.AddSuccess(t["event.deleted"]);
+        }
+        catch (Exception e) { ErrorHandler!.ProcessError(e); }
     }
 }

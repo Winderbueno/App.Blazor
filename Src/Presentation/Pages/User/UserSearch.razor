@@ -13,7 +13,7 @@
                FlexAlign="center">
         <h1>@t["user.feature.search"]</h1>
         <Link Button Icon="plus"
-              Route="users/create">@t["action.create"]</Link>
+               Route="users/create">@t["action.create"]</Link>
      </Container>
 
      <Card>
@@ -21,13 +21,13 @@
 
          @if (userIds != null)
         {
-            <InfiniteScroller OnLoad=OnLoad>
+            <InfiniteScroller @ref="infiniteScroller" OnLoad=OnLoad>
                 <Container Grid PaddingInline=Size.Largest
                             GridColumns="repeat(auto-fit, minmax(20rem, 1fr))"
                             MobileChildWidth="20rem">
                      @foreach (int userId in userIds)
                     {
-                        <UserCard UserId=userId></UserCard>
+                        <UserCard UserId=userId OnUserDelete=OnUserDelete />
                     }
                 </Container>
             </InfiniteScroller>
@@ -42,7 +42,7 @@
 
     private UserSearchFormDto form = new();
     private IEnumerable<int>? userIds = null;
-    private bool endReached = false; // Todo. Pagination
+    private InfiniteScroller? infiniteScroller;
 
     protected override async Task OnInitializedAsync()
     {
@@ -58,24 +58,27 @@
 
     private async void OnFormChange(UserSearchFormDto form)
     {
-        endReached = false;
+        await infiniteScroller!.ActivateLoad();
         this.form = form;
         this.form.PageNumber = 1;
         userIds = await SearchAsync();
         StateHasChanged();
     }
 
+    private void OnUserDelete(int id)
+    {
+        userIds = userIds is not null ? userIds.Where(x => x != id) : userIds;
+        StateHasChanged();
+    }
+
     private async Task OnLoad()
     {
-        if (!endReached)
-        {
-            form.PageNumber++;
-            IEnumerable<int> pageIds = await SearchAsync();
-            if (pageIds.Any()) this.userIds = this.userIds!.Concat(pageIds).ToList();
+        form.PageNumber++;
+        IEnumerable<int> pageIds = await SearchAsync();
+        if (pageIds.Any()) this.userIds = this.userIds!.Concat(pageIds).ToList();
 
-            // Check if endReached
-            if (pageIds.Count() < form.PageSize) endReached = true;
-        }
+        // Search ended
+        if (pageIds.Count() < form.PageSize) infiniteScroller!.DeactivateLoad();
     }
 
     private async Task<IEnumerable<int>> SearchAsync()
@@ -83,8 +86,9 @@
         form.PageSize = 8;
 
         var userIds = new List<int>();
-        try { 
-            userIds = (await userService.SearchAsync(form)).ToList(); 
+        try
+        {
+            userIds = (await userService.SearchAsync(form)).ToList();
         }
         catch (Exception e) { ErrorHandler!.ProcessError(e); }
 
