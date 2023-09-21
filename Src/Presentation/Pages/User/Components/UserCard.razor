@@ -16,8 +16,8 @@
         </ul>
     </CardBody>
     <CardActions>
-        <Button Icon="trash" Color=Color.Danger @onclick=OnDeleteClick>@t[$"action.delete"]</Button>
-        <Link Icon="pencil" Button Route=@("users/edit/" + UserId)>@t[$"action.edit"]</Link>
+        <Icon Id="trash" Color=Color.Danger @onclick=OnDeleteClick />
+        <Link Icon="pencil" Route=@("users/edit/" + UserId) />
      </CardActions>
  </Card>
 

@@ -6,7 +6,7 @@
     color: var(--k-color-primary)
 }
 
-.card-header-title {
+.card-title {
     font-size: var(--title-size);
     font-weight: 600;
     text-overflow: ellipsis;
@@ -25,13 +25,6 @@
 .card-text {
     height: 100%;
     margin-bottom: 0;
-}
-
-.card-delimiter {
-    width: 100%;
-    margin: 0;
-    padding-inline: 1rem;
-    border-radius: 1rem;
 }
 
 .card-actions {
