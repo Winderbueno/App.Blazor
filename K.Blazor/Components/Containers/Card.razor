@@ -4,8 +4,7 @@
             @($"--vertical-padding:{verticalPadding};")
             @($"--horizontal-padding:{horizontalPadding};")
             @($"--gap:{gap};")">
-        <!-- if content is loading -->
-        @if (Loading)
+        @if (Loading) // Loading content
         {
             <div class="d-grid gap-2">
                 @for (int i = 0; i < LoadingLines; i++)
@@ -18,7 +17,7 @@
         {
             @if (CardTitle != null || Title != null)
             {
-                <header class="d-flex justify-content-between align-items-center gap-2">
+                <header class="card-title-container">
                     @if (Title != null)
                     {
                         <span class="card-title"
@@ -29,16 +28,18 @@
                 </header>
             }
 
-            <p class="card-text">
-                @(CardBody ?? ChildContent)
-            </p>
+            <div class="text-actions-container">
+                <p class="card-text">
+                    @(CardBody ?? ChildContent)
+                </p>
 
-            @if (CardActions != null)
-            {
-                <footer class="card-actions">
-                    @CardActions
-                </footer>
-            }
+                @if (CardActions != null)
+                {
+                    <div class="card-actions">
+                        @CardActions
+                    </div>
+                }
+            </div>
         }
     </div>
 </div>

@@ -6,6 +6,13 @@
     color: var(--k-color-primary)
 }
 
+.card-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--k-gap-small);
+}
+
 .card-title {
     font-size: var(--title-size);
     font-weight: 600;
@@ -22,14 +29,22 @@
     gap: var(--gap);
 }
 
+.text-actions-container {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gap);
+}
+
 .card-text {
+    flex-grow: 1;
     height: 100%;
     margin-bottom: 0;
 }
 
 .card-actions {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: var(--k-gap-small);
 }
