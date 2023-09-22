@@ -1,4 +1,5 @@
 ﻿using Domain.Exceptions;
+using Infrastructure.HttpClients;
 using Newtonsoft.Json;
 
 namespace Infrastructure.HttpHandlers;
@@ -10,15 +11,12 @@ public class ProblemDetailsHandler : DelegatingHandler
         var resp = await base.SendAsync(req, ct);
 
         var mediaType = resp.Content.Headers.ContentType?.MediaType;
-        if (mediaType != null && mediaType.Equals("application/problem+json", StringComparison.InvariantCultureIgnoreCase))
+        if (!resp.IsSuccessStatusCode
+            || (mediaType != null && mediaType.Equals("application/problem+json", StringComparison.InvariantCultureIgnoreCase)))
         {
-            // /!\ Ideally, ProblemDetails class should come from a .Net library
-            // However, as of today, it is only available in 'Microsoft.AspNetCore.Mvc.Core' which is not compatible with Blazor Wasm
-            // (See. https://github.com/dotnet/aspnetcore/issues/36970)
-            // Todo. Add define an homemade model for ProblemDetails
-            // var problemDetails = JsonConvert.DeserializeObject<ProblemDetails>(await response.Content.ReadAsStringAsync());
-
-            throw new ProblemDetailsException("Todo");
+            // For now, ProblemDetails is an homemade class (See class for more details)
+            var problemDetails = JsonConvert.DeserializeObject<ProblemDetails>(await resp.Content.ReadAsStringAsync());
+            throw new ProblemDetailsException(problemDetails.Message ?? "");
         }
 
         return resp;

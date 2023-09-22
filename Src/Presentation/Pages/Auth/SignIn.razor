@@ -6,21 +6,24 @@
 
 <Container FlexGrow
            FlexColumn FlexAlign="center" FlexJustify="center">
-    <Card Title="@t["action.signin"]">
-        <Form Model=form OnValidSubmit=SignInAsync>
-            <TextField @bind-Value=form.Username
-                       Label=@t["user.username"]
-                       Placeholder="patate@mail.com" />
+     <Card Title="@t["action.signin"]">
+         <Form Model=form OnValidSubmit=SignInAsync>
+             <TextField @bind-Value=form.Username
+                        Label=@t["user.username"]
+                        Placeholder="patate@mail.com" />
 
-            <TextField @bind-Value=form.Password
-                       Label=@t["user.password"] />
+             <TextField @bind-Value=form.Password
+                        Label=@t["user.password"] />
 
-            <Button>@t["action.signin"]</Button>
-        </Form>
-    </Card>
-</Container>
+             <Button>@t["action.signin"]</Button>
+         </Form>
+     </Card>
+ </Container>
 
-@code {
+ @code {
+    [CascadingParameter]
+    public ErrorHandler? ErrorHandler { get; set; }
+
     [Parameter]
     [SupplyParameterFromQuery]
     public string? ReturnUrl { get; set; }
@@ -29,8 +32,11 @@
 
     private async Task SignInAsync()
     {
-        await auth.SignInAsync(form.Username, form.Password);
-        Nav.NavigateTo(ReturnUrl ?? "demo");
+        try { 
+            await auth.SignInAsync(form.Username, form.Password);
+            Nav.NavigateTo(ReturnUrl ?? "demo");
+        }
+        catch (Exception e) { ErrorHandler!.ProcessError(e); }
     }
 
     public class LoginDto
