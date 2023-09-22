@@ -13,27 +13,24 @@
                FlexAlign="center">
         <h1>@t["user.feature.search"]</h1>
         <Link Button Icon="plus"
-               Route="users/create">@t["action.create"]</Link>
-     </Container>
+              Route="users/create">@t["action.create"]</Link>
+    </Container>
 
-     <Card>
-         <UserSearchForm Form=form OnFormChange=OnFormChange />
+    <UserSearchForm Form=form OnFormChange=OnFormChange />
 
-         @if (userIds != null)
-        {
-            <InfiniteScroller @ref="infiniteScroller" OnLoad=OnLoad>
-                <Container Grid PaddingInline=Size.Largest
-                            GridColumns="repeat(auto-fit, minmax(20rem, 1fr))"
-                            MobileChildWidth="20rem">
-                     @foreach (int userId in userIds)
-                    {
-                        <UserCard UserId=userId OnUserDelete=OnUserDelete />
-                    }
-                </Container>
-            </InfiniteScroller>
-        }
-    </Card>
-
+    @if (userIds != null)
+    {
+        <InfiniteScroller @ref="infiniteScroller" OnLoad=OnLoad>
+            <Container Grid PaddingInline=Size.Largest
+                        GridColumns="repeat(auto-fit, minmax(20rem, 1fr))"
+                        MobileChildWidth="20rem">
+                 @foreach (int userId in userIds)
+                {
+                    <UserCard UserId=userId OnUserDelete=OnUserDelete />
+                }
+            </Container>
+        </InfiniteScroller>
+    }
 </Container>
 
 @code {

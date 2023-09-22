@@ -3,30 +3,34 @@
 
 @inject IUserService userService
 
-<Form Model=Form OnFieldChanged=OnFieldChanged>
-    <Container FlexAlign="center"
-               FlexJustify="center"
-               NoRowGap>
-        <TextField @bind-Value=Form.Contains
-                   BindOnInput OnInputDelayed=FormChanged
-                   Label=@t["action.search"]
-                   Placeholder=@Placeholder("action.search") />
+<Container FlexColumn FlexAlign="center">
+    <Card>
+        <Form Model=Form OnFieldChanged=OnFieldChanged>
+            <Container FlexAlign="center"
+                       FlexJustify="center"
+                       NoRowGap>
+                <TextField @bind-Value=Form.Contains
+                           BindOnInput OnInputDelayed=FormChanged
+                           Label=@t["action.search"]
+                           Placeholder=@Placeholder("action.search") />
 
-        <SelectField @bind-Value=Form.Status
-                      Multiple Options="Enum.GetValues<UserStatus>()"
-                     Label=@t["common.status"]
-                     Placeholder=@Placeholder("common.status") />
+                <SelectField @bind-Value=Form.Status
+                              Multiple Options="Enum.GetValues<UserStatus>()"
+                             Label=@t["common.status"]
+                             Placeholder=@Placeholder("common.status") />
 
-        <SelectField @bind-Value=Form.Roles
-                     Multiple Options="Enum.GetValues<UserRole>()"
-                     Label=@t["common.role"]
-                     Placeholder=@Placeholder("common.role") />
+                <SelectField @bind-Value=Form.Roles
+                             Multiple Options="Enum.GetValues<UserRole>()"
+                             Label=@t["common.role"]
+                             Placeholder=@Placeholder("common.role") />
 
-        <Button @onclick=Clear>@t["action.clear"]</Button>
-    </Container>
-</Form>
+                <Button @onclick=Clear>@t["action.clear"]</Button>
+            </Container>
+        </Form>
+    </Card>
+</Container>
 
- @code {
+@code {
     [Parameter]
     public Action<UserSearchFormDto>? OnFormChange { get; set; }
 
