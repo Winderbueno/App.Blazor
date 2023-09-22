@@ -36,9 +36,6 @@
 </Container>
 
  @code {
-    [CascadingParameter]
-    public ErrorHandler? ErrorHandler { get; set; }
-
     private UserCreateFormDto form = new();
     private UserAppDto? userCreated = null;
 
@@ -53,7 +50,6 @@
                 toaster.AddSuccess(t["event.created"]);
                 navigation.NavigateTo("users");
             }
-        }
-        catch (Exception e) { ErrorHandler!.ProcessError(e); }
+        } catch { }
     }
 }

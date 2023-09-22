@@ -10,7 +10,7 @@
 @inject NavigationManager navigation
 
 <h1>@t["user.feature.edit"]</h1>
-        
+
 <Container FlexJustify="center">
     <Card>
         <Form Model=form
@@ -31,17 +31,14 @@
 </Container>
 
 @code {
-    [CascadingParameter]
-    public ErrorHandler? ErrorHandler { get; set; }
-
-    [Parameter] 
+    [Parameter]
     public string? UserId { get; set; }
 
     private UserUpdateFormDto form = new();
     private UserAppDto user = new();
 
     protected override async Task OnInitializedAsync()
-    {        
+    {
         // Retrieve user info
         user = await userService.GetAsync(int.Parse(UserId!));
         form = mapper.Map<UserUpdateFormDto>(user);
@@ -59,6 +56,6 @@
                 navigation.NavigateTo("users");
             }
         }
-        catch (Exception e) { ErrorHandler!.ProcessError(e); }
+        catch { }
     }
 }

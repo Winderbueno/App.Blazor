@@ -21,9 +21,6 @@
  </Container>
 
  @code {
-    [CascadingParameter]
-    public ErrorHandler? ErrorHandler { get; set; }
-
     [Parameter]
     [SupplyParameterFromQuery]
     public string? ReturnUrl { get; set; }
@@ -32,11 +29,12 @@
 
     private async Task SignInAsync()
     {
-        try { 
+        try
+        {
             await auth.SignInAsync(form.Username, form.Password);
             Nav.NavigateTo(ReturnUrl ?? "demo");
         }
-        catch (Exception e) { ErrorHandler!.ProcessError(e); }
+        catch { }
     }
 
     public class LoginDto

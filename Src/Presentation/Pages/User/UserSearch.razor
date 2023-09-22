@@ -83,11 +83,8 @@
         form.PageSize = 8;
 
         var userIds = new List<int>();
-        try
-        {
-            userIds = (await userService.SearchAsync(form)).ToList();
-        }
-        catch (Exception e) { ErrorHandler!.ProcessError(e); }
+        try { userIds = (await userService.SearchAsync(form)).ToList(); } 
+        catch { }
 
         return userIds;
     }
