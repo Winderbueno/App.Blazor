@@ -24,7 +24,7 @@
 .card-body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
     padding: var(--vertical-padding) var(--horizontal-padding);
     gap: var(--gap);
 }
