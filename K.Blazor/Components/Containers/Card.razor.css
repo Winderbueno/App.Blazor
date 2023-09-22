@@ -47,4 +47,10 @@
     justify-content: center;
     align-items: center;
     gap: var(--k-gap-small);
+    opacity: 0;
+    transition: opacity 0.25s linear;
+}
+
+.show {
+    opacity: 100
 }

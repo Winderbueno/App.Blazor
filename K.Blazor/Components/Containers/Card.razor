@@ -1,4 +1,6 @@
-﻿<div class="card">
+﻿<div class="card" 
+    @onmouseenter=MouseEnter 
+    @onmouseleave=MouseLeave>
     <div class="card-body"
          style="
             @($"--vertical-padding:{verticalPadding};")
@@ -35,7 +37,7 @@
 
                 @if (CardActions != null)
                 {
-                    <div class="card-actions">
+                    <div class="card-actions @showClass">
                         @CardActions
                     </div>
                 }
@@ -73,4 +75,8 @@
     private string verticalPadding => Level == 1 ? "var(--k-gap-small)" : "var(--k-gap-smaller)";
     private string horizontalPadding => Level == 1 ? "var(--k-gap-normal)" : "var(--k-gap-small)";
     private string gap => Level == 1 ? "var(--k-gap-smaller)" : "var(--k-gap-smallest)";
+    private string? showClass;
+
+    void MouseEnter(MouseEventArgs e) => showClass = "show";
+    void MouseLeave(MouseEventArgs e) => showClass = null;
 }
