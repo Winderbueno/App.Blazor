@@ -15,7 +15,7 @@
             <DateField @bind-Value=form.Date
                        Label=@Label("Date", form.Date.ToShortDateString()) />
 
-            @* RequiredTrue only adds a visual indicator, 
+            @*RequiredTrue only adds a visual indicator, 
                 FluentValidation rule must be defined to have the validation*@
             <CheckBoxField @bind-Value=form.CheckBox
                            Label=@Label("CheckBox", form.CheckBox.ToString())
