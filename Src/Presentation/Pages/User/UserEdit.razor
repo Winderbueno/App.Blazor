@@ -1,13 +1,9 @@
-﻿@using AutoMapper;
-@using Application.Dtos.User;
-@using Domain.Enums.User;
-@using Domain.Exceptions;
+﻿@using AutoMapper
 
 @page "/users/edit/{userId}"
 @attribute [Authorize]
-@inject IUserService userService
 @inject IMapper mapper
-@inject NavigationManager navigation
+@inject NavigationManager Nav
 
 <h1>@t["user.feature.edit"]</h1>
 
@@ -53,9 +49,9 @@
             if (user != null)
             {
                 toaster.AddSuccess(t["event.edited"]);
-                navigation.NavigateTo("users");
+                Nav.NavigateTo("users");
             }
         }
-        catch { }
+        catch (ProblemDetailsException) { }
     }
 }

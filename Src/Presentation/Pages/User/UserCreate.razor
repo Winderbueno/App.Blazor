@@ -1,11 +1,6 @@
-﻿@using Application.Dtos.User;
-@using Domain.Enums.User;
-@using Domain.Exceptions;
-
-@page "/users/create"
+﻿@page "/users/create"
 @attribute [Authorize]
-@inject IUserService userService
-@inject NavigationManager navigation
+@inject NavigationManager Nav
 
 <h1>@t["user.feature.create"]</h1>
 
@@ -48,8 +43,9 @@
             if (userCreated != null)
             {
                 toaster.AddSuccess(t["event.created"]);
-                navigation.NavigateTo("users");
+                Nav.NavigateTo("users");
             }
-        } catch { }
+        }
+        catch (ProblemDetailsException) { }
     }
 }

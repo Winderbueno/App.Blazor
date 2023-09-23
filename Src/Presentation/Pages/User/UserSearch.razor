@@ -1,11 +1,8 @@
-﻿@using Application.Dtos.User
-@using Domain.Enums.User
-@using Presentation.Pages.User.Components
+﻿@using Presentation.Pages.User.Components
 
 @page "/users"
 @page "/users/search"
 @attribute [Authorize]
-@inject IUserService userService
 
 <Container FlexColumn NoWrap>
 
@@ -84,7 +81,7 @@
 
         var userIds = new List<int>();
         try { userIds = (await userService.SearchAsync(form)).ToList(); } 
-        catch { }
+        catch (ProblemDetailsException) { }
 
         return userIds;
     }

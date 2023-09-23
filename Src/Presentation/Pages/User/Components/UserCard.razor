@@ -1,9 +1,4 @@
-﻿@using Domain.Enums.User
-@using Application.Dtos.User
-
-@inject IUserService userService
-
-<Card Loading="user == null" Title="@(user?.Username)">
+﻿<Card Loading="user == null" Title="@(user?.Username)">
     <CardTitle>
         <Chip Label=@t[user!.Status.DisplayName()] Color=user!.Status.Color() />
     </CardTitle>
@@ -21,10 +16,7 @@
      </CardActions>
  </Card>
 
- @code {
-    [CascadingParameter]
-    public ErrorHandler? ErrorHandler { get; set; }
-
+@code {
     [Parameter]
     public int UserId { get; set; }
     private int userIdLocal;
@@ -69,6 +61,6 @@
             OnUserDelete?.Invoke(UserId);
             toaster.AddSuccess(t["event.deleted"]);
         }
-        catch (Exception e) { ErrorHandler!.ProcessError(e); }
+        catch (ProblemDetailsException) { }
     }
 }

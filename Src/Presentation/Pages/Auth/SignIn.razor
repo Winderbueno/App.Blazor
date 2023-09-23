@@ -34,7 +34,7 @@
             await auth.SignInAsync(form.Username, form.Password);
             Nav.NavigateTo(ReturnUrl ?? "demo");
         }
-        catch { }
+        catch (ProblemDetailsException) { }
     }
 
     public class LoginDto
