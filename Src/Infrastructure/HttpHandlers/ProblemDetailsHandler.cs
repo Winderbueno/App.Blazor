@@ -1,5 +1,5 @@
-﻿using Domain.Exceptions;
-using Infrastructure.HttpClients;
+﻿using Infrastructure.HttpClients;
+using Infrastructure.HttpClients.Exceptions;
 using K.Blazor.Components.Indicators.Toast;
 using Newtonsoft.Json;
 
@@ -21,8 +21,8 @@ public class ProblemDetailsHandler : DelegatingHandler
         {
             // For now, ProblemDetails is an homemade class (See class for more details)
             var problemDetails = JsonConvert.DeserializeObject<ProblemDetails>(await resp.Content.ReadAsStringAsync(CancellationToken.None));
-            _toaster.AddError(problemDetails.Message);
-            throw new ProblemDetailsException(problemDetails.Message ?? "");
+            _toaster.AddError(problemDetails.Detail);
+            throw new ProblemDetailsException(problemDetails.Detail ?? problemDetails.Title ?? "");
         }
 
         return resp;

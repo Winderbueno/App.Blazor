@@ -19,7 +19,7 @@ public static class ClientGenerator
         var settings = new CSharpClientGeneratorSettings
         {
             InjectHttpClient= true,
-            //AdditionalNamespaceUsages = new[] { "Infrastructure" },
+            AdditionalNamespaceUsages = new[] { "Infrastructure.HttpClients.Exceptions" },
             ClassName = api.ClassName,
             GenerateClientInterfaces = true,
             GenerateExceptionClasses = false,

@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.HttpClients;
+﻿namespace Infrastructure.HttpClients.Exceptions;
 
 public partial class ApiException : Exception
 {

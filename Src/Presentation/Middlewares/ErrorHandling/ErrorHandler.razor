@@ -1,6 +1,4 @@
-﻿@using Domain.Exceptions;
-
-<CascadingValue Value=this>
+﻿<CascadingValue Value=this>
     @ChildContent
 </CascadingValue>
 
@@ -11,7 +9,7 @@
     public void ProcessError(Exception e)
     {
         // Global api business errors
-        if(e is ProblemDetailsException || e is NotSupportedException)
+        if(e is NotSupportedException)
             toaster!.AddError(e.Message);
         else
         {
