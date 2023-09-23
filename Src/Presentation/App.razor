@@ -4,37 +4,36 @@
 
 @inject KConfService kConf
 
-<ErrorHandler>
-    <Toaster />
+<Toaster />
 
-    <CascadingAuthenticationState>
-        <Router AppAssembly="@typeof(App).Assembly">
-            <Found Context="routeData">
-                @*<FocusOnNavigate RouteData="@routeData" Selector="h1" /> Todo*@
-                <AuthorizeRouteView RouteData=routeData DefaultLayout=@typeof(MainLayout)>
-                    <NotAuthorized>
-                        @if (!context.User.Identity!.IsAuthenticated)
-                        {
-                            <RedirectTo Route="signin" AddReturnUrl />
-                        }
-                        else {
-                            <RedirectTo Route="unauthorized" />
-                        }
-                    </NotAuthorized>
-                    <Authorizing>
-                        <SplashScreen />
-                    </Authorizing>
-                </AuthorizeRouteView>
-            </Found>
-            <NotFound>
-                <PageTitle>Not Found</PageTitle>
-                <LayoutView Layout=@typeof(MainLayout)>
-                    <p role="alert">Sorry, there's nothing at this address.</p>
-                </LayoutView>
-            </NotFound>
-        </Router>
-    </CascadingAuthenticationState>
-</ErrorHandler>
+<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(App).Assembly">
+        <Found Context="routeData">
+            @*<FocusOnNavigate RouteData="@routeData" Selector="h1" /> Todo*@
+            <AuthorizeRouteView RouteData=routeData DefaultLayout=@typeof(MainLayout)>
+                <NotAuthorized>
+                    @if (!context.User.Identity!.IsAuthenticated)
+                    {
+                        <RedirectTo Route="signin" AddReturnUrl />
+                    }
+                    else
+                    {
+                        <RedirectTo Route="unauthorized" />
+                    }
+                </NotAuthorized>
+                <Authorizing>
+                    <SplashScreen />
+                </Authorizing>
+            </AuthorizeRouteView>
+        </Found>
+        <NotFound>
+            <PageTitle>Not Found</PageTitle>
+            <LayoutView Layout=@typeof(MainLayout)>
+                <p role="alert">Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>
 
 @code {
     // Configure K.Blazor

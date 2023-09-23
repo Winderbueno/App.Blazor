@@ -1,70 +1,71 @@
-﻿@* Error Handling in Blazor
-    https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/handle-errors?view=aspnetcore-7.0 *@
+﻿@*https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/handle-errors?view=aspnetcore-7.0
+  Error Handling solution can use different mecanism
+    - Try/Catch. [Not used, except for Api Business Error Exception muting]
+    - Blazor ErrorBoundary (Handle an error state) [Used only for global handling]
+        https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/handle-errors?view=aspnetcore-7.0#error-boundaries
+        - Trigger. Error state is activated when the component tree under <ChildContent> throws an unhandled exception
+        - Display. In error state, <ErrorContent> display replace <ChildContent>
+        - Recover. It is possible to recover from the error state
+        Note. "ErrorBoundary" can be overriden to add a particular behaviour OnError on OnRender
+        https://github.com/dotnet/aspnetcore/blob/9ace45d8dffb0c89026df3cd989b49f87c61344c/src/Components/test/testassets/BasicTestApp/ErrorBoundaryTest/CustomErrorBoundary.razor"
+    - Dedicated solution for 'Api Business Errors'. [Used | Not showcased]
+        Trigger. An api response has an HttpCode.400
+        Display. Toaster with ProblemDetails message
+        Impl. ProblemDetailsHandler.cs + Local Try/Catch to avoid exception propagation
+    - Blazor Default ErrorBar. [Not showcased | run the app with an undeclared injected service to see it in action]
+        Trigger. If no other mecanism has triggered
+        Display. Yellow bar on bottom (See.error-handling.css)*@
 <Card Title="Error Handling">
     <Container FlexColumn>
 
-        @* Global Handling goes through 3 levels :
-            - Global Try/Catch. Add ErrorHandler? as CascadingParameter and call ErrorHandler!.ProcessError(e) in Try/Catch
-            - Global ErrorBoundary. (https://jonathancrozier.com/blog/implementing-blazor-error-boundaries)
-                Is triggered for unhandled exception (ErrorBoundary is in MainLayout.razor)
-                It displays a global error message in page content
-            - In last resort, if none of previous mecanism as been triggered, blazor display a default bar*@
-        <Card Title="Global Handling" Level=2>
-            <div>If counter :</div>
-            <div>- Hit 1. Global Try/Catch</div>
-            <div>- Hit 2. Global ErrorBoundary</div>
-            <p><b>Current count.</b> @count</p>
-            <Button @onclick=IncrementCount>+ 1</Button>
+        @* Local Try/Catch (For specific treatment)*@
+        <Card Title="Try/Catch" Level=2>
+            <div>Will log & trigger toast</div>
+            <Button @onclick=TryCatch>Click</Button>
         </Card>
 
-        @* Specific handling with ErrorBoundary (For dedicated display on error)
-            https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/handle-errors?view=aspnetcore-7.0#error-boundaries
-            This error handling method allows to handle an Error State for the component tree in <ChildContent>
-                > Error state is activated when the component tree raises an unhandled exception
-                > During error state, the <ErrorContent> specified Ui replace the component tree
-                > It is possible to recover from the error state
-            Note. "ErrorBoundary" can be overriden to add a particular behaviour
-            https://github.com/dotnet/aspnetcore/blob/9ace45d8dffb0c89026df3cd989b49f87c61344c/src/Components/test/testassets/BasicTestApp/ErrorBoundaryTest/CustomErrorBoundary.razor"*@
-        <Card Title="Error Boundary" Level=2>
+        @*https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/handle-errors?view=aspnetcore-7.0#error-boundaries*@
+        <Card Title="ErrorBoundary" Level=2>
             <ErrorBoundary @ref="errorBoundary">
                 <ChildContent>
+                    <div>Will display @("<ErrorContent>")</div>
                     <ErrorButton/>
                 </ChildContent>
                 <ErrorContent Context="e">
                     <p style ="color:var(--k-color-danger)">
-                        <div>@("<ErrorButton>") is in error state</div>
-                        <div>Exception : @e.Message</div>
+                        <div>@("<ErrorContent>")</div>
+                        <div>@e.Message</div>
                     </p>
                     <Button @onclick=Recover>Recover</Button>
                 </ErrorContent>
             </ErrorBoundary>
         </Card>
+
+        @*https://jonathancrozier.com/blog/implementing-blazor-error-boundaries
+          The app has a global error handling mecanism implemented with ErrorBoundary
+            Impl. <ErrorBoundary> surrounding Body in MainLayout.razor + Recover on SetParam    
+            Display. As no <ErrorContent> is specified, default <ErrorBoundary> display on error (.blazor-error-boundary)*@
+        <Card Title="Global Handling" Level=2>
+            <div>Will display global error</div>
+            <Button @onclick=GlobalHandling>Click</Button>
+        </Card>
     </Container>
 </Card>
 
 @code {
-    [CascadingParameter]
-    public ErrorHandler? ErrorHandler { get; set; }
-
     private ErrorBoundary? errorBoundary;
-    private int count = 0;
-
     private void Recover() => errorBoundary?.Recover();
 
-    private void IncrementCount()
-    {
-        count++;
+    private void GlobalHandling()
+        => throw new NotSupportedException("Too many clicks!");
 
-        if (count == 1)
-        {
-            try
-            {
-                Log.Information("Incremented count to {CurrentCount}", count);
-                throw new NotSupportedException("Too many clicks!");
-            }
-            catch (Exception e) { ErrorHandler!.ProcessError(e); }
-        } 
-        else
-            throw new NotSupportedException("Too many clicks!");
+    private void TryCatch()
+    {
+        try { throw new ApplicationException(); }
+        catch (Exception) {
+            // This could be any other specific treatment
+            Log.Information("Local Try/Catch Log");
+            toaster.AddError("Local Try/Catch Toast"); 
+        }
     }
 }
