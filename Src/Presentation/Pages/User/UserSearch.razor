@@ -31,9 +31,6 @@
 </Container>
 
 @code {
-    [CascadingParameter]
-    public ErrorHandler? ErrorHandler { get; set; }
-
     private UserSearchFormDto form = new();
     private IEnumerable<int>? userIds = null;
     private InfiniteScroller? infiniteScroller;
