@@ -6,7 +6,7 @@ public class UserCreateFormDto
 {
     // User
     public string? Username { get; set; }
-    public UserRole? Role { get; set; }
+    public UserRole? Role { get; set; } = UserRole.User;
 
     // Identity
     public string? Email { get; set; }
