@@ -17,12 +17,12 @@ public partial class ApiException : Exception
         Headers = headers;
     }
 
-    private static string BuildMessage(string message, int statusCode, string response)
+    private static string BuildMessage(string message, int statusCode, string resp)
     {
         return message
               + "\n\nStatus: " + statusCode
                 + "\nResponse: \n" + (
-                    response == null ? "(null)" : response.Substring(0, Math.Min(response.Length, 512))
+                    resp == null ? "(null)" : resp[..Math.Min(resp.Length, 512)]
               );
     }
 
