@@ -4,21 +4,21 @@
     - Blazor <ErrorBoundary> (Handle an error state) [Used only for global handling]
         https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/handle-errors?view=aspnetcore-7.0#error-boundaries
         - Trigger. A component under <ChildContent> throws an unhandled exception.
-        - Action. ErrorState is activated + Rerender display with '<ChildContent> replaced by <ErrorContent>'
+        - Handling. ErrorState is activated + Rerender display with '<ChildContent> replaced by <ErrorContent>'
         - Recover. ErrorState can be recovered if implemented
         Note. <ErrorBoundary> can be overriden to add a particular behaviour OnError on OnRender
         https://github.com/dotnet/aspnetcore/blob/9ace45d8dffb0c89026df3cd989b49f87c61344c/src/Components/test/testassets/BasicTestApp/ErrorBoundaryTest/CustomErrorBoundary.razor"
     - Dedicated solution for 'ApiBusinessErrors'. [Used | Not showcased]
         Trigger. An api response has an HttpCode.(400 or 404)
-        Action. Trigger toaster with ProblemDetails message + Throw ProblemDetailsException
-        Impl. ProblemDetailsHandler.cs (+ If needed, Try/Catch to avoid triggering global ErrorBoundary)
+        Handling. Fire toast with ProblemDetails message + Throw ProblemDetailsException
+        Implem. ProblemDetailsHandler.cs (+ If needed, Try/Catch to avoid triggering global ErrorBoundary)
     - Blazor Default ErrorBar. [Not showcased | run the app with an undeclared injected service to see it in action]
         Trigger. If no other mecanism has triggered
-        Display. Yellow bar on bottom (See.error-handling.css)*@
+        Handling. Yellow bar on bottom (See.error-handling.css)*@
 <Card Title="Error Handling">
     <Container FlexColumn>
 
-        @* Local Try/Catch (For specific treatment)*@
+        @*Try/Catch (For specific treatment)*@
         <Card Title="Try/Catch" Level=2>
             <div>Will log & trigger toast</div>
             <Button @onclick=TryCatch>Click</Button>
@@ -42,9 +42,10 @@
         </Card>
 
         @*https://jonathancrozier.com/blog/implementing-blazor-error-boundaries
-          The app has a global error handling mecanism implemented with ErrorBoundary
-            Impl. <ErrorBoundary> surrounding Body in MainLayout.razor + Recover on SetParam    
-            Display. As no <ErrorContent> is specified, default <ErrorBoundary> display on error (.blazor-error-boundary)*@
+        The app uses <ErrorBoundary> to implement a global error handling mecanism
+            Trigger. A component under <ChildContent> throws an unhandled exception.
+            Handling. ErrorState is activated + Rerender with <ErrorBoundary>'default <ErrorContent> (.blazor-error-boundary)
+            Implem. <ErrorBoundary> surrounding Body in MainLayout.razor + Recover on SetParam*@
         <Card Title="Global Handling" Level=2>
             <div>Will display global error</div>
             <Button @onclick=GlobalHandling>Click</Button>
