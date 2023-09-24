@@ -1,17 +1,17 @@
 ﻿@*https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/handle-errors?view=aspnetcore-7.0
   Error Handling solution can use different mecanism
     - Try/Catch. [Not used, except for Api Business Error Exception muting]
-    - Blazor ErrorBoundary (Handle an error state) [Used only for global handling]
+    - Blazor <ErrorBoundary> (Handle an error state) [Used only for global handling]
         https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/handle-errors?view=aspnetcore-7.0#error-boundaries
-        - Trigger. Error state is activated when the component tree under <ChildContent> throws an unhandled exception
-        - Display. In error state, <ErrorContent> display replace <ChildContent>
-        - Recover. It is possible to recover from the error state
-        Note. "ErrorBoundary" can be overriden to add a particular behaviour OnError on OnRender
+        - Trigger. A component under <ChildContent> throws an unhandled exception.
+        - Action. ErrorState is activated + Rerender display with '<ChildContent> replaced by <ErrorContent>'
+        - Recover. ErrorState can be recovered if implemented
+        Note. <ErrorBoundary> can be overriden to add a particular behaviour OnError on OnRender
         https://github.com/dotnet/aspnetcore/blob/9ace45d8dffb0c89026df3cd989b49f87c61344c/src/Components/test/testassets/BasicTestApp/ErrorBoundaryTest/CustomErrorBoundary.razor"
-    - Dedicated solution for 'Api Business Errors'. [Used | Not showcased]
-        Trigger. An api response has an HttpCode.400
-        Display. Toaster with ProblemDetails message
-        Impl. ProblemDetailsHandler.cs + Local Try/Catch to avoid exception propagation
+    - Dedicated solution for 'ApiBusinessErrors'. [Used | Not showcased]
+        Trigger. An api response has an HttpCode.(400 or 404)
+        Action. Trigger toaster with ProblemDetails message + Throw ProblemDetailsException
+        Impl. ProblemDetailsHandler.cs (+ If needed, Try/Catch to avoid triggering global ErrorBoundary)
     - Blazor Default ErrorBar. [Not showcased | run the app with an undeclared injected service to see it in action]
         Trigger. If no other mecanism has triggered
         Display. Yellow bar on bottom (See.error-handling.css)*@
