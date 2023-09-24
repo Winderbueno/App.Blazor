@@ -22,7 +22,7 @@ public class ProblemDetailsHandler : DelegatingHandler
             // For now, ProblemDetails is an homemade class (See class for more details)
             var problemDetails = JsonConvert.DeserializeObject<ProblemDetails>(await resp.Content.ReadAsStringAsync(CancellationToken.None));
             _toaster.AddError(problemDetails.Detail);
-            throw new ProblemDetailsException(problemDetails.Detail ?? problemDetails.Title ?? "");
+            throw new ProblemDetailsException(problemDetails);
         }
 
         return resp;
