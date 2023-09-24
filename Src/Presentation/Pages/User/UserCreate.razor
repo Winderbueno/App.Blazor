@@ -18,8 +18,8 @@
             </Card>
 
             <Card Title=@t["person.identity"]>
-                <Container Grid GridColumns="1fr 1fr">
-                    <TextField @bind-Value=form.Email Label=@t["person.mail"] />
+                <TextField @bind-Value=form.Email Label=@t["person.mail"] />
+                <Container>
                     <TextField @bind-Value=form.Password Label=@t["user.password"] />
                     <TextField @bind-Value=form.PasswordConfirm Label=@t["action.confirm"] DisablePaste/>
                 </Container>
