@@ -35,9 +35,17 @@
 
     protected override async Task OnInitializedAsync()
     {
-        // Retrieve user info
-        user = await userService.GetAsync(int.Parse(UserId!));
-        form = mapper.Map<UserUpdateFormDto>(user);
+        try
+        {
+            // Retrieve user info
+            user = await userService.GetAsync(int.Parse(UserId!));
+            form = mapper.Map<UserUpdateFormDto>(user);        
+        }
+        catch (ProblemDetailsException)
+        {
+            // If user not found, redirect to creation
+            Nav.NavigateTo("users/create");
+        }
     }
 
     private async void OnValidSubmit()
