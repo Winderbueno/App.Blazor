@@ -1,12 +1,13 @@
-﻿@using Presentation.Middlewares.Authentication
+﻿@using Application.Dtos.Auth;
+@using Presentation.Middlewares.Authentication
 
-@page "/signin"
+@page "/auth/signin"
 @inject AuthStateProvider auth
 @inject NavigationManager Nav
 
-<Container FlexGrow
-           FlexColumn FlexAlign="center" FlexJustify="center">
-     <Card Title="@t["action.signin"]">
+<Container FlexGrow FlexColumn FlexAlign="center" FlexJustify="center">
+
+     <Card Title=@t["action.signin"]>
          <Form Model=form OnValidSubmit=SignInAsync>
              <TextField @bind-Value=form.Username
                         Label=@t["user.username"]
@@ -15,9 +16,12 @@
              <TextField @bind-Value=form.Password
                         Label=@t["user.password"] />
 
-             <Button>@t["action.signin"]</Button>
+             <Button>@t["action.submit"]</Button>
          </Form>
      </Card>
+
+     <Link Route="auth/forgot-password">@t["action.forgot-password"]</Link>
+
  </Container>
 
  @code {
@@ -25,7 +29,7 @@
     [SupplyParameterFromQuery]
     public string? ReturnUrl { get; set; }
 
-    private LoginDto form = new();
+    private SignInFormDto form = new();
 
     private async Task SignInAsync()
     {
@@ -35,20 +39,5 @@
             Nav.NavigateTo(ReturnUrl ?? "demo");
         }
         catch (ProblemDetailsException) { }
-    }
-
-    public class LoginDto
-    {
-        public string Username { get; set; } = "kevin.gellenoncourt@gmail.com";
-        public string Password { get; set; } = "patate";
-    }
-
-    public class LoginDtoValidator : AbstractValidator<LoginDto>
-    {
-        public LoginDtoValidator()
-        {
-            RuleFor(x => x.Username).Cascade(CascadeMode.Stop).NotEmpty().EmailAddress();
-            RuleFor(x => x.Password).NotEmpty();
-        }
     }
 }

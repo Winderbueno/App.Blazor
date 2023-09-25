@@ -9,7 +9,12 @@ public class AuthProfile : Profile
 {
     public AuthProfile()
     {
-        // Shop.Api -> App.Blazor
+        // App -> Api
+        CreateMap<SignInFormDto, SignInDto>();
+        CreateMap<ForgotPasswordFormDto, ForgotPasswordDto>();
+        CreateMap<ResetPasswordFormDto, ResetPasswordDto>();
+
+        // Api -> App
         CreateMap<AuthUserDto, User>()
             .ForMember(dest => dest.AccessToken, opt => opt.MapFrom(src => src.JwtToken))
             .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => new List<string>() { src.Role }));

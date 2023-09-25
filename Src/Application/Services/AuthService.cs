@@ -26,4 +26,13 @@ public class AuthService : IAuthService
 
     public async Task RevokeRefreshTokenAsync()
         => await _shopApi.AuthRevokeTokenAsync(new());
+
+    public async Task ForgotPasswordAsync(ForgotPasswordFormDto dto)
+        => await _shopApi.AuthForgotPasswordAsync(_mapper.Map<ForgotPasswordDto>(dto));
+
+    public async Task ValidateResetTokenAsync(string? token)
+        => await _shopApi.AuthValidateResetTokenAsync(new() { Token = token });
+
+    public async Task ResetPasswordAsync(ResetPasswordFormDto dto)
+        => await _shopApi.AuthResetPasswordAsync(_mapper.Map<ResetPasswordDto>(dto));
 }

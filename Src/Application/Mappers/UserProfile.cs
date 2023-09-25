@@ -12,17 +12,17 @@ public class UserProfile : Profile
 {
     public UserProfile()
     {
-        // App.Blazor -> Shop.Api
+        // App -> Api
         CreateMap<UserCreateFormDto, UserCreateDto>();
         CreateMap<UserSearchFormDto, UserSearchDto>() // Todo. Add Search route with SearchDto in Shop.Api/UserRoutes
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToEnums<UserStatus>()))
             .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.Roles.ToEnums<UserRole>()));
         CreateMap<UserUpdateFormDto, UserUpdateDto>();
 
-        // Shop.Api -> App.Blazor
+        // Api -> App
         CreateMap<UserDto, UserAppDto>();
 
-        // App.Blazor.Internal
+        // App.Internal
         CreateMap<UserAppDto, UserUpdateFormDto>();
     }
 }
