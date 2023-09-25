@@ -4,7 +4,7 @@
     -> Don't change layout in mobile ?*@
     <Container Grid GridColumns="1fr 1fr 1fr"
                 ColumnGap=Size.Smaller RowGap=Size.Smaller>
-         @foreach (var key in ColorMap.Keys)
+        @foreach (var key in ColorMap.Keys)
         {
             <Chip Label=@key Color=ChipColor(key) />
         }
