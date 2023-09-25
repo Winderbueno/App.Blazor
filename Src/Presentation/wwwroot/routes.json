@@ -1,0 +1,11 @@
+{
+  // For StaticWebApp to route all url to blazor app
+  // https://dev.to/azure/deploy-blazor-webassembly-apps-to-azure-static-web-apps-6bp
+  "routes": [
+    {
+      "route": "/*",
+      "serve": "/index.html",
+      "statusCode": 200
+    }
+  ]
+}
