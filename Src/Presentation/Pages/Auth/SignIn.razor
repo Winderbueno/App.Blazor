@@ -1,9 +1,4 @@
-﻿@using Application.Dtos.Auth;
-@using Presentation.Middlewares.Authentication
-
-@page "/auth/signin"
-@inject AuthStateProvider auth
-@inject NavigationManager Nav
+﻿@page "/auth/signin"
 
 <Container FlexGrow FlexColumn FlexAlign="center" FlexJustify="center">
 
@@ -35,7 +30,7 @@
     {
         try
         {
-            await auth.SignInAsync(form.Username, form.Password);
+            await authState.SignInAsync(form.Username, form.Password);
             Nav.NavigateTo(ReturnUrl ?? "demo");
         }
         catch (ProblemDetailsException) { }

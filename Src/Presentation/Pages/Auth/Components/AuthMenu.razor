@@ -1,8 +1,4 @@
-﻿@using Presentation.Middlewares.Authentication
-
-@inject AuthStateProvider auth
-
-<Card Level=2>
+﻿<Card Level=2>
     <AuthorizeView>
         <Authorized>
             <div>@t["user.greeting"] @context.User.Identity!.Name !</div>
@@ -16,5 +12,5 @@
 </Card>
 
 @code {
-    private async Task SignOut() => await auth.SignOut();
+    private async Task SignOut() => await authState.SignOut();
 }
