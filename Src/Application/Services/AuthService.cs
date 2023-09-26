@@ -30,6 +30,9 @@ public class AuthService : IAuthService
     public async Task SignUpAsync(SignUpFormDto dto)
         => await _shopApi.AuthSignUpAsync(_mapper.Map<SignUpDto>(dto));
 
+    public async Task VerifyEmailAsync(string? token)
+        => await _shopApi.AuthVerifyEmailAsync(new() { Token = token });
+
     public async Task ForgotPasswordAsync(ForgotPasswordFormDto dto)
         => await _shopApi.AuthForgotPasswordAsync(_mapper.Map<ForgotPasswordDto>(dto));
 

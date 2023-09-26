@@ -24,7 +24,8 @@
     "signup": "S'enregistrer",
     "signout": "Se déconnecter",
     "submit": "Soumettre",
-    "validate": "Valider"
+    "validate": "Valider",
+    "verify-email": "Vérification de votre email"
   },
   "event": {
     "created": "Création réussie !",

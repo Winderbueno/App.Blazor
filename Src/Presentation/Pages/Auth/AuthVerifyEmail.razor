@@ -1,0 +1,29 @@
+﻿@page "/auth/verify-email"
+
+<Container FlexGrow FlexColumn FlexAlign="center" FlexJustify="center">
+    <Card Title=@t["action.verify-email"]>
+        @if (tokenValid == null) { <div>Token validating</div> }
+        else { <div>Token invalid</div> }
+    </Card>
+</Container>
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string? Token { get; set; }
+
+    private bool? tokenValid;
+    private ResetPasswordFormDto form = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await auth.VerifyEmailAsync(Token);
+            tokenValid = true;
+            Nav.NavigateTo("auth/signin");
+            toaster.AddSuccess("Verification Successful, you can now signin");
+        }
+        catch (Exception) { tokenValid = false; }
+    }
+}
