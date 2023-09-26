@@ -1,7 +1,7 @@
 ﻿@page "/auth/verify-email"
 
 <Container FlexGrow FlexColumn FlexAlign="center" FlexJustify="center">
-    <Card Title=@t["action.verify-email"]>
+    <Card Title=@t["auth.verify-email.action"]>
         @if (tokenValid == null) { <div>Token validating</div> }
         else { <div>Token invalid</div> }
     </Card>
@@ -22,7 +22,7 @@
             await auth.VerifyEmailAsync(Token);
             tokenValid = true;
             Nav.NavigateTo("auth/signin");
-            toaster.AddSuccess("Verification Successful, you can now signin");
+            toaster.AddSuccess(t["auth.verify-email.success"]);
         }
         catch (Exception) { tokenValid = false; }
     }

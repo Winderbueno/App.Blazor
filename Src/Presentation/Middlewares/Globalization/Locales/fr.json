@@ -12,7 +12,6 @@
     "create": "Créer",
     "delete": "Supprimer",
     "edit": "Editer",
-    "forgot-password": "Mot de passe oublié",
     "load": "Chargement en cours...",
     "next": "Suivant",
     "open": "Ouvrir",
@@ -20,25 +19,39 @@
     "reset": "Ré-initialiser",
     "search": "Rechercher",
     "sign": "Signer",
-    "signin": "Se connecter",
-    "signup": "S'enregistrer",
-    "signout": "Se déconnecter",
     "submit": "Soumettre",
-    "validate": "Valider",
-    "verify-email": "Vérification de votre email"
+    "validate": "Valider"
+  },
+  "auth": {
+    "forgot-password": {
+      "action": "Mot de passe oublié",
+      "success": "Verifier vos emails pour trouver le lien de reinitialisation du mot de passe."
+    },
+    "reset-password": {
+      "action": "Réinitialiser votre mot de passe",
+      "success": "Mot de passe réinitilisaer, vous pouvez vous connecter."
+    },
+    "signin": {
+      "action": "Se connecter"
+    },
+    "signup": {
+      "action": "S'enregistrer",
+      "success": "Enregistrement réussie, vous devez recevoir un email de validation."
+    },
+    "signout": {
+      "auto": "Vous avez été déconnecté",
+      "action": "Se déconnecter",
+      "success": "Déconnexion réussie."
+    },
+    "verify-email": {
+      "action": "Vérification de votre email",
+      "success": "Verification réussie, vous pouvez maintenant vous connecter."
+    }
   },
   "event": {
     "created": "Création réussie !",
     "deleted": "Suppression réussie !",
-    "edited": "Edition réussie !",
-    "signin": {
-      "error": "Erreur lors de la connexion.",
-      "redirect": "Redirection vers l'écran de connexion...",
-      "success": "Connexion réussie."
-    },
-    "signout": {
-      "auto": "Vous avez été déconnecté"
-    }
+    "edited": "Edition réussie !"
   },
   "feature": {
     "home": "Accueil",

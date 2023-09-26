@@ -101,8 +101,7 @@ public class AuthStateProvider : AuthenticationStateProvider
         try { user = await _authService.RefreshTokenAsync(); } 
         catch {
             // Auto SignOut
-            _toaster.AddError(_t["event.signout.auto"]);
-
+            _toaster.AddError(_t["auth.signout.auto"]);
             await StopRefreshTokenRotation(); 
         }
         return user!;

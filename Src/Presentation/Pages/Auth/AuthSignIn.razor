@@ -1,7 +1,7 @@
 ﻿@page "/auth/signin"
 
 <Container FlexGrow FlexColumn FlexAlign="center" FlexJustify="center">
-     <Card Title=@t["action.signin"]>
+     <Card Title=@t["auth.signin.action"]>
          <Form Model=form OnValidSubmit=OnSubmit>
              <TextField @bind-Value=form.Email
                         Label=@t["user.username"]
@@ -13,12 +13,12 @@
              <Button>@t["action.submit"]</Button>
 
              <Container FlexJustify="center">
-                 <Link Route="auth/forgot-password">@t["action.forgot-password"]</Link>
+                 <Link Route="auth/forgot-password">@t["auth.forgot-password.action"]</Link>
              </Container>
          </Form>
      </Card>
 
-     <Link Button Route="auth/signup" Color=Color.Light>@t["action.signup"]</Link>
+     <Link Button Route="auth/signup" Color=Color.Light>@t["auth.signup.action"]</Link>
  </Container>
 
  @code {

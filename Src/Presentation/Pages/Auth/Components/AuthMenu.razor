@@ -2,11 +2,11 @@
     <AuthorizeView>
         <Authorized>
             <div>@t["user.greeting"] @context.User.Identity!.Name !</div>
-            <Button @onclick=SignOut>@t["action.signout"]</Button>
+            <Button @onclick=SignOut>@t["auth.signout.action"]</Button>
         </Authorized>
         <NotAuthorized>
             <div>Not connected</div>
-            <Link Button Route="auth/signin">@t["action.signin"]</Link>
+            <Link Button Route="auth/signin">@t["auth.signin.action"]</Link>
         </NotAuthorized>
     </AuthorizeView>
 </Card>
@@ -17,7 +17,7 @@
         {
             await authState.SignOut();
             Nav.NavigateTo("auth/signin");
-            toaster.AddSuccess("Successfully disconnected");
+            toaster.AddSuccess(@t["auth.signout.success"]);
         }
         catch (ProblemDetailsException) { }
     }

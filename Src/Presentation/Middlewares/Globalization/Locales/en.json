@@ -12,7 +12,6 @@
     "confirm": "Confirm",
     "delete": "Delete",
     "edit": "Edit",
-    "forgot-password": "Forgot Password",
     "load": "Loading...",
     "next": "Suivant",
     "open": "Open",
@@ -20,25 +19,39 @@
     "reset": "Reset",
     "search": "Search",
     "sign": "Sign",
-    "signin": "Sign In",
-    "signup": "Sign Up",
-    "signout": "Sign Out",
     "submit": "Submit",
-    "validate": "Validate",
-    "verify-email": "Verify Email"
+    "validate": "Validate"
+  },
+  "auth": {
+    "forgot-password": {
+      "action": "Forgot Password",
+      "success": "Please check your email for password reset instructions"
+    },
+    "reset-password": {
+      "action": "Reset Password",
+      "success": "Password reset successful, you can now login"
+    },
+    "signin": {
+      "action": "Sign In"
+    },
+    "signup": {
+      "action": "Sign Up",
+      "success": "Successful sign up, please check your email for verification instructions."
+    },
+    "signout": {
+      "auto": "Vous avez été déconnecté",
+      "action": "Sign Out",
+      "success": "Successful signout"
+    },
+    "verify-email": {
+      "action": "Verify Email",
+      "success": "Verification successful, you can now signin."
+    }
   },
   "event": {
     "created": "Successfully created !",
     "deleted": "Successfully deleted !",
-    "edited": "Successfully edited !",
-    "signin": {
-      "error": "Sign in error.",
-      "redirect": "Redirect to sign in...",
-      "success": "Sign in succeded."
-    },
-    "signout": {
-      "auto": "You've been disconnected"
-    }
+    "edited": "Successfully edited !"
   },
   "feature": {
     "home": "Home",
