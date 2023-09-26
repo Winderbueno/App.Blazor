@@ -33,7 +33,7 @@
         {
             await auth.SignUpAsync(form);
             Nav.NavigateTo("auth/signin");
-            toaster.AddSuccess("Todo");
+            toaster.AddSuccess("Successful sign up, please check your email for verification instructions");
         }
         catch (ProblemDetailsException) { }
     }
