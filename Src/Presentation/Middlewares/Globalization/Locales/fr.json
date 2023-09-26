@@ -21,6 +21,7 @@
     "search": "Rechercher",
     "sign": "Signer",
     "signin": "Se connecter",
+    "signup": "S'enregistrer",
     "signout": "Se déconnecter",
     "submit": "Soumettre",
     "validate": "Valider"
@@ -58,7 +59,7 @@
     "firstname": "Prénom",
     "identity": "Identité",
     "lastname": "Nom",
-    "mail": "Email",
+    "email": "Email",
     "phone": "Téléphone"
   },
   "user": {

@@ -1,10 +1,9 @@
 ﻿@page "/auth/signin"
 
 <Container FlexGrow FlexColumn FlexAlign="center" FlexJustify="center">
-
      <Card Title=@t["action.signin"]>
-         <Form Model=form OnValidSubmit=SignInAsync>
-             <TextField @bind-Value=form.Username
+         <Form Model=form OnValidSubmit=OnSubmit>
+             <TextField @bind-Value=form.Email
                         Label=@t["user.username"]
                         Placeholder="patate@mail.com" />
 
@@ -12,11 +11,14 @@
                         Label=@t["user.password"] />
 
              <Button>@t["action.submit"]</Button>
+
+             <Container FlexJustify="center">
+                 <Link Route="auth/forgot-password">@t["action.forgot-password"]</Link>
+             </Container>
          </Form>
      </Card>
 
-     <Link Route="auth/forgot-password">@t["action.forgot-password"]</Link>
-
+     <Link Button Route="auth/signup" Color=Color.Light>@t["action.signup"]</Link>
  </Container>
 
  @code {
@@ -26,11 +28,11 @@
 
     private SignInFormDto form = new();
 
-    private async Task SignInAsync()
+    private async Task OnSubmit()
     {
         try
         {
-            await authState.SignInAsync(form.Username, form.Password);
+            await authState.SignInAsync(form);
             Nav.NavigateTo(ReturnUrl ?? "demo");
         }
         catch (ProblemDetailsException) { }

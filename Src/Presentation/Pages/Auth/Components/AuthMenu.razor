@@ -12,5 +12,13 @@
 </Card>
 
 @code {
-    private async Task SignOut() => await authState.SignOut();
+    private async Task SignOut() {
+        try
+        {
+            await authState.SignOut();
+            Nav.NavigateTo("auth/signin");
+            toaster.AddSuccess("Successfully disconnected");
+        }
+        catch (ProblemDetailsException) { }
+    }
 }

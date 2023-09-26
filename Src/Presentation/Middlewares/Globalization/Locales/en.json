@@ -20,8 +20,9 @@
     "reset": "Reset",
     "search": "Search",
     "sign": "Sign",
-    "signin": "Sign in",
-    "signout": "Sign out",
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "signout": "Sign Out",
     "submit": "Submit",
     "validate": "Validate"
   },
@@ -58,7 +59,7 @@
     "firstname": "First Name",
     "identity": "Identity",
     "lastname": "Last Name",
-    "mail": "Mail",
+    "email": "Email",
     "phone": "Phone"
   },
   "user": {

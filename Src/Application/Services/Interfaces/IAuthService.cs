@@ -4,9 +4,10 @@ namespace Application.Services.Interfaces;
 
 public interface IAuthService
 {
-    Task<User?> SignInAsync(string username, string password);
+    Task<User?> SignInAsync(SignInFormDto dto);
     Task<User?> RefreshTokenAsync();
     Task RevokeRefreshTokenAsync();
+    Task SignUpAsync(SignUpFormDto dto);
     Task ForgotPasswordAsync(ForgotPasswordFormDto dto);
     Task ValidateResetTokenAsync(string? token);
     Task ResetPasswordAsync(ResetPasswordFormDto dto);

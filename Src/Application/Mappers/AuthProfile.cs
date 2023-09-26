@@ -10,9 +10,10 @@ public class AuthProfile : Profile
     public AuthProfile()
     {
         // App -> Api
-        CreateMap<SignInFormDto, SignInDto>();
         CreateMap<ForgotPasswordFormDto, ForgotPasswordDto>();
         CreateMap<ResetPasswordFormDto, ResetPasswordDto>();
+        CreateMap<SignInFormDto, SignInDto>();
+        CreateMap<SignUpFormDto, SignUpDto>();
 
         // Api -> App
         CreateMap<AuthUserDto, User>()

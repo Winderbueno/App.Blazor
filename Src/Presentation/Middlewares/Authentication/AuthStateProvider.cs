@@ -40,9 +40,9 @@ public class AuthStateProvider : AuthenticationStateProvider
         => new(await StartRefreshTokenRotation());
 
     // Manual SignIn
-    public async Task SignInAsync(string username, string password)
+    public async Task SignInAsync(SignInFormDto dto)
     {
-        var user = await _authService.SignInAsync(username, password);
+        var user = await _authService.SignInAsync(dto);
         var principal = await StartRefreshTokenRotation(user);
 
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(principal)));
