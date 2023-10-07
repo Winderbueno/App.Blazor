@@ -1,4 +1,5 @@
-﻿@using Presentation.Pages.Demo.Components.ErrorHandling
+﻿@using Presentation.Pages.Demo.Components.Contents
+@using Presentation.Pages.Demo.Components.ErrorHandling
 @using Presentation.Pages.Demo.Components.Containers
 @using Presentation.Pages.Demo.Components.Indicators
 @using Presentation.Pages.Demo.Components.Interactions
@@ -39,18 +40,21 @@
 
         <Card Title="Containers">
             <Container FlexAlign="start">
-                <Card Title="Form" Level=2>
-                    <TabGroup>
-                        <Tab Label="Input"><FormInput /></Tab>
-                        <Tab Label="Display"><FormDisplay /></Tab>
-                    </TabGroup>
-                </Card>
+                <Forms />
+                
                 <Container FlexColumn>
                     <Tabs />
                     <Table />
                 </Container>
 
                 <Cards />
+            </Container>
+        </Card>
+
+        <Card Title="Contents">
+            <Container>
+                <DetailedData />
+                <DataLists />
             </Container>
         </Card>
     </Container>
