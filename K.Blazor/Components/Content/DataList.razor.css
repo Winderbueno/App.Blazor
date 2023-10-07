@@ -1,10 +1,10 @@
-﻿.user-data {
+﻿.datas {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.user-data li {
+.datas li {
     list-style: none;
     text-overflow: ellipsis;
     overflow: hidden;

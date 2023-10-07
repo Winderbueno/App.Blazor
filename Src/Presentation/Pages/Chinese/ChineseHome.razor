@@ -1,0 +1,56 @@
+﻿@page "/chinese"
+
+<h1>Chinese</h1>
+
+<Container FlexAlign="center" FlexJustify="center">
+    <Card Title="Personal Pronoun">
+        <DataList Datas=PersonalPronouns />
+        Add "Menn" for plural (we, you, they)
+    </Card>
+
+    <Card Title="Interrogatives">
+        <DataList Datas=Interrogatives />
+    </Card>
+    
+    <Card Title="Temporality">
+        <Container FlexColumn>
+            <Card Level=2><DataList Datas=Days /></Card>
+            <Card Level=2><DataList Datas=Daytime /></Card>
+        </Container>
+    </Card>
+</Container>
+
+@code {
+    private Dictionary<string, string> Days = new()
+    {
+        {"day before yesterday", "qiántiān"},
+        {"yesterday", "zuótiān"},
+        {"today", "jīntiān"},
+        {"tommorow", "míngtiān"},
+        {"day after tommorow", "hòutiān"}
+    };
+
+    private Dictionary<string, string> Daytime = new()
+    {
+        {"morning", "zăoshang"},
+        {"afternoon", "xiàwŭ"},
+        {"evening", "wănshang"},
+        {"night", "yèwǎn"}
+    };
+
+    private Dictionary<string, string> PersonalPronouns = new()
+    {
+        {"I", "wo"},
+        {"You", "ni"},
+        {"He/She", "tra"}
+    };
+
+    private Dictionary<string, string> Interrogatives = new()
+    {
+        {"Which", "na"},
+        {"What", "cheunn-me"},
+        {"Who", "cheill"},
+        {"Where", "nar"},
+        {"How", "dzeunn-me"}
+    };
+}
