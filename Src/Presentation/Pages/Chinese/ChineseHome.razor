@@ -1,48 +1,58 @@
-﻿@page "/chinese"
+﻿@using K.Blazor.Components.Contents.Model
+
+@page "/chinese"
 
 <h1>Chinese</h1>
 
 <Container FlexAlign="center" FlexJustify="center">
     <Card Title="Personal Pronoun">
-        <DataList Datas=PersonalPronouns />
+        <WordTranslationList Datas=PersonalPronouns />
         Add "Menn" for plural (we, you, they)
     </Card>
 
     <Card Title="Interrogatives">
         <DataList Datas=Interrogatives />
     </Card>
+
+    <Card Title="Verbs">
+        <DataList Datas=Interrogatives />
+    </Card>
+
+    <Card Title="Negation">
+        bù
+    </Card>
     
     <Card Title="Temporality">
         <Container FlexColumn>
-            <Card Level=2><DataList Datas=Days /></Card>
-            <Card Level=2><DataList Datas=Daytime /></Card>
+            <Card Level=2><WordTranslationList Datas=Days /></Card>
+            <Card Level=2><WordTranslationList Datas=Daytime /></Card>
         </Container>
     </Card>
 </Container>
 
 @code {
-    private Dictionary<string, string> Days = new()
+    private List<WordTranslation> Days = new()
     {
-        {"day before yesterday", "qiántiān"},
-        {"yesterday", "zuótiān"},
-        {"today", "jīntiān"},
-        {"tommorow", "míngtiān"},
-        {"day after tommorow", "hòutiān"}
+        new() { English = "day before yesterday", Pinyin = "qiántiān", FrenchPhonetics = "tchienne-tienne"},
+        new() { English = "yesterday", Pinyin = "zuótiān", FrenchPhonetics = "dzouo-tienne"},
+        new() { English = "today", Pinyin = "jīntiān", FrenchPhonetics = "djinne-tienne"},
+        new() { English = "tommorow", Pinyin = "míngtiān", FrenchPhonetics = "ming-tienne"},
+        new() { English = "day after tommorow", Pinyin = "hòutiān", FrenchPhonetics = "ho-tienne"}
     };
 
-    private Dictionary<string, string> Daytime = new()
+    private List<WordTranslation> Daytime = new()
     {
-        {"morning", "zăoshang"},
-        {"afternoon", "xiàwŭ"},
-        {"evening", "wănshang"},
-        {"night", "yèwǎn"}
+        new() { English = "morning", Pinyin = "zăoshang", FrenchPhonetics = "dzao-chang"},
+        new() { English = "afternoon", Pinyin = "xiàwŭ", FrenchPhonetics = "sia-wou"},
+        new() { English = "evening", Pinyin = "wănshang", FrenchPhonetics = "wanne-chang"},
+        new() { English = "night", Pinyin = "yèwǎn", FrenchPhonetics = "yé-wanne"},
     };
 
-    private Dictionary<string, string> PersonalPronouns = new()
+    private List<WordTranslation> PersonalPronouns = new()
     {
-        {"I", "wo"},
-        {"You", "ni"},
-        {"He/She", "tra"}
+        new() { English = "I", Pinyin = "wŏ", FrenchPhonetics = "wo"},
+        new() { English = "You", Pinyin = "nĭ", FrenchPhonetics = "ni"},
+        new() { English = "He/She", Pinyin = "tā", FrenchPhonetics = "tra"}
     };
 
     private Dictionary<string, string> Interrogatives = new()
@@ -51,6 +61,13 @@
         {"What", "cheunn-me"},
         {"Who", "cheill"},
         {"Where", "nar"},
+        {"How", "dzeunn-me"}
+    };
+
+    private Dictionary<string, string> Verbs = new()
+    {
+        {"See", "jiàn"},
+        {"Want", "xiăng, yào"},
         {"How", "dzeunn-me"}
     };
 }
