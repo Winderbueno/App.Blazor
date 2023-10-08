@@ -1,0 +1,15 @@
+﻿@using K.Blazor.Components.Contents.Style
+
+<ListStyle>
+    <ul class="datas">
+        @foreach (KeyValuePair<string, string> data in Datas)
+        {
+            <li><b>@data.Key.</b> @data.Value</li>
+        }
+    </ul>
+</ListStyle>
+
+@code {
+    [Parameter]
+    public Dictionary<string, string> Datas { get; set; } = new();
+}

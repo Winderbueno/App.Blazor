@@ -1,0 +1,13 @@
+::deep .datas {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    ::deep .datas li {
+        list-style: none;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-block: 0.25em;
+    }
