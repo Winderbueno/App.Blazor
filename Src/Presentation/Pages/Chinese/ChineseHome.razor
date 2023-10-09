@@ -22,7 +22,14 @@
     </Container>
     
     <Card Title="Verbs">
-        <WordTranslationList Datas=Verbs />
+        <CardTitle>
+            <Button @onclick="_ => showVerbs = !showVerbs">@(showVerbs ? "Hide" : "Show")</Button>
+        </CardTitle>
+        <CardBody>
+            <WordTranslationList 
+                Datas=Verbs
+                ShowTranslation=showVerbs />
+        </CardBody>
     </Card>
     
     <Card Title="Temporality">
@@ -34,6 +41,8 @@
 </Container>
 
 @code {
+    private bool showVerbs = true;
+
     private List<WordTranslation> Days = new()
     {
         new() { English = "day before yesterday", Pinyin = "qiántiān", FrenchPhonetics = "tchienne-tienne"},
