@@ -5,21 +5,24 @@
 <h1>Chinese</h1>
 
 <Container FlexAlign="center" FlexJustify="center">
-    <Card Title="Personal Pronoun">
-        <WordTranslationList Datas=PersonalPronouns />
-        Add "Menn" for plural (we, you, they)
-    </Card>
 
-    <Card Title="Interrogatives">
-        <DataList Datas=Interrogatives />
-    </Card>
+    <Container FlexColumn>
+        <Card Title="Personal Pronoun">
+            <WordTranslationList Datas=PersonalPronouns />
+            Add "Menn" for plural (we, you, they)
+        </Card>
 
+        <Card Title="Interrogatives">
+            <DataList Datas=Interrogatives />
+        </Card>
+
+        <Card Title="Negation">
+            bù
+        </Card>
+    </Container>
+    
     <Card Title="Verbs">
-        <DataList Datas=Interrogatives />
-    </Card>
-
-    <Card Title="Negation">
-        bù
+        <WordTranslationList Datas=Verbs />
     </Card>
     
     <Card Title="Temporality">
@@ -64,10 +67,23 @@
         {"How", "dzeunn-me"}
     };
 
-    private Dictionary<string, string> Verbs = new()
+    private List<WordTranslation> Verbs = new()
     {
-        {"See", "jiàn"},
-        {"Want", "xiăng, yào"},
-        {"How", "dzeunn-me"}
+        new() { English = "Be", Pinyin = "shì", FrenchPhonetics = "cheu"},
+        new() { English = "Have", Pinyin = "yŏu", FrenchPhonetics = "yow"},
+        new() { English = "Go", Pinyin = "qù", FrenchPhonetics = "tshu"},
+        new() { English = "Put", Pinyin = "fàng", FrenchPhonetics = "fang"},
+        new() { English = "Feel (se sentir)", Pinyin = "gǎnjué", FrenchPhonetics = "gann-tjué"},
+        new() { English = "See (Each other)", Pinyin = "jiàn", FrenchPhonetics = "tjienn"},
+        new() { English = "Want (general)", Pinyin = "xiăng", FrenchPhonetics = "chiang"},
+        new() { English = "Want (avoir envie de)", Pinyin = "yào", FrenchPhonetics = "iao"},
+        new() { English = "Eat", Pinyin = "chī", FrenchPhonetics = "tcheu"},
+        new() { English = "Drink", Pinyin = "hē", FrenchPhonetics = "Re"},
+        new() { English = "Sleep", Pinyin = "", FrenchPhonetics = ""},
+        new() { English = "Love", Pinyin = "ài", FrenchPhonetics = "aille"},
+        new() { English = "Like", Pinyin = "xĭhuan", FrenchPhonetics = "si-Rouann"},
+        new() { English = "Read", Pinyin = "yuè", FrenchPhonetics = "uè"},
+        new() { English = "Open", Pinyin = "kāimén", FrenchPhonetics = "kaimeun"},
+        new() { English = "Kiss", Pinyin = "qīn/wĕn", FrenchPhonetics = "tsinn/wenn"},
     };
 }
