@@ -31,6 +31,12 @@
                 ShowTranslation=showVerbs />
         </CardBody>
     </Card>
+
+    <Card Title="Adjectives">
+        <WordTranslationList 
+                Datas=Adjectives
+                ShowTranslation=showVerbs />
+    </Card>
     
     <Card Title="Temporality">
         <Container FlexColumn>
@@ -46,6 +52,13 @@
     private List<WordTranslation> Exemple = new()
     {
         new() { English = "", Pinyin = "", FrenchPhonetics = ""},
+    };
+
+    private List<WordTranslation> Adverbs = new()
+    {
+        new() { English = "very", Pinyin = "hĕn", FrenchPhonetics = "Ren"},
+        new() { English = "much", Pinyin = "duō", FrenchPhonetics = "Douo"},
+        new() { English = "too much", Pinyin = "duō hĕn", FrenchPhonetics = "Douo-Ren"},
     };
 
     private List<WordTranslation> Days = new()
@@ -83,7 +96,7 @@
 
     private List<WordTranslation> Adjectives = new()
     {
-        new() { English = "Good (Bon)", Pinyin = "hăo", FrenchPhonetics = "Rao"},
+        new() { English = "Good (Bon/Bien)", Pinyin = "hăo", FrenchPhonetics = "Rao"},
         new() { English = "Beautiful", Pinyin = "méi", FrenchPhonetics = "méi"},
         new() { English = "Tall (big ?)", Pinyin = "dà/gāodà", FrenchPhonetics = "da"},
         new() { English = "Perfect", Pinyin = "wán měi", FrenchPhonetics = "same"},
