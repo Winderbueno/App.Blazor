@@ -13,7 +13,7 @@
         </Card>
 
         <Card Title="Interrogatives">
-            <DataList Datas=Interrogatives />
+            <WordTranslationList Datas=Interrogatives />
         </Card>
 
         <Card Title="Negation">
@@ -43,6 +43,11 @@
 @code {
     private bool showVerbs = true;
 
+    private List<WordTranslation> Exemple = new()
+    {
+        new() { English = "", Pinyin = "", FrenchPhonetics = ""},
+    };
+
     private List<WordTranslation> Days = new()
     {
         new() { English = "day before yesterday", Pinyin = "qiántiān", FrenchPhonetics = "tchienne-tienne"},
@@ -57,7 +62,7 @@
         new() { English = "morning", Pinyin = "zăoshang", FrenchPhonetics = "dzao-chang"},
         new() { English = "afternoon", Pinyin = "xiàwŭ", FrenchPhonetics = "sia-wou"},
         new() { English = "evening", Pinyin = "wănshang", FrenchPhonetics = "wanne-chang"},
-        new() { English = "night", Pinyin = "yèwǎn", FrenchPhonetics = "yé-wanne"},
+        new() { English = "night", Pinyin = "yèwǎn", FrenchPhonetics = "yé-wanne"}
     };
 
     private List<WordTranslation> PersonalPronouns = new()
@@ -67,21 +72,22 @@
         new() { English = "He/She", Pinyin = "tā", FrenchPhonetics = "tra"}
     };
 
-    private Dictionary<string, string> Interrogatives = new()
+    private List<WordTranslation> Interrogatives = new()
     {
-        {"Which", "na"},
-        {"What", "cheunn-me"},
-        {"Who", "cheill"},
-        {"Where", "nar"},
-        {"How", "dzeunn-me"}
+        new() { English = "Which", Pinyin = "nă", FrenchPhonetics = "naha"},
+        new() { English = "What", Pinyin = "shénme", FrenchPhonetics = "cheunn-me"},
+        new() { English = "Who", Pinyin = "shéi", FrenchPhonetics = "cheill"},
+        new() { English = "Where", Pinyin = "năli", FrenchPhonetics = "nali"},
+        new() { English = "How", Pinyin = "zĕnme", FrenchPhonetics = "dzeunn-me"}
     };
 
     private List<WordTranslation> Adjectives = new()
     {
         new() { English = "Good (Bon)", Pinyin = "hăo", FrenchPhonetics = "Rao"},
         new() { English = "Beautiful", Pinyin = "méi", FrenchPhonetics = "méi"},
-        new() { English = "Beautiful", Pinyin = "piàoliàng", FrenchPhonetics = "piao-liang"},
-        new() { English = "Beautiful", Pinyin = "piàoliàng", FrenchPhonetics = "piao-liang"},
+        new() { English = "Tall (big ?)", Pinyin = "dà/gāodà", FrenchPhonetics = "da"},
+        new() { English = "Perfect", Pinyin = "wán měi", FrenchPhonetics = "same"},
+        new() { English = "Happy", Pinyin = "gāoxìng", FrenchPhonetics = "gao-ching"}
     };
 
     private List<WordTranslation> Verbs = new()
@@ -102,6 +108,6 @@
         new() { English = "Like", Pinyin = "xĭhuan", FrenchPhonetics = "si-Rouann"},
         new() { English = "Read", Pinyin = "yuè", FrenchPhonetics = "uè"},
         new() { English = "Open", Pinyin = "kāimén", FrenchPhonetics = "kaimeun"},
-        new() { English = "Kiss", Pinyin = "qīn/wĕn", FrenchPhonetics = "tsinn/wenn"},
+        new() { English = "Kiss", Pinyin = "qīn/wĕn", FrenchPhonetics = "tsinn/weunn"}
     };
 }

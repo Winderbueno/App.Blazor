@@ -5,7 +5,7 @@
     <ul class="datas">
         @foreach (WordTranslation data in Datas)
         {
-            <li><b>@data.English.</b>@(ShowTranslation ? $" {data.Pinyin}[{data.FrenchPhonetics}]" : "")</li>
+            <li><b>@data.English.</b>@(ShowTranslation ? $" {data.Pinyin} [{data.FrenchPhonetics}]" : "")</li>
         }
     </ul>
 </ListStyle>
