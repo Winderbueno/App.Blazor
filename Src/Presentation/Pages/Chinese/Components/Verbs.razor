@@ -5,6 +5,7 @@
     <CardBody>
         <Container Grid GridAlign="stretch">
             <Card Title="Basic" Level=2><WordTranslationList Datas=Basic ShowTranslation=show /></Card>
+            <Card Title="Knowledge" Level=2><WordTranslationList Datas=Knowledge ShowTranslation=show /></Card>
             <Card Title="Movement" Level=2><WordTranslationList Datas=Movement ShowTranslation=show /></Card>
             <Card Title="Needs" Level=2><WordTranslationList Datas=Needs ShowTranslation=show /></Card>
             <Card Title="Senses" Level=2><WordTranslationList Datas=Senses ShowTranslation=show /></Card>
@@ -24,7 +25,6 @@
         new() { English = "Kiss", Pinyin = "qīn/wĕn", FrenchPhonetics = "tshinn/weunn"},
         new() { English = "Love", Pinyin = "ài", FrenchPhonetics = "aille"},
         new() { English = "Like", Pinyin = "xĭhuan", FrenchPhonetics = "shi-Rouann"},
-        new() { English = "Understand", Pinyin = "dŏng", FrenchPhonetics = ""},
         new() { English = "Want (general)", Pinyin = "xiăng", FrenchPhonetics = "shiang"},
         new() { English = "Want (avoir envie de)", Pinyin = "yào", FrenchPhonetics = "iao"}
     };
@@ -54,10 +54,16 @@
         new() { English = "Hear", Pinyin = "tīngjiàn", FrenchPhonetics = "ting-tjienn"},
         new() { English = "Listen", Pinyin = "tīng", FrenchPhonetics = "ting"},
         new() { English = "Look", Pinyin = "", FrenchPhonetics = ""},
-        new() { English = "Read", Pinyin = "yuè", FrenchPhonetics = "uè"},
-        new() { English = "Say", Pinyin = "shuō", FrenchPhonetics = "chouo"},
         new() { English = "See (Each other)", Pinyin = "jiàn", FrenchPhonetics = "tjienn"},
         new() { English = "Smell", Pinyin = "cháng", FrenchPhonetics = ""},
+    };
+
+    private List<WordTranslation> Knowledge = new()
+    {
+        new() { English = "Read", Pinyin = "yuè", FrenchPhonetics = "uè"},
+        new() { English = "Say", Pinyin = "shuō", FrenchPhonetics = "chouo"},
         new() { English = "Talk", Pinyin = "shuōhuà", FrenchPhonetics = "chouoRoa"},
+        new() { English = "Understand", Pinyin = "dŏng", FrenchPhonetics = ""},
+        new() { English = "Know", Pinyin = "zhīdao", FrenchPhonetics = ""},
     };
 }
