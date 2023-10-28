@@ -15,25 +15,21 @@
         <Card Title="Interrogatives"><WordTranslationList Datas=Interrogatives /></Card>
         <Card Title="Negation">Bù</Card>
     </Container>
-    
+
     <Verbs />
 
     <Container FlexColumn>
         <Card Title="Adjectives"><WordTranslationList Datas=Adjectives /></Card>
         <Card Title="Adverbs"><WordTranslationList Datas=Adverbs /></Card>
     </Container>
-    
+
     <Time />
 </Container>
 
 @code {
-    private List<WordTranslation> Exemple = new()
-    {
-        new() { English = "", Pinyin = "", FrenchPhonetics = ""},
-    };
-
     private List<WordTranslation> Adverbs = new()
     {
+        new() { English = "Also/Too", Pinyin = "yĕ", FrenchPhonetics = ""},
         new() { English = "A Little/ A Drop", Pinyin = "diăn", FrenchPhonetics = "Dienn"},
         new() { English = "Very", Pinyin = "hĕn", FrenchPhonetics = "Ren"},
         new() { English = "Much", Pinyin = "duō", FrenchPhonetics = "Douo"},
@@ -49,20 +45,21 @@
 
     private List<WordTranslation> Interrogatives = new()
     {
-        new() { English = "Which", Pinyin = "nă", FrenchPhonetics = "naha"},
-        new() { English = "What", Pinyin = "shénme", FrenchPhonetics = "cheunn-me"},
-        new() { English = "Who", Pinyin = "shéi", FrenchPhonetics = "cheill"},
-        new() { English = "Where", Pinyin = "năli", FrenchPhonetics = "nali"},
-        new() { English = "How", Pinyin = "zĕnme", FrenchPhonetics = "dzeunn-me"}
+        new() { English = "Which", Pinyin = "nă", FrenchPhonetics = "naha" },
+        new() { English = "What", Pinyin = "shénme", FrenchPhonetics = "cheunn-me" },
+        new() { English = "Who", Pinyin = "shéi", FrenchPhonetics = "cheill" },
+        new() { English = "Where", Pinyin = "năli", FrenchPhonetics = "nali" },
+        new() { English = "How", Pinyin = "zĕnme", FrenchPhonetics = "dzeunn-me" }
     };
 
     private List<WordTranslation> Adjectives = new()
     {
-        new() { English = "Good (Bon/Bien)", Pinyin = "hăo", FrenchPhonetics = "Rao"},
-        new() { English = "Beautiful", Pinyin = "méi", FrenchPhonetics = "méi"},
-        new() { English = "Tall (big ?)", Pinyin = "dà/gāodà", FrenchPhonetics = "da"},
-        new() { English = "Small", Pinyin = "xiăo", FrenchPhonetics = "shiao"},
-        new() { English = "Perfect", Pinyin = "wán měi", FrenchPhonetics = "same"},
-        new() { English = "Happy", Pinyin = "gāoxìng", FrenchPhonetics = "gao-ching"}
+        new() { English = "Beautiful", Pinyin = "méi", FrenchPhonetics = "méi" },
+        new() { English = "Busy", Pinyin = "máng", FrenchPhonetics = "" },
+        new() { English = "Good (Bon/Bien)", Pinyin = "hăo", FrenchPhonetics = "Rao" },
+        new() { English = "Happy", Pinyin = "gāoxìng", FrenchPhonetics = "gao-ching" },
+        new() { English = "Perfect", Pinyin = "wán měi", FrenchPhonetics = "same" },
+        new() { English = "Small", Pinyin = "xiăo", FrenchPhonetics = "shiao" },
+        new() { English = "Tall (big ?)", Pinyin = "dà/gāodà", FrenchPhonetics = "da" },
     };
 }
