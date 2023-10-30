@@ -5,7 +5,7 @@
     <ul class="datas">
         @foreach (WordTranslation data in Datas)
         {
-            <li><b>@data.English.</b><span hidden="@(!ShowTranslation)">@($" {data.Pinyin} [{data.FrenchPhonetics}]")</span></li>
+            <li><b>@data.English.</b><span hidden="@(!Show)">@($" {data.Pinyin}")</span></li>
         }
     </ul>
 </ListStyle>
@@ -15,5 +15,5 @@
     public IEnumerable<WordTranslation> Datas { get; set; } = new List<WordTranslation>();
 
     [Parameter]
-    public bool ShowTranslation { get; set; } = true;
+    public bool Show { get; set; } = true;
 }

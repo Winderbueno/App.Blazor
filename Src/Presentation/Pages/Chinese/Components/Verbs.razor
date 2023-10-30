@@ -4,11 +4,11 @@
     </CardTitle>
     <CardBody>
         <Container Grid GridAlign="stretch">
-            <Card Title="Basic" Level=2><WordTranslationList Datas=Basic ShowTranslation=show /></Card>
-            <Card Title="Knowledge" Level=2><WordTranslationList Datas=Knowledge ShowTranslation=show /></Card>
-            <Card Title="Movement" Level=2><WordTranslationList Datas=Movement ShowTranslation=show /></Card>
-            <Card Title="Needs" Level=2><WordTranslationList Datas=Needs ShowTranslation=show /></Card>
-            <Card Title="Senses" Level=2><WordTranslationList Datas=Senses ShowTranslation=show /></Card>
+            <Card Title="Basic" Level=2><WordTranslationList Datas=Basic Show=show /></Card>
+            <Card Title="Knowledge" Level=2><WordTranslationList Datas=Knowledge Show=show /></Card>
+            <Card Title="Movement" Level=2><WordTranslationList Datas=Movement Show=show /></Card>
+            <Card Title="Needs" Level=2><WordTranslationList Datas=Needs Show=show /></Card>
+            <Card Title="Senses" Level=2><WordTranslationList Datas=Senses Show=show /></Card>
         </Container>
     </CardBody>
 </Card>
@@ -18,53 +18,53 @@
 
     private List<WordTranslation> Basic = new()
     {
-        new() { English = "Be", Pinyin = "shì", FrenchPhonetics = "cheu"},
-        new() { English = "Can", Pinyin = "néng | kĕyĭ" },
+        new() { English = "Be", Pinyin = "shì" },
+        new() { English = "Can", Pinyin = "néng | kĕyĭ | huì" },
         new() { English = "Do", Pinyin = "zuò | gàn" },
-        new() { English = "Give", Pinyin = "gěi", FrenchPhonetics = "gueill"},
+        new() { English = "Give", Pinyin = "gěi" },
         new() { English = "Have", Pinyin = "yŏu" },
         new() { English = "Help", Pinyin = "bāng" },
         new() { English = "Kiss", Pinyin = "qīn | wĕn" },
-        new() { English = "Love", Pinyin = "ài", FrenchPhonetics = "aille"},
-        new() { English = "Like", Pinyin = "xĭhuan", FrenchPhonetics = "shi-Rouann"},
-        new() { English = "Need", Pinyin = "xū", FrenchPhonetics = ""},
+        new() { English = "Love", Pinyin = "ài" },
+        new() { English = "Like", Pinyin = "xĭhuan" },
+        new() { English = "Need", Pinyin = "xū" },
         new() { English = "Use", Pinyin = "yǐ | yòng" },
         new() { English = "Want (general)", Pinyin = "xiăng" },
-        new() { English = "Want (avoir envie de)", Pinyin = "yào", FrenchPhonetics = "iao"},
+        new() { English = "Want (avoir envie de)", Pinyin = "yào" },
         new() { English = "Work", Pinyin = "gōngzuò" },
     };
 
     private List<WordTranslation> Movement = new()
     {
         new() { English = "Come", Pinyin = "lái | guòlái" },
-        new() { English = "Close", Pinyin = "guān", FrenchPhonetics = "gouann"},
-        new() { English = "Go", Pinyin = "qù", FrenchPhonetics = "tshu"},
-        new() { English = "Leave", Pinyin = "chūfā", FrenchPhonetics = "tchou-fa"},
-        new() { English = "Open", Pinyin = "kāimén | dăkāi", FrenchPhonetics = "kaimeun"},
-        new() { English = "Put", Pinyin = "fàng", FrenchPhonetics = "fang"},        
+        new() { English = "Close", Pinyin = "guān" },
+        new() { English = "Go", Pinyin = "qù" },
+        new() { English = "Leave", Pinyin = "chūfā" },
+        new() { English = "Open", Pinyin = "kāimén | dăkāi" },
+        new() { English = "Put", Pinyin = "fàng" },        
         new() { English = "Run", Pinyin = "păobù" },
         new() { English = "Swim", Pinyin = "yóuyŏng" },
-        new() { English = "Stay", Pinyin = "liú", FrenchPhonetics = ""},
+        new() { English = "Stay", Pinyin = "liú" },
     };
 
     private List<WordTranslation> Needs = new()
     {
-        new() { English = "Breath", Pinyin = "hūxī", FrenchPhonetics = ""},
-        new() { English = "Drink", Pinyin = "hē", FrenchPhonetics = "Re"},
-        new() { English = "Eat", Pinyin = "chī", FrenchPhonetics = "tcheu"},
-        new() { English = "Get Up | Wake Up", Pinyin = "qǐchuáng", FrenchPhonetics = ""},
+        new() { English = "Breath", Pinyin = "hūxī" },
+        new() { English = "Drink", Pinyin = "hē" },
+        new() { English = "Eat", Pinyin = "chī" },
+        new() { English = "Get Up | Wake Up", Pinyin = "qǐchuáng" },
         new() { English = "Go to sleep", Pinyin = "shuìjiào", FrenchPhonetics = "chuéi-tjiao"},
         new() { English = "Sleep", Pinyin = "shuì", FrenchPhonetics = "chuéi"},
     };
 
     private List<WordTranslation> Senses = new()
     {
-        new() { English = "Feel (se sentir)", Pinyin = "gǎnjué", FrenchPhonetics = "gann-tjué"},
-        new() { English = "Hear", Pinyin = "tīngjiàn", FrenchPhonetics = "ting-tjienn"},
-        new() { English = "Listen", Pinyin = "tīng", FrenchPhonetics = "ting"},
-        new() { English = "Look", Pinyin = "kàn", FrenchPhonetics = ""},
-        new() { English = "See (Each other)", Pinyin = "jiàn", FrenchPhonetics = "tjienn"},
-        new() { English = "Smell", Pinyin = "cháng", FrenchPhonetics = ""},
+        new() { English = "Feel (se sentir)", Pinyin = "gǎnjué" },
+        new() { English = "Hear", Pinyin = "tīngjiàn" },
+        new() { English = "Listen", Pinyin = "tīng" },
+        new() { English = "Look", Pinyin = "kàn" },
+        new() { English = "See (Each other)", Pinyin = "jiàn" },
+        new() { English = "Smell", Pinyin = "cháng" },
     };
 
     private List<WordTranslation> Knowledge = new()
