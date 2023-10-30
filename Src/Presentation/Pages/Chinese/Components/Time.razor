@@ -9,6 +9,7 @@
         <Container>
             <Card Title="Around Day" Level=2><WordTranslationList Datas=Days /></Card>
             <Card Title="DayTime" Level=2><WordTranslationList Datas=Daytime /></Card>
+            <Card Title="Seasons. jìjié" Level=2><WordTranslationList Datas=Seasons /></Card>
         </Container>
     </Container>
 </Card>
@@ -16,19 +17,27 @@
 @code {
     private List<WordTranslation> Days = new()
     {
-        new() { English = "Day before yesterday", Pinyin = "qiántiān", FrenchPhonetics = "tchienne-tienne"},
-        new() { English = "Yesterday", Pinyin = "zuótiān", FrenchPhonetics = "dzouo-tienne"},
-        new() { English = "Today", Pinyin = "jīntiān", FrenchPhonetics = "djinne-tienne"},
-        new() { English = "Tommorow", Pinyin = "míngtiān", FrenchPhonetics = "ming-tienne"},
-        new() { English = "Day after tommorow", Pinyin = "hòutiān", FrenchPhonetics = "ho-tienne"}
+        new() { English = "Day before yesterday", Pinyin = "qiántiān" },
+        new() { English = "Yesterday", Pinyin = "zuótiān" },
+        new() { English = "Today", Pinyin = "jīntiān" },
+        new() { English = "Tommorow", Pinyin = "míngtiān" },
+        new() { English = "Day after tommorow", Pinyin = "hòutiān" }
     };
 
     private List<WordTranslation> Daytime = new()
     {
-        new() { English = "Now", Pinyin = "xiànzài", FrenchPhonetics = "schienne-dzaille"},
-        new() { English = "Morning", Pinyin = "zăoshang", FrenchPhonetics = "dzao-chang"},
-        new() { English = "Afternoon", Pinyin = "xiàwŭ", FrenchPhonetics = "sia-wou"},
-        new() { English = "Evening", Pinyin = "wănshang", FrenchPhonetics = "wanne-chang"},
-        new() { English = "Night", Pinyin = "yèwǎn", FrenchPhonetics = "yé-wanne"}
+        new() { English = "Now", Pinyin = "xiànzài" },
+        new() { English = "Morning", Pinyin = "zăoshang" },
+        new() { English = "Afternoon", Pinyin = "xiàwŭ" },
+        new() { English = "Evening", Pinyin = "wănshang" },
+        new() { English = "Night", Pinyin = "yèwǎn" },
+    };
+
+    private List<WordTranslation> Seasons = new()
+    {
+        new() { English = "Spring", Pinyin = "chūntiān" },
+        new() { English = "Summer", Pinyin = "xiàtiān" },
+        new() { English = "Autumn", Pinyin = "qiūtiān" },
+        new() { English = "Winter", Pinyin = "dōngtiān" },
     };
 }

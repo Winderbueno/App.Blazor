@@ -1,0 +1,51 @@
+﻿<Card Title="Pinyin">
+    <Card Title="Basic" Level=2></Card>
+    <Card Title="To French Prononciation" Level=2></Card>
+</Card>
+
+@code {
+    private Dictionary<string, string> Prononciation = new()
+    {
+        { "c", "ts" }, // c + simple final
+        { "j", "tj" },
+        { "x", "sh" },
+        { "q", "tsh" },
+        { "u", "ou" }, // Except if preceding letter is "y/j/q/x"
+        { "ü", "u" },
+        { "ch", "tch" },
+        { "r", "j" },
+        { "z", "dz" },
+        { "(i)an", "(i)ènne" },
+        { "(g/k/h)uan", "(g/k/h)ouanne" },
+        { "(j/q/x)uan", "(j/q/x)ouènne" },
+        { "sh", "ch" },
+        { "h", "R" },
+        { "zh", "dj" },
+    };
+
+    private Dictionary<string, List<string>> Examples = new()
+    {
+        { "c", new() { "?" } },
+        { "j", new() { "jiàn" } },
+        { "x", new() { "xing" } },
+        { "q", new() { "qù" } },
+        { "u", new() { "zuò" } },
+        { "ch", new() { "qǐchuáng", "chūfā" } },
+        { "r", new() { "rén" } },
+        { "z", new() { "zài" } },
+        { "ian", new() { "jiàn" } },
+        { "sh", new() { "shuō" } },
+        { "h", new() { "hăo", "hĕn" } },
+        { "zh", new() { "zhīdao", "zhōu" } },
+    };
+
+    private Dictionary<string, List<string>> Tones = new()
+    {
+        { "a", new() { "ā", "á", "ă", "ǎ", "à" } },
+        { "o", new() { "ō", "ó", "ŏ", "ǒ", "ò" } },
+        { "e", new() { "ē", "é", "ĕ", "ě", "è" } },
+        { "i", new() { "ī", "í", "ĭ", "ǐ", "ì" } },
+        { "u", new() { "ū", "ú", "ŭ", "ǔ", "ù" } },
+        { "ü", new() { "ǚ", "ǜ" } }
+    };
+}
