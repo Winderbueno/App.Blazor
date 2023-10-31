@@ -4,7 +4,10 @@
     </CardTitle>
     <CardBody>
         <Container Grid GridAlign="stretch">
-            <Card Title="Basic" Level=2><WordTranslationList Datas=Basic Show=show /></Card>
+            <Card Title="Possess" Level=2><WordTranslationList Datas=Possess Show=show /></Card>
+            <Card Title="Evaluate" Level=2><WordTranslationList Datas=Evaluate Show=show /></Card>
+            <Card Title="Action" Level=2><WordTranslationList Datas=Action Show=show /></Card>
+            <Card Title="Interact" Level=2><WordTranslationList Datas=Interact Show=show /></Card>
             <Card Title="Knowledge" Level=2><WordTranslationList Datas=Knowledge Show=show /></Card>
             <Card Title="Movement" Level=2><WordTranslationList Datas=Movement Show=show /></Card>
             <Card Title="Needs" Level=2><WordTranslationList Datas=Needs Show=show /></Card>
@@ -16,34 +19,47 @@
  @code {
     private bool show = true;
 
-    private List<WordTranslation> Basic = new()
+    private List<WordTranslation> Possess = new()
+    {
+        new() { English = "Give", Pinyin = "gěi" },
+        new() { English = "Have", Pinyin = "yŏu" },
+        new() { English = "Receive", Pinyin = "shōudào" },
+    };
+
+    private List<WordTranslation> Evaluate = new()
     {
         new() { English = "Be", Pinyin = "shì" },
         new() { English = "Can", Pinyin = "néng | kĕyĭ | huì" },
-        new() { English = "Do", Pinyin = "zuò | gàn" },
-        new() { English = "Give", Pinyin = "gěi" },
-        new() { English = "Have", Pinyin = "yŏu" },
-        new() { English = "Help", Pinyin = "bāng" },
-        new() { English = "Kiss", Pinyin = "qīn | wĕn" },
         new() { English = "Love", Pinyin = "ài" },
         new() { English = "Like", Pinyin = "xĭhuan" },
         new() { English = "Need", Pinyin = "xū" },
-        new() { English = "Use", Pinyin = "yǐ | yòng" },
         new() { English = "Want (general)", Pinyin = "xiăng" },
         new() { English = "Want (avoir envie de)", Pinyin = "yào" },
+    };
+
+    private List<WordTranslation> Action = new()
+    {
+        new() { English = "Do", Pinyin = "zuò | gàn" },
+        new() { English = "Run", Pinyin = "păobù" },
+        new() { English = "Swim", Pinyin = "yóuyŏng" },
         new() { English = "Work", Pinyin = "gōngzuò" },
+    };
+
+    private List<WordTranslation> Interact = new()
+    {
+        new() { English = "Close", Pinyin = "guān" },
+        new() { English = "Kiss", Pinyin = "qīn | wĕn" },
+        new() { English = "Help", Pinyin = "bāng" },
+        new() { English = "Open", Pinyin = "kāimén | dăkāi" },
+        new() { English = "Put", Pinyin = "fàng" },
+        new() { English = "Use", Pinyin = "yĭ | yòng" },
     };
 
     private List<WordTranslation> Movement = new()
     {
         new() { English = "Come", Pinyin = "lái | guòlái" },
-        new() { English = "Close", Pinyin = "guān" },
         new() { English = "Go", Pinyin = "qù" },
         new() { English = "Leave", Pinyin = "chūfā" },
-        new() { English = "Open", Pinyin = "kāimén | dăkāi" },
-        new() { English = "Put", Pinyin = "fàng" },        
-        new() { English = "Run", Pinyin = "păobù" },
-        new() { English = "Swim", Pinyin = "yóuyŏng" },
         new() { English = "Stay", Pinyin = "liú" },
     };
 
@@ -73,9 +89,11 @@
         new() { English = "Know", Pinyin = "zhīdao" },
         new() { English = "Learn", Pinyin = "xuéxí" },
         new() { English = "Read", Pinyin = "yuè" },
+        new() { English = "Remember", Pinyin = "jìde" },
         new() { English = "Say", Pinyin = "shuō" },
-        new() { English = "Teach", Pinyin = "jiāo" },
         new() { English = "Talk | Speak", Pinyin = "shuōhuà" },
+        new() { English = "Teach", Pinyin = "jiāo" },
+        new() { English = "Think", Pinyin = "juéde" },
         new() { English = "Understand", Pinyin = "dŏng" },
         new() { English = "Write", Pinyin = "xiĕ" },
     };
