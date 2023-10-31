@@ -4,24 +4,26 @@
 
 <h1>Chinese</h1>
 
-<Container FlexAlign="center" FlexJustify="center">
+<Container FlexColumn FlexAlign="center" FlexJustify="center">
 
-    <Container FlexColumn>
-        <Card Title="Personal Pronoun">
-            <WordTranslationList Datas=PersonalPronouns />
-            Add "Menn" for plural (we, you, they)
-        </Card>
-
-        <Card Title="Interrogatives"><WordTranslationList Datas=Interrogatives /></Card>
-        <Card Title="Negation">Bù</Card>
+    <Container>
+        <Container FlexColumn>
+            <Card Title="Personal Pronoun">
+                <WordTranslationList Datas=PersonalPronouns />
+                Add "men" for plural (we, you, they)
+            </Card>
+            <Card Title="Interrogatives"><WordTranslationList Datas=Interrogatives /></Card>
+        </Container>
+        
+        <Container FlexColumn>
+            <Card Title="Negation">Bù</Card>
+            <Card Title="Adverbs"><WordTranslationList Datas=Adverbs /></Card>
+        </Container>
+        
+        <Card Title="Adjectives"><WordTranslationList Datas=Adjectives /></Card>
     </Container>
 
     <Verbs />
-
-    <Container FlexColumn>
-        <Card Title="Adjectives"><WordTranslationList Datas=Adjectives /></Card>
-        <Card Title="Adverbs"><WordTranslationList Datas=Adverbs /></Card>
-    </Container>
 
     <Time />
 </Container>
