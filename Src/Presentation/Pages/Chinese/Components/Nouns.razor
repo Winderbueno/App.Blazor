@@ -1,0 +1,56 @@
+﻿<Card Title="Verbs">
+    <CardTitle>
+        <Button @onclick="_ => show = !show">@(show ? "Hide" : "Show")</Button>
+    </CardTitle>
+    <CardBody>
+        <Container Grid GridAlign="stretch" GridColumns="1fr 1fr 1fr">
+            <Card Title="Food" Level=2><WordTranslationList Datas=Food Show=show /></Card>
+            <Card Title="Home" Level=2><WordTranslationList Datas=Home Show=show /></Card>
+            <Card Title="Transport" Level=2><WordTranslationList Datas=Transport Show=show /></Card>
+        </Container>
+    </CardBody>
+</Card>
+
+ @code {
+    private bool show = true;
+
+    private List<WordTranslation> Food = new()
+    {
+        new() { English = "Meat", Pinyin = "ròu" },
+        new() { English = "Meal", Pinyin = "fàn" },
+        new() { English = "Water", Pinyin = "shuĭ" },
+        new() { English = "Wine", Pinyin = "Pútáojiŭ" },
+        new() { English = "Beer", Pinyin = "Píjiŭ" },
+    };
+
+    private List<WordTranslation> Home = new()
+    {
+        new() { English = "Book", Pinyin = "shū" },
+        new() { English = "Door", Pinyin = "mén" },
+        new() { English = "Table", Pinyin = "zhūozi" },
+    };
+
+    private List<WordTranslation> Human = new()
+    {
+        new() { English = "Family", Pinyin = "jiā" },
+        new() { English = "Father", Pinyin = "lǎobà | bàba | bà" },
+        new() { English = "Friend", Pinyin = "péngyou" },
+        new() { English = "Mother", Pinyin = "lǎomā | māma" },
+        new() { English = "Person | People", Pinyin = "rén" },
+        new() { English = "Women", Pinyin = "nǚ" },
+    };
+
+    private List<WordTranslation> Nature = new()
+    {
+        new() { English = "Fire", Pinyin = "Huŏ" },
+        new() { English = "Wind", Pinyin = "" },
+        new() { English = "Sky", Pinyin = "Tiānkōng" },
+    };
+
+    private List<WordTranslation> Transport = new()
+    {
+        new() { English = "Car", Pinyin = "qìchē" },
+        new() { English = "Plane", Pinyin = "fēijī" },
+        new() { English = "Train", Pinyin = "huŏchē" },
+    };
+}
