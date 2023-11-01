@@ -14,11 +14,25 @@
  @code {
     private bool show = true;
 
+    private List<WordTranslation> Animal = new()
+    {
+        new() { English = "Cat", Pinyin = "māo" },
+        new() { English = "Dog", Pinyin = "gŏu" },
+        new() { English = "Kangourou", Pinyin = "dài shŭ" },
+    };
+
+    private List<WordTranslation> Colors = new()
+    {
+        new() { English = "Red", Pinyin = "hóng sè" },
+    };
+
     private List<WordTranslation> Food = new()
     {
+        new() { English = "Apple", Pinyin = "píng guŏ" },
+        new() { English = "Dish (Plat)", Pinyin = "cài" },
         new() { English = "Hamburger", Pinyin = "hàn bǎo" },
         new() { English = "Meat", Pinyin = "ròu" },
-        new() { English = "Meal", Pinyin = "fàn" },
+        new() { English = "Meal (Repas)", Pinyin = "fàn" },
         new() { English = "Water", Pinyin = "shuĭ" },
         new() { English = "Wine", Pinyin = "Pú táo jiŭ" },
         new() { English = "Beer", Pinyin = "Píjiŭ" },
@@ -49,10 +63,13 @@
         new() { English = "Mother", Pinyin = "lǎomā | māma" },
         new() { English = "Person | People", Pinyin = "rén" },
         new() { English = "Women", Pinyin = "nǚ" },
+        new() { English = "Girl", Pinyin = "nǚ háizi" },
+        new() { English = "Child", Pinyin = "háizi" },
     };
 
     private List<WordTranslation> Nature = new()
     {
+        new() { English = "Cloud", Pinyin = "" },
         new() { English = "Fire", Pinyin = "Huŏ" },
         new() { English = "Wind", Pinyin = "" },
         new() { English = "Sky", Pinyin = "Tiānkōng" },
