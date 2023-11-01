@@ -3,7 +3,7 @@
         <Button @onclick="_ => show = !show">@(show ? "Hide" : "Show")</Button>
     </CardTitle>
     <CardBody>
-        <Container Grid GridAlign="stretch" GridColumns="1fr 1fr 1fr">
+        <Container>
             <Card Title="Animal" Level=2><WordTranslationList Datas=Animal Show=show /></Card>
             <Card Title="Food" Level=2><WordTranslationList Datas=Food Show=show /></Card>
             <Card Title="Home" Level=2><WordTranslationList Datas=Home Show=show /></Card>

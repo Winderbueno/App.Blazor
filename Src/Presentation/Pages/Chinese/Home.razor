@@ -4,9 +4,9 @@
 
 <h1>Chinese</h1>
 
-<Container FlexColumn FlexAlign="center" FlexJustify="center">
+<Container FlexColumn FlexAlign="center">
 
-    <Container>
+    <Container >
         <Container FlexColumn>
             <Card Title="Personal Pronoun">
                 <WordTranslationList Datas=PersonalPronouns />
@@ -49,7 +49,7 @@
     {
         new() { English = "I", Pinyin = "wŏ" },
         new() { English = "You", Pinyin = "nĭ" },
-        new() { English = "He/She", Pinyin = "tā", FrenchPhonetics = "tra"}
+        new() { English = "He/She", Pinyin = "tā" }
     };
 
     private List<WordTranslation> Interrogatives = new()
@@ -57,10 +57,10 @@
         new() { English = "Which", Pinyin = "nă" },
         new() { English = "What", Pinyin = "shénme" },
         new() { English = "When", Pinyin = "shénme shíhòu" },
-        new() { English = "Who", Pinyin = "shéi", FrenchPhonetics = "cheill" },
+        new() { English = "Who", Pinyin = "shéi" },
         new() { English = "Where", Pinyin = "năli" },
         new() { English = "Why", Pinyin = "wèi shénme | zĕnme" },
-        new() { English = "How", Pinyin = "zĕnme | zĕnmeyàng", FrenchPhonetics = "dzeunn-me" }
+        new() { English = "How", Pinyin = "zĕnme | zĕnmeyàng" }
     };
 
     private List<WordTranslation> Adjectives = new()
