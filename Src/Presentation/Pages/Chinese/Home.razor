@@ -8,9 +8,9 @@
 
     <Container >
         <Container FlexColumn>
-            <Card Title="Personal Pronoun">
-                <WordTranslationList Datas=PersonalPronouns />
-                Add "men" for plural (we, you, they)
+            <Card Title="Pronouns">
+                + "men" for plural (we, you, they)
+                <WordTranslationList Datas=Pronouns />
             </Card>
             <Card Title="Interrogatives"><WordTranslationList Datas=Interrogatives /></Card>
         </Container>
@@ -34,22 +34,30 @@
     {
         new() { English = "Actually", Pinyin = "qíshí" },
         new() { English = "Also/Too", Pinyin = "yĕ" },
-        new() { English = "A Little/ A Drop", Pinyin = "yī diăn" },
+        new() { English = "A Little/ A Drop", Pinyin = "yīdiăn" },
+        new() { English = "Because", Pinyin = "" },
+        new() { English = "Before", Pinyin = "Yĭqián" },
         new() { English = "But", Pinyin = "dànshì" },
-        new() { English = "Especially", Pinyin = "tèbié" },
+        new() { English = "Especially | Particularly", Pinyin = "tèbié" },
+        new() { English = "Exactly", Pinyin = "jiùshì" },
+        new() { English = "Generally", Pinyin = "yībān" },
         new() { English = "Much", Pinyin = "duō" },
+        new() { English = "Often", Pinyin = "chángcháng" },
         new() { English = "Really", Pinyin = "zhēn" },
         new() { English = "Same", Pinyin = "yíyàng" },
+        new() { English = "Sometimes | From time to time", Pinyin = "yŏushí" },
         new() { English = "Too much", Pinyin = "duō hĕn" },
         new() { English = "Very", Pinyin = "hĕn" },
         new() { English = "With", Pinyin = "gēn | hé" },
     };
 
-    private List<WordTranslation> PersonalPronouns = new()
+    private List<WordTranslation> Pronouns = new()
     {
         new() { English = "I", Pinyin = "wŏ" },
         new() { English = "You", Pinyin = "nĭ" },
-        new() { English = "He/She", Pinyin = "tā" }
+        new() { English = "He/She", Pinyin = "tā" },
+        new() { English = "Everyone", Pinyin = "Měigèrén" },
+        new() { English = "Others", Pinyin = "biéren" },
     };
 
     private List<WordTranslation> Interrogatives = new()
