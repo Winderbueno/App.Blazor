@@ -1,22 +1,15 @@
-﻿<Card Title="Nouns">
-    <CardTitle>
-        <Button @onclick="_ => show = !show">@(show ? "Hide" : "Show")</Button>
-    </CardTitle>
-    <CardBody>
-        <Container>
-            <Card Title="Animal" Level=2><WordTranslationList Datas=Animal Show=show /></Card>
-            <Card Title="Food" Level=2><WordTranslationList Datas=Food Show=show /></Card>
-            <Card Title="Home" Level=2><WordTranslationList Datas=Home Show=show /></Card>
-            <Card Title="Human" Level=2><WordTranslationList Datas=Human Show=show /></Card>
-            <Card Title="Transport" Level=2><WordTranslationList Datas=Transport Show=show /></Card>
-        </Container>
-    </CardBody>
-</Card>
+﻿<TranslationCard Title="Nouns">
+    <Container>
+        <Card Title="Animal" Level=2><WordTranslationList Datas=Animals /></Card>
+        <Card Title="Food" Level=2><WordTranslationList Datas=Food /></Card>
+        <Card Title="Home" Level=2><WordTranslationList Datas=Home /></Card>
+        <Card Title="Human" Level=2><WordTranslationList Datas=Human /></Card>
+        <Card Title="Transport" Level=2><WordTranslationList Datas=Transport /></Card>
+    </Container>
+</TranslationCard>
 
- @code {
-    private bool show = true;
-
-    private List<WordTranslation> Animal = new()
+@code {
+    private List<WordTranslation> Animals = new()
     {
         new() { English = "Cat", Pinyin = "māo" },
         new() { English = "Dog", Pinyin = "gŏu" },
@@ -78,7 +71,7 @@
         new() { English = "Cloud", Pinyin = "" },
         new() { English = "Fire", Pinyin = "Huŏ" },
         new() { English = "Wind", Pinyin = "fēng" },
-        new() { English = "Sky", Pinyin = "Tiānkōng" },
+        new() { English = "Sky", Pinyin = "tiānkōng" },
         new() { English = "Weather", Pinyin = "tiānqì" },
     };
 

@@ -1,33 +1,27 @@
-﻿<Card Title="Time">
-    <CardTitle>
-        <Button @onclick="_ => show = !show">@(show ? "Hide" : "Show")</Button>
-    </CardTitle>
-    <CardBody>
-        <Container FlexColumn>
-            <Container>
-                <Card Title="Period" Level=2><WordTranslationList Datas=Period Show=show /></Card>
-                <Card Title="Days & Months" Level=2>
-                    <div>Days. (xīng qī | zhōu) + @("(<number>, Except Sunday -> rì/tiān)")</div>
-                    <div>Ex. xīng qī yī, xīng qī èr, xīng qī rì</div>
-                    <div>Months. @("<number>") + yuè</div>
-                    <div>Ex. yī yuè, èr yuè</div>
-                </Card>
-            </Container>
-            <Container>
-                <Card Title="Around Day" Level=2><WordTranslationList Datas=Days Show=show /></Card>
-                <Card Title="DayTime" Level=2><WordTranslationList Datas=Daytime Show=show /></Card>
-                <Card Title="Seasons" Level=2><WordTranslationList Datas=Seasons Show=show /></Card>
-            </Container>
+﻿<TranslationCard Title="Time">
+    <Container FlexColumn>
+        <Container>
+            <Card Title="Period" Level=2><WordTranslationList Datas=Period /></Card>
+            <Card Title="Days & Months" Level=2>
+                <div>Days. (xīng qī | zhōu) + @("(<number>, Except Sunday -> rì/tiān)")</div>
+                <div>Ex. xīng qī yī, xīng qī èr, xīng qī rì</div>
+                <div>Months. @("<number>") + yuè</div>
+                <div>Ex. yī yuè, èr yuè</div>
+            </Card>
         </Container>
-    </CardBody>
-</Card>
+        <Container>
+            <Card Title="Around Day" Level=2><WordTranslationList Datas=Days /></Card>
+            <Card Title="DayTime" Level=2><WordTranslationList Datas=Daytime /></Card>
+            <Card Title="Seasons" Level=2><WordTranslationList Datas=Seasons /></Card>
+        </Container>
+    </Container>
+</TranslationCard>
 
 @code {
-    private bool show = true;
-
     private List<WordTranslation> Period = new()
     {
         new() { English = "Period", Pinyin = "shíduàn" },
+        new() { English = "Hour", Pinyin = "diǎn" },
         new() { English = "Day", Pinyin = "tiān" },
         new() { English = "Month", Pinyin = "yuè" },
         new() { English = "Year", Pinyin = "nián" },

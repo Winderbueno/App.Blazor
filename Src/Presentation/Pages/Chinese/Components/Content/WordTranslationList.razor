@@ -1,11 +1,13 @@
-﻿@using K.Blazor.Components.Contents.Model
-@using K.Blazor.Components.Contents.Style
+﻿@using K.Blazor.Components.Contents.Style
 
 <ListStyle>
     <ul class="datas">
         @foreach (WordTranslation data in Datas)
         {
-            <li><b>@data.English.</b><span hidden="@(!Show)">@($" {data.Pinyin}")</span></li>
+            <li>
+                <Tooltip Text=@data.Comment><b>@data.English.</b></Tooltip>
+                <span hidden="@(!Show)">@($" {data.Pinyin}")</span>
+            </li>
         }
     </ul>
 </ListStyle>
@@ -14,6 +16,6 @@
     [Parameter]
     public IEnumerable<WordTranslation> Datas { get; set; } = new List<WordTranslation>();
 
-    [Parameter]
+    [CascadingParameter]
     public bool Show { get; set; } = true;
 }

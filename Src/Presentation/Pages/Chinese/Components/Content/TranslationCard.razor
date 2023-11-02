@@ -1,0 +1,22 @@
+﻿@using K.Blazor.Components.Containers
+
+<Card Title=@Title>
+    <CardTitle>
+        <Button @onclick="_ => show = !show">@(show ? "Hide" : "Show")</Button>
+    </CardTitle>
+    <CardBody>
+        <CascadingValue Value=show>
+            @ChildContent
+        </CascadingValue>
+    </CardBody>
+</Card>
+
+@code {
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private bool show = true;
+}

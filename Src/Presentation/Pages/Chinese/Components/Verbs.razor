@@ -1,31 +1,25 @@
-﻿<Card Title="Verbs">
-    <CardTitle>
-        <Button @onclick="_ => show = !show">@(show ? "Hide" : "Show")</Button>
-    </CardTitle>
-    <CardBody>
-        <Container Grid GridAlign="stretch" GridColumns="1fr 1fr 1fr">
-            <Card Title="Evaluate" Level=2><WordTranslationList Datas=Evaluations Show=show /></Card>
-            <Card Title="Action" Level=2><WordTranslationList Datas=Actions Show=show /></Card>
-            <Card Title="Interact" Level=2><WordTranslationList Datas=Interactions Show=show /></Card>
-            <Card Title="Knowledge" Level=2><WordTranslationList Datas=Knowledge Show=show /></Card>
-            <Card Title="Needs" Level=2><WordTranslationList Datas=Needs Show=show /></Card>
-            <Card Title="Senses" Level=2><WordTranslationList Datas=Senses Show=show /></Card>
-            <Card Title="Expressions" Level=2><WordTranslationList Datas=Expressions Show=show /></Card>
-        </Container>
-    </CardBody>
-</Card>
+﻿<TranslationCard Title="Verbs">
+    <Container Grid GridAlign="stretch" GridColumns="1fr 1fr 1fr">
+         <Card Title="Evaluations" Level=2><WordTranslationList Datas=Evaluations /></Card>
+         <Card Title="Actions" Level=2><WordTranslationList Datas=Actions /></Card>
+         <Card Title="Interactions" Level=2><WordTranslationList Datas=Interactions /></Card>
+         <Card Title="Knowledge" Level=2><WordTranslationList Datas=Knowledge /></Card>
+         <Card Title="Needs" Level=2><WordTranslationList Datas=Needs /></Card>
+         <Card Title="Senses" Level=2><WordTranslationList Datas=Senses /></Card>
+         <Card Title="Expressions" Level=2><WordTranslationList Datas=Expressions /></Card>
+     </Container>
+ </TranslationCard>
 
  @code {
-    private bool show = true;
-
     private List<WordTranslation> Evaluations = new()
     {
         new() { English = "Be", Pinyin = "shì" },
+        new() { English = "Be Late", Pinyin = "chídào" },
         new() { English = "Be Obliged To", Pinyin = "bì xū" },
         new() { English = "Can", Pinyin = "néng | kĕyĭ | huì" },
         new() { English = "Have | There is", Pinyin = "yŏu" },
-        new() { English = "Have To (Il faut que - faible)", Pinyin = "yaò | yī dìng yaò" },
-        new() { English = "Must (Je dois - forcé)", Pinyin = "děi" },
+        new() { English = "Have To", Pinyin = "yaò | yī dìng yaò", Comment = "Light obligation" },
+        new() { English = "Must", Pinyin = "děi", Comment = "Forced by external element" },
         new() { English = "Love", Pinyin = "ài" },
         new() { English = "Like", Pinyin = "xĭhuan" },
         new() { English = "Need (avoir besoin de)", Pinyin = "xū yaò" },
@@ -47,7 +41,7 @@
         new() { English = "Stay", Pinyin = "liú" },
         new() { English = "Swim", Pinyin = "yóuyŏng" },
         new() { English = "Wait", Pinyin = "děng" },
-        new() { English = "Work", Pinyin = "gōngzuò" },        
+        new() { English = "Work", Pinyin = "gōngzuò" },
     };
 
     private List<WordTranslation> Interactions = new()
@@ -92,9 +86,10 @@
 
     private List<WordTranslation> Knowledge = new()
     {
+        new() { English = "Forget", Pinyin = "wàng" },
         new() { English = "Know", Pinyin = "zhīdao" },
+        new() { English = "Know (Each Other)", Pinyin = "rènshi" },
         new() { English = "Learn", Pinyin = "xuéxí" },
-        new() { English = "Meet/Know (Each Other)", Pinyin = "rènshi" },
         new() { English = "Read", Pinyin = "yuè" },
         new() { English = "Remember", Pinyin = "jìde" },
         new() { English = "Teach", Pinyin = "jiāo" },
@@ -111,12 +106,14 @@
         new() { English = "Laugh | Smile", Pinyin = "xiào" },
         new() { English = "Say", Pinyin = "shuō" },
         new() { English = "Sing", Pinyin = "chàng" },
+        new() { English = "Swear", Pinyin = "fāshì" },
         new() { English = "Talk | Speak", Pinyin = "shuōhuà" },
     };
 
     private List<WordTranslation> Nature = new()
     {
-        new() { English = "Snow", Pinyin = "xiàxuě" },
         new() { English = "Freeze", Pinyin = "jiébīng" },
+        new() { English = "Rain", Pinyin = "xiàyŭ" },
+        new() { English = "Snow", Pinyin = "xiàxuě" },
     };
 }

@@ -1,6 +1,4 @@
-﻿@using Presentation.Pages.Chinese.Components
-
-@page "/chinese"
+﻿@page "/chinese"
 
 <h1>Chinese</h1>
 
@@ -17,40 +15,18 @@
         
         <Container FlexColumn>
             <Card Title="Negation">Bù (Méi with Yŏu)</Card>
-            <Card Title="Adverbs"><WordTranslationList Datas=Adverbs /></Card>
         </Container>
         
         <Card Title="Adjectives"><WordTranslationList Datas=Adjectives /></Card>
     </Container>
 
+    <Adverbs />
     <Verbs />
     <Nouns />
-
     <Time />
 </Container>
 
 @code {
-    private List<WordTranslation> Adverbs = new()
-    {
-        new() { English = "Actually", Pinyin = "qíshí" },
-        new() { English = "Also/Too", Pinyin = "yĕ" },
-        new() { English = "A Little/ A Drop", Pinyin = "yīdiăn" },
-        new() { English = "Because", Pinyin = "yīnwèi" },
-        new() { English = "Before", Pinyin = "Yĭqián" },
-        new() { English = "But", Pinyin = "dànshì" },
-        new() { English = "Especially | Particularly", Pinyin = "tèbié" },
-        new() { English = "Exactly", Pinyin = "jiùshì" },
-        new() { English = "Generally", Pinyin = "yībān" },
-        new() { English = "Much", Pinyin = "duō" },
-        new() { English = "Often", Pinyin = "jīngcháng | chángcháng" },
-        new() { English = "Really", Pinyin = "zhēn" },
-        new() { English = "Same", Pinyin = "yíyàng" },
-        new() { English = "Sometimes | From time to time", Pinyin = "yŏushí" },
-        new() { English = "Too much", Pinyin = "duō hĕn" },
-        new() { English = "Very", Pinyin = "hĕn" },
-        new() { English = "With", Pinyin = "gēn | hé" },
-    };
-
     private List<WordTranslation> Pronouns = new()
     {
         new() { English = "I", Pinyin = "wŏ" },

@@ -1,0 +1,39 @@
+﻿<TranslationCard Title="Adverbs">
+    <Container>
+        <Card Title="Others" Level=2><WordTranslationList Datas=Others /></Card>
+        <Card Title="Quantity" Level=2><WordTranslationList Datas=Quantity /></Card>
+        <Card Title="Frequency" Level=2><WordTranslationList Datas=Frequency /></Card>
+    </Container>
+</TranslationCard>
+
+@code {
+    private List<WordTranslation> Others = new()
+    {
+        new() { English = "Actually", Pinyin = "qíshí" },
+        new() { English = "Also/Too", Pinyin = "yĕ" },
+        new() { English = "Because", Pinyin = "yīnwèi" },
+        new() { English = "Before", Pinyin = "Yĭqián" },
+        new() { English = "But", Pinyin = "dànshì" },
+        new() { English = "Especially | Particularly", Pinyin = "tèbié" },
+        new() { English = "Exactly", Pinyin = "jiùshì" },
+        new() { English = "Generally", Pinyin = "yībān" },
+        new() { English = "Really", Pinyin = "zhēn" },
+        new() { English = "Same", Pinyin = "yíyàng" },
+        new() { English = "With", Pinyin = "gēn | hé" },
+    };
+
+    private List<WordTranslation> Quantity = new()
+    {
+        new() { English = "A Little/ A Drop", Pinyin = "yīdiăn" },
+        new() { English = "Much", Pinyin = "duō" },
+        new() { English = "Too much", Pinyin = "duō hĕn" },
+        new() { English = "Very", Pinyin = "hĕn" },
+    };
+
+    private List<WordTranslation> Frequency = new()
+    {
+        new() { English = "Always", Pinyin = "zŏngshì" },
+        new() { English = "Often", Pinyin = "jīngcháng | chángcháng" },
+        new() { English = "Sometimes", Pinyin = "yŏushí | yŏushíhou" },
+    };
+}
