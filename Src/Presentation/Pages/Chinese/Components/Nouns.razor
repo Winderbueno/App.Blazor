@@ -1,7 +1,9 @@
 ﻿<TranslationCard Title="Nouns">
-    <Container>
+    <Container Grid GridColumns="1fr 1fr 1fr">
         <Card Title="Animal" Level=2><WordTranslationList Datas=Animals /></Card>
+        <Card Title="Colors" Level=2><WordTranslationList Datas=Colors /></Card>
         <Card Title="Food" Level=2><WordTranslationList Datas=Food /></Card>
+        <Card Title="Facilities" Level=2><WordTranslationList Datas=Facilities /></Card>
         <Card Title="Home" Level=2><WordTranslationList Datas=Home /></Card>
         <Card Title="Human" Level=2><WordTranslationList Datas=Human /></Card>
         <Card Title="Transport" Level=2><WordTranslationList Datas=Transport /></Card>
@@ -11,6 +13,7 @@
 @code {
     private List<WordTranslation> Animals = new()
     {
+        new() { English = "Bird", Pinyin = "niǎo" },
         new() { English = "Cat", Pinyin = "māo" },
         new() { English = "Dog", Pinyin = "gŏu" },
         new() { English = "Kangourou", Pinyin = "dài shŭ" },
@@ -18,42 +21,66 @@
 
     private List<WordTranslation> Colors = new()
     {
-        new() { English = "Red", Pinyin = "hóng sè" },
+        new() { English = "Blue", Pinyin = "lánsè" },
+        new() { English = "Colors", Pinyin = "yánsè" },
+        new() { English = "Red", Pinyin = "hóngsè" },
+        new() { English = "Yellow", Pinyin = "huángsè" },
     };
 
     private List<WordTranslation> Food = new()
     {
         new() { English = "Apple", Pinyin = "píng guŏ" },
+        new() { English = "Cake", Pinyin = "dàngāo" },
         new() { English = "Dish (Plat)", Pinyin = "cài" },
-        new() { English = "Hamburger", Pinyin = "hàn bǎo" },
+        new() { English = "Hamburger", Pinyin = "hànbǎo" },
         new() { English = "Meat", Pinyin = "ròu" },
         new() { English = "Meal (Repas)", Pinyin = "fàn" },
         new() { English = "Rice", Pinyin = "mǐfàn" },
+        new() { English = "Sandwich", Pinyin = "sānmíngzhì" },
         new() { English = "Tea", Pinyin = "chá" },
         new() { English = "Water", Pinyin = "shuĭ" },
-        new() { English = "Wine", Pinyin = "Pú táo jiŭ" },
+        new() { English = "Wine", Pinyin = "Pútáojiŭ" },
         new() { English = "Beer", Pinyin = "Píjiŭ" },
+    };
+
+    private List<WordTranslation> Sport = new()
+    {
+        new() { English = "BasketBall", Pinyin = "lánqiú" },
+        new() { English = "Foot", Pinyin = "zúqiú" },  
     };
 
     private List<WordTranslation> Facilities = new()
     {
+        new() { English = "City Center", Pinyin = "shìzhōngxīn" },
+        new() { English = "City", Pinyin = "chéngshì" },
+        new() { English = "Company", Pinyin = "gōngsī" },
+        new() { English = "High School (Collège)", Pinyin = "zhōngxué" },
         new() { English = "Park", Pinyin = "gōngyuán" },
+        new() { English = "Restaurant", Pinyin = "fàndiàn" },
         new() { English = "School", Pinyin = "xuéxiào" },
         new() { English = "Shop", Pinyin = "diàn" },
+        new() { English = "Theater", Pinyin = "" },
         new() { English = "Train Station", Pinyin = "huǒchē zhàn" },
         new() { English = "University", Pinyin = "dàxué" },
     };
 
     private List<WordTranslation> Home = new()
     {
-        new() { English = "Book", Pinyin = "shū" },
         new() { English = "Door", Pinyin = "mén" },
+        new() { English = "Chair", Pinyin = "yǐzi" },
+        new() { English = "House", Pinyin = "fángzi" },
         new() { English = "Shower", Pinyin = "huā sǎ" },
         new() { English = "Table", Pinyin = "zhūozi" },
-        new() { English = "TV", Pinyin = "diànshì" },
+    };
+
+    private List<WordTranslation> Entertainment = new()
+    {
+        new() { English = "Book", Pinyin = "shū" },
         new() { English = "Computer", Pinyin = "diànnăo" },
         new() { English = "Movie", Pinyin = "diànyĭng" },
         new() { English = "Music", Pinyin = "yīnyuè" },
+        new() { English = "TV", Pinyin = "diànshì" },
+        new() { English = "Phone", Pinyin = "diànhuà | shǒujī (portable)" },
     };
 
     private List<WordTranslation> Human = new()
@@ -65,6 +92,7 @@
         new() { English = "Friend", Pinyin = "péng you" },
         new() { English = "Girl", Pinyin = "nǚ háizi" },
         new() { English = "Man", Pinyin = "nán" },
+        new() { English = "Mister", Pinyin = "xiānsheng" },
         new() { English = "Mother", Pinyin = "lǎomā | māma" },
         new() { English = "Person | People", Pinyin = "rén" },
         new() { English = "Population", Pinyin = "rénkŏu" },
@@ -73,29 +101,44 @@
 
     private List<WordTranslation> Body = new()
     {
+        new() { English = "Body", Pinyin = "shēn | shēntǐ" },
         new() { English = "Brain", Pinyin = "năo" },
         new() { English = "Hand", Pinyin = "shŏu" },
         new() { English = "Head", Pinyin = "tóu" },
+        new() { English = "Foot", Pinyin = "jiǎo yā zi" },
+    };
+
+    private List<WordTranslation> Clothes = new()
+    {
+        new() { English = "Hat", Pinyin = "màozi" },
+        new() { English = "Jacket", Pinyin = "Wàitào" },
+        new() { English = "", Pinyin = "" },
     };
 
     private List<WordTranslation> Nature = new()
     {
         new() { English = "Cloud", Pinyin = "" },
-        new() { English = "Fire", Pinyin = "Huŏ" },
+        new() { English = "Fire", Pinyin = "huŏ" },
+        new() { English = "Flower", Pinyin = "huā" },
         new() { English = "Wind", Pinyin = "fēng" },
         new() { English = "Sky", Pinyin = "tiānkōng" },
+        new() { English = "Tree", Pinyin = "shù" },
         new() { English = "Weather", Pinyin = "tiānqì" },
+        new() { English = "Wood", Pinyin = "mù" },
     };
 
     private List<WordTranslation> Transport = new()
     {
-        new() { English = "Car", Pinyin = "qìchē" },
+        new() { English = "Bicycle", Pinyin = "zìxíngchē" },
+        new() { English = "Car", Pinyin = "qìchē | chē" },
         new() { English = "Plane", Pinyin = "fēijī" },
         new() { English = "Train", Pinyin = "huŏchē" },
     };
 
     private List<WordTranslation> Functions = new()
     {
+        new() { English = "Boss", Pinyin = "lǎobǎn" },
+        new() { English = "Doctor", Pinyin = "yīshēng" },
         new() { English = "Guide", Pinyin = "dǎoyóu" },
         new() { English = "Student", Pinyin = "xuésheng" },
         new() { English = "Teacher", Pinyin = "lǎoshī | jiàoshòu" },
