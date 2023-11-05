@@ -1,7 +1,7 @@
 ﻿<TranslationCard Title="Time">
     <Container FlexColumn>
         <Container>
-            <Card Title="Period" Level=2><WordTranslationList Datas=Period /></Card>
+            <Card Title="Period" Level=2><WordTranslationList Datas=PrecisePeriod /></Card>
             <Card Title="Days & Months" Level=2>
                 <div>Days. (xīng qī | zhōu) + @("(<number>, Except Sunday -> rì/tiān)")</div>
                 <div>Ex. xīng qī yī, xīng qī èr, xīng qī rì</div>
@@ -18,11 +18,8 @@
 </TranslationCard>
 
 @code {
-    private List<WordTranslation> Period = new()
+    private List<WordTranslation> PrecisePeriod = new()
     {
-        new() { English = "Phase | Step", Pinyin = "jiēduàn" },
-        new() { English = "Period", Pinyin = "shíduàn | shíjiān" },
-        new() { English = "Moment", Pinyin = "shíhou" },
         new() { English = "Hour", Pinyin = "diǎn" },
         new() { English = "Day", Pinyin = "tiān" },
         new() { English = "Week", Pinyin = "xīng qī | zhōu | lĭbai" },
@@ -31,6 +28,14 @@
         new() { English = "Century", Pinyin = "shìjì" },
         new() { English = "Season", Pinyin = "jìjié" },
         new() { English = "Weekend", Pinyin = "zhōumò" },
+    };
+
+    private List<WordTranslation> Period = new()
+    {
+        new() { English = "Phase | Step", Pinyin = "jiēduàn" },
+        new() { English = "Time | Period", Pinyin = "shíduàn | shíjiān" },
+        new() { English = "Moment", Pinyin = "shíhou" },
+        new() { English = "Holiday", Pinyin = "jiàqī | hánjià (winter)" },
     };
 
     private List<WordTranslation> Days = new()

@@ -6,6 +6,9 @@
 @code {
     private Dictionary<string, string> Prononciation = new()
     {
+        { "ou", "ow" },
+        { "e", "eu" },
+        { "g", "gu" },
         { "c", "ts" }, // c + simple final
         { "j", "tj" },
         { "x", "sh" },
@@ -25,6 +28,9 @@
 
     private Dictionary<string, List<string>> Examples = new()
     {
+        { "ou", new() { "gŏu" } },
+        { "e", new() { "hē" } },
+        { "g", new() { "gěi" } },
         { "c", new() { "?" } },
         { "j", new() { "jiàn", "jīntiān" } },
         { "x", new() { "xing" } },
