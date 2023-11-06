@@ -1,5 +1,5 @@
 ﻿<TranslationCard Title="Verbs">
-    <Container Grid GridAlign="stretch" GridColumns="1fr 1fr 1fr">
+    <Container>
          <Card Title="Evaluations" Level=2><WordTranslationList Datas=Evaluations /></Card>
          <Card Title="Actions" Level=2><WordTranslationList Datas=Actions /></Card>
          <Card Title="Interactions" Level=2><WordTranslationList Datas=Interactions /></Card>
@@ -11,27 +11,10 @@
  </TranslationCard>
 
  @code {
-    private List<WordTranslation> Evaluations = new()
-    {
-        new() { English = "Be", Pinyin = "shì" },
-        new() { English = "Be Late", Pinyin = "chídào" },
-        new() { English = "Be Obliged To", Pinyin = "bì xū" },
-        new() { English = "Can (know how)", Pinyin = "huì" },
-        new() { English = "Can (would you)", Pinyin = "néng | kĕyĭ" },
-        new() { English = "Can (permission | possibility)", Pinyin = "kĕyĭ" },
-        new() { English = "Have | There is", Pinyin = "yŏu" },
-        new() { English = "Have To", Pinyin = "yaò | yī dìng yaò", Comment = "Light obligation" },
-        new() { English = "Must", Pinyin = "děi", Comment = "Forced by external element" },
-        new() { English = "Love", Pinyin = "ài" },
-        new() { English = "Like", Pinyin = "xĭhuan" },
-        new() { English = "Need (avoir besoin de)", Pinyin = "xū yaò" },
-        new() { English = "Trust", Pinyin = "xìnrèn" },
-        new() { English = "Want (Would like to)", Pinyin = "xiăng + Verb" },
-        new() { English = "Want (avoir envie de)", Pinyin = "yào" },
-    };
-
     private List<WordTranslation> Actions = new()
     {
+        new() { English = "Arrive", Pinyin = "dào" },
+        new() { English = "Become", Pinyin = "chéngwéi" },
         new() { English = "Begin", Pinyin = "kāishĭ" },
         new() { English = "Come", Pinyin = "lái | guòlái" },
         new() { English = "Come Back", Pinyin = "huí lái" },
@@ -41,7 +24,7 @@
         new() { English = "Hope", Pinyin = "xīwàng" },
         new() { English = "Leave", Pinyin = "zŏu | chūfā" },
         new() { English = "Let (me Xxx)", Pinyin = "ràng" },
-        new() { English = "Live (habiter)", Pinyin = "zhù zài" },
+        new() { English = "Live (habiter)", Pinyin = "zhùzài" },
         new() { English = "Play", Pinyin = "wán" },
         new() { English = "Rest", Pinyin = "xiūxi" },
         new() { English = "Run", Pinyin = "păobù" },
@@ -52,6 +35,40 @@
         new() { English = "Train/Practice", Pinyin = "liàn" },
         new() { English = "Wait", Pinyin = "děng" },
         new() { English = "Work", Pinyin = "gōngzuò | láodòng" },
+    };
+
+    private List<WordTranslation> Evaluations = new()
+    {
+        new() { English = "Be", Pinyin = "shì" },
+        new() { English = "Be Late", Pinyin = "chídào" },
+        new() { English = "Be Obliged To", Pinyin = "bì xū" },
+        new() { English = "Can (know how)", Pinyin = "huì" },
+        new() { English = "Can (would you)", Pinyin = "néng | kĕyĭ" },
+        new() { English = "Can (permission | possibility)", Pinyin = "kĕyĭ" },
+        new() { English = "Have | There is", Pinyin = "yŏu" },
+        new() { English = "Have To", Pinyin = "yaò | yī dìng yaò", Comment = "Light obligation" },
+        new() { English = "Like", Pinyin = "xĭhuan" },
+        new() { English = "Love", Pinyin = "ài" },
+        new() { English = "Must", Pinyin = "děi", Comment = "Forced by external element" },
+        new() { English = "Need (avoir besoin de)", Pinyin = "xū yaò" },
+        new() { English = "Prefer", Pinyin = "bǐ jiào xǐ huān" },
+        new() { English = "Trust", Pinyin = "xìnrèn" },
+        new() { English = "Want (Would like to)", Pinyin = "xiăng + Verb" },
+        new() { English = "Want (avoir envie de)", Pinyin = "yào" },
+    };
+    private List<WordTranslation> Expressions = new()
+    {
+        new() { English = "Ask", Pinyin = "wèn" },
+        new() { English = "Be Afraid Of", Pinyin = "pà" },
+        new() { English = "Call", Pinyin = "" },
+        new() { English = "Cry", Pinyin = "kū" },
+        new() { English = "Laugh | Smile", Pinyin = "xiào" },
+        new() { English = "Say", Pinyin = "shuō" },
+        new() { English = "Sing", Pinyin = "chàng" },
+        new() { English = "Swear", Pinyin = "fāshì" },
+        new() { English = "Tell (someone)", Pinyin = "gàosu" },
+        new() { English = "Talk | Speak", Pinyin = "shuōhuà" },
+        new() { English = "Worry", Pinyin = "dānxīn" },
     };
 
     private List<WordTranslation> Interactions = new()
@@ -74,9 +91,33 @@
         new() { English = "Send", Pinyin = "jìgěi" },
         new() { English = "Show", Pinyin = "" },
         new() { English = "Smoke", Pinyin = "chōuyān" },
+        new() { English = "Spend (Time)", Pinyin = "guò" },
         new() { English = "Spend (Money)", Pinyin = "huā" },
         new() { English = "Use", Pinyin = "yòng | yĭ " },
         new() { English = "Wear", Pinyin = "chuān (clothes) | dài (Accessory)" },
+    };
+
+    private List<WordTranslation> Knowledge = new()
+    {
+        new() { English = "Believe", Pinyin = "xiāngxìn" },
+        new() { English = "Forget", Pinyin = "wàng" },
+        new() { English = "Know", Pinyin = "zhīdao" },
+        new() { English = "Know (Each Other) | Meet", Pinyin = "rènshi" },
+        new() { English = "Learn | Study", Pinyin = "xué | xuéxí" },
+        new() { English = "Read", Pinyin = "yuè" },
+        new() { English = "Remember", Pinyin = "jìde" },
+        new() { English = "Teach", Pinyin = "jiāo" },
+        new() { English = "Think", Pinyin = "juéde (opinion) | rènwéi (conviction) | xiăng" },
+        new() { English = "Thought that", Pinyin = "yĭwéi" },
+        new() { English = "Understand", Pinyin = "dŏng" },
+        new() { English = "Write", Pinyin = "xiĕ" },
+    };
+
+    private List<WordTranslation> Nature = new()
+    {
+        new() { English = "Freeze", Pinyin = "jiébīng" },
+        new() { English = "Rain", Pinyin = "xiàyŭ" },
+        new() { English = "Snow", Pinyin = "xiàxuě" },
     };
 
     private List<WordTranslation> Needs = new()
@@ -98,43 +139,5 @@
         new() { English = "Observe", Pinyin = "kàndào" },
         new() { English = "See (Each other)", Pinyin = "jiàn" },
         new() { English = "Smell", Pinyin = "cháng" },
-    };
-
-    private List<WordTranslation> Knowledge = new()
-    {
-        new() { English = "Believe", Pinyin = "xiāngxìn" },
-        new() { English = "Forget", Pinyin = "wàng" },
-        new() { English = "Know", Pinyin = "zhīdao" },
-        new() { English = "Know (Each Other) | Meet", Pinyin = "rènshi" },
-        new() { English = "Learn | Study", Pinyin = "xué | xuéxí" },
-        new() { English = "Read", Pinyin = "yuè" },
-        new() { English = "Remember", Pinyin = "jìde" },
-        new() { English = "Teach", Pinyin = "jiāo" },
-        new() { English = "Think", Pinyin = "juéde (opinion) | rènwéi (conviction) | xiăng" },
-        new() { English = "Thought that", Pinyin = "yĭwéi" },
-        new() { English = "Understand", Pinyin = "dŏng" },
-        new() { English = "Write", Pinyin = "xiĕ" },
-    };
-
-    private List<WordTranslation> Expressions = new()
-    {
-        new() { English = "Ask", Pinyin = "wèn" },
-        new() { English = "Be Afraid Of", Pinyin = "pà" },
-        new() { English = "Call", Pinyin = "" },
-        new() { English = "Cry", Pinyin = "kū" },
-        new() { English = "Laugh | Smile", Pinyin = "xiào" },
-        new() { English = "Say", Pinyin = "shuō" },
-        new() { English = "Sing", Pinyin = "chàng" },
-        new() { English = "Swear", Pinyin = "fāshì" },
-        new() { English = "Tell (someone)", Pinyin = "gàosu" },
-        new() { English = "Talk | Speak", Pinyin = "shuōhuà" },
-        new() { English = "Worry", Pinyin = "dānxīn" },
-    };
-
-    private List<WordTranslation> Nature = new()
-    {
-        new() { English = "Freeze", Pinyin = "jiébīng" },
-        new() { English = "Rain", Pinyin = "xiàyŭ" },
-        new() { English = "Snow", Pinyin = "xiàxuě" },
     };
 }
