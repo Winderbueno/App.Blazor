@@ -34,6 +34,7 @@
         new() { English = "Belly", Pinyin = "dùzi" },
         new() { English = "Body", Pinyin = "shēn | shēntǐ" },
         new() { English = "Brain", Pinyin = "năo" },
+        new() { English = "Eye", Pinyin = "yǎnjing" },
         new() { English = "Hand", Pinyin = "shŏu" },
         new() { English = "Head", Pinyin = "tóu" },
         new() { English = "Foot", Pinyin = "jiǎo yā zi" },
@@ -59,6 +60,8 @@
         new() { English = "Gift | Present", Pinyin = "lǐwù" },
         new() { English = "Hobby", Pinyin = "àihào" },
         new() { English = "Language", Pinyin = "yǔyán" },
+        new() { English = "Meal", Pinyin = "fàn" },
+        new() { English = "Name", Pinyin = "míngzi" },
         new() { English = "Place", Pinyin = "dìfāng" },
         new() { English = "Sport", Pinyin = "yùndòng" },
         new() { English = "Skill", Pinyin = "Jìnéng" },
@@ -79,13 +82,12 @@
         new() { English = "Answer", Pinyin = "dáàn" },
         new() { English = "Character (Synogramme)", Pinyin = "zì" },
         new() { English = "Comment", Pinyin = "píng lùn" },
+        new() { English = "Definition", Pinyin = "dìng yì" },
         new() { English = "Dialogue", Pinyin = "duìhuà" },
         new() { English = "Exam", Pinyin = "kăoshì" },
-        new() { English = "Expressions", Pinyin = "?" },
-        new() { English = "Grammar", Pinyin = "yǔ fǎ" },
+        new() { English = "Grammar", Pinyin = "yǔfǎ" },
         new() { English = "Letter(mail)", Pinyin = "xìn" },
         new() { English = "Meaning", Pinyin = "yì si" },
-        new() { English = "Noun", Pinyin = "míngcí" },
         new() { English = "Question/Problem", Pinyin = "tí | wèntí" },
         new() { English = "Request", Pinyin = "yāoqiú" },
         new() { English = "Sentence", Pinyin = "jùzi" },
@@ -96,7 +98,7 @@
     {
         new() { English = "Adjective", Pinyin = "xíngróngcí" },
         new() { English = "Adverb", Pinyin = "fùcí" },
-        new() { English = "Character (Synogramme)", Pinyin = "zì" },
+        new() { English = "Noun", Pinyin = "míngcí" },
         new() { English = "Verb", Pinyin = "dòngcí" },
         new() { English = "Separable Word", Pinyin = " líhécí" },
     };
@@ -127,18 +129,23 @@
     private List<WordTranslation> Facilities = new()
     {
         new() { English = "Airport", Pinyin = "fēijīchǎng | jīchǎng" },
+        new() { English = "Bar", Pinyin = "jiǔbā" },
         new() { English = "College (Collège)", Pinyin = "zhōngxué" },
         new() { English = "Company", Pinyin = "gōngsī" },
+        new() { English = "Grocery Store", Pinyin = "shāngdiàn" },
+        new() { English = "Gym", Pinyin = "jiànshēnfáng" },
         new() { English = "High School (Lycée)", Pinyin = "gāozhōng" },
         new() { English = "Hospital", Pinyin = "yīyuàn" },
         new() { English = "Market", Pinyin = "shìchǎng" },
+        new() { English = "Office", Pinyin = "bàngōngshì" },
         new() { English = "Park", Pinyin = "gōngyuán" },
-        new() { English = "Restaurant", Pinyin = "fàndiàn" },
+        new() { English = "Restaurant", Pinyin = "fàndiàn | guǎn" },
         new() { English = "School", Pinyin = "xuéxiào" },
         new() { English = "Shop | store", Pinyin = "diàn" },
-        new() { English = "Grocery Store", Pinyin = "shāngdiàn" },
+        new() { English = "Supermarket", Pinyin = "chāoshì" },
+        new() { English = "Tea room", Pinyin = "cháguǎn" },
         new() { English = "Theater", Pinyin = "jùchǎng" },
-        new() { English = "Train Station", Pinyin = "huǒchē zhàn" },
+        new() { English = "<Transport> Station", Pinyin = "<Transport> zhàn" },
         new() { English = "University", Pinyin = "dàxué" },
     };
 
@@ -148,11 +155,10 @@
         new() { English = "Beer", Pinyin = "Píjiŭ" },
         new() { English = "Bread", Pinyin = "miànbāo" },
         new() { English = "Cake", Pinyin = "bĭng | dàngāo" },
-        new() { English = "Dish (Plat)", Pinyin = "cài" },
         new() { English = "Fruit", Pinyin = "shuǐguǒ" },
         new() { English = "Hamburger", Pinyin = "hànbǎo" },
         new() { English = "Meat", Pinyin = "ròu" },
-        new() { English = "Meal (Repas)", Pinyin = "fàn" },
+        new() { English = "Milk", Pinyin = "niúnǎi" },
         new() { English = "Noodles", Pinyin = "miàntiáo" },
         new() { English = "Rice", Pinyin = "mǐfàn" },
         new() { English = "Sandwich", Pinyin = "sānmíngzhì" },
@@ -160,6 +166,13 @@
         new() { English = "Tea", Pinyin = "chá" },
         new() { English = "Water", Pinyin = "shuĭ" },
         new() { English = "Wine", Pinyin = "Pútáojiŭ" },
+    };
+
+    private List<WordTranslation> Meal = new()
+    {
+        new() { English = "Breakfast", Pinyin = "zǎofàn" },
+        new() { English = "Lunch", Pinyin = "wǔfàn" },
+        new() { English = "Dinner", Pinyin = "wǎnfàn" },
     };
 
     private List<WordTranslation> Functions = new()
@@ -180,6 +193,7 @@
         new() { English = "Cup", Pinyin = "bēizi" },
         new() { English = "Chair", Pinyin = "yǐzi" },
         new() { English = "Chopsticks", Pinyin = "kuàizi" },
+        new() { English = "Dish (Plat)", Pinyin = "cài" },
         new() { English = "Door", Pinyin = "mén" },
         new() { English = "House", Pinyin = "fángzi" },
         new() { English = "Home", Pinyin = "jiā" },
@@ -192,6 +206,7 @@
 
     private List<WordTranslation> Human = new()
     {
+        new() { English = "Baby", Pinyin = "Bǎobao" },
         new() { English = "Dear / My Dear", Pinyin = "qīn ài de" },
         new() { English = "Foreigners", Pinyin = "wài guó rén" },
         new() { English = "Friend", Pinyin = "péng you" },
@@ -234,6 +249,7 @@
         new() { English = "City", Pinyin = "chéngshì" },
         new() { English = "Country", Pinyin = "guójiā" },
         new() { English = "Continent", Pinyin = "dàlù" },
+        new() { English = "Street", Pinyin = "jiē" },
         new() { English = "World", Pinyin = "shìjiè" },
     };
 
@@ -250,7 +266,7 @@
         new() { English = "Car", Pinyin = "qìchē | chē" },
         new() { English = "Metro", Pinyin = "dìtiě" },
         new() { English = "Plane", Pinyin = "fēijī" },
-        new() { English = "Taxi", Pinyin = "chūzūqìchē" },
+        new() { English = "Taxi", Pinyin = "chūzūchē" },
         new() { English = "Train", Pinyin = "huŏchē" },
     };
 }
