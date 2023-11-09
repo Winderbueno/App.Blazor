@@ -13,6 +13,7 @@
  @code {
     private List<WordTranslation> Actions = new()
     {
+        new() { English = "Applaude", Pinyin = "gǔzhǎng", SeparableVerb=true },
         new() { English = "Accomplish | Reach", Pinyin = "shíxiàn" },
         new() { English = "Arrive", Pinyin = "dào" },
         new() { English = "Become", Pinyin = "chéngwéi" },
@@ -22,20 +23,24 @@
         new() { English = "Choose", Pinyin = "xuǎnzé" },
         new() { English = "Do", Pinyin = "zuò | gàn" },
         new() { English = "Dream", Pinyin = "mèng xiǎng" },
-        new() { English = "Go", Pinyin = "qù" },
-        new() { English = "Help", Pinyin = "bāng" },
+        new() { English = "Finish", Pinyin = "wán" },
+        new() { English = "Go", Pinyin = "qù | zǒu" },
+        new() { English = "Go outside", Pinyin = "chū mén" },
+        new() { English = "Help", Pinyin = "(gěi Sb.) + bāng máng" },
         new() { English = "Hope", Pinyin = "xīwàng" },
         new() { English = "Leave", Pinyin = "zŏu | chūfā" },
         new() { English = "Let (me Xxx)", Pinyin = "ràng" },
         new() { English = "Live (habiter)", Pinyin = "zhùzài" },
+        new() { English = "Meet", Pinyin = "(hé Sb.) jiànmiàn" },
         new() { English = "Play", Pinyin = "wán" },
         new() { English = "Rest", Pinyin = "xiūxi" },
-        new() { English = "Run", Pinyin = "păobù" },
+        new() { English = "Run", Pinyin = "păobù", SeparableVerb = true },
         new() { English = "Search | LookFor", Pinyin = "zhǎo" },
         new() { English = "Sit", Pinyin = "zuò" },
+        new() { English = "Stand up", Pinyin = "zhànqǐlai" },
         new() { English = "Stay", Pinyin = "liú" },
-        new() { English = "Swim", Pinyin = "yóuyŏng" },
-        new() { English = "Take a walk", Pinyin = "mànbù | sànbù" },
+        new() { English = "Swim", Pinyin = "yóuyŏng", SeparableVerb = true },
+        new() { English = "Take a walk", Pinyin = "mànbù | sànbù", SeparableVerb = true },
         new() { English = "Train/Practice", Pinyin = "liàn" },
         new() { English = "Travel", Pinyin = "lǚ yóu" },
         new() { English = "Wait", Pinyin = "děng" },
@@ -44,6 +49,7 @@
 
     private List<WordTranslation> Evaluations = new()
     {
+        new() { English = "Allow", Pinyin = "yǔn xǔ" },
         new() { English = "Be", Pinyin = "shì" },
         new() { English = "Be Late", Pinyin = "chídào" },
         new() { English = "Be Obliged To", Pinyin = "bì xū" },
@@ -56,6 +62,7 @@
         new() { English = "Have To", Pinyin = "yaò | yī dìng yaò", Comment = "Light obligation" },
         new() { English = "Like", Pinyin = "xĭhuan" },
         new() { English = "Love", Pinyin = "ài" },
+        new() { English = "Master", Pinyin = "zhǎng wò" },
         new() { English = "Must", Pinyin = "děi", Comment = "Forced by external element" },
         new() { English = "Need (avoir besoin de)", Pinyin = "xū yaò" },
         new() { English = "Prefer", Pinyin = "bǐ jiào xǐhuān" },
@@ -65,8 +72,8 @@
     };
     private List<WordTranslation> Expressions = new()
     {
-        new() { English = "Apologize", Pinyin = "xiàng <Sb> dàoqiàn" },
-        new() { English = "Argue | Fight | Have argument", Pinyin = "chǎojià" },
+        new() { English = "Apologize", Pinyin = "(xiàng Sb.) + dàoqiàn" },
+        new() { English = "Argue | Fight | Have argument", Pinyin = "chǎojià", SeparableVerb = true },
         new() { English = "Ask", Pinyin = "wèn" },
         new() { English = "Be Afraid Of", Pinyin = "pà" },
         new() { English = "Call", Pinyin = "" },
@@ -77,11 +84,12 @@
         new() { English = "Swear", Pinyin = "fāshì" },
         new() { English = "Tell (someone)", Pinyin = "gàosu" },
         new() { English = "Talk | Speak", Pinyin = "shuōhuà" },
-        new() { English = "Worry", Pinyin = "dānxīn" },
+        new() { English = "Worry", Pinyin = "dānxīn | cāoxīn (wèi sb.)" },
     };
 
     private List<WordTranslation> Interactions = new()
     {
+        new() { English = "Break up", Pinyin = "fēnshǒu" },
         new() { English = "Bring", Pinyin = "dài | sòng" },
         new() { English = "Buy", Pinyin = "mǎi" },
         new() { English = "Close", Pinyin = "guān" },
@@ -91,7 +99,7 @@
         new() { English = "Hold (Tenir)", Pinyin = "ná" },
         new() { English = "Kiss", Pinyin = "qīn | wĕn" },
         new() { English = "Loose (sth)", Pinyin = "nòngdiū" },
-        new() { English = "Marry", Pinyin = "hé <Sb> jiéhūn" },
+        new() { English = "Marry", Pinyin = "(hé Sb.) + jiéhūn" },
         new() { English = "Open", Pinyin = "kāi | kāimén | dăkāi" },
         new() { English = "Pay", Pinyin = "fù<xxx>qián (happy)" },
         new() { English = "Pay bill", Pinyin = "jiézhàng | maĭdān (resto only)" },
@@ -142,7 +150,7 @@
         new() { English = "Eat", Pinyin = "chī" },
         new() { English = "Fight", Pinyin = "chăojià" },
         new() { English = "Get Up | Wake Up", Pinyin = "qĭchuáng" },
-        new() { English = "Go to sleep", Pinyin = "shuìjiào" },
+        new() { English = "Go to sleep", Pinyin = "shuìjiào", SeparableVerb = true },
         new() { English = "Sleep", Pinyin = "shuì" },
     };
 

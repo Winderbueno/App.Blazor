@@ -11,6 +11,7 @@
         <Card Title="Food" Level=2><WordTranslationList Datas=Food /></Card>
         <Card Title="Home" Level=2><WordTranslationList Datas=Home /></Card>
         <Card Title="Human" Level=2><WordTranslationList Datas=Human /></Card>
+        <Card Title="HumanFamily" Level=2><WordTranslationList Datas=HumanFamily /></Card>
         <Card Title="Places" Level=2><WordTranslationList Datas=Places /></Card>
         <Card Title="Sport" Level=2><WordTranslationList Datas=Sport /></Card>
         <Card Title="Transportation" Level=2><WordTranslationList Datas=Transportation /></Card>
@@ -53,6 +54,7 @@
         new() { English = "Change", Pinyin = "biànhuà" },
         new() { English = "Colors", Pinyin = "yánsè" },
         new() { English = "Fact", Pinyin = "shì shí" },
+        new() { English = "Family", Pinyin = "rénjiā | jiā" },
         new() { English = "Food", Pinyin = "shíwù" },
         new() { English = "Gift | Present", Pinyin = "lǐwù" },
         new() { English = "Hobby", Pinyin = "àihào" },
@@ -74,8 +76,7 @@
 
     private List<WordTranslation> Communication = new()
     {
-        new() { English = "Adjective", Pinyin = "xíngróngcí" },
-        new() { English = "Adverb", Pinyin = "fùcí" },
+        new() { English = "Answer", Pinyin = "dáàn" },
         new() { English = "Character (Synogramme)", Pinyin = "zì" },
         new() { English = "Comment", Pinyin = "píng lùn" },
         new() { English = "Dialogue", Pinyin = "duìhuà" },
@@ -88,14 +89,24 @@
         new() { English = "Question/Problem", Pinyin = "tí | wèntí" },
         new() { English = "Request", Pinyin = "yāoqiú" },
         new() { English = "Sentence", Pinyin = "jùzi" },
-        new() { English = "Verb", Pinyin = "dòngcí" },
         new() { English = "Word", Pinyin = "cí" },
+    };
+
+    private List<WordTranslation> WordType = new()
+    {
+        new() { English = "Adjective", Pinyin = "xíngróngcí" },
+        new() { English = "Adverb", Pinyin = "fùcí" },
+        new() { English = "Character (Synogramme)", Pinyin = "zì" },
+        new() { English = "Verb", Pinyin = "dòngcí" },
+        new() { English = "Separable Word", Pinyin = " líhécí" },
     };
 
     private List<WordTranslation> Entertainment = new()
     {
         new() { English = "Book", Pinyin = "shū" },
+        new() { English = "Channel", Pinyin = "píndào" },
         new() { English = "Computer", Pinyin = "diànnăo" },
+        new() { English = "Game", Pinyin = "yóuxì" },
         new() { English = "Microphone", Pinyin = "màikèfēng" },
         new() { English = "Movie", Pinyin = "diànyĭng" },
         new() { English = "Music", Pinyin = "yīnyuè" },
@@ -181,20 +192,23 @@
 
     private List<WordTranslation> Human = new()
     {
-        new() { English = "Child", Pinyin = "xiǎohái | háizi" },
-        new() { English = "Daughter", Pinyin = "" },
         new() { English = "Dear / My Dear", Pinyin = "qīn ài de" },
-        new() { English = "Family", Pinyin = "rénjiā | jiā" },
-        new() { English = "Father", Pinyin = "lǎo bà | bàba | bà" },
         new() { English = "Foreigners", Pinyin = "wài guó rén" },
         new() { English = "Friend", Pinyin = "péng you" },
         new() { English = "Girl", Pinyin = "nǚ háizi" },
         new() { English = "Man", Pinyin = "nán" },
         new() { English = "Mister", Pinyin = "xiānsheng" },
-        new() { English = "Mother", Pinyin = "lǎomā | māma" },
-        new() { English = "Parents", Pinyin = "fù mǔ" },
         new() { English = "Person | People", Pinyin = "rén" },
         new() { English = "Population", Pinyin = "rénkŏu" },
+    };
+
+    private List<WordTranslation> HumanFamily = new()
+    {
+        new() { English = "Child", Pinyin = "xiǎohái | háizi" },
+        new() { English = "Daughter", Pinyin = "nǚér" },
+        new() { English = "Father", Pinyin = "lǎo bà | bàba | bà" },
+        new() { English = "Mother", Pinyin = "lǎomā | māma" },
+        new() { English = "Parents", Pinyin = "fù mǔ" },
         new() { English = "Son", Pinyin = "érzi" },
         new() { English = "Women", Pinyin = "nǚ" },
     };
@@ -205,6 +219,7 @@
         new() { English = "Fire", Pinyin = "huŏ" },
         new() { English = "Flower", Pinyin = "huā" },
         new() { English = "Moon", Pinyin = "yuèliang" },
+        new() { English = "Sea", Pinyin = "hǎi" },
         new() { English = "Sky", Pinyin = "tiānkōng" },
         new() { English = "Star", Pinyin = "xīng" },
         new() { English = "Tree", Pinyin = "shù" },
