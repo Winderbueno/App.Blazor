@@ -14,6 +14,7 @@
  @code {
     private List<WordTranslation> Actions = new()
     {
+        new() { English = "Add", Pinyin = "jiā" },
         new() { English = "Applaude", Pinyin = "gŭzhǎng", SeparableVerb=true },
         new() { English = "Become", Pinyin = "chéngwéi" },
         new() { English = "Begin", Pinyin = "kāishĭ" },
@@ -96,6 +97,7 @@
     };
     private List<WordTranslation> Expressions = new()
     {
+        new() { English = "Accept", Pinyin = "jiēshòu" },
         new() { English = "Apologize", Pinyin = "(xiàng Sb.) + dàoqiàn" },
         new() { English = "Argue | Fight | Have argument", Pinyin = "chǎojià", SeparableVerb = true },
         new() { English = "Ask", Pinyin = "wèn" },
@@ -103,8 +105,8 @@
         new() { English = "Call | Be Called (name)", Pinyin = "jiào" },
         new() { English = "Call (Phone)", Pinyin = "dǎ diàn huà" },
         new() { English = "Cry", Pinyin = "kū" },
-        new() { English = "Express", Pinyin = "biǎodá" },
         new() { English = "Laugh | Smile", Pinyin = "xiào" },
+        new() { English = "Mean | Express", Pinyin = "biǎodá | biǎoshì" },
         new() { English = "Say", Pinyin = "shuō" },
         new() { English = "Sing", Pinyin = "chàng" },
         new() { English = "Swear", Pinyin = "fāshì" },
@@ -115,10 +117,12 @@
 
     private List<WordTranslation> Interactions = new()
     {
+        new() { English = "Block", Pinyin = "dǎng zhù" },
         new() { English = "Break up", Pinyin = "fēnshǒu" },
         new() { English = "Bring", Pinyin = "dài | sòng" },
         new() { English = "Buy", Pinyin = "(gěi sb.) mǎi" },
         new() { English = "Check In/Out (Hotel)", Pinyin = "rùzhù/tuì fáng" },
+        new() { English = "Clean | Wash", Pinyin = "xĭ" },
         new() { English = "Close", Pinyin = "guān" },
         new() { English = "Find", Pinyin = "zhǎodào" },
         new() { English = "Get", Pinyin = "dédào" },
