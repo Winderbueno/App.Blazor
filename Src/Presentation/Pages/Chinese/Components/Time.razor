@@ -2,6 +2,7 @@
     <Container FlexColumn>
         <Container>
             <Card Title="Period" Level=2><WordTranslationList Datas=PrecisePeriod /></Card>
+            <Card Title="Period" Level=2><WordTranslationList Datas=Period /></Card>
             <Card Title="Days & Months" Level=2>
                 <div>Days. (xīng qī | zhōu) + @("(<number>, Except Sunday -> rì/tiān)")</div>
                 <div>Ex. xīng qī yī, xīng qī èr, xīng qī rì</div>
@@ -27,7 +28,6 @@
         new() { English = "Month", Pinyin = "yuè" },
         new() { English = "Year", Pinyin = "nián" },
         new() { English = "Century", Pinyin = "shìjì" },
-        new() { English = "Season", Pinyin = "jìjié" },
         new() { English = "Weekend", Pinyin = "zhōumò" },
     };
 
@@ -41,6 +41,7 @@
         new() { English = "Period", Pinyin = "shíduàn" },
         new() { English = "Moment", Pinyin = "shíhou" },
         new() { English = "Holiday", Pinyin = "jiàqī | hánjià (winter)" },
+        new() { English = "Season", Pinyin = "jìjié" },
     };
 
     private List<WordTranslation> Days = new()
