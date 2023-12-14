@@ -1,10 +1,11 @@
 ﻿<TranslationCard Title="Adverbs">
     <Container>
-        <Card Title="Others" Level=2><WordTranslationList Datas=Others /></Card>
-        <Card Title="Time" Level=2><WordTranslationList Datas=Time /></Card>
-        <Card Title="Logical" Level=2><WordTranslationList Datas=Logical /></Card>
-        <Card Title="Quantity" Level=2><WordTranslationList Datas=Quantity /></Card>
         <Card Title="Frequency" Level=2><WordTranslationList Datas=Frequency /></Card>
+        <Card Title="Logical" Level=2><WordTranslationList Datas=Logical /></Card>
+        <Card Title="Others" Level=2><WordTranslationList Datas=Others /></Card>
+        <Card Title="Position" Level=2><WordTranslationList Datas=Position /></Card>
+        <Card Title="Quantity" Level=2><WordTranslationList Datas=Quantity /></Card>
+        <Card Title="Time" Level=2><WordTranslationList Datas=Time /></Card>
     </Container>
 </TranslationCard>
 
@@ -27,7 +28,7 @@
         new() { English = "Although", Pinyin = "suīrán" },
         new() { English = "And (For Nouns)", Pinyin = "hé" },
         new() { English = "And then (Event Sequence)", Pinyin = "ránhòu" },
-        new() { English = "Because", Pinyin = "yīnwèi" },
+        new() { English = "Because", Pinyin = "yīnwèi | yóuyú" },
         new() { English = "But", Pinyin = "dànshì | kĕshì | bùguò" },
         new() { English = "Even if", Pinyin = "jíshǐ" },
         new() { English = "For example", Pinyin = "bĭrú" },
@@ -50,9 +51,23 @@
         new() { English = "Exactly | Precisely", Pinyin = "jiùshì" },
         new() { English = "From", Pinyin = "cóng" },
         new() { English = "Generally", Pinyin = "yībān" },
-        new() { English = "Nearby", Pinyin = "fùjìn" },
+        new() { English = "Gradually", Pinyin = "zhújiàn" },
         new() { English = "Obviously", Pinyin = "dāngrán" },
         new() { English = "Together", Pinyin = "yīqĭ | yī kuài r" },
+    };
+
+    private List<WordTranslation> Position = new()
+    {
+        new() { English = "Aside | Next to", Pinyin = "pángbiān" },
+        new() { English = "Behind", Pinyin = "hòumiàn" },
+        new() { English = "Between", Pinyin = "" },
+        new() { English = "In | Inside", Pinyin = "lĭ | lĭmiàn | lĭbian" },
+        new() { English = "In front of", Pinyin = "qiánmiàn" },
+        new() { English = "Nearby", Pinyin = "fùjìn" },
+        new() { English = "On the other side", Pinyin = "duìmiàn" },
+        new() { English = "Outside", Pinyin = "wàimian" },
+        new() { English = "Over", Pinyin = "shàngmiàn" },
+        new() { English = "Under", Pinyin = "xiàmian" }
     };
 
     private List<WordTranslation> Quantity = new()
@@ -82,7 +97,7 @@
         new() { English = "First | Firstly", Pinyin = "xiān | shǒuxiān" },
         new() { English = "Just now", Pinyin = "gāng cái" },
         new() { English = "Lately", Pinyin = "zuìjìn" },
-        new() { English = "Suddenly", Pinyin = "tūrán" },
+        new() { English = "Suddenly", Pinyin = "tūrán | hūrán" },
         new() { English = "Yet", Pinyin = "hái" },
     };
 }
