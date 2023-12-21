@@ -1,8 +1,6 @@
 ﻿<TranslationCard Title="Time">
     <Container FlexColumn>
         <Container>
-            <Card Title="Period" Level=2><WordTranslationList Datas=PrecisePeriod /></Card>
-            <Card Title="Period" Level=2><WordTranslationList Datas=Period /></Card>
             <Card Title="Days & Months" Level=2>
                 <div>Days. (xīng qī | zhōu) + @("(<number>, Except Sunday -> rì/tiān)")</div>
                 <div>Ex. xīng qī yī, xīng qī èr, xīng qī rì</div>
@@ -10,64 +8,5 @@
                 <div>Ex. yī yuè, èr yuè</div>
             </Card>
         </Container>
-        <Container>
-            <Card Title="Around Day" Level=2><WordTranslationList Datas=Days /></Card>
-            <Card Title="DayTime" Level=2><WordTranslationList Datas=Daytime /></Card>
-            <Card Title="Seasons" Level=2><WordTranslationList Datas=Seasons /></Card>
-        </Container>
     </Container>
 </TranslationCard>
-
-@code {
-    private List<WordTranslation> PrecisePeriod = new()
-    {
-        new() { English = "Minute", Pinyin = "fēn | fēnzhōng" },
-        new() { English = "Hour", Pinyin = "xiǎoshí | diǎn (o'clock)" },
-        new() { English = "Day", Pinyin = "tiān" },
-        new() { English = "Week", Pinyin = "xīng qī | zhōu | lĭbai" },
-        new() { English = "Month", Pinyin = "yuè" },
-        new() { English = "Year", Pinyin = "nián" },
-        new() { English = "Century", Pinyin = "shìjì" },
-        new() { English = "Weekend", Pinyin = "zhōumò" },
-    };
-
-    private List<WordTranslation> Period = new()
-    {
-        new() { English = "Past", Pinyin = "Guòqù" },
-        new() { English = "Present", Pinyin = "xiànzài" },
-        new() { English = "Futur", Pinyin = "jiāng lái" },
-        new() { English = "Phase | Step", Pinyin = "jiēduàn" },
-        new() { English = "Time", Pinyin = "shíjiān" },
-        new() { English = "Period", Pinyin = "shíduàn" },
-        new() { English = "Moment", Pinyin = "shíhou" },
-        new() { English = "Holiday", Pinyin = "jiàqī | hánjià (winter)" },
-        new() { English = "Season", Pinyin = "jìjié" },
-    };
-
-    private List<WordTranslation> Days = new()
-    {
-        new() { English = "Day before yesterday", Pinyin = "qiántiān" },
-        new() { English = "Yesterday", Pinyin = "zuótiān" },
-        new() { English = "Today", Pinyin = "jīntiān" },
-        new() { English = "Tommorow", Pinyin = "míngtiān" },
-        new() { English = "Day after tommorow", Pinyin = "hòutiān" }
-    };
-
-    private List<WordTranslation> Daytime = new()
-    {
-        new() { English = "Now", Pinyin = "xiànzài" },
-        new() { English = "Morning", Pinyin = "zăoshang | shàngwŭ" },
-        new() { English = "Noon", Pinyin = "zhōngwŭ" },
-        new() { English = "Afternoon", Pinyin = "xiàwŭ" },
-        new() { English = "Evening", Pinyin = "wănshang" },
-        new() { English = "Night", Pinyin = "yèwǎn" },
-    };
-
-    private List<WordTranslation> Seasons = new()
-    {
-        new() { English = "Spring", Pinyin = "chūntiān" },
-        new() { English = "Summer", Pinyin = "xiàtiān" },
-        new() { English = "Autumn", Pinyin = "qiūtiān" },
-        new() { English = "Winter", Pinyin = "dōngtiān" },
-    };
-}
