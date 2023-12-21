@@ -1,85 +1,11 @@
 ﻿<TranslationCard Title="Adjectives">
     <Container>
-        <Card Title="Emotions" Level=2><WordTranslationList Datas=Emotions /></Card>
-        <Card Title="Evaluations (-)" Level=2><WordTranslationList Datas=EvaluationMinus /></Card>
-        <Card Title="Evaluations (+)" Level=2><WordTranslationList Datas=EvaluationPlus /></Card>
-        <Card Title="Physical" Level=2><WordTranslationList Datas=Physical /></Card>
+        <Card Title="Compare" Level=2><WordTranslationList Datas=Compare /></Card>
     </Container>
 </TranslationCard>
 
 @code {
-    private List<WordTranslation> Emotions = new()
-    {
-        new() { English = "Alone", Pinyin = "yī gè rén" },
-        new() { English = "Bored", Pinyin = "?" },
-        new() { English = "Busy", Pinyin = "máng" },
-        new() { English = "Crazy", Pinyin = "fēng" },
-        new() { English = "Funny", Pinyin = "dòu" },
-        new() { English = "Get mad", Pinyin = "shēng qì", SeparableVerb = true },
-        new() { English = "Happy", Pinyin = "gāoxìng | kāixīn | kuàilè" },
-        new() { English = "Important (people)", Pinyin = "zhòngyào" },
-        new() { English = "Intelligent", Pinyin = "cōngming" },
-        new() { English = "Lazy", Pinyin = "lăn" },
-        new() { English = "Like to laugh*", Pinyin = "xiào diǎn dī" },
-        new() { English = "Proud", Pinyin = "déyì" },
-        new() { English = "Sad", Pinyin = "shāngxīn | nánguò" },
-        new() { English = "Serious", Pinyin = "rènzhēn" },
-        new() { English = "Tired", Pinyin = "lèi" },
-    };
-
-    private List<WordTranslation> EvaluationMinus = new()
-    {
-        new() { English = "Abstract", Pinyin = "chōuxiàng" },
-        new() { English = "Bad", Pinyin = "huài" },
-        new() { English = "Basic", Pinyin = "jīchǔ" },
-        new() { English = "Boring", Pinyin = "wúliáo | méiyìsi" },
-        new() { English = "Broken", Pinyin = "huài" },
-        new() { English = "Cheap", Pinyin = "piányi" },
-        new() { English = "Dark", Pinyin = "àn" },
-        new() { English = "Dirty", Pinyin = "zāng" },
-        new() { English = "Easy | Simple", Pinyin = "jiăndān | hăo" },
-        new() { English = "Early", Pinyin = "zăo" },
-        new() { English = "Inevitable", Pinyin = "nánmiǎn" },
-        new() { English = "Last", Pinyin = "shàng" },
-        new() { English = "Mysterious", Pinyin = "shénmì" },
-        new() { English = "Old", Pinyin = "lăo" },
-        new() { English = "Poor", Pinyin = "qióng" },
-        new() { English = "Particular", Pinyin = "tè shū" },
-        new() { English = "Severe", Pinyin = "yán zhòng" },
-        new() { English = "Vague | unclear", Pinyin = "móhu" },
-    };
-
-    private List<WordTranslation> EvaluationPlus = new()
-    {
-        new() { English = "Beautiful", Pinyin = "piàoliang | mĕi" },
-        new() { English = "Clear", Pinyin = "qīngxī" },
-        new() { English = "Correct", Pinyin = "duì | zhèngquè" },
-        new() { English = "Common", Pinyin = "xúncháng | chángjiàn" },
-        new() { English = "Convenient", Pinyin = "fāngbiàn" },
-        new() { English = "Cute", Pinyin = "kě'ài" },
-        new() { English = "Daily", Pinyin = "rì cháng" },
-        new() { English = "Expensive", Pinyin = "guì" },
-        new() { English = "Famous", Pinyin = "zhùmíng | yǒumíng" },
-        new() { English = "Good", Pinyin = "hăo | bùcuò | kěyǐ | jīngcǎi (+)" },
-        new() { English = "Hard (Difficile)", Pinyin = "nán" },
-        new() { English = "Healthy", Pinyin = "jiànkāng" },
-        new() { English = "Important", Pinyin = "zhòngyào" },
-        new() { English = "Interesting", Pinyin = "yŏuqù" },
-        new() { English = "Late", Pinyin = "wăn" },
-        new() { English = "Logical", Pinyin = "luóji" },
-        new() { English = "Lucky", Pinyin = "xìngyùn" },
-        new() { English = "Main | Mainly", Pinyin = "zhǔyào" },
-        new() { English = "Natural", Pinyin = "tiānrán" },
-        new() { English = "New", Pinyin = "xīn" },
-        new() { English = "Next", Pinyin = "xià <spec> <noun>" },
-        new() { English = "Perfect", Pinyin = "wánměi" },
-        new() { English = "Polite", Pinyin = "lǐmào" },
-        new() { English = "Popular", Pinyin = "liúxíng" },
-        new() { English = "Possible", Pinyin = "kěnéng" },
-        new() { English = "Precise", Pinyin = "zhǔnquè" },
-        new() { English = "Real", Pinyin = "zhēnshí" },
-        new() { English = "Rich", Pinyin = "yǒuqián" },
-    };
+    
 
     private List<WordTranslation> Compare = new()
     {
@@ -89,31 +15,5 @@
         new() { English = "Match", Pinyin = "pǐpèi" },
         new() { English = "Other", Pinyin = "qítā | lìngwài" },
         new() { English = "Same", Pinyin = "yíyàng" },
-    };
-
-    private List<WordTranslation> Physical = new()
-    {
-        new() { English = "Big", Pinyin = "dà" },
-        new() { English = "Cold", Pinyin = "lěng" },
-        new() { English = "Close", Pinyin = "jìn" },
-        new() { English = "Far", Pinyin = "yuăn" },
-        new() { English = "Fast", Pinyin = "kuài" },
-        new() { English = "Fat", Pinyin = "pàng" },
-        new() { English = "Full (Food)", Pinyin = "bǎo" },
-        new() { English = "Heavy", Pinyin = "zhòng" },
-        new() { English = "Muddy", Pinyin = "nínìng" },
-        new() { English = "Light", Pinyin = "dàn" },
-        new() { English = "Long", Pinyin = "cháng" },
-        new() { English = "Painful", Pinyin = "téng" },
-        new() { English = "Short", Pinyin = "duǎn" },
-        new() { English = "Small", Pinyin = "xiăo | ǎixiǎo" },
-        new() { English = "Slow", Pinyin = "màn" },
-        new() { English = "Strong", Pinyin = "lìhai" },
-        new() { English = "Tall", Pinyin = "gāo" },
-        new() { English = "Tasty", Pinyin = "hǎochī" },
-        new() { English = "Thin", Pinyin = "shòu" },
-        new() { English = "Thick", Pinyin = "hòu" },
-        new() { English = "Thick (dense)", Pinyin = "màomì" },
-        new() { English = "Warm", Pinyin = "rè" },
     };
 }
