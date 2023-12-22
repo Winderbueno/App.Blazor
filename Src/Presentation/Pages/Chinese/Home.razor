@@ -5,74 +5,18 @@
 <Container FlexColumn FlexAlign="center">
 
     <Container >
-        <Card Title="Pronouns">
-            + "men" for plural (we, you, they)
-            <WordTranslationList Datas=Pronouns />
-        </Card>
-        <Card Title="Interrogatives"><WordTranslationList Datas=Interrogatives /></Card>
-        <Card Title="Determinant"><WordTranslationList Datas=Determinant /></Card>
+        <Card Title="Pronouns">+ "men" for plural (we, you, they)</Card>
         <Card Title="Negation">Bù (Méi with Yŏu)</Card>
-        <Card Title="Politness"><WordTranslationList Datas=Politness /></Card>
     </Container>
 
     <Nouns />
-    <Time />
+
+    <TranslationCard Title="Time">
+        <Card Title="Days & Months" Level=2>
+            <div>Days. (xīng qī | zhōu) + @("(<number>, Except Sunday -> rì/tiān)")</div>
+            <div>Ex. xīng qī yī, xīng qī èr, xīng qī rì</div>
+            <div>Months. @("<number>") + yuè</div>
+            <div>Ex. yī yuè, èr yuè</div>
+        </Card>
+    </TranslationCard>
 </Container>
-
-@code {
-    private List<WordTranslation> Pronouns = new()
-    {
-        new() { English = "I", Pinyin = "wŏ" },
-        new() { English = "You", Pinyin = "nĭ" },
-        new() { English = "He/She", Pinyin = "tā" },
-        new() { English = "We (+ talked to ren)", Pinyin = "zánmen" },
-        new() { English = "Nobody", Pinyin = "měiyourén" },
-        new() { English = "Oneself", Pinyin = "zìjǐ" },
-        new() { English = "Each time/day", Pinyin = "mĕi cì/tian" },
-        new() { English = "Everyone", Pinyin = "rénrén | měirén | měigèrén | dàjiā" },
-        new() { English = "Someone", Pinyin = "yŏurén" },
-        new() { English = "Someone Else | Others", Pinyin = "biéren" },
-    };
-
-    private List<WordTranslation> Interrogatives = new()
-    {
-        new() { English = "Should", Pinyin = "yīnggāi" },
-        new() { English = "Which", Pinyin = "năge" },
-        new() { English = "What", Pinyin = "shénme" },
-        new() { English = "When", Pinyin = "shénme shíhòu | dāng (in the case)" },
-        new() { English = "Who", Pinyin = "shéi" },
-        new() { English = "Where", Pinyin = "năli" },
-        new() { English = "Why", Pinyin = "wèi shénme | zĕnme" },
-        new() { English = "How", Pinyin = "zĕnme | zĕnmeyàng | zěnyàng | Rúhé" },
-        new() { English = "How much/many", Pinyin = "jĭ (-10) | duō shăo" },
-        new() { English = "How long (time)", Pinyin = "duō jiǔ" }
-    };
-
-    private List<WordTranslation> Determinant = new()
-    {
-        new() { English = "All of", Pinyin = "suŏ yŏu" },
-        new() { English = "There is", Pinyin = "yŏu" },
-        new() { English = "Some", Pinyin = "yixie" },
-        new() { English = "This", Pinyin = "zhè+<Specif>+Noun" },
-        new() { English = "That", Pinyin = "nà" },
-        new() { English = "These", Pinyin = "zhèxie" },
-        new() { English = "Those", Pinyin = "nàxie" },
-        new() { English = "Here", Pinyin = "zheli" },
-        new() { English = "There", Pinyin = "nali" },
-        new() { English = "Several", Pinyin = "hǎo jĭ" },
-    };
-
-    private List<WordTranslation> Politness = new()
-    {
-        new() { English = "Hello", Pinyin = "nǐhǎo" },
-        new() { English = "Hello (Phone)", Pinyin = "wèi" },
-        new() { English = "GoodBye", Pinyin = "zàijiàn" },
-        new() { English = "May I Ask", Pinyin = "qĭngwèn" },
-        new() { English = "Please", Pinyin = "qĭng" },
-        new() { English = "Thanks", Pinyin = "xièxie" },
-        new() { English = "You're welcome", Pinyin = "Búkèqi" },
-        new() { English = "Sorry", Pinyin = "duìbuqǐ | bàoqiàn" },
-        new() { English = "Welcome", Pinyin = "huānyíng" },
-        new() { English = "Whatever", Pinyin = "méi guānxi" },
-    };
-}
