@@ -1,0 +1,69 @@
+﻿<Card Title="Search Word" Level=2>
+    <Form Model=form OnFieldChanged=OnFieldChanged>
+        <Container FlexAlign="center"
+                   FlexJustify="center"
+                   NoRowGap>
+
+            <TextField @bind-Value=form.Contains
+                       BindOnInput OnInputDelayed=OnFormChange
+                       Label=@t["action.search"]
+                       Placeholder=@Placeholder("action.search") />
+
+             <SelectField @bind-Value=form.Domains
+                          Multiple Options="Enum.GetValues<WordDomain>()"
+                          Label=@t["common.domain"]
+                          Placeholder=@Placeholder("common.domain") />
+
+             <SelectField @bind-Value=form.Types
+                          Multiple Options="Enum.GetValues<WordType>()"
+                          Label=@t["common.type"]
+                          Placeholder=@Placeholder("common.type") />
+
+             <Button @onclick=Clear>@t["action.clear"]</Button>
+        </Container>
+    </Form>
+
+    @if (words.Any())
+    {
+        <Card Level=2>
+            @foreach (WordAppDto word in words)
+            {
+                <div>@(word.Word + ", " + word.Pinyin + ", " + word.Type)</div>
+            }
+        </Card>
+    }
+</Card>
+
+@code {
+    public WordSearchFormDto form { get; set; } = new();
+    private List<WordAppDto> words = new();
+    private IEnumerable<int>? wordIds = null;
+
+    private string Placeholder(string? label) => t[label] + "...";
+
+    private void Clear()
+    {
+        form = new();
+        OnFormChange();
+        StateHasChanged();
+    }
+
+    private void OnFieldChanged(object? sender, FieldChangedEventArgs? e) => OnFormChange();
+
+    private async void OnFormChange(object? state = null)
+    {
+        this.form.PageNumber = 1;
+        this.form.PageSize = 8;
+
+        try { wordIds = (await dicoService.SearchAsync(form)).ToList(); }
+        catch (ProblemDetailsException) { }
+
+        words.Clear();
+        foreach(int id in wordIds!)
+        {
+            words.Add(await dicoService.GetAsync(id));
+        }
+
+        StateHasChanged();
+    }
+}

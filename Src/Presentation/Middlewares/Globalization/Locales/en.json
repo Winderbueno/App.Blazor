@@ -58,6 +58,7 @@
     "users": "Users"
   },
   "common": {
+    "domain": "Domain",
     "role": "Role",
     "status": "Status",
     "type": "Type"

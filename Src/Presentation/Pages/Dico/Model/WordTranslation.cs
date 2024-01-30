@@ -1,4 +1,4 @@
-﻿namespace Presentation.Pages.Chinese.Model;
+﻿namespace Presentation.Pages.Dico.Model;
 
 public class WordTranslation
 {

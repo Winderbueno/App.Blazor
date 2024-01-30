@@ -58,6 +58,7 @@
     "users": "Utilisateurs"
   },
   "common": {
+    "domain": "Domaine",
     "role": "Rôle",
     "status": "Statut",
     "type": "Type"
