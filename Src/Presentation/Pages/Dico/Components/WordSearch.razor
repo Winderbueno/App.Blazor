@@ -58,11 +58,7 @@
         try { wordIds = (await dicoService.SearchAsync(form)).ToList(); }
         catch (ProblemDetailsException) { }
 
-        words.Clear();
-        foreach(int id in wordIds!)
-        {
-            words.Add(await dicoService.GetAsync(id));
-        }
+        words = (await dicoService.GetAsync(wordIds!)).ToList();
 
         StateHasChanged();
     }

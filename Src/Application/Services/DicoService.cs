@@ -21,6 +21,9 @@ public class DicoService : IDicoService
     public async Task<WordAppDto> GetAsync(int id)
         => _mapper.Map<WordAppDto>(await _shopApi.DicoGetAsync(id));
 
+    public async Task<IEnumerable<WordAppDto>> GetAsync(IEnumerable<int> ids)
+        => _mapper.Map<IEnumerable<WordAppDto>>(await _shopApi.DicoGetAllAsync(ids));
+
     public async Task<IEnumerable<int>> SearchAsync(WordSearchFormDto dto)
         => await _shopApi.DicoSearchAsync(_mapper.Map<WordSearchDto>(dto));
 }
