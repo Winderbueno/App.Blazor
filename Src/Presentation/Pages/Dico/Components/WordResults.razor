@@ -1,0 +1,21 @@
+﻿@using K.Blazor.Components.Containers
+
+<Card Loading="Words == null">
+    <Container FlexAlign="start" FlexJustify="space-between">
+        <CascadingValue Value=show>
+            <WordDisplay Words=Words />
+        </CascadingValue>
+
+        <Button @onclick="_ => show = !show">@(show ? "Hide" : "Show")</Button>
+    </Container>
+</Card>
+
+@code {
+    [Parameter]
+    public List<WordAppDto>? Words { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private bool show = true;
+}

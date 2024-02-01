@@ -1,0 +1,21 @@
+﻿@using K.Blazor.Components.Contents.Style
+
+<ListStyle>
+    <ul class="datas">
+        @foreach (WordAppDto word in Words)
+        {
+            <li>
+                <Tooltip Text=@(word.Pinyin)><b>@word.Word.</b></Tooltip>
+                <span hidden="@(!Show)">@($" {word.Pinyin}")</span>
+            </li>
+        }
+    </ul>
+</ListStyle>
+
+@code {
+    [Parameter]
+    public IEnumerable<WordAppDto> Words { get; set; } = new List<WordAppDto>();
+
+    [CascadingParameter]
+    public bool Show { get; set; } = true;
+}

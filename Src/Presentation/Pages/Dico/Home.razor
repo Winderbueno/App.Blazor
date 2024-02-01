@@ -7,23 +7,11 @@
     <WordSearch />
 
     <Container> 
-        <Card Title="Concept" Level=2><WordTranslationList Datas=Concept /></Card>
-
-         <TranslationCard Title="Time">
-             <Card Title="Days & Months" Level=2>
-                 <div>Days. (xīng qī | zhōu) + @("(<number>, Except Sunday -> rì/tiān)")</div>
-                 <div>Ex. xīng qī yī, xīng qī èr, xīng qī rì</div>
-                 <div>Months. @("<number>") + yuè</div>
-                 <div>Ex. yī yuè, èr yuè (test)</div>
-             </Card>
-         </TranslationCard>
+        <Card Title="Days & Months" Level=2>
+            <div>Days. (xīngqī | zhōu) + @("(<Nb>, Except Sunday -> rì/tiān)")</div>
+            <div>Ex. xīngqī yī</div>
+            <div>Months. @("<Nb>") + yuè (Ex. yīyuè)</div>
+        </Card>
     </Container>
 
 </Container>
-
- @code {
-    private List<WordTranslation> Concept = new()
-    {
-        new() { English = "Test", Pinyin = "Test" },
-    };
-}

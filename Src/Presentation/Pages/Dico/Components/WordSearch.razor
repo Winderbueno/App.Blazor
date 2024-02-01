@@ -23,34 +23,30 @@
         </Container>
     </Form>
 
-    @if (words.Any())
-    {
-        <Card Level=2>
-            @foreach (WordAppDto word in words)
-            {
-                <div>@(word.Word + ", " + word.Pinyin + ", " + word.Type)</div>
-            }
-        </Card>
-    }
+    <WordResults Words="words" />
+    
 </Card>
 
 @code {
-    public WordSearchFormDto form { get; set; } = new();
-    private List<WordAppDto> words = new();
+    private WordSearchFormDto form = new();
     private IEnumerable<int>? wordIds = null;
+    private List<WordAppDto>? words;
 
     private string Placeholder(string? label) => t[label] + "...";
 
-    private void Clear()
+    protected override async Task OnInitializedAsync() => await SearchAsync();
+
+    private async void OnFieldChanged(object? sender, FieldChangedEventArgs? e) => await SearchAsync();
+
+    private async void OnFormChange(object? state = null) => await SearchAsync();
+
+    private async void Clear()
     {
         form = new();
-        OnFormChange();
-        StateHasChanged();
-    }
+        await SearchAsync();
+    }    
 
-    private void OnFieldChanged(object? sender, FieldChangedEventArgs? e) => OnFormChange();
-
-    private async void OnFormChange(object? state = null)
+    private async Task SearchAsync()
     {
         this.form.PageNumber = 1;
         this.form.PageSize = 8;
