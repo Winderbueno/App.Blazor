@@ -4,22 +4,21 @@
 
 <Container FlexColumn FlexAlign="center">
 
-    <Container > 
-        <Card Title="Concept" Level=2><WordTranslationList Datas=Concept /></Card>
-        <Card Title="Pronouns">+ "men" for plural (we, you, they)</Card>
-        <Card Title="Negation">Bù (Méi with Yŏu)</Card>
-    </Container>
-
     <WordSearch />
 
-    <TranslationCard Title="Time">
-        <Card Title="Days & Months" Level=2>
-            <div>Days. (xīng qī | zhōu) + @("(<number>, Except Sunday -> rì/tiān)")</div>
-            <div>Ex. xīng qī yī, xīng qī èr, xīng qī rì</div>
-            <div>Months. @("<number>") + yuè</div>
-            <div>Ex. yī yuè, èr yuè (test)</div>
-        </Card>
-    </TranslationCard>
+    <Container> 
+        <Card Title="Concept" Level=2><WordTranslationList Datas=Concept /></Card>
+
+         <TranslationCard Title="Time">
+             <Card Title="Days & Months" Level=2>
+                 <div>Days. (xīng qī | zhōu) + @("(<number>, Except Sunday -> rì/tiān)")</div>
+                 <div>Ex. xīng qī yī, xīng qī èr, xīng qī rì</div>
+                 <div>Months. @("<number>") + yuè</div>
+                 <div>Ex. yī yuè, èr yuè (test)</div>
+             </Card>
+         </TranslationCard>
+    </Container>
+
 </Container>
 
  @code {
