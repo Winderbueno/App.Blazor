@@ -1,10 +1,10 @@
-::deep .datas {
+.datas {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-    ::deep .datas li {
+    .datas ::deep li {
         list-style: none;
         text-overflow: ellipsis;
         white-space: nowrap;

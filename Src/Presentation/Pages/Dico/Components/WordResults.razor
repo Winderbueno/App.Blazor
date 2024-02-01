@@ -2,8 +2,13 @@
 
 <Card Loading="Words == null">
     <Container FlexAlign="start" FlexJustify="space-between">
-        <CascadingValue Value=show>
-            <WordDisplay Words=Words />
+        <CascadingValue Value=show>   
+            <DataList>
+                @foreach (WordAppDto word in Words!)
+                {           
+                    <WordDisplay Word=word />
+                }
+            </DataList>
         </CascadingValue>
 
         <Button @onclick="_ => show = !show">@(show ? "Hide" : "Show")</Button>
@@ -12,10 +17,7 @@
 
 @code {
     [Parameter]
-    public List<WordAppDto>? Words { get; set; }
-
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    public IEnumerable<WordAppDto>? Words { get; set; }
 
     private bool show = true;
 }

@@ -1,15 +1,21 @@
-﻿@using K.Blazor.Components.Contents.Style
-
-<ListStyle>
-    <ul class="datas">
+﻿<ul class="datas">
+    @if (ChildContent != null)
+    {
+        @ChildContent
+    }
+    else
+    {
         @foreach (KeyValuePair<string, string> data in Datas)
         {
             <li><b>@data.Key.</b> @data.Value</li>
         }
-    </ul>
-</ListStyle>
+    }
+</ul>
 
 @code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
     [Parameter]
     public Dictionary<string, string> Datas { get; set; } = new();
 }
