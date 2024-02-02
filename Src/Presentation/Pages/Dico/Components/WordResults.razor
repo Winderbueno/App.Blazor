@@ -11,7 +11,7 @@
             </DataList>
         </CascadingValue>
 
-        <Button @onclick="_ => show = !show">@(show ? "Hide" : "Show")</Button>
+        <Button @onclick="_ => show = !show">@(t[show ? "action.hide" : "action.show"])</Button>
     </Container>
 </Card>
 
