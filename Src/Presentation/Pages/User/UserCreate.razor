@@ -4,10 +4,11 @@
 
 <h1>@t["user.feature.create"]</h1>
 
-<Container FlexColumn FlexAlign="center" FlexJustify="center">
+<Container FlexColumn 
+           FlexAlign="center" FlexJustify="center">
     <Form Model=form
           OnValidSubmit=ValidSubmit>
-        <Container FlexAlign="center">
+        <Container FlexAlign="center" Mobile>
             <Card Title=@t["user.profile"]>
                 <TextField @bind-Value=form.Username Label=@t["user.username"] />
 
@@ -19,7 +20,7 @@
 
             <Card Title=@t["person.identity"]>
                 <TextField @bind-Value=form.Email Label=@t["person.email"] />
-                <Container>
+                <Container Mobile>
                     <TextField @bind-Value=form.Password Label=@t["user.password"] />
                     <TextField @bind-Value=form.PasswordConfirm Label=@t["action.confirm"] DisablePaste/>
                 </Container>

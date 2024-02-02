@@ -20,7 +20,7 @@
         <InfiniteScroller @ref="infiniteScroller" OnLoad=OnLoad>
             <Container Grid PaddingInline=Size.Largest
                        GridColumns="repeat(auto-fit, minmax(20rem, 1fr))"
-                       MobileChildWidth="20rem">
+                       Mobile>
                 @foreach (int userId in userIds)
                 {
                     <UserCard UserId=userId OnUserDelete=OnUserDelete />

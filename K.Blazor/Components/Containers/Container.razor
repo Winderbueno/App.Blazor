@@ -56,9 +56,12 @@
     [Parameter]
     public Size? PaddingInline { get; set; }
 
-    /* Children */
+    /* Mobile */
+    [Parameter]
+    public bool Mobile { get; set; } = false;
     [Parameter]
     public string? MobileChildWidth { get; set; }
+    
 
     private string? RowGapCss = "--row-gap:";
     private string? ColumnGapCss = "--column-gap:";
@@ -67,6 +70,7 @@
     protected override void OnInitialized()
     {
         CssClass += Grid ? " grid" : " flex";
+        CssClass += Mobile ? " mobile" : "";
 
         RowGapCss += NoRowGap ? "0;" : $"{RowGap.ToCssVar()};";
         ColumnGapCss += NoColumnGap ? "0;" : $"{ColumnGap.ToCssVar()};";

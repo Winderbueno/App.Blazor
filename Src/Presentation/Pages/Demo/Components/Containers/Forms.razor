@@ -6,7 +6,7 @@
           OnValidSubmit=OnValidSubmit
           OnInvalidSubmit=OnInvalidSubmit
           OnFieldChanged=OnFieldChanged>
-        <Container Grid GridColumns="1fr 1fr" NoRowGap>
+        <Container Grid GridColumns="1fr 1fr" NoRowGap Mobile>
             <TextField @bind-Value=form.Text
                        @oninput=OnInput
                        Label=@Label("Text", form.Text)

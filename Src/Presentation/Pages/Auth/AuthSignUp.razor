@@ -1,14 +1,14 @@
 ﻿@page "/auth/signup"
 
-<Container FlexGrow FlexColumn FlexAlign="center" FlexJustify="center">
+<Container FlexGrow FlexColumn FlexAlign="center" FlexJustify="center" Mobile>
     <Card Title=@t["auth.signup.action"]>
         <Form Model=form OnValidSubmit=OnSubmit>
-            <Container>
+            <Container Mobile>
                 <TextField @bind-Value=form.Username Label=@t["user.username"] />
                 <TextField @bind-Value=form.Email Label=@t["person.email"] />
             </Container>
 
-            <Container>
+            <Container Mobile>
                 <TextField @bind-Value=form.Password Label=@t["user.password"] />
                 <TextField @bind-Value=form.PasswordConfirm Label=@t["action.confirm"] DisablePaste />
             </Container>

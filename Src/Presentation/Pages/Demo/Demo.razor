@@ -6,7 +6,7 @@
 
 @page "/demo"
 
-<Container FlexColumn>
+<Container FlexColumn Mobile>
 
     <Container FlexJustify="space-between"
                FlexAlign="center">
@@ -14,9 +14,9 @@
         <Button Icon="globe" @onclick=ChangeLocale>@t.Locale.ToUpper()</Button>
     </Container>
 
-    <Container>
+    <Container Mobile>
         <Card Title="Indicators">
-            <Container FlexAlign="start">
+            <Container FlexAlign="start" Mobile>
                 <Container FlexColumn>
                     <Loaders />
                     <Chips />
@@ -30,7 +30,7 @@
         </Card>
 
         <Card Title="Interactions">
-            <Container FlexColumn>
+            <Container FlexColumn Mobile>
                 <Buttons />
                 <Links />
             </Container>
@@ -39,7 +39,7 @@
         <ErrorHandling />
 
         <Card Title="Containers">
-            <Container FlexAlign="start">
+            <Container FlexAlign="start" Mobile>
                 <Forms />
                 
                 <Container FlexColumn>
