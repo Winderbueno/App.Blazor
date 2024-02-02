@@ -12,4 +12,5 @@ public class WordAppDto
     public string? Word { get; set; }
     public string? Pinyin { get; set; }
     public string? PinyinGen { get; set; }
+    public string? English { get; set; }
 }

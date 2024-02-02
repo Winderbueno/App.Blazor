@@ -2829,6 +2829,9 @@ namespace Infrastructure.HttpClients.Shop
         [Newtonsoft.Json.JsonProperty("pinyinGen", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PinyinGen { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("english", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string English { get; set; }
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.0.2.0 (NJsonSchema v11.0.0.0 (Newtonsoft.Json v13.0.0.0))")]

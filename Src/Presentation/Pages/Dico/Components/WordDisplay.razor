@@ -1,6 +1,7 @@
 ﻿<li>
-    <Tooltip Text=@(Word.Pinyin)><b>@Word.Word.</b></Tooltip>
-    <span hidden="@(!Show)">@($" {Word.Pinyin}")</span>
+    <Tooltip Text=@(Word.Pinyin)><b>@Word.Word</b></Tooltip>
+    <span hidden="@(!Show)">@($"| {Word.Pinyin}")</span>
+    <span hidden="@(!Show)">@($"| {Word.English}")</span>
 </li>
 
 
