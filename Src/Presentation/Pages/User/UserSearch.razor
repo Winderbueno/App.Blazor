@@ -4,7 +4,7 @@
 @page "/users/search"
 @attribute [Authorize]
 
-<Container FlexColumn NoWrap>
+<Container FlexColumn NoWrap Mobile>
 
     <Container FlexJustify="space-between"
                FlexAlign="center">
@@ -13,7 +13,10 @@
               Route="users/create">@t["action.create"]</Link>
     </Container>
 
-    <UserSearchForm Form=form OnFormChange=OnFormChange />
+    <Container FlexJustify="center" 
+               Mobile MobileAlign="center">
+        <UserSearchForm Form=form OnFormChange=OnFormChange />
+    </Container>
 
     @if (userIds != null)
     {

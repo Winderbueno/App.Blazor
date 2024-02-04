@@ -10,6 +10,7 @@
             --flex-child-width:@FlexChildWidth;
             --grid-template-columns:@GridColumns;
             --grid-align:@GridAlign;
+            --mobile-align:@MobileAlign;
             --mobile-child-width:@MobileChildWidth;
             @RowGapCss
             @ColumnGapCss
@@ -60,8 +61,9 @@
     [Parameter]
     public bool Mobile { get; set; } = false;
     [Parameter]
-    public string? MobileChildWidth { get; set; }
-    
+    public string? MobileAlign { get; set; } = "stretch";
+    [Parameter]
+    public string? MobileChildWidth { get; set; }    
 
     private string? RowGapCss = "--row-gap:";
     private string? ColumnGapCss = "--column-gap:";

@@ -1,0 +1,70 @@
+﻿@page "/chinese"
+
+<h1>Chinese</h1>
+
+<Container FlexColumn NoWrap Mobile>
+
+    <Container FlexJustify="center" 
+               Mobile MobileAlign="center">
+        <Card Title="Words" Level=2>
+            <Form Model=form OnFieldChanged=OnFieldChanged>
+                <Container FlexAlign="center" FlexJustify="center"
+                           Mobile MobileAlign="center"
+                           NoRowGap>
+
+                    <TextField @bind-Value=form.Contains
+                               BindOnInput OnInputDelayed=OnFormChange
+                                Label=@t["action.search"]
+                                Placeholder=@Placeholder("action.search") />
+
+                     <SelectField @bind-Value=form.Domains
+                                  Multiple Options="Enum.GetValues<WordDomain>()"
+                                  Label=@t["common.domain"]
+                                  Placeholder=@Placeholder("common.domain") />
+
+                     <SelectField @bind-Value=form.Types
+                                  Multiple Options="Enum.GetValues<WordType>()"
+                                  Label=@t["common.type"]
+                                  Placeholder=@Placeholder("common.type") />
+
+                     <Button @onclick=Clear>@t["action.clear"]</Button>
+                    </Container>
+            </Form>
+        </Card>
+    </Container>
+
+    <WordResults Words="words" />
+</Container>
+
+@code {
+    private WordSearchFormDto form = new();
+    private IEnumerable<int>? wordIds = null;
+    private List<WordAppDto>? words;
+
+    private string Placeholder(string? label) => t[label] + "...";
+
+    protected override async Task OnInitializedAsync() => await SearchAsync();
+
+    private async void OnFieldChanged(object? sender, FieldChangedEventArgs? e) => await SearchAsync();
+
+    private async void OnFormChange(object? state = null) => await SearchAsync();
+
+    private async void Clear()
+    {
+        form = new();
+        await SearchAsync();
+    }
+
+    private async Task SearchAsync()
+    {
+        this.form.PageNumber = 1;
+        this.form.PageSize = 8;
+
+        try { wordIds = (await dicoService.SearchAsync(form)).ToList(); }
+        catch (ProblemDetailsException) { }
+
+        words = (await dicoService.GetAsync(wordIds!)).ToList();
+
+        StateHasChanged();
+    }
+}
