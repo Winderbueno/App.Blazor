@@ -1,27 +1,13 @@
 ﻿@inherits KComponent
 
 <div style=@(FlexGrow ? "flex-grow:1" : "")>
-    <div 
-        style="
-            --flex-direction:@(FlexColumn ? "column" : "row");
-            --flex-wrap:@(NoWrap ? "nowrap" : "wrap");
-            --flex-justify:@FlexJustify;
-            --flex-align:@FlexAlign;
-            --flex-child-width:@FlexChildWidth;
-            --grid-template-columns:@GridColumns;
-            --grid-align:@GridAlign;
-            --mobile-align:@MobileAlign;
-            --mobile-child-width:@MobileChildWidth;
-            @RowGapCss
-            @ColumnGapCss
-            @PaddingInlineCss"
-        class="@("fill " + cssClass)">
+    <div style=@cssStyle
+         class=@("fill " + cssClass)>
         @ChildContent
     </div>
 </div>
 
 @code {
-    
     /* Flex */
     [Parameter]
     public bool FlexGrow { get; set; } = false;
@@ -44,6 +30,14 @@
     [Parameter]
     public string GridAlign { get; set; } = "center";
 
+    /* Mobile */
+    [Parameter]
+    public bool Mobile { get; set; } = false;
+    [Parameter]
+    public string? MobileAlign { get; set; } = "stretch";
+    [Parameter]
+    public string? MobileChildWidth { get; set; }
+
     /* Gap */
     [Parameter]
     public Size? RowGap { get; set; }
@@ -57,27 +51,31 @@
     [Parameter]
     public Size? PaddingInline { get; set; }
 
-    /* Mobile */
-    [Parameter]
-    public bool Mobile { get; set; } = false;
-    [Parameter]
-    public string? MobileAlign { get; set; } = "stretch";
-    [Parameter]
-    public string? MobileChildWidth { get; set; }    
-
-    private string? RowGapCss = "--row-gap:";
-    private string? ColumnGapCss = "--column-gap:";
-    private string? PaddingInlineCss = "";
+    private string? cssStyle;
 
     protected override void OnInitialized()
     {
         CssClass += Grid ? " grid" : " flex";
         CssClass += Mobile ? " mobile" : "";
 
-        RowGapCss += NoRowGap ? "0;" : $"{RowGap.ToCssVar()};";
-        ColumnGapCss += NoColumnGap ? "0;" : $"{ColumnGap.ToCssVar()};";
+        cssStyle += Grid ?
+            $"--grid-template-columns:{GridColumns};"
+            + $"--grid-align:{GridAlign};"
+            :
+            $"--flex-direction:{(FlexColumn ? "column" : "row")};"
+            + $"--flex-wrap:{(NoWrap ? "nowrap" : "wrap")};"
+            + $"--flex-justify:{FlexJustify};"
+            + $"--flex-align:{FlexAlign};"
+            + $"--flex-child-width:{FlexChildWidth};";
+
+        if (Mobile)
+            cssStyle += $"--mobile-align:{MobileAlign};"
+                + $"--mobile-child-width:{MobileChildWidth};";
+
+        cssStyle += $"--row-gap:{(NoRowGap ? "0" : RowGap.ToCssVar())};";
+        cssStyle += $"--column-gap:{(NoColumnGap ? "0" : ColumnGap.ToCssVar())};";
 
         if (PaddingInline != null)
-            PaddingInlineCss = $"padding-inline: {PaddingInline.ToCssVar()}";
+            cssStyle += $"padding-inline: {PaddingInline.ToCssVar()}";
     }
 }
