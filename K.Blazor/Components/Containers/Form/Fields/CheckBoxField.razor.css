@@ -1,0 +1,5 @@
+﻿.required {
+    display: inline;
+    color: var(--k-color-danger);
+    padding: 0 1em;
+}
