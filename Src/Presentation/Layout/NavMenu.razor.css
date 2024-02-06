@@ -32,8 +32,12 @@ aside {
 @media (max-width: 576px) {
     aside {
         grid-template:
-            'icon' 100%
-            'navigation' auto / 100%;
+            'navigation' auto
+            'icon' 56px / 100%;
+        z-index: 1000; /*Above content*/
+        position: fixed;
+        bottom: 0;
+        width: 100%;
     }
 
         aside header {

@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 8px;
     right: 8px;
-    z-index: 3;
+    z-index: 2000; /*Above navbar*/
 }
 
 .toast {
@@ -11,6 +11,7 @@
     align-items: top;
     gap: var(--k-gap-normal);
     padding: var(--k-gap-normal);
+    z-index: 2000; /*Above navbar*/
     width: 300px;
     border-radius: 0.75rem !important;
     color: var(--k-color-light);

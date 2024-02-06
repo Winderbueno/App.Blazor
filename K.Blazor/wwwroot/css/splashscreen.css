@@ -2,7 +2,7 @@
     /* Position */
     position: absolute;
     inset: 0;
-    z-index: 100;
+    z-index: 10000; /*Above toast & navbar*/
     /* Layout */
     display: flex;
     flex-direction: column;

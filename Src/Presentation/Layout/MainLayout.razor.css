@@ -7,9 +7,9 @@
 /* Page.Mobile */
 @media (max-width: 576px) {
     .page {
-        grid-template:
-            'navbar' 56px
-            'content' calc(100svh - 56px) / 100%;
+        grid-template: 'content' 100%;
+        height: calc(100svh - 56px);
+        overflow-y: scroll;
     }
 }
 
@@ -27,13 +27,13 @@
         flex-direction: column;
     }
 
-/* Content.Mobile */
+/* Content.Large */
 @media (min-width: 576px) {
     .content {
         overflow-y: scroll;
     }
 
-    .content > div {
-        padding: var(--k-gap-large);
-    }
+        .content > div {
+            padding: var(--k-gap-large);
+        }
 }
