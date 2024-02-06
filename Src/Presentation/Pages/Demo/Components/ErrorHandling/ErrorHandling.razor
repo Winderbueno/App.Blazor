@@ -20,7 +20,7 @@
 
         @*Try/Catch (For specific treatment)*@
         <Card Title="Try/Catch" Level=2>
-            <div>Will log & trigger toast</div>
+            <div>Log & trigger toast</div>
             <Button @onclick=TryCatch>Click</Button>
         </Card>
 
@@ -28,7 +28,7 @@
         <Card Title="ErrorBoundary" Level=2>
             <ErrorBoundary @ref="errorBoundary">
                 <ChildContent>
-                    <div>Will display @("<ErrorContent>")</div>
+                    <div>Display @("<ErrorContent>")</div>
                     <ErrorButton/>
                 </ChildContent>
                 <ErrorContent Context="e">
@@ -47,7 +47,7 @@
             Handling. ErrorState is activated + Rerender with <ErrorBoundary>'default <ErrorContent> (.blazor-error-boundary)
             Implem. <ErrorBoundary> surrounding Body in MainLayout.razor + Recover on SetParam*@
         <Card Title="Global Handling" Level=2>
-            <div>Will display global error</div>
+            <div>Display global error</div>
             <Button @onclick=GlobalHandling>Click</Button>
         </Card>
     </Container>
