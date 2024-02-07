@@ -10,10 +10,14 @@
                 }
             </DataList>
         </CascadingValue>
-
-        <Button @onclick="_ => show = !show">@(t[show ? "action.hide" : "action.show"])</Button>
     </Container>
 </Card>
+
+<Actions>
+    <Tooltip Text=@(t[show ? "action.hide" : "action.show"])>
+        <Button @onclick="_ => show = !show" Icon=@(show ? "minus" : "eye") />
+     </Tooltip>
+</Actions>
 
 @code {
     [Parameter]

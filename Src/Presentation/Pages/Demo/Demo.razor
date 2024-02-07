@@ -6,62 +6,55 @@
 
 @page "/demo"
 
-<Container FlexColumn Mobile>
-
-    <Container FlexJustify="space-between"
-               FlexAlign="center">
-        <h1>Demo</h1>
-        <Button Icon="globe" @onclick=ChangeLocale>@t.Locale.ToUpper()</Button>
-    </Container>
-
-    <Container Mobile>
-        <Card Title="Indicators">
-            <Container FlexAlign="start" Mobile>
-                <Container FlexColumn>
-                    <Loaders />
-                    <Chips />
-                </Container>
-                <Container FlexColumn>
-                    <Icons />
-                    <Toasts />
-                    <Tooltips />
-                </Container>
+<Container Mobile>
+    <Card Title="Indicators">
+        <Container FlexAlign="start" Mobile>
+            <Container FlexColumn>
+                <Loaders />
+                <Chips />
             </Container>
-        </Card>
-
-        <Card Title="Interactions">
-            <Container FlexColumn Mobile>
-                <Buttons />
-                <Links />
+            <Container FlexColumn>
+                <Icons />
+                <Toasts />
+                <Tooltips />
             </Container>
-        </Card>
+        </Container>
+    </Card>
 
-        <ErrorHandling />
+    <Card Title="Interactions">
+        <Container FlexColumn Mobile>
+            <Buttons />
+            <Links />
+        </Container>
+    </Card>
 
-        <Card Title="Containers">
-            <Container FlexAlign="start" Mobile>
-                <Forms />
-                
-                <Container FlexColumn>
-                    <Tabs />
-                    <Table />
-                </Container>
+    <ErrorHandling />
 
-                <Cards />
+    <Card Title="Containers">
+        <Container FlexAlign="start" Mobile>
+            <Forms />
+
+            <Container FlexColumn>
+                <Tabs />
+                <Table />
             </Container>
-        </Card>
 
-        <Card Title="Contents">
-            <Container>
-                <DetailedData />
-                <DataLists />
-            </Container>
-        </Card>
-    </Container>
+            <Cards />
+        </Container>
+    </Card>
 
+    <Card Title="Contents">
+        <Container>
+            <DetailedData />
+            <DataLists />
+        </Container>
+    </Card>
 </Container>
 
+<Actions>
+    <Button Icon="globe" @onclick=ChangeLocale>@t.Locale.ToUpper()</Button>
+</Actions>
+
 @code {
-    private void ChangeLocale()
-        => t.Locale = t.Locale == "fr" ? "en" : "fr";
+    private void ChangeLocale() => t.Locale = t.Locale == "fr" ? "en" : "fr";
 }

@@ -1,0 +1,13 @@
+﻿.actions {
+    position: fixed;
+    bottom: var(--k-gap-normal);
+    right: calc(17px + var(--k-gap-normal)); /*scrollbar + normal gap*/
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .actions {
+        bottom: calc(56px + var(--k-gap-normal)); /*navbar + normal gap*/
+        right: calc(2px + var(--k-gap-normal)); /*scrollbar + normal gap*/
+    }
+}

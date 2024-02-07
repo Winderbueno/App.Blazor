@@ -1,0 +1,11 @@
+﻿<div class="actions">
+    <Container FlexColumn>
+        @ChildContent
+    </Container>
+</div>
+
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

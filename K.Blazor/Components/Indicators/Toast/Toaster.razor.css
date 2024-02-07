@@ -1,7 +1,7 @@
 .toast-container {
     position: fixed;
-    bottom: 8px;
-    right: 8px;
+    bottom: var(--k-gap-normal);
+    right: calc(17px + var(--k-gap-normal)); /*scrollbar + normal gap*/
     z-index: 2000; /*Above navbar*/
 }
 

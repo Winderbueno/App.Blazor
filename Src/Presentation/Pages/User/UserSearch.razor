@@ -6,13 +6,6 @@
 
 <Container FlexColumn NoWrap Mobile>
 
-    <Container FlexJustify="space-between"
-               FlexAlign="center">
-        <h1>@t["user.feature.search"]</h1>
-        <Link Button Icon="plus"
-              Route="users/create">@t["action.create"]</Link>
-    </Container>
-
     <Container FlexJustify="center" 
                Mobile MobileAlign="center">
         <UserSearchForm Form=form OnFormChange=OnFormChange />
@@ -31,6 +24,12 @@
             </Container>
         </InfiniteScroller>
     }
+
+    <Actions>
+        <Tooltip Text=@t["action.create"]>
+            <Link Button Icon="plus" Route="users/create"></Link>
+        </Tooltip>
+    </Actions>
 </Container>
 
 @code {
