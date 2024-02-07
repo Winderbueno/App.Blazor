@@ -10,7 +10,9 @@
 }
 
 @*Element that triggers the infinite loading*@
-<div @ref="_lastItemIndicator" style="height:1px;flex-shrink:0" />
+<div @ref="_lastItemIndicator" 
+    hidden=@(!load) 
+    style="height:1px;flex-shrink:0" />
 
 @*To operate, this component requires the Js script "./scripts/infinite-scroller.js"*@
 @code {
