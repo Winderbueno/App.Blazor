@@ -29,7 +29,12 @@ button {
         opacity: 0.4;
     }
 
-    .dark {
-        color: var(--k-color-dark);
-        border: 1px solid var(--k-color-dark);
-    }
+.square {
+    height: calc(2 * var(--k-gap-larger));
+    width: calc(2 * var(--k-gap-larger));
+}
+
+.dark {
+    color: var(--k-color-dark);
+    border: 1px solid var(--k-color-dark);
+}

@@ -34,5 +34,9 @@
 
     private string buttonType => NoSubmit ? "button" : "submit";
 
-    protected override void OnInitialized() => Color = Color ?? Enums.Color.Primary;
+    protected override void OnInitialized()
+    {
+        Color = Color ?? Enums.Color.Primary;
+        CssClass += Icon != null && ChildContent == null ? " square" : "";
+    }
 }
