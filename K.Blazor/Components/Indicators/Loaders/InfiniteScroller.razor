@@ -10,7 +10,7 @@
 }
 
 @*Element that triggers the infinite loading*@
-<div @ref="_lastItemIndicator" 
+<div @ref=_lastItemIndicator 
     hidden=@(!load) 
     style="height:1px;flex-shrink:0" />
 
@@ -24,7 +24,6 @@
 
     private bool load = true, loader = false;
     private ElementReference _lastItemIndicator;
-    private DotNetObjectReference<InfiniteScroller>? _currentComponentRef;
     private IJSObjectReference? _module, _instance;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -33,8 +32,7 @@
         if (firstRender)
         {
             _module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/K.Blazor/scripts/infinite-scroller.js");
-            _currentComponentRef = DotNetObjectReference.Create(this);
-            _instance = await _module.InvokeAsync<IJSObjectReference>("initialize", _lastItemIndicator, _currentComponentRef);
+            _instance = await _module.InvokeAsync<IJSObjectReference>("initialize", _lastItemIndicator, DotNetObjectReference.Create(this));
         }
     }
 
