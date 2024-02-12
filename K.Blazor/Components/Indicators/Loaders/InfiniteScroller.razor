@@ -1,4 +1,4 @@
-﻿@inject IJSRuntime JSRuntime
+﻿@inject IJSRuntime JS
 
 @ChildContent
 
@@ -31,7 +31,7 @@
         // Initialize the IntersectionObserver
         if (firstRender)
         {
-            _module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/K.Blazor/scripts/infinite-scroller.js");
+            _module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/K.Blazor/scripts/infinite-scroller.js");
             _instance = await _module.InvokeAsync<IJSObjectReference>("initialize", _lastItemIndicator, DotNetObjectReference.Create(this));
         }
     }
