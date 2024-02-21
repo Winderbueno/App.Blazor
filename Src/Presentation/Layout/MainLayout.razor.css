@@ -8,13 +8,14 @@
 @media (max-width: 576px) {
     .page {
         grid-template: 'content' 100%;
-        height: calc(100svh - 56px);
+        height: var(--page-height);
         overflow-y: scroll;
     }
 }
 
 /* Content */
 .content {
+    grid-area: content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

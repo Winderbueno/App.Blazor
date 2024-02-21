@@ -7,7 +7,7 @@
 /* Mobile */
 @media (max-width: 576px) {
     .actions {
-        bottom: calc(56px + var(--k-gap-normal)); /*navbar + normal gap*/
+        bottom: var(--mob-action-bottom);
         right: calc(2px + var(--k-gap-normal)); /*scrollbar + normal gap*/
     }
 }

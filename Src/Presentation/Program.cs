@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Options;
 using Presentation;
+using Presentation.Layout;
 using Presentation.Middlewares.Authentication;
 using Presentation.Middlewares.Authorization;
 using Presentation.Middlewares.Globalization;
@@ -31,6 +32,10 @@ services.AddScoped<TokenStorage>()
 #region Authorization
 services.AddAuthorizationCore();
 services.AddSingleton<IConfigureOptions<AuthorizationOptions>, ConfigureAuthorization>();
+#endregion
+
+#region Layout
+services.AddScoped<IScrollInfoService, ScrollInfoService>();
 #endregion
 
 #region Logging

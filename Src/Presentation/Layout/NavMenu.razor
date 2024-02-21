@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 @using Presentation.Pages.Auth.Components
 
-<aside>
+<aside class=@mobHideClass(MobileHide)>
     <header>
         <Link>
             <svg class="logo">
@@ -9,10 +9,10 @@
             </svg>
         </Link>
 
-        <Button Icon=@(hideNav ? "menu" : "x") CssClass="nav-toggle" @onclick=ToggleNav />
+        <Button Icon=@(hideNavItems ? "menu" : "x") CssClass="hide-large" @onclick=toggleItems />
     </header>
 
-    <nav class=@(hideNav ? "hide" : null) @onclick=HideNav>
+    <nav class=@mobHideClass(hideNavItems) @onclick=hideItems>
         
         <div>
             <NavItem Label="Demo" Icon="home" Match=NavLinkMatch.All />
@@ -28,9 +28,13 @@
 </aside>
 
 @code {
-    // Only used in mobile view
-    private bool hideNav = true;
+    [Parameter]
+    public bool MobileHide { get; set; } = false;
 
-    private void ToggleNav() => hideNav = !hideNav;
-    private void HideNav() => hideNav = true;
+    // Only used in mobile view
+    private bool hideNavItems = true;
+
+    private string? mobHideClass(bool hide) => hide ? "hide-mobile" : null;
+    private void toggleItems() => hideNavItems = !hideNavItems;
+    private void hideItems() => hideNavItems = true;
 }

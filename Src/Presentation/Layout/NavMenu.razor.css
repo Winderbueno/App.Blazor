@@ -50,13 +50,14 @@ aside {
         margin-left: var(--k-gap-normal);
     }
 
-    .hide {
+    .hide-mobile {
         display: none;
     }
 }
 
+/* Screen.Large */
 @media (min-width: 576px) {
-    ::deep .nav-toggle {
+    ::deep .hide-large {
         display: none;
     }
 }
