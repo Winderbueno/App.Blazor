@@ -2,12 +2,12 @@
 @inherits LayoutComponentBase
 
 @inject IJSRuntime JS
-@inject IScrollInfoService scrollInfoService
+@inject IScrollInfoService navState
 
 <section @ref=scrollElt
          class="page" 
-         style=@pageHeight(mobileNavhide ? "100dvh" : "100dvh - 56px")>
-    <NavMenu MobileHide=mobileNavhide />
+         style=@pageHeight(navState.MobileNavHide ? "100dvh" : "100dvh - 56px")>
+    <NavMenu MobileHide=navState.MobileNavHide />
     <main class="content">
         <div>
             <ErrorBoundary @ref="errorBoundary">@Body</ErrorBoundary>
@@ -17,12 +17,11 @@
 
 @code {
     private ErrorBoundary? errorBoundary;
-    private bool mobileNavhide = false;
     private string pageHeight(string height) => $"--page-height:calc({height});";
 
     ElementReference scrollElt;
 
-    protected override void OnInitialized() => scrollInfoService.OnScroll += OnScroll!;
+    protected override void OnInitialized() => navState.OnScroll += OnScroll!;
 
     // Recover ErrorState on route change
     protected override void OnParametersSet() => errorBoundary?.Recover();    
@@ -34,12 +33,5 @@
     }
 
     private void OnScroll(object sender, Tuple<int, int> scrollY)
-    {
-        if (scrollY.Item2 == 0 || scrollY.Item2 < 56 || scrollY.Item1 > scrollY.Item2)
-            mobileNavhide = false;
-        else if (scrollY.Item1 < scrollY.Item2)
-            mobileNavhide = true;
-
-        StateHasChanged();
-    }
+        => StateHasChanged();
 }

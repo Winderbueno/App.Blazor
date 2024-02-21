@@ -1,28 +1,19 @@
-﻿@inject IScrollInfoService scrollInfoService
+﻿@inject IScrollInfoService navState
 
-<div class="actions" style=@mobBottom(mobileNavhide ? "0px" : "56px")>
+<div class="actions" style=@mobBottom(navState.MobileNavHide ? "0px" : "56px")>
     <Container FlexColumn>
         @ChildContent
     </Container>
 </div>
-
 
 @code {
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
     private string mobBottom(string bottom) => $"--mob-action-bottom:calc({bottom} + var(--k-gap-normal));";
-    private bool mobileNavhide = false;
-
-    protected override void OnInitialized() => scrollInfoService.OnScroll += OnScroll!;
+    
+    protected override void OnInitialized() => navState.OnScroll += OnScroll!;
 
     private void OnScroll(object sender, Tuple<int, int> scrollY)
-    {
-        if (scrollY.Item2 == 0 || scrollY.Item2 < 56 || scrollY.Item1 > scrollY.Item2)
-            mobileNavhide = false;
-        else if (scrollY.Item1 < scrollY.Item2)
-            mobileNavhide = true;
-
-        StateHasChanged();
-    }
+        => StateHasChanged();
 }

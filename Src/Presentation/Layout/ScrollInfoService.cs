@@ -7,15 +7,20 @@ public class ScrollInfoService : IScrollInfoService
 {
     public event EventHandler<Tuple<int, int>>? OnScroll;
     public int YValue { get; private set; }
+    public bool MobileNavHide { get; private set; }
 
     // Invoke function declared in scroll-observer.js
     public ScrollInfoService(IJSRuntime js)
         => js.InvokeVoidAsync("RegisterScrollInfoService", DotNetObjectReference.Create(this));
-    
 
     [JSInvokable("OnScroll")]
     public void JsOnScroll(int yValue)
     {
+        if (yValue == 0 || yValue < 56 || YValue > yValue)
+            MobileNavHide = false;
+        else if (YValue < yValue)
+            MobileNavHide = true;
+
         OnScroll?.Invoke(this, new (YValue, yValue));
         YValue = yValue;
     }
@@ -25,4 +30,5 @@ public interface IScrollInfoService
 {
     event EventHandler<Tuple<int, int>> OnScroll;
     int YValue { get; }
+    bool MobileNavHide { get; }
 }
