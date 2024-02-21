@@ -19,9 +19,9 @@
     private void OnScroll(object sender, Tuple<int, int> scrollY)
     {
         if (scrollY.Item2 == 0 || scrollY.Item2 < 56
-                || (scrollY.Item1 > scrollY.Item2 && nav == false))
+                || (scrollY.Item1 > scrollY.Item2))
             nav = true;
-        else if (scrollY.Item1 < scrollY.Item2 && nav == true)
+        else if (scrollY.Item1 < scrollY.Item2)
             nav = false;
         StateHasChanged();
     }
