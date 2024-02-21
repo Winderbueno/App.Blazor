@@ -1,0 +1,28 @@
+﻿@inject IScrollInfoService scrollInfoService
+@using K.Blazor.Components.Containers
+
+<div class="debug" style=@mobBottom(nav ? "56px" : "56px")>
+    <Card>
+        PrevY : @prevY ; CurrY : @currY
+    </Card>
+</div>
+
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private string mobBottom(string bottom) => $"--mob-action-bottom:calc({bottom} + var(--k-gap-normal));";
+    private bool nav = true;
+    private int? prevY, currY;
+
+    protected override void OnInitialized() => scrollInfoService.OnScroll += OnScroll!;
+
+    private void OnScroll(object sender, Tuple<int, int> scrollY)
+    {
+        prevY = scrollY.Item2;
+        currY = scrollY.Item1;
+        nav = scrollY.Item1 >= scrollY.Item2 ? true : false;
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,13 @@
+﻿.debug {
+    position: fixed;
+    bottom: var(--k-gap-normal);
+    right: calc(50px + var(--k-gap-normal)); /*scrollbar + normal gap*/
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .debug {
+        bottom: var(--mob-action-bottom);
+        right: calc(30px + var(--k-gap-normal)); /*scrollbar + normal gap*/
+    }
+}
