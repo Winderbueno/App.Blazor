@@ -35,12 +35,11 @@
 
     private void OnScroll(object sender, Tuple<int, int> scrollY)
     {
-        
-        if (scrollY.Item2 == 0 || scrollY.Item2 < 56
-                || (scrollY.Item1 > scrollY.Item2))
+        if (scrollY.Item2 == 0 || scrollY.Item2 < 56 || scrollY.Item1 > scrollY.Item2)
             mobileNavhide = false;
         else if (scrollY.Item1 < scrollY.Item2)
             mobileNavhide = true;
+
         StateHasChanged();
     }
 }
