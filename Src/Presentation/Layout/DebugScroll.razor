@@ -20,8 +20,8 @@
 
     private void OnScroll(object sender, Tuple<int, int> scrollY)
     {
-        prevY = scrollY.Item2;
-        currY = scrollY.Item1;
+        prevY = scrollY.Item1;
+        currY = scrollY.Item2;
         nav = scrollY.Item1 >= scrollY.Item2 ? true : false;
         StateHasChanged();
     }
