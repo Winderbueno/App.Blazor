@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 @using Presentation.Pages.Auth.Components
 
-<aside class=@mobHideClass(MobileHide)>
+<aside style=@mobTranslateY(MobileHide ? "100%" : "0")>
     <header>
         <Link>
             <svg class="logo">
@@ -34,6 +34,7 @@
     // Only used in mobile view
     private bool hideNavItems = true;
 
+    private string mobTranslateY(string? height) => $"--mob-translate-Y:{height};";
     private string? mobHideClass(bool hide) => hide ? "hide-mobile" : null;
     private void toggleItems() => hideNavItems = !hideNavItems;
     private void hideItems() => hideNavItems = true;

@@ -9,6 +9,7 @@
     .page {
         grid-template: 'content' 100%;
         height: var(--page-height);
+        transition: height 0.5s ease;
         overflow-y: scroll;
     }
 }

@@ -8,6 +8,7 @@
 @media (max-width: 576px) {
     .actions {
         bottom: var(--mob-action-bottom);
+        transition: bottom 0.5s ease;
         right: calc(2px + var(--k-gap-normal)); /*scrollbar + normal gap*/
     }
 }
