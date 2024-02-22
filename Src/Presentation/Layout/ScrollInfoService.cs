@@ -5,7 +5,7 @@ namespace Presentation.Layout;
 // https://stackoverflow.com/questions/63135574/how-do-i-subscribe-to-onscroll-event-in-blazor
 public class ScrollInfoService : IScrollInfoService
 {
-    public event EventHandler<Tuple<int, int>>? OnScroll;
+    public event Action? OnScroll;
     public int YValue { get; private set; }
     public bool MobileNavHide { get; private set; }
 
@@ -21,14 +21,14 @@ public class ScrollInfoService : IScrollInfoService
         else if (YValue < yValue)
             MobileNavHide = true;
 
-        OnScroll?.Invoke(this, new (YValue, yValue));
+        OnScroll?.Invoke();
         YValue = yValue;
     }
 }
 
 public interface IScrollInfoService
 {
-    event EventHandler<Tuple<int, int>> OnScroll;
+    event Action? OnScroll;
     int YValue { get; }
     bool MobileNavHide { get; }
 }

@@ -21,17 +21,15 @@
 
     ElementReference scrollElt;
 
-    protected override void OnInitialized() => navState.OnScroll += OnScroll!;
+    protected override void OnInitialized() => navState.OnScroll += StateHasChanged;
 
     // Recover ErrorState on route change
     protected override void OnParametersSet() => errorBoundary?.Recover();    
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        // Activate scroll detection (every 500 ms)
         if (firstRender)
-            await JS.InvokeVoidAsync("onScroll", scrollElt, 500); // Notify every 500 ms
+            await JS.InvokeVoidAsync("onScroll", scrollElt, 500);
     }
-
-    private void OnScroll(object sender, Tuple<int, int> scrollY)
-        => StateHasChanged();
 }
