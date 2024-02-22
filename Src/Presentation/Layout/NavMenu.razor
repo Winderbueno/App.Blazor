@@ -1,7 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 @using Presentation.Pages.Auth.Components
 
-<aside style=@mobTranslateY(MobileHide ? "100%" : "0")>
+<aside class=@(!mobHideItems ? "round-top" : null)
+       style=@($"--mob-translate-Y:{(MobileHide ? "101%" : "0")};")>
     <header>
         <Link>
             <svg class="logo">
@@ -9,10 +10,10 @@
             </svg>
         </Link>
 
-        <Button Icon=@(hideNavItems ? "menu" : "x") CssClass="hide-large" @onclick=toggleItems />
+        <Button Icon=@(mobHideItems ? "menu" : "x") CssClass="hide-large" @onclick=toggleItems />
     </header>
 
-    <nav class=@mobHideClass(hideNavItems) @onclick=hideItems>
+    <nav class=@(mobHideItems ? "hide-mob" : "round-top") @onclick=hideItems>
         
         <div>
             <NavItem Label="Demo" Icon="home" Match=NavLinkMatch.All />
@@ -31,11 +32,8 @@
     [Parameter]
     public bool MobileHide { get; set; } = false;
 
-    // Only used in mobile view
-    private bool hideNavItems = true;
+    private bool mobHideItems = true;
 
-    private string mobTranslateY(string? height) => $"--mob-translate-Y:{height};";
-    private string? mobHideClass(bool hide) => hide ? "hide-mobile" : null;
-    private void toggleItems() => hideNavItems = !hideNavItems;
-    private void hideItems() => hideNavItems = true;
+    private void toggleItems() => mobHideItems = !mobHideItems;
+    private void hideItems() => mobHideItems = true;
 }

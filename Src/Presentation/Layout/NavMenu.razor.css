@@ -46,13 +46,17 @@ aside {
             justify-content: space-between;
         }
 
+    .round-top {
+        border-radius: var(--k-gap-normal) var(--k-gap-normal) 0 0;
+    }
+
     .logo {
         inline-size: 40px;
         margin-bottom: 8px;
         margin-left: var(--k-gap-normal);
     }
 
-    .hide-mobile {
+    .hide-mob {
         display: none;
     }
 }
