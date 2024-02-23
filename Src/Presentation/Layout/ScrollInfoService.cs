@@ -16,11 +16,14 @@ public class ScrollInfoService : IScrollInfoService
     [JSInvokable("OnScroll")]
     public void JsOnScroll(int yValue)
     {
-        if (yValue == 0 || yValue < 56 || YValue > yValue)
-            MobileNavHide = false;
-        else if (YValue < yValue)
-            MobileNavHide = true;
-
+        decimal diff = YValue - yValue;
+        if (Math.Abs(diff) > 5)
+        {
+            if (yValue == 0 || yValue < 56 || YValue > yValue)
+                MobileNavHide = false;
+            else if (YValue < yValue)
+                MobileNavHide = true;
+        }
         OnScroll?.Invoke();
         YValue = yValue;
     }
