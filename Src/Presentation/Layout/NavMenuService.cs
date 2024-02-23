@@ -3,45 +3,44 @@
 namespace Presentation.Layout;
 
 // https://stackoverflow.com/questions/63135574/how-do-i-subscribe-to-onscroll-event-in-blazor
-public class ScrollInfoService : IScrollInfoService
+public class NavMenuService : INavMenuService
 {
     public event Action? OnDisplayChange, OnShow, OnHide;
-    public int YValue { get; private set; }
-    public bool MobileNavHide { get; private set; }
+    private int YValue;
+    public bool Display { get; private set; }
 
     // Invoke function declared in scroll-observer.js
-    public ScrollInfoService(IJSRuntime js)
-        => js.InvokeVoidAsync("RegisterScrollInfoService", DotNetObjectReference.Create(this));
+    public NavMenuService(IJSRuntime js)
+        => js.InvokeVoidAsync("RegisterNavMenuService", DotNetObjectReference.Create(this));
 
     [JSInvokable("OnScroll")]
     public void JsOnScroll(int yValue)
     {
-        bool prevMobileNavHide = MobileNavHide;
+        bool prevDisplay = Display;
         decimal diff = YValue - yValue;
         if (Math.Abs(diff) > 5)
         {
             if (yValue == 0 || yValue < 56 || YValue > yValue)
             {
-                MobileNavHide = false;
+                Display = false;
                 if(YValue > yValue) OnShow?.Invoke();
             }
             else if (YValue < yValue)
             {
-                MobileNavHide = true;
+                Display = true;
                 OnHide?.Invoke();
             }   
         }
 
-        if(prevMobileNavHide != MobileNavHide)
+        if(prevDisplay != Display)
             OnDisplayChange?.Invoke();
 
         YValue = yValue;
     }
 }
 
-public interface IScrollInfoService
+public interface INavMenuService
 {
+    bool Display { get; }
     event Action? OnDisplayChange, OnShow, OnHide;
-    int YValue { get; }
-    bool MobileNavHide { get; }
 }

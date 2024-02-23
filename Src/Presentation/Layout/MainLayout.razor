@@ -2,12 +2,12 @@
 @inherits LayoutComponentBase
 
 @inject IJSRuntime JS
-@inject IScrollInfoService navState
+@inject INavMenuService navState
 
 <section @ref=scrollElt
          class="page @(animated ? "animation" : null)"
-         style=@pageHeight(navState.MobileNavHide ? "100dvh" : "100dvh - 56px")>
-    <NavMenu @ref="navMenu" MobileHide=navState.MobileNavHide />
+         style=@pageHeight(navState.Display ? "100dvh" : "100dvh - 56px")>
+    <NavMenu @ref="navMenu" MobileHide=navState.Display />
     <main class="content">
         <div>
             <ErrorBoundary @ref="errorBoundary">@Body</ErrorBoundary>
@@ -39,6 +39,7 @@
             await JS.InvokeVoidAsync("onScroll", scrollElt, 500);
     }
 
+    // 
     private void OnShow()
     {
         animated = true;

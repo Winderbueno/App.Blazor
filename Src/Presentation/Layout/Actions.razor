@@ -1,6 +1,6 @@
-﻿@inject IScrollInfoService navState
+﻿@inject INavMenuService navState
 
-<div class="actions" style=@mobBottom(navState.MobileNavHide ? "0px" : "56px")>
+<div class="actions" style=@mobBottom(navState.Display ? "0px" : "56px")>
     <Container FlexColumn>
         @ChildContent
     </Container>

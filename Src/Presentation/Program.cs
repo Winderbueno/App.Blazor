@@ -35,7 +35,7 @@ services.AddSingleton<IConfigureOptions<AuthorizationOptions>, ConfigureAuthoriz
 #endregion
 
 #region Layout
-services.AddScoped<IScrollInfoService, ScrollInfoService>();
+services.AddScoped<INavMenuService, NavMenuService>();
 #endregion
 
 #region Logging
