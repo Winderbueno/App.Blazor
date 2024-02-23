@@ -13,7 +13,7 @@
         <Button Icon=@(mobHideItems ? "menu" : "x") CssClass="hide-large" @onclick=toggleItems />
     </header>
 
-    <nav class=@(mobHideItems ? "hide-mob" : "round-top") @onclick=hideItems>
+    <nav class=@(mobHideItems ? "hide-mob" : "round-top") @onclick=HideItems>
         
         <div>
             <NavItem Label="Demo" Icon="home" Match=NavLinkMatch.All />
@@ -35,5 +35,5 @@
     private bool mobHideItems = true;
 
     private void toggleItems() => mobHideItems = !mobHideItems;
-    private void hideItems() => mobHideItems = true;
+    public void HideItems() => mobHideItems = true;
 }

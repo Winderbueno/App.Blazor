@@ -12,5 +12,5 @@
 
     private string mobBottom(string bottom) => $"--mob-action-bottom:calc({bottom} + var(--k-gap-normal));";
     
-    protected override void OnInitialized() => navState.OnScroll += StateHasChanged;
+    protected override void OnInitialized() => navState.OnDisplayChange += StateHasChanged;
 }

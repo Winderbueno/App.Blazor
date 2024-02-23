@@ -5,9 +5,9 @@
 @inject IScrollInfoService navState
 
 <section @ref=scrollElt
-         class="page" 
+         class="page @(animated ? "animation" : null)"
          style=@pageHeight(navState.MobileNavHide ? "100dvh" : "100dvh - 56px")>
-    <NavMenu MobileHide=navState.MobileNavHide />
+    <NavMenu @ref="navMenu" MobileHide=navState.MobileNavHide />
     <main class="content">
         <div>
             <ErrorBoundary @ref="errorBoundary">@Body</ErrorBoundary>
@@ -17,11 +17,17 @@
 
 @code {
     private ErrorBoundary? errorBoundary;
+    private NavMenu? navMenu;
     private string pageHeight(string height) => $"--page-height:calc({height});";
+    private bool animated;
 
     ElementReference scrollElt;
 
-    protected override void OnInitialized() => navState.OnScroll += StateHasChanged;
+    protected override void OnInitialized() {
+        navState.OnDisplayChange += StateHasChanged;
+        navState.OnShow += OnShow;
+        navState.OnHide += OnHide;
+    }
 
     // Recover ErrorState on route change
     protected override void OnParametersSet() => errorBoundary?.Recover();    
@@ -32,4 +38,12 @@
         if (firstRender)
             await JS.InvokeVoidAsync("onScroll", scrollElt, 500);
     }
+
+    private void OnShow()
+    {
+        animated = true;
+        navMenu!.HideItems();
+    }
+
+    private void OnHide() => animated = false;
 }
