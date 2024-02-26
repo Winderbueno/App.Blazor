@@ -4,18 +4,19 @@
 
 <h1>@t["user.feature.create"]</h1>
 
-<Container FlexColumn 
-           FlexAlign="center" FlexJustify="center">
+<Container FlexColumn FlexAlign="center">
     <Form Model=form
           OnValidSubmit=ValidSubmit>
-        <Container FlexAlign="center" Mobile>
+        <Container FlexColumn FlexAlign="center" Mobile>
             <Card Title=@t["user.profile"]>
-                <TextField @bind-Value=form.Username Label=@t["user.username"] />
+                <Container Mobile>
+                    <TextField @bind-Value=form.Username Label=@t["user.username"] />
 
-                <SelectField @bind-Value=form.Role
-                             Label=@t["common.role"]
-                             Options=@(Enum.GetValues<UserRole>())
-                             Placeholder=@(t["common.role"] + "...") />
+                    <SelectField @bind-Value=form.Role
+                                 Label=@t["common.role"]
+                                 Options=@(Enum.GetValues<UserRole>())
+                                 Placeholder=@(t["common.role"] + "...") />
+                </Container>
             </Card>
 
             <Card Title=@t["person.identity"]>

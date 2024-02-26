@@ -6,19 +6,17 @@
 
 <section @ref=scrollElt
          class="page @(animated ? "animation" : null)"
-         style=@pageHeight(navState.Display ? "100dvh" : "100dvh - 56px")>
+         style=@mobPageHeight(navState.Display ? "100dvh" : "100dvh - 56px")>
     <NavMenu @ref="navMenu" MobileHide=navState.Display />
     <main class="content">
-        <div>
-            <ErrorBoundary @ref="errorBoundary">@Body</ErrorBoundary>
-        </div>
+        <ErrorBoundary @ref="errorBoundary">@Body</ErrorBoundary>
     </main>
 </section>
 
 @code {
     private ErrorBoundary? errorBoundary;
     private NavMenu? navMenu;
-    private string pageHeight(string height) => $"--page-height:calc({height});";
+    private string mobPageHeight(string height) => $"--mob-page-height:calc({height});";
     private bool animated;
 
     ElementReference scrollElt;
@@ -39,7 +37,6 @@
             await JS.InvokeVoidAsync("onScroll", scrollElt, 500);
     }
 
-    // 
     private void OnShow()
     {
         animated = true;
