@@ -1,20 +1,19 @@
-.nav-item {
+.nav-link-label {
     font-size: 0.9rem;
-    padding-bottom: 0.5rem;
 }
 
-    .nav-item ::deep a {
-        color: var(--k-color-light);
-        border-radius: 4px;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        column-gap: var(--k-gap-normal);
-        line-height: 3rem;
-    }
+::deep .nav-link {
+    color: var(--k-color-light);
+    border-radius: 4px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    column-gap: var(--k-gap-normal);
+    line-height: 3rem;
+}
 
-        .nav-item ::deep a.active,
-        .nav-item ::deep a:hover {
-            background-color: var(--k-color-grey-light);
-            font-weight: bold;
-        }
+    ::deep .nav-link.active,
+    ::deep a:hover {
+        background-color: var(--k-color-grey-light);
+        font-weight: bold;
+    }

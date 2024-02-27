@@ -44,6 +44,15 @@ aside {
 
         aside header {
             justify-content: space-between;
+            align-items: center;
+        }
+
+        aside header ::deep .nav-link-label {
+            display: none;
+        }
+        
+        aside nav ::deep .main {
+            display: none;
         }
 
     .round-top {
@@ -61,9 +70,13 @@ aside {
     }
 }
 
-/* Screen.Large */
+/* Desktop */
 @media (min-width: 576px) {
     ::deep .hide-large {
+        display: none;
+    }
+
+    aside header ::deep .nav-item {
         display: none;
     }
 }

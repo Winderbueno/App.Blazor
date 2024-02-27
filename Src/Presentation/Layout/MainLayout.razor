@@ -7,7 +7,16 @@
 <section @ref=scrollElt
          class="page @(animated ? "animation" : null)"
          style=@mobPageHeight(navState.Display ? "100dvh" : "100dvh - 56px")>
-    <NavMenu @ref="navMenu" MobileHide=navState.Display />
+    
+    <NavMenu @ref="navMenu" MobileHide=navState.Display>
+        <NavItem Label="Demo" Icon="beaker" Match=NavLinkMatch.All />
+        <NavItem Label="Chinese" Icon="star" />
+
+        <AuthorizeView>
+            <NavItem Label=@t["feature.users"] Route="users/search" Icon="people" Secondary />
+        </AuthorizeView>
+    </NavMenu>
+
     <main class="content">
         <ErrorBoundary @ref="errorBoundary">@Body</ErrorBoundary>
     </main>

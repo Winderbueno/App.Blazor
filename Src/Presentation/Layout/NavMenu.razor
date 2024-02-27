@@ -10,25 +10,25 @@
             </svg>
         </Link>
 
+        @ChildContent
+
         <Button Icon=@(mobHideItems ? "menu" : "x") CssClass="hide-large" @onclick=toggleItems />
     </header>
 
     <nav class=@(mobHideItems ? "hide-mob" : "round-top") @onclick=HideItems>
         
-        <div>
-            <NavItem Label="Demo" Icon="home" Match=NavLinkMatch.All />
-            <NavItem Label="Chinese" Icon="star" />
-
-            <AuthorizeView>
-                <NavItem Label=@t["feature.users"] Route="users/search" Icon="people" />
-            </AuthorizeView>
-        </div>
+        <Container FlexColumn>
+            @ChildContent
+        </Container>
 
         <AuthMenu />
     </nav>
 </aside>
 
 @code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
     [Parameter]
     public bool MobileHide { get; set; } = false;
 

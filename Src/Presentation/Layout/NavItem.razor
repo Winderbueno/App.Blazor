@@ -1,7 +1,7 @@
-﻿<div class="nav-item">
+﻿<div class="nav-item @(!Secondary ? "main" : "")">
     <NavLink class="nav-link" href=@Route Match=Match>
         <Icon Id=@Icon />
-        <span>@Label</span>
+        <span class="nav-link-label">@Label</span>
     </NavLink>
 </div>
 
@@ -14,6 +14,9 @@
 
     [Parameter]
     public string? Icon { get; set; }
+
+    [Parameter]
+    public bool Secondary { get; set; } = false;
 
     [Parameter]
     public NavLinkMatch Match { get; set; } = NavLinkMatch.Prefix;
