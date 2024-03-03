@@ -4,8 +4,7 @@
 @inject IJSRuntime JS
 @inject INavMenuService navState
 
-<section @ref=scrollElt
-         class="page @(animated ? "animation" : null)"
+<section class="page @(animated ? "animation" : null)"
          style=@mobPageHeight(navState.Display ? "100dvh" : "100dvh - 56px")>
     
     <NavMenu @ref="navMenu" MobileHide=navState.Display>
@@ -17,7 +16,7 @@
         </AuthorizeView>
     </NavMenu>
 
-    <main class="content">
+    <main class="content" @ref=scrollElt>
         <ErrorBoundary @ref="errorBoundary">@Body</ErrorBoundary>
     </main>
 </section>
