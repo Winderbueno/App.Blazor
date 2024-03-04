@@ -50,6 +50,15 @@ aside {
         aside header ::deep .nav-link-label {
             display: none;
         }
+
+        aside nav {
+            padding: var(--k-gap-small);
+        }
+
+        /* Mobile. Add gap between nav & auth */
+        aside nav ::deep .nav-item:last-child {
+            padding-bottom: var(--k-gap-small);
+        }
         
         aside nav ::deep .main {
             display: none;
