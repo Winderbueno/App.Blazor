@@ -1,8 +1,14 @@
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
 .nav-link-label {
     font-size: 0.9rem;
 }
 
 ::deep .nav-link {
+    flex-grow: 1;
     color: var(--k-color-light);
     border-radius: 4px;
     height: 3rem;

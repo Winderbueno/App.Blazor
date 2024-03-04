@@ -44,7 +44,7 @@ aside {
 
         aside header {
             justify-content: space-between;
-            align-items: center;
+            align-items: stretch;
         }
 
         aside header ::deep .nav-link-label {
