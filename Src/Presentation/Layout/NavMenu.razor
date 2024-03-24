@@ -1,5 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.JSInterop
 @using Presentation.Pages.Auth.Components
+
+@inject IJSRuntime JS
 
 <aside class=@(!mobHideItems ? "round-top" : null)
        style=@($"--mob-translate-Y:{(MobileHide ? "101%" : "0")};")>
@@ -32,8 +35,22 @@
     [Parameter]
     public bool MobileHide { get; set; } = false;
 
+    // https://blazor-university.com/javascript-interop/calling-javascript-from-dotnet/passing-html-element-references/
+    [Parameter]
+    public Func<ElementReference>? MobileScrollHide { get; set; }
+
     private bool mobHideItems = true;
 
     private void toggleItems() => mobHideItems = !mobHideItems;
     public void HideItems() => mobHideItems = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // Activate scroll detection (every 500 ms)
+        if (MobileScrollHide != null)
+        {
+            if (firstRender)
+                await JS.InvokeVoidAsync("onScroll", MobileScrollHide(), 500);
+        }
+    }
 }
