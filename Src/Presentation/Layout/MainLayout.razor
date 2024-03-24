@@ -5,10 +5,7 @@
 <section class="page @(animated ? "animation" : null)"
          style=@mobPageHeight(navState.Display ? "100dvh" : "100dvh - 56px")>
 
-    <NavMenu @ref="navMenu" 
-        MobileScrollHide="() => scrollElt">
-        @* MobileOnShow="() => animated = true"     
-        MobileOnHide="() => animated = false"> *@
+    <NavMenu MobileScrollHide="() => scrollElt">
 
         <NavItem Label="Demo" Icon="beaker" Match=NavLinkMatch.All />
         <NavItem Label="Chinese" Icon="star" />
@@ -26,12 +23,15 @@
 
 @code {
     private ErrorBoundary? errorBoundary;
-    private NavMenu? navMenu;
     private string mobPageHeight(string height) => $"--mob-page-height:calc({height});";
     private bool animated = true;
     private ElementReference scrollElt;
 
-    protected override void OnInitialized() => navState.OnDisplayChange += StateHasChanged;
+    protected override void OnInitialized() {
+        navState.OnDisplayChange += StateHasChanged;
+        navState.OnShow += () => animated = true;
+        navState.OnHide += () => animated = false;
+    }
 
     // Recover ErrorState on route change
     protected override void OnParametersSet() => errorBoundary?.Recover();
