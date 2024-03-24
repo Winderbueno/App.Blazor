@@ -3,9 +3,10 @@
 @using Presentation.Pages.Auth.Components
 
 @inject IJSRuntime JS
+@inject INavMenuService navState
 
 <aside class=@(!mobHideItems ? "round-top" : null)
-       style=@($"--mob-translate-Y:{(MobileHide ? "101%" : "0")};")>
+       style=@($"--mob-translate-Y:{(navState.Display ? "101%" : "0")};")>
     <header>
         <Link>
             <svg class="logo">
@@ -18,7 +19,7 @@
         <Button Icon=@(mobHideItems ? "menu" : "x") CssClass="hide-large" @onclick=toggleItems />
     </header>
 
-    <nav class=@(mobHideItems ? "hide-mob" : "round-top") @onclick=HideItems>
+    <nav class=@(mobHideItems ? "hide-mob" : "round-top") @onclick=hideItems>
         
         <Container FlexColumn Mobile>
             @ChildContent
@@ -32,17 +33,31 @@
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    [Parameter]
-    public bool MobileHide { get; set; } = false;
+    // [Parameter]
+    // public bool MobileHide { get; set; } = false;
 
-    // https://blazor-university.com/javascript-interop/calling-javascript-from-dotnet/passing-html-element-references/
+    // ElementReference has to be provided as a function
+    // See. https://blazor-university.com/javascript-interop/calling-javascript-from-dotnet/passing-html-element-references/
     [Parameter]
     public Func<ElementReference>? MobileScrollHide { get; set; }
+
+    [Parameter]
+    public Action? MobileOnShow { get; set; }
+
+    [Parameter]
+    public Action? MobileOnHide { get; set; }
 
     private bool mobHideItems = true;
 
     private void toggleItems() => mobHideItems = !mobHideItems;
-    public void HideItems() => mobHideItems = true;
+    private void hideItems() => mobHideItems = true;
+
+    protected override void OnInitialized()
+    {
+        navState.OnDisplayChange += StateHasChanged;
+        navState.OnShow += OnShow;
+        navState.OnHide += OnHide;
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -53,4 +68,13 @@
                 await JS.InvokeVoidAsync("onScroll", MobileScrollHide(), 500);
         }
     }
+
+    private void OnShow()
+    {
+        MobileOnShow?.Invoke();
+        //animated = true;
+        hideItems();
+    }
+
+    private void OnHide() => MobileOnHide?.Invoke();
 }
